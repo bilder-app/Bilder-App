@@ -29,6 +29,9 @@ export default class Product extends Model {
   @Column({ allowNull: false })
   description: string;
 
+  @Column({ allowNull: false, type: DataType.STRING(20) })
+  shortDescription: string;
+
   @Column({ allowNull: false })
   price: number;
 
