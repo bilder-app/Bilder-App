@@ -2,17 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Swiper from 'react-native-web-swiper';
 
-// const BackgroundImage = ({url}) =>{
-//     console.log( url)
-//     return(
-//         <View style={styles.containerImg} >
-//         <Image
-//           style={styles.image}
-//           source={require()}
-//         />
-//       </View>
-//     )
-// }
+
 
 export default function SlideImages() {
 
