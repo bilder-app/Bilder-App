@@ -1,5 +1,5 @@
 import { Table, Column, Model, ForeignKey } from "sequelize-typescript";
-import Orden from "./Order";
+import Order from "./Order";
 import Product from "./Product";
 
 @Table
@@ -8,9 +8,9 @@ export default class ProductInCart extends Model {
   @Column
   productId: number;
 
-  @ForeignKey(() => Orden)
+  @ForeignKey(() => Order)
   @Column
-  ordenId: number;
+  orderId: number;
 
   @Column({ allowNull: false })
   amount: number;

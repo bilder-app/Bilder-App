@@ -4,10 +4,9 @@ import express from "express";
 import morgan from "morgan";
 import sequelize from "./Index";
 import bodyParser from "body-parser";
+import router from "./Api/Routes/router";
 
-const {
-  PORT
-} = process.env;
+const { PORT = 5000 } = process.env;
 
 const server = express();
 
@@ -17,8 +16,10 @@ server.use(morgan("dev"));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
+server.use("/", router);
+
 sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
     console.log("Sequelize connected successfully");
   })

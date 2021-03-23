@@ -25,7 +25,7 @@ export default class Order extends Model {
   state: string[];
 
   @BelongsToMany(() => Product, () => ProductInCart)
-  product: Product;
+  products: Product[];
 
   @HasOne(() => Shipping)
   shipping: Shipping;

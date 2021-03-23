@@ -10,11 +10,11 @@ import {
 } from "sequelize-typescript";
 import Business from "./Business";
 import Category from "./Category";
-import Orden from "./Order";
+import Order from "./Order";
 import ProductInCart from "./ProductInCart";
-import ProductCategory from './ProductCategory'
-import Person from './Person'
-import FavouriteProduct from './FavouriteProduct'
+import ProductCategory from "./ProductCategory";
+import Person from "./Person";
+import FavouriteProduct from "./FavouriteProduct";
 import Offer from "./Offer";
 
 @Table
@@ -41,19 +41,18 @@ export default class Product extends Model {
   @Column({ allowNull: false, type: DataType.ARRAY(DataType.STRING) })
   images: [];
 
-  @BelongsToMany(() => Orden, () => ProductInCart)
-  orden: Orden;
+  @BelongsToMany(() => Order, () => ProductInCart)
+  orders: Order[];
 
   @BelongsToMany(() => Category, () => ProductCategory)
-  categories: ProductCategory[] ;
+  categories: ProductCategory[];
 
-  @BelongsTo(()=> Business)
-  business : Business
-  
+  @BelongsTo(() => Business)
+  business: Business;
+
   @BelongsToMany(() => Person, () => FavouriteProduct)
-  favouriteProduct: FavouriteProduct[] ;
+  favouriteProduct: FavouriteProduct[];
 
   @HasMany(() => Offer)
-  offer: Offer
-
+  offer: Offer;
 }
