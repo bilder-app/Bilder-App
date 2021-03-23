@@ -22,7 +22,7 @@ function Home() {
          </View>
          {/* <SlideImages/> */}
          <Image 
-          source={require('../img/2.png')} style={{width:'90%', height:'10%', resizeMode:'stretch', borderRadius:'10px', marginLeft:'10px',marginRight :'10px', marginBottom:'10px'}}
+          source={require('../img/2.png')} style={styles.imagen}
          />
       <View style={styles.title}>
         <Text style={styles.text}>Categorías</Text>
@@ -59,6 +59,15 @@ const styles = StyleSheet.create({
   icon:{
     color:'#E49012',
     marginTop:'20px',
+  },
+  imagen:{
+    width:'90%',
+    height:'10%',
+    resizeMode:'stretch',
+    borderRadius:'10px',
+    marginLeft:'10px',
+    marginRight :'10px',
+    marginBottom:'10px'
 
   }
 })
