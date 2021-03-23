@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, StatusBar } from 'react-native'
 import CustomSearchBar from '../components/CustomSearchBar'
 import ListProducts from '../components/ListProducts.jsx'
 import ListCategories from '../components/ListCategories.jsx'
@@ -12,6 +12,11 @@ function Home() {
 
   return (
     <View style={styles.main}>
+      <StatusBar
+        translucent={false}
+        backgroundColor='#E49012'
+        barStyle='dark-content'
+      />
       <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
         <CustomSearchBar/>
         <FontAwesomeIcon icon={ faShoppingCart } size={25} style={styles.icon}  />
