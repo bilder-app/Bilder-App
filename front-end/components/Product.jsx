@@ -8,14 +8,16 @@ export default function Product({ properties }) {
 
   return(
     <View style={styles.container}>
-      <View style={styles.content}>
-        <Image style={styles.image} source={{ uri: image }}/>
-      </View>
-      <View style={styles.data}>
-        <Text style={styles.price}>$ {price || '$ Precio'}</Text>
-        <Text style={styles.title}>{title || 'Nombre del producto'}</Text>
-        <Text style={styles.description}>{description || 'Descripción'}</Text>
-      </View>
+      <TouchableOpacity style={styles.product} activeOpacity={ 0.5 }>
+        <View style={styles.content}>
+          <Image style={styles.image} source={{ uri: image }}/>
+        </View>
+        <View style={styles.data}>
+          <Text style={styles.price}>$ {price || '$ Precio'}</Text>
+          <Text style={styles.title}>{title || 'Nombre del producto'}</Text>
+          <Text style={styles.description}>{description || 'Descripción'}</Text>
+        </View>
+      </TouchableOpacity>
       <View style={{height: '20%', width: '80%'}}>
         <TouchableOpacity style={styles.button} onPress={() => console.log('Añadido')}>
           <Text style={styles.cart}>Agregar al Carrito</Text>
@@ -34,9 +36,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
   },
+  product: {
+    width: '100%',
+    height: '80%',
+    alignItems: 'center',
+  },
   content: {
     width: '100%',
-    height: '45%',
+    height: '55%',
   },
   image: {
     width: '100%',
@@ -46,7 +53,7 @@ const styles = StyleSheet.create({
   data: {
     // backgroundColor: '#1bc',
     width: '90%',
-    height: '35%',
+    height: '45%',
     borderBottomWidth: 0.5,
     borderBottomColor: '#707070'
   },
