@@ -1,12 +1,14 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native';
-import CustomSearchBar from "../components/CustomSearchBar";
-import TabBar from '../components/TabBar.jsx'
-import ListProducts from '../components/ListProducts.jsx'
+import { View, Text, StyleSheet, StatusBar } from 'react-native'
+
+import CustomSearchBar from '../components/CustomSearchBar'
+import SlideImages from '../components/SlideImages'
 import ListCategories from '../components/ListCategories.jsx'
+import ListProducts from '../components/ListProducts.jsx'
+import TabBar from '../components/TabBar.jsx'
+
 import { useNavigation } from '@react-navigation/native'
-import SlideImages from "../components/SlideImages";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -16,21 +18,25 @@ function Home() {
 
     return (
       <View style={styles.main}>
-      <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
+        <StatusBar 
+          translucent={true}
+          backgroundColor='transparent'
+          barStyle='dark-content'
+        />
+        <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
           <CustomSearchBar/>
           <FontAwesomeIcon icon={ faShoppingCart } size={25} style={styles.icon}  />
-         </View>
-         <SlideImages/>
-      <View style={styles.title}>
-        <Text style={styles.text}>Categorías</Text>
-      </View>
-      <ListCategories/>
-      <View style={styles.title}>
-        <Text style={styles.text}>Más Vendidos</Text>
-      </View>
-
+        </View>
+        <SlideImages/>
+        {/* <View style={styles.title}>
+          <Text style={styles.text}>Categorías</Text>
+        </View>
+        <ListCategories/>
+        <View style={styles.title}>
+          <Text style={styles.text}>Más Vendidos</Text>
+        </View>
         <ListProducts/>
-        <TabBar navigation={navigation}/>
+        <TabBar navigation={navigation}/> */}
       </View>
     )
 }
@@ -55,7 +61,7 @@ const styles = StyleSheet.create({
   },
   icon:{
     color:'#E49012',
-    marginTop:'20px',
+    marginTop: 20,
 
   }
 })

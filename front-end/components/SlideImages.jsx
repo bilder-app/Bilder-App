@@ -6,7 +6,7 @@ import Swiper from 'react-native-web-swiper';
 
 export default function SlideImages() {
 
-    var arrayImg = ['../img/2.pmg','../img/3.pmg','../img/4.pmg']
+    var arrayImg = ['../img/2.png','../img/3.png','../img/4.png']
     return (
         <View style={styles.container}>
           <Swiper>
@@ -30,10 +30,10 @@ export default function SlideImages() {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      marginBottom:'250px',
-      marginTop:'30px',
-      marginLeft:'15px',
-      marginRight:'15px'
+      marginBottom: 250,
+      marginTop: 30,
+      marginLeft: 15,
+      marginRight: 15
     },
     slideContainer: {
         flex: 1,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     },
     slide1: {
         backgroundColor: 'rgba(20,20,200,0.3)',
-        borderRadius:'20px',
+        borderRadius: 20,
         
     },
     slide2: {
