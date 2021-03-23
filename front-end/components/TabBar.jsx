@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
+import { useNavigation } from '@react-navigation/native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHome, faMoneyCheckAlt, faHeart, faTruck, faUser } from '@fortawesome/free-solid-svg-icons'
 
@@ -8,13 +9,14 @@ import { faHome, faMoneyCheckAlt, faHeart, faTruck, faUser } from '@fortawesome/
 
 export function Item({ data }) {
   const {name, icon, title} = data;
-  const menu = 'Home';
+  const menu = 'Profile';
+
+  const navigation = useNavigation();
+
   return (
     <View style={ styles.itemBox }>
       <TouchableOpacity
-        onPress={() => {
-          console.log('Menu name: ' + name)
-        }}
+        onPress={() => { navigation.navigate(name) }}
         disabled={ menu === name }
       >
       <FontAwesomeIcon 

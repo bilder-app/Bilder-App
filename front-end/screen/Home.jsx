@@ -1,17 +1,14 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native';
-import CustomSearchBar from "../components/CustomSearchBar";
-import TabBar from '../components/TabBar.jsx'
+import { View, Text, StyleSheet, Image } from 'react-native'
+import CustomSearchBar from '../components/CustomSearchBar'
 import ListProducts from '../components/ListProducts.jsx'
 import ListCategories from '../components/ListCategories.jsx'
-import { useNavigation } from '@react-navigation/native'
-import SlideImages from "../components/SlideImages";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import SlideImages from '../components/SlideImages'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 
 function Home() {
-  const navigation = useNavigation();
 
 
     return (
@@ -32,10 +29,9 @@ function Home() {
         <Text style={styles.text}>Más Vendidos</Text>
       </View>
 
-        <ListProducts/>
-        <TabBar navigation={navigation}/>
-      </View>
-    )
+      <ListProducts/>
+    </View>
+  )
 }
 
 export default Home
