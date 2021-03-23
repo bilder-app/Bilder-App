@@ -1,30 +1,56 @@
-import { Table, Column, Model,ForeignKey, DataType, BelongsToMany} from 'sequelize-typescript'
-import Business from './Business'
-import Orden from './Orden'
-import ProductInCart from './ProductInCart'
+import {
+  Table,
+  Column,
+  Model,
+  ForeignKey,
+  DataType,
+  BelongsToMany,
+  BelongsTo,
+  HasMany
+} from "sequelize-typescript";
+import Business from "./Business";
+import Category from "./Category";
+import Orden from "./Order";
+import ProductInCart from "./ProductInCart";
+import ProductCategory from './ProductCategory'
+import Person from './Person'
+import FavouriteProduct from './FavouriteProduct'
+import Offer from "./Offer";
 
 @Table
 export default class Product extends Model {
   @ForeignKey(() => Business)
   @Column
-  businessId : number
+  businessId: number;
 
   @Column({ allowNull: false })
-  name: string
+  name: string;
 
   @Column({ allowNull: false })
-  description: string
+  description: string;
 
   @Column({ allowNull: false })
-  price: number
+  price: number;
 
   @Column({ allowNull: false })
-  stock: number
+  stock: number;
 
-  @Column({ allowNull: false , type: DataType.ARRAY(DataType.STRING)})
-  images: []
+  @Column({ allowNull: false, type: DataType.ARRAY(DataType.STRING) })
+  images: [];
 
-  @BelongsToMany( () => Orden ,() => ProductInCart)
-  orden : Orden
+  @BelongsToMany(() => Orden, () => ProductInCart)
+  orden: Orden;
+
+  @BelongsToMany(() => Category, () => ProductCategory)
+  categories: ProductCategory[] ;
+
+  @BelongsTo(()=> Business)
+  business : Business
+  
+  @BelongsToMany(() => Person, () => FavouriteProduct)
+  favouriteProduct: FavouriteProduct[] ;
+
+  @HasMany(() => Offer)
+  offer: Offer
 
 }

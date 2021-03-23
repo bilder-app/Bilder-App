@@ -1,4 +1,5 @@
-import { Table, Column, Model, ForeignKey} from 'sequelize-typescript'
+import { Table, Column, Model, ForeignKey, HasMany} from 'sequelize-typescript'
+import Product from './Product';
 import User from './User';
 
 
@@ -8,6 +9,7 @@ export default class Business extends Model {
   @ForeignKey(() => User)
   @Column
   userId : number
+
 
   @Column({ allowNull: false })
   name: string
@@ -23,5 +25,8 @@ export default class Business extends Model {
 
   @Column({ allowNull: true })
   contact: string
+
+  @HasMany(() => Product)
+  products: Product[];
 
 }

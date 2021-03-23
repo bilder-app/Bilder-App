@@ -1,5 +1,5 @@
 import { Table, Column, Model, HasOne} from 'sequelize-typescript'
-import Business from './Person'
+import Business from './Business'
 import Person from './Person'
 
 @Table
