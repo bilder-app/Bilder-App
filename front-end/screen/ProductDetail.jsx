@@ -23,6 +23,7 @@ function ProductDetails({ route, navigation }) {
                 
                 icon={faArrowCircleLeft}
                 style={styles.icon}
+                
                 size={20}
               />
             </TouchableOpacity>

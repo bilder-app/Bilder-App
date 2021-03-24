@@ -21,7 +21,7 @@ export default function CustomSearchBar() {
         placeholder="Buscar..."
         onChangeText = {updateSearch}
         value={state.search}
-        containerStyle={{backgroundColor:'transparent', height:70}}
+        containerStyle={{backgroundColor:'transparent', height:70, width:250, marginTop:80}}
        />
     )
 }
