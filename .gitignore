@@ -5,6 +5,7 @@ node_modules
 package-lock.json
 back-end/dist
 .expo/*
+front-end/.expo/*
 npm-debug.*
 *.jks
 *.p8
@@ -14,6 +15,7 @@ npm-debug.*
 *.orig.*
 web-build/
 .vscode
+.expo
 
 # macOS
 .DS_Store
