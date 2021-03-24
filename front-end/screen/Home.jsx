@@ -58,6 +58,16 @@ const styles = StyleSheet.create({
   },
   icon:{
     color:'#E49012',
-    marginTop: 20,
+    marginTop:'20px',
+  },
+  imagen:{
+    width:'90%',
+    height:'10%',
+    resizeMode:'stretch',
+    borderRadius:'10px',
+    marginLeft:'10px',
+    marginRight :'10px',
+    marginBottom:'10px'
+
   }
 })

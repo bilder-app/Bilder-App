@@ -5,12 +5,12 @@ import { useNavigation } from '@react-navigation/native'
 
 export default function Product({ properties }) {
 
-  const { image, price, title, description } = properties;
+  const { id,image, price, title, description } = properties;
   const navigation = useNavigation();
 
   return(
     <View style={styles.container}>
-      <TouchableOpacity style={styles.product} activeOpacity={ 0.5 } onPress={() => navigation.push('ProductDetail')}>
+      <TouchableOpacity style={styles.product} activeOpacity={ 0.5 } onPress={() => navigation.navigate('ProductDetail',properties)}>
         <View style={styles.content}>
           <Image style={styles.image} source={{ uri: image }}/>
         </View>

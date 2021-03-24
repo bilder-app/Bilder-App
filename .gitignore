@@ -1,6 +1,10 @@
 node_modules/**/*
 node_modules
+.env
+.expo
 package-lock.json
+back-end/dist
+.expo/*
 front-end/.expo/*
 npm-debug.*
 *.jks
@@ -10,6 +14,8 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+.vscode
+.expo
 
 # macOS
 .DS_Store
