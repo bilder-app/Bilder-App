@@ -1,30 +1,40 @@
 import React from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
-
+import { View, StyleSheet, ScrollView, Text, TextInput } from 'react-native'
 
 import Header from '../components/Header.jsx'
+import Footer from '../components/Footer.jsx'
 import FavouriteItem from '../components/FavouriteItem.jsx' 
 
 
-function Favourites() {
+function Cart() {
 
   return (
     <View style={styles.main}>
-      <Header title={'Favoritos'}/>
+      <Header title={'Carrito'}/>
       <View style={{width: '93%', height: '90%'}}>
         <ScrollView style={{width: '100%'}} showsVerticalScrollIndicator={ false }>
           <View style={{ width: '100%', marginTop: 15, marginBottom: 15}}>
-            {[1,2,3,4,5,6,7,8,9].map((key) => {
+            {[1,2,3].map((key) => {
               return( <FavouriteItem key={key}/> )
             })}
           </View>
+          <View>
+        {/* <Text>Hola</Text>
+        <TextInput
+          style={{backgroundColor: '#1db'}}
+          editable
+          maxLength={40}
+        /> */}
+      </View>
         </ScrollView>
       </View>
+
+      <Footer title={'Continuar'}/>
     </View>
   )
 }
 
-export default Favourites
+export default Cart
 
 const styles = StyleSheet.create({
   main: {

@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   container: {
     height: 250,
     width: '100%',
+    marginBottom: 25,
   },
   products: {
     height: '100%',

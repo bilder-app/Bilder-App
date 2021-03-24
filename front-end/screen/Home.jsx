@@ -1,14 +1,16 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, StatusBar } from 'react-native'
-import CustomSearchBar from '../components/CustomSearchBar'
-import ListProducts from '../components/ListProducts.jsx'
-import ListCategories from '../components/ListCategories.jsx'
-import SlideImages from '../components/SlideImages'
+import { View, Text, StyleSheet, Image, StatusBar, TouchableOpacity, ScrollView } from 'react-native'
+
+import CustomSearchBar from '../components/Home/CustomSearchBar.jsx'
+import ListProducts from '../components/Home/ListProducts.jsx'
+import ListCategories from '../components/Home/ListCategories.jsx'
+import SlideImages from '../components/Home/SlideImages.jsx'
+
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 
-function Home() {
+function Home({ navigation }) {
 
   return (
     <View style={styles.main}>
@@ -17,23 +19,50 @@ function Home() {
         backgroundColor='#E49012'
         barStyle='dark-content'
       />
-      <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
+      <View style={styles.searchBar}>
         <CustomSearchBar/>
-        <FontAwesomeIcon icon={ faShoppingCart } size={25} style={styles.icon}  />
+        <View style={ styles.itemBox }>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => { navigation.push('Cart') }}
+          >
+            <FontAwesomeIcon 
+              icon={faShoppingCart} 
+              color={'#E49012'} 
+              size={25}
+            />
+          </TouchableOpacity>
         </View>
-        {/* <SlideImages/> */}
-        <Image 
-          source={require('../img/2.png')} style={{width:'90%', height:'10%', resizeMode:'stretch', borderRadius: 10 , marginLeft: 10 ,marginRight : 10 , marginBottom: 10 }}
-        />
-      <View style={styles.title}>
-        <Text style={styles.text}>Categorías</Text>
-      </View>
-      <ListCategories/>
-      <View style={styles.title}>
-        <Text style={styles.text}>Más Vendidos</Text>
       </View>
 
-      <ListProducts/>
+     
+      <View style={{ height: '90%', width: '100%', marginTop: 40 }}>
+        <ScrollView showsVerticalScrollIndicator={ false }>
+          <View style={{ width: '100%', height: '100%', marginBottom: 25 }}>
+            {/* <SlideImages/> */}
+            <View style={styles.imageContainer}>
+              <Image 
+                source={require('../img/2.png')} 
+                style={styles.image}
+              />
+            </View>
+            <View style={styles.title}>
+              <Text style={styles.text}>Categorías</Text>
+            </View>
+            <ListCategories/>
+
+            <View style={styles.title}>
+              <Text style={styles.text}>Más Vendidos</Text>
+            </View>
+            <ListProducts/>
+
+            <View style={styles.title}>
+              <Text style={styles.text}>Productos comprados</Text>
+            </View>
+            <ListProducts/>
+          </View>
+        </ScrollView>
+      </View>
     </View>
   )
 }
@@ -46,6 +75,40 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'center',
   },
+  searchBar: {
+    flexDirection:'row',
+    height: 50,
+    width: '100%',
+    paddingHorizontal: 15,
+    position: 'absolute',
+    top: 0,
+  },
+  itemBox: {
+    height: '100%',
+    width: '13%',
+  },
+  item: {
+    width: '100%', 
+    height: '100%', 
+    justifyContent: 'center', 
+    alignItems: 'center'
+  },
+  imageContainer: {
+    width: '100%',
+    height: 120,
+    paddingHorizontal: 15,
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  image: {
+    width:'100%',
+    height:'100%',
+    resizeMode:'stretch',
+    borderRadius:10,
+    marginLeft:10,
+    marginRight :10,
+    marginBottom:10,
+  },
   title: {
     width: '100%',
     paddingLeft: 15,
@@ -56,18 +119,4 @@ const styles = StyleSheet.create({
     color: '#E49012',
     fontWeight: 'bold',
   },
-  icon:{
-    color:'#E49012',
-    marginTop:100,
-  },
-  imagen:{
-    width:'90%',
-    height:'10%',
-    resizeMode:'stretch',
-    borderRadius:10,
-    marginLeft:10,
-    marginRight :10,
-    marginBottom:10
-
-  }
 })
