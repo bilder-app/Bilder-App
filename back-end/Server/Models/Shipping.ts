@@ -1,11 +1,11 @@
 import { Table, Column, Model, ForeignKey } from "sequelize-typescript";
-import Orden from "./Order";
+import Order from "./Order";
 
 @Table
 export default class Shipping extends Model {
-  @ForeignKey(() => Orden)
+  @ForeignKey(() => Order)
   @Column
-  ordenId: number;
+  orderId: number;
 
   @Column({ allowNull: false })
   state: string;
