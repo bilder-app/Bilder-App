@@ -8,7 +8,6 @@ import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
 
 function ProductDetails({ route, navigation }) {
   const { image, title, description, price } = route.params;
-  console.log(image, title, description, price);
 
   return (
     <View style={styles.main}>
