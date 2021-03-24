@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native'
 
 
 import Header from '../components/Header.jsx'
-import FavouriteItem from '../components/FavouriteItem.jsx' 
+import FavouriteItem from '../components/Favourites/FavouriteItem.jsx' 
 
 
 function Favourites() {

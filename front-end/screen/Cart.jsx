@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, StyleSheet, ScrollView, Text, TextInput } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
-import FavouriteItem from '../components/FavouriteItem.jsx' 
+import FavouriteItem from '../components/Favourites/FavouriteItem.jsx' 
 
 
 function Cart() {

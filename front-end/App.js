@@ -22,7 +22,6 @@ export default function App() {
         {/* Acá van los menu del tabBar */}
         <Tab.Screen name='Home' component={ Home } />
         <Tab.Screen name='Favourites' component={ Favourites } />
-        {/* <Tab.Screen name='Order' component={ Cart } /> */}
 
 
       </Tab.Navigator>

@@ -1,12 +1,9 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHome, faMoneyCheckAlt, faHeart, faTruck, faUser } from '@fortawesome/free-solid-svg-icons'
 
-
-
-const { height } = Dimensions.get('window')
 
 
 export function Item({ data, navigation }) {
