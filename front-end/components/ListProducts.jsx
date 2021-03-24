@@ -5,10 +5,10 @@ import Product from './Product.jsx'
 
 export default function ListProducts() {
   const properties = [
-    {image: 'https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg', price: 1000, title: 'Hierro Perfil', description: '60 x 20 - 1.5mm'},
-    {image: 'https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png', price: 560, title: 'Martillo Hierro', description: 'Martillo de orejas 80z'},
-    {image: 'https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg', price: 1000, title: 'Hierro Perfil', description: '60 x 20 - 1.5mm'},
-    {image: 'https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png', price: 560, title: 'Martillo Hierro', description: 'Martillo de orejas 80z'}
+    {id:1, image: 'https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg', price: 1000, title: 'Hierro Perfil', description: '60 x 20 - 1.5mm'},
+    {id:2,image: 'https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png', price: 560, title: 'Martillo Hierro', description: 'Martillo de orejas 80z'},
+    {id:3,image: 'https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg', price: 1000, title: 'Hierro Perfil', description: '60 x 20 - 1.5mm'},
+    {id:4,image: 'https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png', price: 560, title: 'Martillo Hierro', description: 'Martillo de orejas 80z'}
   ]
 
   return(
