@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1, 
     alignItems: 'center', 
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   title: {
     width: '100%',
@@ -54,16 +54,16 @@ const styles = StyleSheet.create({
   },
   icon:{
     color:'#E49012',
-    marginTop:'20px',
+    marginTop:100,
   },
   imagen:{
     width:'90%',
     height:'10%',
     resizeMode:'stretch',
-    borderRadius:'10px',
-    marginLeft:'10px',
-    marginRight :'10px',
-    marginBottom:'10px'
+    borderRadius:10,
+    marginLeft:10,
+    marginRight :10,
+    marginBottom:10
 
   }
 })
