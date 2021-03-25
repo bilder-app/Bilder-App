@@ -13,7 +13,7 @@ export default function ListProducts() {
 
   return(
    <View style={styles.container}>
-      <ScrollView horizontal  showsHorizontalScrollIndicator={ false }>
+      <ScrollView horizontal showsHorizontalScrollIndicator={ false }>
         <View style={styles.products}>
           {properties.map((props, index) => {
             return( <Product properties={props} key={index}/> )
