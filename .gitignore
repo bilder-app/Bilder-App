@@ -4,7 +4,7 @@ node_modules
 .expo
 package-lock.json
 back-end/dist
-.expo/*
+.expo
 front-end/.expo/*
 npm-debug.*
 *.jks
