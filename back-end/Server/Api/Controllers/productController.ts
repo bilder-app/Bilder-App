@@ -54,3 +54,7 @@ export async function paginatedSearchProducts({
     products: resp.rows
   }));
 }
+
+export async function getAllProducts() {
+  return Product.findAll()
+}
