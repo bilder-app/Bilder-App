@@ -23,6 +23,10 @@ export default class Product extends Model {
   @Column
   businessId: number;
 
+  @ForeignKey(() => Person)
+  @Column
+  personId: number;
+
   @Column({ allowNull: false })
   name: string;
 

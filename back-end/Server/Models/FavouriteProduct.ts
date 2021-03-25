@@ -11,7 +11,5 @@ export default class FavouriteProduct extends Model {
   @ForeignKey(() => Person)
   @Column
   personId: number;
-  
-
 
 }

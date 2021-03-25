@@ -6,6 +6,7 @@ import {
   HasMany
 } from "sequelize-typescript";
 import Order from "./Order";
+import Product from "./Product";
 import User from "./User";
 
 @Table
@@ -29,5 +30,7 @@ export default class Person extends Model {
   @HasMany(() => Order)
   orders: Order[];
 
-  
+  @HasMany(() => Product)
+  favorites: Order[];
+
 }
