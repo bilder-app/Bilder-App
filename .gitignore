@@ -5,7 +5,6 @@ node_modules
 package-lock.json
 back-end/dist
 .expo
-front-end/.expo/*
 npm-debug.*
 *.jks
 *.p8
