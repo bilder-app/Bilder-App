@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, ScrollView } from 'react-native'
+import { View, StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native'
 
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
@@ -18,14 +18,18 @@ function Cart() {
               return( <FavouriteItem key={key}/> )
             })}
           </View>
-          <View>
-        {/* <Text>Hola</Text>
-        <TextInput
-          style={{backgroundColor: '#1db'}}
-          editable
-          maxLength={40}
-        /> */}
-      </View>
+          <View style={styles.content}>
+            <View style={styles.text}>
+              <Text style={{fontSize: 15}}>Subtotal</Text>
+              <Text style={{fontSize: 22, fontWeight: 'bold'}}>$ 9000</Text>
+            </View>
+            <View style={{width: '100%', alignItems: 'center'}}>
+              <TouchableOpacity style={styles.button}>
+                <Text style={{ fontSize: 16, color: '#fff'}}>Agregar más productos</Text>
+              </TouchableOpacity>
+            </View>
+            
+          </View>
         </ScrollView>
       </View>
 
@@ -42,4 +46,26 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'center'
   },
+  content: {
+    width: '100%',
+    height: 100,
+    paddingHorizontal: 15,
+    justifyContent: 'space-around'
+  },
+  text: {
+    width: '100%',
+    borderTopColor: '#707070',
+    borderTopWidth: 0.8,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  button: {
+    width: '85%',
+    height: 35,
+    borderRadius: 20,
+    backgroundColor: '#707070',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
 })
