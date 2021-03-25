@@ -2,6 +2,7 @@ node_modules/**/*
 node_modules
 .env
 .expo
+.expo-shared
 package-lock.json
 back-end/dist
 .expo
