@@ -6,7 +6,7 @@ import sequelize from "./Index";
 import bodyParser from "body-parser";
 import router from "./router";
 
-const { PORT = 5000 } = process.env;
+const { PORT  } = process.env;
 
 const server = express();
 
