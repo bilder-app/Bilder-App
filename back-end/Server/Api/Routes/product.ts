@@ -1,7 +1,11 @@
 import express from "express";
 const router = express.Router();
-import { paginatedSearchProducts } from "../Controllers/productController";
-import { getAllProducts } from "../Controllers/productController";
+import {
+  getProduct,
+  paginatedSearchProducts,
+  getAllProducts,
+  addProduct
+} from "../Controllers/productController";
 
 router.get("/", (req, res) =>
   getAllProducts().then((resp) => {

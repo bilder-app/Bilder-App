@@ -6,7 +6,7 @@ import {
   DataType,
   BelongsToMany,
   BelongsTo,
-  HasMany
+  HasMany,
 } from "sequelize-typescript";
 import Business from "./Business";
 import Category from "./Category";

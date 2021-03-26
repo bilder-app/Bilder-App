@@ -1,5 +1,4 @@
 import { Op } from "sequelize";
-import { Request, Response } from "express";
 import Product from "../../Models/Product";
 
 export async function getAllProducts() {
