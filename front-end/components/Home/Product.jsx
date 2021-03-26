@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 
 export default function Product({ properties }) {
 
-  const { id,image, price, title, description } = properties;
+  const { id, image, price, title, description } = properties;
   const navigation = useNavigation();
 
   return(

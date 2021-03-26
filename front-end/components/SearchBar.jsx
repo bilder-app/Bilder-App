@@ -29,6 +29,7 @@ export default function SearchBar() {
           style={styles.input}
           autoFocus={true}
           placeholder={'Buscar...'}
+          onSubmitEditing={() => navigation.push('Results')}
         />
       </View>
     </View>

@@ -23,7 +23,7 @@ export default function Search() {
               <FontAwesomeIcon 
                 icon={faSearch} 
                 color={'#E49012'} 
-                size={20}
+                size={15}
               />
               <Text style={{ color: '#707070', paddingLeft: 10}}>Buscar...</Text>
             </View>

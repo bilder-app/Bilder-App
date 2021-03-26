@@ -10,6 +10,8 @@ import ProductDetail from './screen/ProductDetail.jsx'
 import Favourites from './screen/Favourites.jsx'
 import Cart from './screen/Cart.jsx'
 import Search from './screen/Search.jsx'
+import Results from './screen/Results.jsx'
+
 
 
 const Stack = createStackNavigator()
@@ -38,6 +40,8 @@ export default function App() {
         <Stack.Screen name='ProductDetail' component={ ProductDetail } />
         <Stack.Screen name='Cart' component={ Cart } />
         <Stack.Screen name='Search' component={ Search } />
+        <Stack.Screen name='Results' component={ Results } />
+
 
       </Stack.Navigator>
     </NavigationContainer>
