@@ -1,35 +1,51 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
-import CustomSearchBar from '../components/CustomSearchBar'
-import ListProducts from '../components/ListProducts.jsx'
-import ListCategories from '../components/ListCategories.jsx'
-import SlideImages from '../components/SlideImages'
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { View, Text, StyleSheet, Image, StatusBar, ScrollView } from 'react-native'
+
+import SearchButton from '../components/Home/SearchButton.jsx'
+import ListProducts from '../components/Home/ListProducts.jsx'
+import ListCategories from '../components/Home/ListCategories.jsx'
+import SlideImages from '../components/Home/SlideImages.jsx'
 
 
 function Home() {
 
+  return (
+    <View style={styles.main}>
+      <StatusBar
+        translucent={false}
+        backgroundColor='#E49012'
+        barStyle='dark-content'
+      />
 
-    return (
-      <View style={styles.main}>
-        <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
-          <CustomSearchBar/>
-          <FontAwesomeIcon icon={ faShoppingCart } size={25} style={styles.icon}  />
-         </View>
-         {/* <SlideImages/> */}
-         <Image 
-          source={require('../img/2.png')} style={styles.imagen}
-         />
-      <View style={styles.title}>
-        <Text style={styles.text}>Categorías</Text>
-      </View>
-      <ListCategories/>
-      <View style={styles.title}>
-        <Text style={styles.text}>Más Vendidos</Text>
-      </View>
+      <SearchButton />
+     
+      <View style={{ height: '86%', width: '100%', position: 'absolute', top: 80 }}>
+        <ScrollView showsVerticalScrollIndicator={ false }>
+          <View style={{ width: '100%', height: '100%', marginVertical: 15 }}>
+            {/* <SlideImages/> */}
+            <View style={styles.imageContainer}>
+              <Image 
+                source={require('../img/2.png')} 
+                style={styles.image}
+              />
+            </View>
+            <View style={styles.title}>
+              <Text style={styles.text}>Categorías</Text>
+            </View>
+            <ListCategories/>
 
-      <ListProducts/>
+            <View style={styles.title}>
+              <Text style={styles.text}>Más Vendidos</Text>
+            </View>
+            <ListProducts/>
+
+            <View style={styles.title}>
+              <Text style={styles.text}>Productos comprados</Text>
+            </View>
+            <ListProducts/>
+          </View>
+        </ScrollView>
+      </View>
     </View>
   )
 }
@@ -40,7 +56,24 @@ const styles = StyleSheet.create({
   main: {
     flex: 1, 
     alignItems: 'center', 
-    justifyContent: 'center'
+    justifyContent: 'center',
+  },
+  
+  imageContainer: {
+    width: '100%',
+    height: 120,
+    paddingHorizontal: 15,
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  image: {
+    width:'100%',
+    height:'100%',
+    resizeMode:'stretch',
+    borderRadius:10,
+    marginLeft:10,
+    marginRight :10,
+    marginBottom: 10,
   },
   title: {
     width: '100%',
@@ -52,18 +85,4 @@ const styles = StyleSheet.create({
     color: '#E49012',
     fontWeight: 'bold',
   },
-  icon:{
-    color:'#E49012',
-    marginTop:'20px',
-  },
-  imagen:{
-    width:'90%',
-    height:'10%',
-    resizeMode:'stretch',
-    borderRadius:'10px',
-    marginLeft:'10px',
-    marginRight :'10px',
-    marginBottom:'10px'
-
-  }
 })

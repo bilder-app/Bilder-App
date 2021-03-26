@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
-import { View, TextInput, StyleSheet } from "react-native";
-import {SearchBar} from 'react-native-elements'
+import { View, TextInput, StyleSheet } from 'react-native';
+import { SearchBar } from 'react-native-elements'
 
 
 export default function CustomSearchBar() {
@@ -15,20 +15,18 @@ export default function CustomSearchBar() {
        <SearchBar
         round
         lightTheme
-        cancelIcon
-        inputContainerStyle={{backgroundColor:'#F6F6F6'}}
-        searchIcon={{color:'#E49012', size: 30 }}
-        placeholder="Buscar..."
+        inputContainerStyle={{backgroundColor:'#FFFFFF', height: '100%'}}
+        searchIcon={{color:'#E49012', size: 25 }}
+        placeholder='Buscar...'
         onChangeText = {updateSearch}
         value={state.search}
-        containerStyle={{backgroundColor:'transparent', height:70}}
+        containerStyle={{backgroundColor:'transparent', width: '87%'}}
        />
     )
 }
 
  const styles = StyleSheet.create({
-     text:{
-         color:'red'
-     }
-    
+  text: {
+     color:'red'
+  }
 })

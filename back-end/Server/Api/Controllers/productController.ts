@@ -1,5 +1,10 @@
 import { Op } from "sequelize";
+import { Request, Response } from "express";
 import Product from "../../Models/Product";
+
+export async function getAllProducts() {
+  return Product.findAll();
+}
 
 export async function paginatedSearchProducts({
   name,
@@ -53,8 +58,4 @@ export async function paginatedSearchProducts({
     previous,
     products: resp.rows
   }));
-}
-
-export async function getAllProducts() {
-  return Product.findAll()
 }

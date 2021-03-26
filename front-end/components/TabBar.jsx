@@ -1,17 +1,15 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
-import { useNavigation } from '@react-navigation/native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHome, faMoneyCheckAlt, faHeart, faTruck, faUser } from '@fortawesome/free-solid-svg-icons'
 
 
 
-export function Item({ data }) {
+export function Item({ data, navigation }) {
   const {name, icon, title} = data;
   const menu = 'Profile';
 
-  const navigation = useNavigation();
 
   return (
     <View style={ styles.itemBox }>
@@ -23,7 +21,7 @@ export function Item({ data }) {
         icon={icon} 
         style={styles.item}
         color={menu === name ? '#E49012' : '#3F3C3C'} 
-        size={22}
+        size={24}
       />
       <Text style={styles.title}>
         { title }
@@ -49,7 +47,7 @@ export default function TabBar({ navigation }) {
       <View style={styles.tabBar}>
         {items.map((item, index) => {
           return (
-            <Item data={item} key={index}/>
+            <Item data={item} navigation={navigation} key={index}/>
           )
         })}
       </View>
@@ -57,14 +55,15 @@ export default function TabBar({ navigation }) {
   )
 }
 
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     height: 50,
     width: '100%',
+    alignItems: 'center',
     position: 'absolute',
     bottom: 0,
-    alignItems: 'center',
   },
   tabBar: {
     justifyContent: 'space-around',
@@ -85,6 +84,6 @@ const styles = StyleSheet.create({
   title: {
     color: '#3F3C3C', 
     textAlign: 'center',
-    fontSize: 12,
+    fontSize: 10,
   }
 })
