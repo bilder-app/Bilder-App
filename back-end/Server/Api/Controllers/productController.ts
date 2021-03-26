@@ -2,9 +2,31 @@ import { Op } from "sequelize";
 import { Request, Response } from "express";
 import Product from "../../Models/Product";
 
-
 export async function getAllProducts() {
-  return Product.findAll()
+  return Product.findAll();
+}
+
+export async function getProduct(id: any) {
+  return Product.findOne({ where: { id } });
+}
+
+export async function addProduct(
+  name: string,
+  description: string,
+  price: number,
+  shortDescription: string,
+  stock: number
+) {
+  return Product.findOrCreate({
+    where: {
+      name,
+      description,
+      shortDescription,
+      price,
+      stock: stock,
+      images: ["default", "Imagen"]
+    }
+  });
 }
 
 export async function paginatedSearchProducts({
