@@ -9,6 +9,8 @@ import Home from './screen/Home.jsx'
 import ProductDetail from './screen/ProductDetail.jsx'
 import Favourites from './screen/Favourites.jsx'
 import Cart from './screen/Cart.jsx'
+import Search from './screen/Search.jsx'
+
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -35,6 +37,7 @@ export default function App() {
         {/* Acá van las pantallas sin tabBar */}
         <Stack.Screen name='ProductDetail' component={ ProductDetail } />
         <Stack.Screen name='Cart' component={ Cart } />
+        <Stack.Screen name='Search' component={ Search } />
 
       </Stack.Navigator>
     </NavigationContainer>
