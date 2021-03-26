@@ -2,22 +2,44 @@ import { Op } from "sequelize";
 import { Request, Response } from "express";
 import Product from "../../Models/Product";
 
-
 export async function getAllProducts() {
-  return Product.findAll()
+  return Product.findAll();
+}
+
+export async function getProduct(id: any) {
+  return Product.findOne({ where: { id } });
+}
+
+export async function addProduct(
+  nombre: string,
+  descripcion: string,
+  precio: number,
+  descripcionCorta: string,
+  stock: number
+) {
+  return Product.findOrCreate({
+    where: {
+      name: nombre,
+      description: descripcion,
+      shortDescription: descripcionCorta,
+      price: precio,
+      stock: stock,
+      images: ["default", "Imagen"],
+    },
+  });
 }
 
 export async function paginatedSearchProducts({
   name,
   page,
-  limit = 5
+  limit = 5,
 }: {
   name: string;
   page: number;
   limit?: number;
 }) {
   const productsAmount = await Product.count({
-    where: { name: { [Op.iLike]: `%${name}%` } }
+    where: { name: { [Op.iLike]: `%${name}%` } },
   });
 
   const startIndex = (page - 1) * limit;
@@ -29,14 +51,14 @@ export async function paginatedSearchProducts({
   if (startIndex > 0) {
     previous = {
       page: page - 1,
-      limit
+      limit,
     };
   }
 
   if (endIndex < productsAmount) {
     next = {
       page: page + 1,
-      limit
+      limit,
     };
   }
 
@@ -47,16 +69,16 @@ export async function paginatedSearchProducts({
 
   return Product.findAndCountAll({
     where: {
-      name: { [Op.iLike]: `%${name}%` }
+      name: { [Op.iLike]: `%${name}%` },
     },
     order: [["name", "ASC"]],
     limit,
-    offset: Math.max(0, startIndex)
+    offset: Math.max(0, startIndex),
   }).then((resp) => ({
     totalProducts: productsAmount,
     totalPaginationPages,
     next,
     previous,
-    products: resp.rows
+    products: resp.rows,
   }));
 }
