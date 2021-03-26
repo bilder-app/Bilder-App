@@ -10,6 +10,21 @@ import {
 //Devuelve todos los productos
 router.get("/", (req, res) => getAllProducts().then((resp) => res.json(resp)));
 
+//Devuelve resultados por query
+router.get("/search", ({ query: { name, limit, page } }, res) => {
+  if (!name) return res.sendStatus(400);
+  paginatedSearchProducts({
+    name: name as string,
+    page: +page!,
+    limit: +limit!
+  })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
+    })
+    .then((resp) => res.json(resp));
+});
+
 //Devuelve un producto
 router.get("/:id", (req, res) => {
   const { id } = req.params;
@@ -30,21 +45,6 @@ router.post("/", (req, res) => {
       console.log(err);
       res.sendStatus(400);
     });
-});
-
-//Devuelve resultados por query
-router.get("/search", ({ query: { name, limit, page } }, res) => {
-  if (!name) return res.sendStatus(400);
-  paginatedSearchProducts({
-    name: name as string,
-    page: +page!,
-    limit: +limit!
-  })
-    .catch((err) => {
-      console.log(err);
-      res.sendStatus(400);
-    })
-    .then((resp) => res.json(resp));
 });
 
 export default router;
