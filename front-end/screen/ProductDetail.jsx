@@ -1,8 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
-import Product from '../components/Home/Product'
-
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faArrowCircleLeft, faHeart, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,26 +11,18 @@ function ProductDetails({ route, navigation }) {
   return (
     <View style={styles.main}>
       <View style={styles.product}>
-        <View
-          style={styles.header}
-        >
-          <View
-            style={styles.insideHeader}
-          >
+        <View style={styles.header}>
+          <View style={styles.insideHeader}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
-              <FontAwesomeIcon
-                
+              <FontAwesomeIcon  
                 icon={faArrowCircleLeft}
                 style={styles.icon}
-                
                 size={20}
               />
             </TouchableOpacity>
             <Text style={{ fontSize: 20 }}>Detalles del Producto</Text>
           </View>
-          <View
-            style={styles.insideHeader}
-          >
+          <View style={styles.insideHeader}>
             <FontAwesomeIcon
               icon={faHeart}
               size={20}
