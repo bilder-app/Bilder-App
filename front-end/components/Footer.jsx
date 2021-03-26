@@ -2,9 +2,6 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
-
 
 export default function Header({ title }) {
   const navigation = useNavigation();
@@ -12,19 +9,13 @@ export default function Header({ title }) {
   return (
     <View style={styles.header}>
       <TouchableOpacity 
-        style={styles.itemBox}
-        onPress={() => navigation.goBack()}
+        style={styles.button}
+        onPress={() => navigation.navigate('Home')}
       >
-        <FontAwesomeIcon 
-          icon={faAngleLeft} 
-          style={styles.item}
-          color={'#E49012'} 
-          size={25}
-        />
+        <View>
+          <Text style={styles.title}>{title}</Text>
+        </View>
       </TouchableOpacity>
-      <View>
-        <Text style={styles.title}>{title}</Text>
-      </View>
     </View>
   )
 }
@@ -35,22 +26,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     width: '100%',
     height: 50,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    position: 'absolute',
-    top: 0, 
-    flexDirection: 'row',
-  },
-  itemBox: {
-    // backgroundColor: '#666',
-    height: '100%',
-    width: '10%',
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'absolute',
+    bottom: 0, 
+    borderBottomColor: '#E49012',
+    borderBottomWidth: 0.5,
+  },
+  button: {
+    backgroundColor: '#E49012',
+    height: '80%',
+    width: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
   },
   title: {
     fontSize: 20,
-    color: '#3F3C3C',
+    color: '#fff',
     fontWeight: 'bold',
   }
 })

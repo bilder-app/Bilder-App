@@ -8,7 +8,7 @@ import TabBar from './components/TabBar.jsx'
 import Home from './screen/Home.jsx'
 import ProductDetail from './screen/ProductDetail.jsx'
 import Favourites from './screen/Favourites.jsx'
-
+import Cart from './screen/Cart.jsx'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -16,9 +16,9 @@ const Tab = createBottomTabNavigator()
 
 export default function App() {
 
-  function TabBarNavigator () {
+  function MyTabBar () {
     return(
-      <Tab.Navigator initialRouteName='Home' tabBar={(props) => <TabBar {...props}/>} >
+      <Tab.Navigator initialRouteName='Home' tabBar={(props) => <TabBar {...props}/> }>
         {/* Acá van los menu del tabBar */}
         <Tab.Screen name='Home' component={ Home } />
         <Tab.Screen name='Favourites' component={ Favourites } />
@@ -31,10 +31,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='TabBarNavigator' component={ TabBarNavigator }/>
+        <Stack.Screen name='MyTabBar' component={ MyTabBar }/>
         {/* Acá van las pantallas sin tabBar */}
         <Stack.Screen name='ProductDetail' component={ ProductDetail } />
-
+        <Stack.Screen name='Cart' component={ Cart } />
 
       </Stack.Navigator>
     </NavigationContainer>

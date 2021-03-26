@@ -1,10 +1,11 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import Product from "../components/Product";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
+import React from 'react'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+
+import Product from '../components/Home/Product'
+
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faArrowCircleLeft, faHeart, faShareAlt } from '@fortawesome/free-solid-svg-icons'
+
 
 function ProductDetails({ route, navigation }) {
   const { image, title, description, price } = route.params;
@@ -23,6 +24,7 @@ function ProductDetails({ route, navigation }) {
                 
                 icon={faArrowCircleLeft}
                 style={styles.icon}
+                
                 size={20}
               />
             </TouchableOpacity>
@@ -47,17 +49,17 @@ function ProductDetails({ route, navigation }) {
 
         <Image source={{ uri: image }} style={styles.imagen} />
         <View style={{ width:'100%', height:120, flexDirection:'column', justifyContent:'space-evenly'}}>
-          <Text style={{fontSize:40, fontWeight:'bold', marginTop:15, marginLeft:15}}>{price}$</Text>
-          <Text style={{fontSize:20, fontWeight:'bold', marginLeft:15}}> {title}</Text>
-          <Text style={{fontSize:20, marginLeft:15}}>{description}</Text>
+          <Text style={{fontSize:40, fontWeight:'bold', marginTop:15, marginLeft:15, color: '#3F3C3C'}}>${price}</Text>
+          <Text style={{fontSize:20, fontWeight:'bold', marginLeft:15, color: '#3F3C3C'}}>{title}</Text>
+          <Text style={{fontSize:20, marginLeft:15, color: '#707070'}}>{description}</Text>
         </View>
       </View>
       <View style={styles.footer}>
-      <View style={{height: '50%', width: '100%',padding:5}}>
-        <TouchableOpacity style={styles.button} onPress={() => console.log('Añadido')}>
-          <Text style={styles.cart}>Agregar al Carrito</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={{height: '40%', width: '100%', padding:5, backgroundColor: '#fff'}}>
+          <TouchableOpacity style={styles.button} onPress={() => console.log('Añadido')}>
+            <Text style={styles.cart}>Agregar al carrito</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -68,42 +70,43 @@ export default ProductDetails;
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 
   product: {
-    flexDirection: "column",
-    backgroundColor: "white",
-    width: "100%",
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    width: '100%',
     height: 500,
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  footer: {
-    width: "100%",
-    height: 100,
-    flexDirection:'column',
-    justifyContent:'flex-end',
-    alignItems:'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   header:{
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
     height: 70,
   },
+  footer: {
+    width: '100%',
+    height: 140,
+    flexDirection:'column',
+    justifyContent:'flex-end',
+    alignItems:'center',
+    // backgroundColor: '#ff0000'
+  },
   insideHeader:{
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginTop: 30,
     margin:10
   },
   button: {
     backgroundColor: '#E49012',
     width: '100%',
-    height: '80%',
+    height: 40,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -111,15 +114,14 @@ const styles = StyleSheet.create({
     marginBottom: 'auto',
   },
   cart: {
-    fontSize: 25,
+    fontSize: 20,
     color: '#fff',
   },
   icon:{
-    
     marginRight:5
   },
   imagen:{
-    width:"80%",
+    width:'80%',
     height: 250
   }
 });

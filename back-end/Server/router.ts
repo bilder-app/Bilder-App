@@ -7,7 +7,7 @@ import devRouter from "./Dev/router";
 
 router.use("/cart", orderRouter);
 router.use("/category", categoryRouter);
-router.use("/product", categoryRouter);
+router.use("/product", productRouter);
 router.use("/dev", devRouter);
 router.use("/product", productRouter);
 

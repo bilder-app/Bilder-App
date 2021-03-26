@@ -1,17 +1,16 @@
 import React from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
 
-import { faAngleLeft, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 import Header from '../components/Header.jsx'
-import FavouriteItem from '../components/FavouriteItem.jsx' 
+import FavouriteItem from '../components/Favourites/FavouriteItem.jsx' 
 
 
 function Favourites() {
 
   return (
     <View style={styles.main}>
-      <Header icon={faAngleLeft} title={'Favoritos'}/>
+      <Header title={'Favoritos'}/>
       <View style={{width: '93%', height: '90%'}}>
         <ScrollView style={{width: '100%'}} showsVerticalScrollIndicator={ false }>
           <View style={{ width: '100%', marginTop: 15, marginBottom: 15}}>
