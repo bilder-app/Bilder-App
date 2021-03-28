@@ -3,21 +3,25 @@ import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 
-export default function Product({ properties }) {
+export default function Product({ product }) {
 
-  const { id, image, price, title, description } = properties;
+  const { id, name, shortDescription, images, price } = product;
   const navigation = useNavigation();
 
+  const arr = {
+    'a': 'https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png',
+    'b': 'https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg',
+  }
   return(
     <View style={styles.container}>
-      <TouchableOpacity style={styles.product} activeOpacity={ 0.5 } onPress={() => navigation.navigate('ProductDetail',properties)}>
+      <TouchableOpacity style={styles.product} activeOpacity={ 0.5 } onPress={() => navigation.navigate('ProductDetail', product)}>
         <View style={styles.content}>
-          <Image style={styles.image} source={{ uri: image }}/>
+          <Image style={styles.image} source={{ uri: arr.a }}/>
         </View>
         <View style={styles.data}>
           <Text style={styles.price}>$ {price || '$ Precio'}</Text>
-          <Text style={styles.title}>{title || 'Nombre del producto'}</Text>
-          <Text style={styles.description}>{description || 'Descripción'}</Text>
+          <Text style={styles.title}>{name || 'Nombre del producto'}</Text>
+          <Text style={styles.description}>{shortDescription || 'Descripción'}</Text>
         </View>
       </TouchableOpacity>
       <View style={{height: '20%', width: '80%'}}>

@@ -1,29 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
 import { View, ScrollView, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
+
+import { getProducts } from '../../redux/actions/products.js' 
 import Product from './Product.jsx'
 
 
-export default function ListProducts() {
-  const properties = [
-    {id:1, image: 'https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg', price: 1000, title: 'Hierro Perfil', description: '60 x 20 - 1.5mm'},
-    {id:2,image: 'https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png', price: 560, title: 'Martillo Hierro', description: 'Martillo de orejas 80z'},
-    {id:3,image: 'https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg', price: 1000, title: 'Hierro Perfil', description: '60 x 20 - 1.5mm'},
-    {id:4,image: 'https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png', price: 560, title: 'Martillo Hierro', description: 'Martillo de orejas 80z'}
-  ]
+function ListProducts({ products, getProducts }) {
+  useEffect(() => {
+    getProducts()
+  }, [])
 
   return(
    <View style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={ false }>
         <View style={styles.products}>
-          {properties.map((props, index) => {
-            return( <Product properties={props} key={index}/> )
-          })}
+          {products.length ? products.map((props, index) => {
+            return( <Product product={props} key={index}/> )
+          })
+          : null}
         </View>
       </ScrollView>
    </View>
   )
 }
 
+function mapStateToProps(state){
+  return {
+    products: state.productsList.products,
+  }
+}
+export default connect(mapStateToProps, { getProducts })(ListProducts)
 
 
 const styles = StyleSheet.create({

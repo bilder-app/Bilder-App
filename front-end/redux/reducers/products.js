@@ -16,7 +16,7 @@ export default function productsList(state = initialState, action) {
     case ADD_PRODUCT:
       return {
         ...state,
-        products: [...state.products, action.payload.product]
+        products: [...state.products, action.payload]
       }
     
     case GET_PRODUCTS: 
