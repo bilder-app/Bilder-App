@@ -2,6 +2,8 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.MY_IP;
 
+console.log(process.env.MY_IP);
+
 export function getAllProducts() {
   return axios.get("/product").then((resp) => resp.data);
 }
