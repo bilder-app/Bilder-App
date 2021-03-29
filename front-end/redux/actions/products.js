@@ -2,8 +2,11 @@ import {
   ADD_PRODUCT,
   GET_PRODUCTS,
   SET_MODAL,
+  UNSHIFT_HISTORY,
 } from '../types.js'
 import axios from 'axios'
+
+axios.defaults.baseURL = 'http://192.168.0.15:5000';
 
 
 export const addProduct = (product) => {
@@ -15,10 +18,9 @@ export const addProduct = (product) => {
   }
 }
 
-
 export const getProducts = () => {
   return dispatch => {
-    return axios.get('http://192.168.0.15:5000/product/')
+    return axios.get('/product/')
     .then(res => {
       return dispatch({
         type: GET_PRODUCTS,
@@ -49,6 +51,16 @@ export const hideModal = () => {
         type: SET_MODAL,
         payload: {},
         visible: false,
+    })
+  }
+}
+
+
+export const unshiftHistory = (input) => {
+  return function(dispatch) {
+    return dispatch({
+      type: UNSHIFT_HISTORY,
+      payload: input
     })
   }
 }

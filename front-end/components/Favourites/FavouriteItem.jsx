@@ -1,27 +1,36 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-export default function FavouriteItem() {
-  const url =
-    "http://d3ugyf2ht6aenh.cloudfront.net/stores/275/838/products/recuplast_amarillo_fibrado11-89ccd7611873fbc37416031322367954-640-0.jpg";
+export default function FavouriteItem({ product }) {
+  const auxiliar = {
+    name: 'Nombre del producto',
+    shortDescription: 'Descripción del producto',
+    price: 999.50,
+  }
 
+  const { name, shortDescription, price } = product || auxiliar;
+
+  const images = [
+    'https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png',
+  ]
+  
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: url }} />
+        <Image style={styles.image} source={{ uri: images[0] }} />
       </View>
       <View style={styles.content}>
         <View style={{ width: "100%" }}>
-          <Text style={styles.name}>Nombre del producto</Text>
+          <Text style={styles.name}>{ name  }</Text>
         </View>
         <View style={styles.info}>
           <View>
             <Text style={{ fontSize: 15, color: "#707070" }}>
-              Descripción del producto
+              { shortDescription }
             </Text>
           </View>
           <View>
-            <Text style={{ fontSize: 17, fontWeight: "bold" }}>$999.50</Text>
+            <Text style={{ fontSize: 17, fontWeight: "bold" }}>${ price }</Text>
           </View>
         </View>
 
