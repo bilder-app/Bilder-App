@@ -1,31 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
+
 import { useNavigation } from '@react-navigation/native'
 
 
-export default function Product({ product }) {
+export default function Product({ product, showModal }) {
 
-  const { id, name, shortDescription, images, price } = product;
+  const { name, shortDescription, price } = product;
   const navigation = useNavigation();
 
-  const arr = {
-    'a': 'https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png',
-    'b': 'https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg',
-  }
+  const images = [
+    'https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png',
+    'https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg',
+  ]
+
   return(
     <View style={styles.container}>
       <TouchableOpacity style={styles.product} activeOpacity={ 0.5 } onPress={() => navigation.navigate('ProductDetail', product)}>
         <View style={styles.content}>
-          <Image style={styles.image} source={{ uri: arr.a }}/>
+          <Image style={styles.image} source={{ uri: images[0] }}/>
         </View>
         <View style={styles.data}>
-          <Text style={styles.price}>$ {price || '$ Precio'}</Text>
+          <Text style={styles.price}>$ {price || 'Precio'}</Text>
           <Text style={styles.title}>{name || 'Nombre del producto'}</Text>
           <Text style={styles.description}>{shortDescription || 'Descripción'}</Text>
         </View>
       </TouchableOpacity>
       <View style={{height: '20%', width: '80%'}}>
-        <TouchableOpacity style={styles.button} onPress={() => console.log('Añadido')}>
+        <TouchableOpacity style={styles.button} onPress={() => showModal(product)}>
           <Text style={styles.cart}>Agregar al Carrito</Text>
         </TouchableOpacity>
       </View>
@@ -90,5 +92,5 @@ const styles = StyleSheet.create({
   cart: {
     fontSize: 15,
     color: '#fff',
-  }
-})
+  },
+}) 

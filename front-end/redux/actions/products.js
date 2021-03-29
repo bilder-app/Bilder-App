@@ -1,6 +1,7 @@
 import {
   ADD_PRODUCT,
   GET_PRODUCTS,
+  SET_MODAL,
 } from '../types.js'
 import axios from 'axios'
 
@@ -14,32 +15,6 @@ export const addProduct = (product) => {
   }
 }
 
-// export const getProducts = () => {
-//   return function(dispatch) {
-//     return fetch('http://localhost:5000/product')
-//     .then(data => {
-//       console.log(data)
-//       return dispatch({ type: GET_PRODUCTS, payload: data }) 
-//     })
-//   }
-// }
-
-// export const getProducts = async dispatch => {
-//   try{
-//     const data = await axios.get('http://localhost:5000/product')
-//     dispatch( {
-//       type: GET_PRODUCTS,
-//       payload: data
-//     })
-//   }
-//   catch(e){
-//     dispatch( {
-//         type: USERS_ERROR,
-//         payload: console.log(e),
-//     })
-//   }
-// }
-
 
 export const getProducts = () => {
   return dispatch => {
@@ -52,6 +27,28 @@ export const getProducts = () => {
     })
     .catch(err => {
       console.log(err)
+    })
+  }
+}
+
+export const showModal = (product) => {
+  return function(dispatch) {
+    return dispatch({
+        type: SET_MODAL,
+        payload: {
+          product,
+          visible: true,
+        }
+    })
+  }
+}
+
+export const hideModal = () => {
+  return function(dispatch) {
+    return dispatch({
+        type: SET_MODAL,
+        payload: {},
+        visible: false,
     })
   }
 }
