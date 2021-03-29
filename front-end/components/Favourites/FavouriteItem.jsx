@@ -2,7 +2,13 @@ import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 export default function FavouriteItem({ product }) {
-  const { name, shortDescription, price } = product;
+  const auxiliar = {
+    name: 'Nombre del producto',
+    shortDescription: 'Descripción del producto',
+    price: 999.50,
+  }
+
+  const { name, shortDescription, price } = product || auxiliar;
 
   const images = [
     'https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png',
@@ -15,16 +21,16 @@ export default function FavouriteItem({ product }) {
       </View>
       <View style={styles.content}>
         <View style={{ width: "100%" }}>
-          <Text style={styles.name}>{ name }</Text>
+          <Text style={styles.name}>{ name  }</Text>
         </View>
         <View style={styles.info}>
           <View>
             <Text style={{ fontSize: 15, color: "#707070" }}>
-              {shortDescription}
+              { shortDescription }
             </Text>
           </View>
           <View>
-            <Text style={{ fontSize: 17, fontWeight: "bold" }}>${price}</Text>
+            <Text style={{ fontSize: 17, fontWeight: "bold" }}>${ price }</Text>
           </View>
         </View>
 
