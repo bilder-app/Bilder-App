@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://192.168.0.12:5000";
+axios.defaults.baseURL = "http://192.168.0.15:5000";
 
 export function getAllProducts() {
   return axios.get("/product").then((resp) => resp.data);

@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
-
+import { useSelector } from 'react-redux'
 
 import SearchBar from '../components/SearchBar.jsx'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-// import { faClock } from '@fortawesome/free-regular-svg-icons' // Invertido
-import { faClock, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
+import { faClock } from '@fortawesome/free-regular-svg-icons'
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 
 
 export function HistoryItem({label}) {
+
   return(
     <TouchableOpacity 
       style={styles.historyItem}
@@ -37,11 +38,13 @@ export function HistoryItem({label}) {
 }
 
 export default function Search() {
+  const history = useSelector(state => state.productsList.history);
+
   return(
     <View style={styles.container}>
       <SearchBar/>
       <View style={styles.history}>
-        {['Tablones de madera', 'Pinturas', 'Martillo mango madera', 'Ladrillos'].map((label, index) => {
+        {history.map((label, index) => {
           return(<HistoryItem label={label} key={index}/>)
         })}
       </View>

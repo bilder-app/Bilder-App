@@ -2,6 +2,7 @@ import {
   ADD_PRODUCT,
   GET_PRODUCTS,
   SET_MODAL,
+  UNSHIFT_HISTORY,
 } from '../types.js'
 
 
@@ -11,6 +12,7 @@ const initialState = {
     isVisible: false,
     product: {}
   },
+  history: [],
 }
 
 
@@ -39,7 +41,12 @@ export default function productsList(state = initialState, action) {
         }
       }
 
-
+    case UNSHIFT_HISTORY:
+      return {
+        ...state,
+        history: [action.payload, ...state.history]
+      }
+    
     default:
       return state;
   }
