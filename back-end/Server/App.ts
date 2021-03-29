@@ -1,22 +1,9 @@
 import dotenv from "dotenv";
 dotenv.config();
-import express from "express";
-import morgan from "morgan";
 import sequelize from "./Index";
-import bodyParser from "body-parser";
-import router from "./router";
+import server from "./server";
 
 const { PORT } = process.env;
-
-const server = express();
-
-// ---- MIDDLEWARE --------
-
-server.use(morgan("dev"));
-server.use(bodyParser.json());
-server.use(bodyParser.urlencoded({ extended: true }));
-
-server.use("/", router);
 
 sequelize
   .sync({ force: false })
