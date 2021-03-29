@@ -9,7 +9,6 @@ import devRouter from "./Dev/router";
 router.use("/cart", orderRouter);
 router.use("/category", categoryRouter);
 router.use("/favorite", favoriteRouter);
-router.use("/product", categoryRouter);
 router.use("/dev", devRouter);
 router.use("/product", productRouter);
 

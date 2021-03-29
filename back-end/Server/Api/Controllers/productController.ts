@@ -1,9 +1,8 @@
 import { Op } from "sequelize";
-import { Request, Response } from "express";
 import Product from "../../Models/Product";
 
 export async function getAllProducts() {
-  return Product.findAll({ 
+  return Product.findAll({
     attributes: ["name", "shortDescription", "price", "stock", "images"]
   });
 }
