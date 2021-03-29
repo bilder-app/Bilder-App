@@ -12,8 +12,8 @@ export async function getProduct(id: any) {
 export async function addProduct(
   name: string,
   description: string,
-  price: number,
   shortDescription: string,
+  price: number,
   stock: number
 ) {
   return Product.findOrCreate({
@@ -23,22 +23,22 @@ export async function addProduct(
       shortDescription,
       price,
       stock: stock,
-      images: ["default", "Imagen"]
-    }
+      images: ["default", "Imagen"],
+    },
   });
 }
 
 export async function paginatedSearchProducts({
   name,
   page,
-  limit = 5
+  limit = 5,
 }: {
   name: string;
   page: number;
   limit?: number;
 }) {
   const productsAmount = await Product.count({
-    where: { name: { [Op.iLike]: `%${name}%` } }
+    where: { name: { [Op.iLike]: `%${name}%` } },
   });
 
   const startIndex = (page - 1) * limit;
@@ -50,14 +50,14 @@ export async function paginatedSearchProducts({
   if (startIndex > 0) {
     previous = {
       page: page - 1,
-      limit
+      limit,
     };
   }
 
   if (endIndex < productsAmount) {
     next = {
       page: page + 1,
-      limit
+      limit,
     };
   }
 
@@ -68,16 +68,16 @@ export async function paginatedSearchProducts({
 
   return Product.findAndCountAll({
     where: {
-      name: { [Op.iLike]: `%${name}%` }
+      name: { [Op.iLike]: `%${name}%` },
     },
     order: [["name", "ASC"]],
     limit,
-    offset: Math.max(0, startIndex)
+    offset: Math.max(0, startIndex),
   }).then((resp) => ({
     totalProducts: productsAmount,
     totalPaginationPages,
     next,
     previous,
-    products: resp.rows
+    products: resp.rows,
   }));
 }
