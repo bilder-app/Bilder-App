@@ -2,9 +2,7 @@ import { Op } from "sequelize";
 import Product from "../../Models/Product";
 
 export async function getAllProducts() {
-  return Product.findAll({
-    attributes: ["name", "shortDescription", "price", "stock", "images"]
-  });
+  return Product.findAll();
 }
 
 export async function getProduct(id: any) {

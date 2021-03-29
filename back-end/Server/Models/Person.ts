@@ -3,10 +3,12 @@ import {
   Column,
   Model,
   ForeignKey,
-  HasMany
+  HasMany,
+  BelongsToMany
 } from "sequelize-typescript";
 import Order from "./Order";
 import Product from "./Product";
+import FavouriteProduct from "./FavouriteProduct";
 import User from "./User";
 
 @Table
@@ -30,7 +32,6 @@ export default class Person extends Model {
   @HasMany(() => Order)
   orders: Order[];
 
-  @HasMany(() => Product)
-  favorites: Order[];
-
+  @BelongsToMany(() => Product, () => FavouriteProduct)
+  favorites: FavouriteProduct[];
 }
