@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://192.168.0.15:5000";
+axios.defaults.baseURL = process.env.MY_IP;
 
 export function getAllProducts() {
   return axios.get("/product").then((resp) => resp.data);

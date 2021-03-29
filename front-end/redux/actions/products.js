@@ -3,64 +3,65 @@ import {
   GET_PRODUCTS,
   SET_MODAL,
   UNSHIFT_HISTORY,
-} from '../types.js'
-import axios from 'axios'
+} from "../types.js";
 
-axios.defaults.baseURL = 'http://192.168.0.15:5000';
+import axios from "axios";
 
+console.log(process.env.MY_IP);
+axios.defaults.baseURL = process.env.MY_IP;
 
 export const addProduct = (product) => {
-  return function(dispatch) {
+  return function (dispatch) {
     return dispatch({
-        type: ADD_PRODUCT,
-        payload: product
-    })
-  }
-}
+      type: ADD_PRODUCT,
+      payload: product,
+    });
+  };
+};
 
 export const getProducts = () => {
-  return dispatch => {
-    return axios.get('/product/')
-    .then(res => {
-      return dispatch({
-        type: GET_PRODUCTS,
-        payload: res.data
+  return (dispatch) => {
+    return axios
+      .get("/product/")
+      .then((res) => {
+        return dispatch({
+          type: GET_PRODUCTS,
+          payload: res.data,
+        });
       })
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
-}
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
 export const showModal = (product) => {
-  return function(dispatch) {
+  return function (dispatch) {
     return dispatch({
-        type: SET_MODAL,
-        payload: {
-          product,
-          visible: true,
-        }
-    })
-  }
-}
+      type: SET_MODAL,
+      payload: {
+        product,
+        visible: true,
+      },
+    });
+  };
+};
 
 export const hideModal = () => {
-  return function(dispatch) {
+  return function (dispatch) {
     return dispatch({
-        type: SET_MODAL,
-        payload: {},
-        visible: false,
-    })
-  }
-}
-
+      type: SET_MODAL,
+      payload: {},
+      visible: false,
+    });
+  };
+};
 
 export const unshiftHistory = (input) => {
-  return function(dispatch) {
+  return function (dispatch) {
     return dispatch({
       type: UNSHIFT_HISTORY,
-      payload: input
-    })
-  }
-}
+      payload: input,
+    });
+  };
+};
