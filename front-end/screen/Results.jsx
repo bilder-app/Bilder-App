@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 
 import SearchBar from "../components/SearchBar.jsx";
 import FavouriteItem from "../components/Favourites/FavouriteItem.jsx";
@@ -13,7 +13,7 @@ export default function Result({ route }) {
   const [productsData, setProductsData] = useState();
 
   useEffect(() => {
-    searchProducts(route.params, 1, 5).then((resp) => setProductsData(resp));
+    searchProducts(route.params, 1, 10).then((resp) => setProductsData(resp));
   }, []);
 
   return (
@@ -34,10 +34,13 @@ export default function Result({ route }) {
             </View>
           </View>
           <View style={styles.results}>
-            {productsData &&
-              productsData.products.map((props, index) => {
-                return <FavouriteItem product={props} key={index} />;
-              })}
+            <ScrollView showsVerticalScrollIndicator={ false }>
+              <View style={{ width: '100%', height: '90%'}}>
+                {productsData.products.map((props, index) => {
+                    return <FavouriteItem product={props} key={index} />;
+                })}
+              </View>
+            </ScrollView>
           </View>
         </>
       ) : (

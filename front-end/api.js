@@ -8,7 +8,7 @@ export function getAllProducts() {
   return axios.get("/product").then((resp) => resp.data);
 }
 
-export function searchProducts(name, page, limit = 5) {
+export function searchProducts(name, page, limit = 10) {
   return axios
     .get(`/product/search?name=${name}&page=${page}&limit=${limit}`)
     .then((resp) => resp.data);
