@@ -34,24 +34,24 @@ export default function Result({ route }) {
             </View>
           </View>
           <View style={styles.results}>
-            <ScrollView showsVerticalScrollIndicator={ false }>
-              <View style={{ width: '100%', height: '90%'}}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <View style={{ width: "100%", height: "90%" }}>
                 {productsData.products.map((props, index) => {
-                    return <FavouriteItem product={props} key={index} />;
+                  return <FavouriteItem product={props} key={index} />;
                 })}
               </View>
             </ScrollView>
           </View>
         </>
       ) : (
-        [1, 2, 3, 4, 5, 6, 7].map((i) => (
+        [1, 2, 3, 4].map((i) => (
           <SkeletonPlaceholder key={i}>
             <View
               style={{
                 width: "100%",
                 height: 110,
                 padding: 20,
-                flexDirection: "row"
+                flexDirection: "row",
               }}
             >
               <View style={{ width: 90, height: 90, borderRadius: 25 }} />
@@ -61,7 +61,7 @@ export default function Result({ route }) {
                   marginLeft: 20,
                   flexGrow: 1,
                   height: "100%",
-                  flexDirection: "column"
+                  flexDirection: "column",
                 }}
               >
                 <View style={{ width: "80%", height: 20 }} />
@@ -72,7 +72,7 @@ export default function Result({ route }) {
                     width: "100%",
                     flexDirection: "row",
                     marginTop: 8,
-                    flexGrow: 1
+                    flexGrow: 1,
                   }}
                 >
                   <View style={{ width: 80, height: 25, borderRadius: 25 }} />
@@ -81,7 +81,7 @@ export default function Result({ route }) {
                       width: 120,
                       marginLeft: 30,
                       height: 25,
-                      borderRadius: 25
+                      borderRadius: 25,
                     }}
                   />
                 </View>
@@ -97,7 +97,7 @@ export default function Result({ route }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "100%"
+    height: "100%",
   },
   content: {
     height: 40,
@@ -107,18 +107,18 @@ const styles = StyleSheet.create({
     borderTopWidth: 0.5,
     borderTopColor: "#707070",
     alignItems: "center",
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
   },
   icons: {
     width: "25%",
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "row"
+    flexDirection: "row",
   },
   results: {
     width: "100%",
     marginTop: 15,
-    paddingHorizontal: 15
-  }
+    paddingHorizontal: 15,
+  },
 });
