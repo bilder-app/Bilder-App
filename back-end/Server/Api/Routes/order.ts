@@ -11,7 +11,9 @@ router.get("/", (req, res) =>
 );
 
 router.put("/product/:productId", async (req, res) =>
-  addProductToCart(+req.params.productId).then((resp) => res.sendStatus(200))
+  addProductToCart(+req.params.productId, req.body.amount).then((resp) =>
+    res.sendStatus(200)
+  )
 );
 
 router.delete("/product/:productId", (req, res) =>
