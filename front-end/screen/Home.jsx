@@ -6,10 +6,9 @@ import ListProducts from '../components/Home/ListProducts.jsx';
 import ListCategories from '../components/Home/ListCategories.jsx';
 import SlideImages from '../components/Home/SlideImages.jsx';
 
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 function Home() {
+
   return (
     <View style={styles.main}>
       <StatusBar
@@ -19,15 +18,12 @@ function Home() {
       />
       <SearchButton />
 
-      <View
-        style={{ height: '86%', width: '100%', position: 'absolute', top: 80 }}
-      >
+      <View style={{ height: '86%', width: '100%', position: 'absolute', top: 80 }} >
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ width: '100%', height: '100%', marginVertical: 15 }}>
-            {/* <SlideImages/> */}
-            <View style={styles.imageContainer}>
-              <Image source={require('../img/2.png')} style={styles.image} />
-            </View>
+            
+            <SlideImages/>
+        
             <View style={styles.title}>
               <Text style={styles.text}>Categorías</Text>
             </View>
@@ -74,22 +70,6 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  imageContainer: {
-    width: '100%',
-    height: 120,
-    paddingHorizontal: 15,
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'stretch',
-    borderRadius: 15,
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 10,
   },
   title: {
     width: '100%',

@@ -7,8 +7,6 @@ import {
 
 import axios from "axios";
 
-console.log(process.env.MY_IP);
-axios.defaults.baseURL = process.env.MY_IP;
 
 export const addProduct = (product) => {
   return function (dispatch) {
