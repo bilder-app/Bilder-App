@@ -13,3 +13,9 @@ export function searchProducts(name, page, limit = 5) {
     .get(`/product/search?name=${name}&page=${page}&limit=${limit}`)
     .then((resp) => resp.data);
 }
+
+export function putProductInCart({ productId, amount }) {
+  return axios
+    .put(`/cart/product/${productId}`, { amount })
+    .then((resp) => resp.data);
+}

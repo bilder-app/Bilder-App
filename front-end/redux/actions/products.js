@@ -3,18 +3,22 @@ import {
   GET_PRODUCTS,
   SET_MODAL,
   UNSHIFT_HISTORY,
+  ADDED_TO_CART,
+  ADDING_TO_CART,
+  ADDING_TO_CART_ERROR
 } from "../types.js";
 
 import axios from "axios";
 
-console.log(process.env.MY_IP);
+import { putProductInCart } from "../../api";
+
 axios.defaults.baseURL = process.env.MY_IP;
 
 export const addProduct = (product) => {
   return function (dispatch) {
     return dispatch({
       type: ADD_PRODUCT,
-      payload: product,
+      payload: product
     });
   };
 };
@@ -26,7 +30,7 @@ export const getProducts = () => {
       .then((res) => {
         return dispatch({
           type: GET_PRODUCTS,
-          payload: res.data,
+          payload: res.data
         });
       })
       .catch((err) => {
@@ -41,8 +45,8 @@ export const showModal = (product) => {
       type: SET_MODAL,
       payload: {
         product,
-        visible: true,
-      },
+        visible: true
+      }
     });
   };
 };
@@ -52,7 +56,7 @@ export const hideModal = () => {
     return dispatch({
       type: SET_MODAL,
       payload: {},
-      visible: false,
+      visible: false
     });
   };
 };
@@ -61,7 +65,16 @@ export const unshiftHistory = (input) => {
   return function (dispatch) {
     return dispatch({
       type: UNSHIFT_HISTORY,
-      payload: input,
+      payload: input
     });
   };
+};
+
+export const addToCart = (productId, amount) => (dispatch) => {
+  dispatch({ type: ADDING_TO_CART });
+  putProductInCart({ productId, amount })
+    .then((resp) => {
+      dispatch({ type: ADDED_TO_CART, payload: resp });
+    })
+    .catch((e) => dispatch({ type: ADDING_TO_CART_ERROR, payload: e }));
 };
