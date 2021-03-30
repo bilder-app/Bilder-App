@@ -20,7 +20,7 @@ function Cart() {
 
   useEffect(() => {
     dispatch(getCartItems());
-  });
+  }, []);
 
   return (
     <View style={styles.main}>
