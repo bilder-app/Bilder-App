@@ -12,10 +12,8 @@ import {
 } from "../types.js";
 
 import axios from "axios";
-
 import { putProductInCart, getAllCartProducts } from "../../api";
 
-axios.defaults.baseURL = process.env.MY_IP;
 
 export const addProduct = (product) => {
   return function (dispatch) {
