@@ -8,7 +8,21 @@ const userId = 1;
 export async function getAllCartProducts() {
   return Order.findOne({
     where: { userId: userId, state: "pending" },
-    include: [{ model: Product, through: { attributes: [] } }]
+    include: [
+      {
+        model: Product,
+        attributes: { exclude: ["createdAt", "updatedAt", "price"] },
+        through: { attributes: ["amount", "price"] }
+      }
+    ]
+  }).then((resp) => {
+    if (!resp) return;
+    return resp.products.map((prod: any) => {
+      prod = prod.toJSON();
+      prod = { ...prod, ...prod.ProductInCart };
+      delete prod.ProductInCart;
+      return prod;
+    });
   });
 }
 

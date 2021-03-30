@@ -7,7 +7,7 @@ import {
 } from "../Controllers/orderController";
 
 router.get("/", (req, res) =>
-  getAllCartProducts().then((resp) => res.json(resp?.products))
+  getAllCartProducts().then((resp) => res.json(resp))
 );
 
 router.put("/product/:productId", async (req, res) =>
