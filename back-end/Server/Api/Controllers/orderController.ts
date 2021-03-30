@@ -16,7 +16,7 @@ export async function getAllCartProducts() {
       }
     ]
   }).then((resp) => {
-    if (!resp) return;
+    if (!resp) return [];
     return resp.products.map((prod: any) => {
       prod = prod.toJSON();
       prod = { ...prod, ...prod.ProductInCart };
