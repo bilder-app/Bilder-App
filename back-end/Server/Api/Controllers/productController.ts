@@ -23,7 +23,10 @@ export async function addProduct(
       shortDescription,
       price,
       stock: stock,
-      images: ["default", "Imagen"],
+      images: [
+        "https://images.app.goo.gl/RcgLkEbTz1aRegpeA",
+        "https://images.app.goo.gl/oXwgPP32RdmAkd6T7",
+      ],
     },
   });
 }

@@ -15,7 +15,7 @@ function ListProducts({ products, modal, getProducts, showModal, hideModal }) {
 
   return(
    <View style={styles.container}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={ false }>
+      <ScrollView horizontal  pagingEnabled showsHorizontalScrollIndicator={ false }>
         <View style={styles.products}>
           {products.length ? products.map((props, index) => {
             return( <Product product={props} showModal={showModal} key={index}/> )
