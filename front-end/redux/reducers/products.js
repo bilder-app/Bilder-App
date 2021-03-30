@@ -5,7 +5,10 @@ import {
   UNSHIFT_HISTORY,
   ADDED_TO_CART,
   ADDING_TO_CART,
-  ADDING_TO_CART_ERROR
+  ADDING_TO_CART_ERROR,
+  FETCHING_CART_ITEMS,
+  FETCHED_CART_ITEMS,
+  FETCHING_CART_ITEMS_ERROR
 } from "../types.js";
 
 const initialState = {
@@ -17,7 +20,9 @@ const initialState = {
   history: [],
   cart: [],
   isAddingToCart: false,
-  isAddingToCartError: null
+  isAddingToCartError: null,
+  isFetchingCartItems: false,
+  isFetchingCartItemsError: null
 };
 
 export default function productsList(state = initialState, action) {
@@ -56,8 +61,7 @@ export default function productsList(state = initialState, action) {
       return {
         ...state,
         isAddingToCart: false,
-        isAddingToCartError: false,
-        cart: [...state.cart, action.payload]
+        isAddingToCartError: false
       };
 
     case ADDING_TO_CART_ERROR:
@@ -65,6 +69,28 @@ export default function productsList(state = initialState, action) {
         ...state,
         isAddingToCart: false,
         isAddingToCartError: action.payload
+      };
+
+    case FETCHING_CART_ITEMS:
+      return {
+        ...state,
+        isFetchingCartItems: true,
+        isFetchingCartItemsError: false
+      };
+
+    case FETCHED_CART_ITEMS:
+      return {
+        ...state,
+        isFetchingCartItems: false,
+        isFetchingCartItemsError: false,
+        cart: action.payload
+      };
+
+    case FETCHING_CART_ITEMS_ERROR:
+      return {
+        ...state,
+        isFetchingCartItems: false,
+        isFetchingCartItemsError: action.payload
       };
 
     default:

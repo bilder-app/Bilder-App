@@ -19,3 +19,7 @@ export function putProductInCart({ productId, amount }) {
     .put(`/cart/product/${productId}`, { amount })
     .then((resp) => resp.data);
 }
+
+export function getAllCartProducts() {
+  return axios.get("/cart/").then((resp) => resp.data);
+}

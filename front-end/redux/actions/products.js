@@ -5,12 +5,15 @@ import {
   UNSHIFT_HISTORY,
   ADDED_TO_CART,
   ADDING_TO_CART,
-  ADDING_TO_CART_ERROR
+  ADDING_TO_CART_ERROR,
+  FETCHED_CART_ITEMS,
+  FETCHING_CART_ITEMS,
+  FETCHING_CART_ITEMS_ERROR
 } from "../types.js";
 
 import axios from "axios";
 
-import { putProductInCart } from "../../api";
+import { putProductInCart, getAllCartProducts } from "../../api";
 
 axios.defaults.baseURL = process.env.MY_IP;
 
@@ -77,4 +80,13 @@ export const addToCart = (productId, amount) => (dispatch) => {
       dispatch({ type: ADDED_TO_CART, payload: resp });
     })
     .catch((e) => dispatch({ type: ADDING_TO_CART_ERROR, payload: e }));
+};
+
+export const getCartItems = () => (dispatch) => {
+  dispatch({ type: FETCHING_CART_ITEMS });
+  getAllCartProducts()
+    .then((resp) => {
+      dispatch({ type: FETCHED_CART_ITEMS, payload: resp });
+    })
+    .catch((e) => dispatch({ type: FETCHING_CART_ITEMS_ERROR, payload: e }));
 };
