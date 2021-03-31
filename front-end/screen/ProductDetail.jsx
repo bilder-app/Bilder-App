@@ -1,56 +1,56 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { useDispatch } from 'react-redux'
+
+import Header from '../components/Header.jsx'
+import Footer from '../components/Footer.jsx'
+import Slider from '../components/ProductDetail/Slider.jsx'
+import { showModal } from '../redux/actions/products.js'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faArrowCircleLeft, faHeart, faShareAlt } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faHeartFill, faShareAlt } from '@fortawesome/free-solid-svg-icons'
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
 
 function ProductDetails({ route, navigation }) {
-  const { image, title, description, price } = route.params;
+  const { images, name, description, price } = route.params;
+  const [ isFavourite, toggleFaourite] = useState(false)
+  const dispatch = useDispatch();
+  const showModalDispatched = () => dispatch(showModal(route.params))
 
   return (
     <View style={styles.main}>
-      <View style={styles.product}>
-        <View style={styles.header}>
-          <View style={styles.insideHeader}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <FontAwesomeIcon  
-                icon={faArrowCircleLeft}
-                style={styles.icon}
-                size={20}
-              />
-            </TouchableOpacity>
-            <Text style={{ fontSize: 20 }}>Detalles del Producto</Text>
-          </View>
-          <View style={styles.insideHeader}>
-            <FontAwesomeIcon
-              icon={faHeart}
-              size={20}
-              color='#E49012'
-              style={styles.icon}
-            />
-            <FontAwesomeIcon
-              icon={faShareAlt}
-              size={20}
-              style={styles.icon}
-            />
-          </View>
-        </View>
-
-        <Image source={{ uri: image }} style={styles.imagen} />
-        <View style={{ width:'100%', height:120, flexDirection:'column', justifyContent:'space-evenly'}}>
-          <Text style={{fontSize:40, fontWeight:'bold', marginTop:15, marginLeft:15, color: '#3F3C3C'}}>${price}</Text>
-          <Text style={{fontSize:20, fontWeight:'bold', marginLeft:15, color: '#3F3C3C'}}>{title}</Text>
-          <Text style={{fontSize:20, marginLeft:15, color: '#707070'}}>{description}</Text>
-        </View>
-      </View>
-      <View style={styles.footer}>
-        <View style={{height: '40%', width: '100%', padding:5, backgroundColor: '#fff'}}>
-          <TouchableOpacity style={styles.button} onPress={() => console.log('Añadido')}>
-            <Text style={styles.cart}>Agregar al carrito</Text>
+     
+      <View style={{ width: '100%', height: 50, flexDirection: 'row'}}>
+        <Header title={'Detalle del producto'}/>
+        <View style={styles.icons}>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => {
+              isFavourite ? toggleFaourite(false) : toggleFaourite(true)
+            }}
+          >
+            <FontAwesomeIcon icon={ isFavourite ? faHeartFill : faHeart } color={'#E49012'} size={25} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.item}
+            onPress={() => alert('Compartir')}
+          >
+            <FontAwesomeIcon icon={faShareAlt} color={'#E49012'} size={25} />
           </TouchableOpacity>
         </View>
       </View>
+
+      <View style={styles.content}>
+        <Slider images={images}/>
+        <View style={styles.data}>
+          <Text style={{ fontSize: 34 }}>$ {price}</Text>
+          <Text style={{ fontSize: 23, fontWeight: 'bold' }}>{name}</Text>
+          <Text style={{ color: '#707070' }}>{description}</Text>
+        </View>
+      </View>
+ 
+      <Footer title={'Agregar al carrito'}  onPress={showModalDispatched}/>
     </View>
   );
 }
@@ -59,59 +59,27 @@ export default ProductDetails;
 
 const styles = StyleSheet.create({
   main: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+  },
+  content: {
+    width: '100%',
+    paddingHorizontal: 15,
+    borderTopWidth: 0.5,
+    borderTopColor: '#707070',
+    backgroundColor: '#fff'
+  },  
+  icons: {
+    height: 50,
+    width: 75,
+    left: -90,
+    flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  data: {
+    width: '100%',
+    marginBottom: 15,
   },
 
-  product: {
-    flexDirection: 'column',
-    backgroundColor: 'white',
-    width: '100%',
-    height: 500,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  header:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    height: 70,
-  },
-  footer: {
-    width: '100%',
-    height: 140,
-    flexDirection:'column',
-    justifyContent:'flex-end',
-    alignItems:'center',
-    // backgroundColor: '#ff0000'
-  },
-  insideHeader:{
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 30,
-    margin:10
-  },
-  button: {
-    backgroundColor: '#E49012',
-    width: '100%',
-    height: 40,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 'auto',
-    marginBottom: 'auto',
-  },
-  cart: {
-    fontSize: 20,
-    color: '#fff',
-  },
-  icon:{
-    marginRight:5
-  },
-  imagen:{
-    width:'80%',
-    height: 250
-  }
 });

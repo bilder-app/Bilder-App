@@ -54,22 +54,6 @@ describe("/product", () => {
         });
     });
   });
-
-  // test("an error message", (done) => {
-  //   app
-  //     .post("/auth/register")
-  //     .send({
-  //       userName: invalidUser.userName,
-  //       password: newUser.password
-  //     })
-  //     .expect(400)
-  //     .then((resp) => {
-  //       expect(resp.body).toBe(
-  //         "Username must be smaller or equal than 255 characters"
-  //       );
-  //       done();
-  //     });
-  // });
 });
 
 afterAll(async () => {

@@ -7,11 +7,13 @@ import {
 } from "../Controllers/orderController";
 
 router.get("/", (req, res) =>
-  getAllCartProducts().then((resp) => res.json(resp?.products))
+  getAllCartProducts().then((resp) => res.json(resp))
 );
 
 router.put("/product/:productId", async (req, res) =>
-  addProductToCart(+req.params.productId).then((resp) => res.sendStatus(200))
+  addProductToCart(+req.params.productId, req.body.amount).then((resp) =>
+    res.sendStatus(200)
+  )
 );
 
 router.delete("/product/:productId", (req, res) =>

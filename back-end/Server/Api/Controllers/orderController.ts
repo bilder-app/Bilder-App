@@ -8,7 +8,21 @@ const userId = 1;
 export async function getAllCartProducts() {
   return Order.findOne({
     where: { userId: userId, state: "pending" },
-    include: [{ model: Product, through: { attributes: [] } }]
+    include: [
+      {
+        model: Product,
+        attributes: { exclude: ["createdAt", "updatedAt", "price"] },
+        through: { attributes: ["amount", "price"] }
+      }
+    ]
+  }).then((resp) => {
+    if (!resp) return [];
+    return resp.products.map((prod: any) => {
+      prod = prod.toJSON();
+      prod = { ...prod, ...prod.ProductInCart };
+      delete prod.ProductInCart;
+      return prod;
+    });
   });
 }
 
@@ -20,19 +34,23 @@ export async function removeProductFromOrder(productId: number) {
   return order?.$remove("product", productId);
 }
 
-export async function addProductToCart(productId: number) {
-  const order = await Order.findOne({
+export async function addProductToCart(productId: number, amount: number) {
+  const order = (await Order.findOne({
     where: { userId: userId, state: "pending" }
-  });
-  const product = await Product.findByPk(productId);
-  await ProductInCart.findOrCreate({
-    where: {
-      orderId: order!.id,
-      productId
-    },
+  })) as Order; // TODO fix this
+  const product = (await Product.findByPk(productId)) as Product; // TODO fix this
+
+  const [productInCart, wasJustCreated] = await ProductInCart.findOrCreate({
+    where: { orderId: order.id, productId },
     defaults: {
-      amount: 1,
-      price: product!.price
+      amount,
+      price: product.price
     }
   });
+
+  if (wasJustCreated) return;
+
+  productInCart.amount = amount;
+  productInCart.price = product.price;
+  return await productInCart.save();
 }

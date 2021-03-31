@@ -11,9 +11,9 @@ function Favourites() {
   return (
     <View style={styles.main}>
       <Header title={'Favoritos'}/>
-      <View style={{width: '93%', height: '90%'}}>
+      <View style={{width: '93%', height: '88%'}}>
         <ScrollView style={{width: '100%'}} showsVerticalScrollIndicator={ false }>
-          <View style={{ width: '100%', marginTop: 15, marginBottom: 15}}>
+          <View style={{ width: '100%', marginTop: 10, marginBottom: 15}}>
             {[1,2,3,4,5,6,7,8,9].map((key) => {
               return( <FavouriteItem key={key}/> )
             })}
@@ -28,8 +28,7 @@ export default Favourites
 
 const styles = StyleSheet.create({
   main: {
-    flex: 1, 
-    alignItems: 'center', 
-    justifyContent: 'center'
+    flex: 1,
+    alignItems: 'center'
   },
 })

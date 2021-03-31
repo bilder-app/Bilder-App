@@ -3,9 +3,16 @@ import {
   GET_PRODUCTS,
   SET_MODAL,
   UNSHIFT_HISTORY,
+  ADDED_TO_CART,
+  ADDING_TO_CART,
+  ADDING_TO_CART_ERROR,
+  FETCHED_CART_ITEMS,
+  FETCHING_CART_ITEMS,
+  FETCHING_CART_ITEMS_ERROR,
 } from "../types.js";
 
 import axios from "axios";
+import { putProductInCart, getAllCartProducts } from "../../api";
 
 export const addProduct = (product) => {
   return function (dispatch) {
@@ -61,4 +68,22 @@ export const unshiftHistory = (input) => {
       payload: input,
     });
   };
+};
+
+export const addToCart = (productId, amount) => (dispatch) => {
+  dispatch({ type: ADDING_TO_CART });
+  putProductInCart({ productId, amount })
+    .then((resp) => {
+      dispatch({ type: ADDED_TO_CART, payload: resp });
+    })
+    .catch((e) => dispatch({ type: ADDING_TO_CART_ERROR, payload: e }));
+};
+
+export const getCartItems = () => (dispatch) => {
+  dispatch({ type: FETCHING_CART_ITEMS });
+  getAllCartProducts()
+    .then((resp) => {
+      dispatch({ type: FETCHED_CART_ITEMS, payload: resp });
+    })
+    .catch((e) => dispatch({ type: FETCHING_CART_ITEMS_ERROR, payload: e }));
 };

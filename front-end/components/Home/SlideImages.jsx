@@ -1,51 +1,52 @@
-// import React from "react";
-// import { StyleSheet, Text, View, Image } from "react-native";
-// import Swiper from "react-native-web-swiper";
-// import { SliderBox } from 'react-native-image-slider-box';
+import React from 'react';
+import { StyleSheet, View, Dimensions } from 'react-native';
+import { SliderBox } from 'react-native-image-slider-box';
 
 
-// export default function SlideImages() {
-//   var img = [require("../img/2.png"),require("../img/3.png"), require("../img/4.png")  ];
-//   return (
-//     <SliderBox images={[require("../img/2.png"),require("../img/3.png"), require("../img/4.png")  ]} />
-//   );
-// }
 
-// // const styles = StyleSheet.create({
-// //   container: {
-// //     flex: 1,
-// //     marginBottom: "250px",
-// //     marginTop: "30px",
-// //     marginLeft: "15px",
-// //     marginRight: "15px",
-// //   },
-// //   slideContainer: {
-// //     flex: 1,
-// //     alignItems: "center",
-// //     justifyContent: "center",
-// //   },
-// //   slide1: {
-// //     backgroundColor: "rgba(20,20,200,0.3)",
-// //     borderRadius: "20px",
-// //   },
-// //   slide2: {
-// //     backgroundColor: "rgba(20,200,20,0.3)",
-// //   },
-// //   slide3: {
-// //     backgroundColor: "rgba(200,20,20,0.3)",
-// //   },
-// //   containerImg: {
-// //     flex: 1,
-// //     position: "absolute",
-// //     top: 0,
-// //     left: 0,
-// //     bottom: 0,
-// //     right: 0,
-// //   },
-// //   image: {
-// //     flex: 1,
-// //     resizeMode: "contain",
-// //     width: "100%",
-// //     height: "100%",
-// //   },
-// // });
+export default function SlideImages() {
+  const images = [
+    require('../../img/2.png'),     
+    require('../../img/3.png'),
+    require('../../img/4.png'),
+  ];
+  const { width } = Dimensions.get('window')
+  
+
+  return (
+    <View style={styles.container}>
+      <SliderBox 
+        images={ images }  
+        dotColor='#E49012'
+        inactiveDotColor='rgba(250,250,250,0.5)'
+        dotStyle={styles.dotStyle}
+        circleLoop
+        parentWidth={width - 30}
+        resizeMethod={'resize'}
+        resizeMode={'stretch'}
+        ImageComponentStyle={styles.image}
+        imageLoadingColor='#E49012'
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    height: 120,
+    marginBottom: 15,
+    paddingHorizontal: 15,
+  },
+  dotStyle: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginHorizontal: 2,
+  },
+  image: {
+    borderRadius: 15, 
+    height: '100%', 
+    width: '100%',
+  },
+});
