@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
 
 import SearchBar from "../components/SearchBar.jsx";
 import FavouriteItem from "../components/Favourites/FavouriteItem.jsx";
@@ -9,21 +9,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { searchProducts } from "../api";
 
+const PRODUCTS_LIMIT = 50;
+
 export default function Result({ route }) {
   const [productsData, setProductsData] = useState();
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    searchProducts(route.params, 1, 10).then((resp) => setProductsData(resp));
+    searchProducts(route.params, 1, PRODUCTS_LIMIT).then((resp) =>
+      setProductsData(resp)
+    );
   }, []);
 
   return (
     <View style={styles.container}>
-      <SearchBar />
+      <View>
+        <SearchBar />
+      </View>
 
       {productsData ? (
         <>
           <View style={styles.content}>
-            <View style={{ width: "75%" }}>
+            <View>
               <Text style={{ fontSize: 20, fontWeight: "bold" }}>
                 {productsData.products.length} Resultados
               </Text>
@@ -34,17 +41,34 @@ export default function Result({ route }) {
             </View>
           </View>
           <View style={styles.results}>
-            <ScrollView showsVerticalScrollIndicator={ false }>
-              <View style={{ width: '100%', height: '90%'}}>
-                {productsData.products.map((props, index) => {
-                    return <FavouriteItem product={props} key={index} />;
-                })}
-              </View>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              {productsData.products.map((props, index) => {
+                return <FavouriteItem product={props} key={index} />;
+              })}
+              {productsData.next && (
+                <Button
+                  onPress={() => {
+                    setPage(page + 1);
+                    searchProducts(route.params, page + 1, PRODUCTS_LIMIT).then(
+                      (resp) =>
+                        setProductsData({
+                          products: [
+                            ...productsData.products,
+                            ...resp.products
+                          ],
+                          next: resp.next
+                        })
+                    );
+                  }}
+                  color="#E49012"
+                  title="Mas resultados"
+                />
+              )}
             </ScrollView>
           </View>
         </>
       ) : (
-        [1, 2, 3, 4, 5, 6, 7].map((i) => (
+        [1, 2, 3, 4, 5].map((i) => (
           <SkeletonPlaceholder key={i}>
             <View
               style={{
@@ -97,7 +121,8 @@ export default function Result({ route }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "100%"
+    height: "100%",
+    display: "flex"
   },
   content: {
     height: 40,
@@ -114,11 +139,14 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "row"
+    flexDirection: "row",
+    marginLeft: "auto"
   },
   results: {
     width: "100%",
-    marginTop: 15,
-    paddingHorizontal: 15
+    paddingHorizontal: 15,
+    flexGrow: 1,
+    flex: 1,
+    marginBottom: 15
   }
 });
