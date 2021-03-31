@@ -23,14 +23,14 @@ function Cart() {
   }, []);
 
   return (
-    <View style={styles.main}>
+    <View style={styles.container}>
       <Header title={"Carrito"} />
-      <View style={{ width: "93%", height: "90%" }}>
+      <View style={{ width: "93%", height: "88%" }}>
         <ScrollView
           style={{ width: "100%" }}
           showsVerticalScrollIndicator={false}
         >
-          <View style={{ width: "100%", marginTop: 15, marginBottom: 15 }}>
+          <View style={{ width: "100%", marginTop: 10, marginBottom: 15 }}>
             {cartData.map((prod) => {
               return <FavouriteItem key={prod.id} product={prod} />;
             })}
@@ -59,10 +59,9 @@ function Cart() {
 export default Cart;
 
 const styles = StyleSheet.create({
-  main: {
+  container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
   },
   content: {
     width: "100%",
