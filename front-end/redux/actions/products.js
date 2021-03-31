@@ -121,7 +121,7 @@ export const getFavoriteProducts = () => (dispatch) => {
 
 export const addProductToFavorites = (productId) => (dispatch) => {
   dispatch({ type: ADDING_ITEM_TO_FAVORITES });
-  postProductToFavorites(productId)
+  return postProductToFavorites(productId)
     .then(() => dispatch({ type: ADDED_ITEM_TO_FAVORITES }))
     .catch((e) =>
       dispatch({ type: ADDING_ITEM_TO_FAVORITES_ERROR, payload: e })
@@ -130,7 +130,7 @@ export const addProductToFavorites = (productId) => (dispatch) => {
 
 export const removeProductFromFavorites = (productId) => (dispatch) => {
   dispatch({ type: REMOVING_ITEM_FROM_FAVORITES });
-  deleteProductFromFavorites(productId)
+  return deleteProductFromFavorites(productId)
     .then(() => dispatch({ type: REMOVED_ITEM_FROM_FAVORITES }))
     .catch((e) =>
       dispatch({ type: REMOVING_ITEM_FROM_FAVORITES_ERROR, payload: e })
