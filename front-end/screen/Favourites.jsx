@@ -27,11 +27,12 @@ function Favourites() {
           showsVerticalScrollIndicator={false}
         >
           <View style={{ width: "100%", marginTop: 10, marginBottom: 15 }}>
-            {!isFetchingFavoriteItems
+            {favoriteProducts.length
               ? favoriteProducts.map((product) => {
                   return <FavouriteItem product={product} key={product.id} />;
                 })
-              : [1, 2, 3, 4].map((i) => <HorizontalItemSkeleton key={i} />)}
+              : isFetchingFavoriteItems &&
+                [1, 2, 3, 4].map((i) => <HorizontalItemSkeleton key={i} />)}
           </View>
         </ScrollView>
       </View>
