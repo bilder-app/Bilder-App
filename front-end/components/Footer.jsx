@@ -3,14 +3,16 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 import { useNavigation } from '@react-navigation/native'
 
-export default function Header({ title }) {
+export default function Footer({ title, onPress }) {
   const navigation = useNavigation();
 
   return (
     <View style={styles.header}>
       <TouchableOpacity 
         style={styles.button}
-        onPress={() => navigation.navigate('Home')}
+        onPress={() => {
+          onPress ? onPress() : alert('Do ' + title)
+        }}
       >
         <View>
           <Text style={styles.title}>{title}</Text>
