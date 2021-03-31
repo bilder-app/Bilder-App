@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
 import FavouriteItem from "../components/Favourites/FavouriteItem.jsx";
+import HorizontalItemSkeleton from "../components/HorizontalItemSkeleton";
 
 import { getCartItems } from "../redux/actions/products";
 
@@ -31,9 +32,11 @@ function Cart() {
           showsVerticalScrollIndicator={false}
         >
           <View style={{ width: "100%", marginTop: 10, marginBottom: 15 }}>
-            {cartData.map((prod) => {
-              return <FavouriteItem key={prod.id} product={prod} />;
-            })}
+            {cartData && cartData.length
+              ? cartData.map((prod) => {
+                  return <FavouriteItem key={prod.id} product={prod} />;
+                })
+              : [1, 2, 3, 4].map((i) => <HorizontalItemSkeleton key={i} />)}
           </View>
           <View style={styles.content}>
             <View style={styles.text}>
@@ -61,7 +64,7 @@ export default Cart;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center"
   },
   content: {
     width: "100%",
