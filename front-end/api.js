@@ -17,3 +17,7 @@ export function putProductInCart({ productId, amount }) {
 export function getAllCartProducts() {
   return axios.get("/cart/").then((resp) => resp.data);
 }
+
+export function clearAllCartItems() {
+  return axios.put("/cart/clear");
+}

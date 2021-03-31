@@ -54,3 +54,12 @@ export async function addProductToCart(productId: number, amount: number) {
   productInCart.price = product.price;
   return await productInCart.save();
 }
+
+export async function clearAllCartProducts() {
+  return Order.findOne({
+    where: { userId: userId, state: "pending" }
+  }).then((resp) => {
+    if (!resp) return;
+    else return resp.$set("products", []);
+  });
+}

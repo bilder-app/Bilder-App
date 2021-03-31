@@ -13,11 +13,15 @@ import Footer from "../components/Footer.jsx";
 import FavouriteItem from "../components/Favourites/FavouriteItem.jsx";
 import HorizontalItemSkeleton from "../components/HorizontalItemSkeleton";
 
-import { getCartItems } from "../redux/actions/products";
+import { getCartItems, clearCartItems } from "../redux/actions/products";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 function Cart() {
   const dispatch = useDispatch();
-  const cartData = useSelector((state) => state.productsList.cart);
+  const { cart: cartData, isFetchingCartItems } = useSelector(
+    (state) => state.productsList
+  );
 
   useEffect(() => {
     dispatch(getCartItems());
@@ -25,14 +29,24 @@ function Cart() {
 
   return (
     <View style={styles.container}>
-      <Header title={"Carrito"} />
+      <Header
+        title={"Carrito"}
+        other={
+          <TouchableOpacity
+            onPress={() => dispatch(clearCartItems())}
+            style={{ marginLeft: "auto", marginRight: 15 }}
+          >
+            <FontAwesomeIcon icon={faTrash} color={"#707070"} size={20} />
+          </TouchableOpacity>
+        }
+      />
       <View style={{ width: "93%", height: "88%" }}>
         <ScrollView
           style={{ width: "100%" }}
           showsVerticalScrollIndicator={false}
         >
           <View style={{ width: "100%", marginTop: 10, marginBottom: 15 }}>
-            {cartData && cartData.length
+            {cartData && Array.isArray(cartData) && !isFetchingCartItems
               ? cartData.map((prod) => {
                   return <FavouriteItem key={prod.id} product={prod} />;
                 })

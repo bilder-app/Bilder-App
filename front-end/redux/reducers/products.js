@@ -8,7 +8,10 @@ import {
   ADDING_TO_CART_ERROR,
   FETCHING_CART_ITEMS,
   FETCHED_CART_ITEMS,
-  FETCHING_CART_ITEMS_ERROR
+  FETCHING_CART_ITEMS_ERROR,
+  CLEARED_CART_ITEMS,
+  CLEARING_CART_ITEMS,
+  CLEARING_CART_ITEMS_ERROR
 } from "../types.js";
 
 const initialState = {
@@ -22,7 +25,9 @@ const initialState = {
   isAddingToCart: false,
   isAddingToCartError: null,
   isFetchingCartItems: false,
-  isFetchingCartItemsError: null
+  isFetchingCartItemsError: null,
+  isClearingCartItems: false,
+  isClearingCartItemsError: null
 };
 
 export default function productsList(state = initialState, action) {
@@ -91,6 +96,28 @@ export default function productsList(state = initialState, action) {
         ...state,
         isFetchingCartItems: false,
         isFetchingCartItemsError: action.payload
+      };
+
+    case CLEARING_CART_ITEMS:
+      return {
+        ...state,
+        isClearingCartItems: true,
+        isClearingCartItemsError: false
+      };
+
+    case CLEARED_CART_ITEMS:
+      return {
+        ...state,
+        isClearingCartItems: false,
+        isClearingCartItemsError: false,
+        cart: []
+      };
+
+    case CLEARING_CART_ITEMS_ERROR:
+      return {
+        ...state,
+        isClearingCartItems: false,
+        isClearingCartItemsError: action.payload
       };
 
     default:
