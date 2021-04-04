@@ -44,7 +44,7 @@ export default function Result({ route }) {
           </View>
         </>
       ) : (
-        [1, 2, 3, 4, 5, 6, 7].map((i) => (
+        [1, 2, 3].map((i) => (
           <SkeletonPlaceholder key={i}>
             <View
               style={{

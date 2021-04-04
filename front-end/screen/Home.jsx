@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, StatusBar, ScrollView } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { setTabMenu } from '../redux/actions/navigation.js';
 
 import SearchButton from '../components/Home/SearchButton.jsx';
 import ListProducts from '../components/Home/ListProducts.jsx';
 import ListCategories from '../components/Home/ListCategories.jsx';
 import SlideImages from '../components/Home/SlideImages.jsx';
 
+import { useRoute } from '@react-navigation/native'
+
 
 function Home() {
-
+  // const menu = useNavigationState(state => state);
+  // console.log(menu)
+  const route = useRoute();
+  const dispatch = useDispatch();
+  console.log(route)
+  dispatch(setTabMenu(route))
+  
   return (
     <View style={styles.main}>
       <StatusBar
