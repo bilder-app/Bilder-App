@@ -10,7 +10,7 @@ export default function Order() {
   
   return(
     <View style={styles.main}>
-      <Header title={'Pedidos'}/>
+      <Header title='Pedidos' redirectHome={true}/>
       <View style={{ height: '88%', width: '100%' }}>
         <ScrollView style={{ width: '100%' }}>
           <View style={styles.content}>

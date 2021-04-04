@@ -20,7 +20,7 @@ function Favourites() {
 
   return (
     <View style={styles.main}>
-      <Header title={"Favoritos"} />
+      <Header title="Favoritos" redirectHome={true}/>
       <View style={{ width: "93%", height: "88%" }}>
         <ScrollView
           style={{ width: "100%" }}

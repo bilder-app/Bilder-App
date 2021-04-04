@@ -14,6 +14,7 @@ import Cart from './screen/Cart.jsx'
 import Search from './screen/Search.jsx'
 import Results from './screen/Results.jsx'
 import Order from './screen/Order.jsx'
+import OrderDetail from './screen/OrderDetail.jsx'
 
 
 const store = configureStore();
@@ -45,6 +46,7 @@ export default function App() {
           <Stack.Screen name='Cart' component={ Cart } />
           <Stack.Screen name='Search' component={ Search } />
           <Stack.Screen name='Results' component={ Results } />
+          <Stack.Screen name='OrderDetail' component={ OrderDetail } />
 
 
         </Stack.Navigator>

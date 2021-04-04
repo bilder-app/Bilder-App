@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { useNavigation } from '@react-navigation/native';
+
 
 
 export default function OrderItem({ order, num }) {
@@ -12,6 +14,9 @@ export default function OrderItem({ order, num }) {
     success: '#55ff55',
     fail: '#ff5555',
   }
+  const navigation = useNavigation()
+
+
   return (
     <View style={styles.container}>
       <View style={styles.data}>
@@ -28,7 +33,7 @@ export default function OrderItem({ order, num }) {
       <TouchableOpacity 
         style={styles.button}
         activeOpacity={0.3}
-        onPress={() => alert('Redirect to OrderDetail')}
+        onPress={() => navigation.push('OrderDetail', num)}
       >      
         <FontAwesomeIcon 
           icon={faChevronRight} 
