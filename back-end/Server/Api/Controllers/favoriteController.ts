@@ -8,7 +8,10 @@ export async function getAllUsersFavoriteProducts() {
   //TODO: User middleware
   const user = await Person.findOne({ where: { userId: userId } });
 
-  return await user?.$get("favorites");
+  return await user?.$get("favorites", {
+    //@ts-ignore
+    joinTableAttributes: []
+  });
 }
 
 export async function addProductToUsersFavorite(productId: number) {

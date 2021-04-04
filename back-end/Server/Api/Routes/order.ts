@@ -3,11 +3,16 @@ const router = express.Router();
 import {
   removeProductFromOrder,
   addProductToCart,
-  getAllCartProducts
+  getAllCartProducts,
+  clearAllCartProducts
 } from "../Controllers/orderController";
 
 router.get("/", (req, res) =>
   getAllCartProducts().then((resp) => res.json(resp))
+);
+
+router.put("/clear/", (req, res) =>
+  clearAllCartProducts().then(() => res.json())
 );
 
 router.put("/product/:productId", async (req, res) =>
