@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
 
 import SearchBar from "../components/SearchBar.jsx";
-import FavouriteItem from "../components/Favourites/FavouriteItem.jsx";
+import HorizontalProductCard from "../components/HorizontalProductCard/HorizontalProductCard";
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -43,7 +43,7 @@ export default function Result({ route }) {
           <View style={styles.results}>
             <ScrollView showsVerticalScrollIndicator={false}>
               {productsData.products.map((props, index) => {
-                return <FavouriteItem product={props} key={index} />;
+                return <HorizontalProductCard product={props} key={index} />;
               })}
               {productsData.next && (
                 <Button
