@@ -13,6 +13,15 @@ import {
   CLEARED_CART_ITEMS,
   CLEARING_CART_ITEMS,
   CLEARING_CART_ITEMS_ERROR,
+  ADDED_ITEM_TO_FAVORITES,
+  ADDING_ITEM_TO_FAVORITES,
+  ADDING_ITEM_TO_FAVORITES_ERROR,
+  FETCHED_FAVORITE_ITEMS,
+  FETCHING_FAVORITE_ITEMS,
+  FETCHING_FAVORITE_ITEMS_ERROR,
+  REMOVED_ITEM_FROM_FAVORITES,
+  REMOVING_ITEM_FROM_FAVORITES,
+  REMOVING_ITEM_FROM_FAVORITES_ERROR,
 } from "../types.js";
 
 import axios from "axios";
@@ -21,6 +30,9 @@ import {
   putProductInCart,
   getAllCartProducts,
   clearAllCartItems,
+  getFavoriteProducts as getFavProducts,
+  postProductToFavorites,
+  deleteProductFromFavorites,
 } from "../../api";
 
 export const addProduct = (product) => {
@@ -111,4 +123,31 @@ export const clearCartItems = () => (dispatch) => {
   clearAllCartItems()
     .then(() => dispatch({ type: CLEARED_CART_ITEMS }))
     .catch((e) => dispatch({ type: CLEARING_CART_ITEMS_ERROR, payload: e }));
+};
+
+export const getFavoriteProducts = () => (dispatch) => {
+  dispatch({ type: FETCHING_FAVORITE_ITEMS });
+  getFavProducts()
+    .then((resp) => dispatch({ type: FETCHED_FAVORITE_ITEMS, payload: resp }))
+    .catch((e) =>
+      dispatch({ type: FETCHING_FAVORITE_ITEMS_ERROR, payload: e })
+    );
+};
+
+export const addProductToFavorites = (productId) => (dispatch) => {
+  dispatch({ type: ADDING_ITEM_TO_FAVORITES });
+  return postProductToFavorites(productId)
+    .then(() => dispatch({ type: ADDED_ITEM_TO_FAVORITES }))
+    .catch((e) =>
+      dispatch({ type: ADDING_ITEM_TO_FAVORITES_ERROR, payload: e })
+    );
+};
+
+export const removeProductFromFavorites = (productId) => (dispatch) => {
+  dispatch({ type: REMOVING_ITEM_FROM_FAVORITES });
+  return deleteProductFromFavorites(productId)
+    .then(() => dispatch({ type: REMOVED_ITEM_FROM_FAVORITES }))
+    .catch((e) =>
+      dispatch({ type: REMOVING_ITEM_FROM_FAVORITES_ERROR, payload: e })
+    );
 };

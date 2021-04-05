@@ -1,16 +1,18 @@
 import express from "express";
 const router = express.Router();
 import Category from "../Models/Category";
-import { getRandomNames } from "./utils";
+import faker from "faker";
 
 router.post("/:amount", async (req, res) => {
   const { amount } = req.params;
-  const names = await getRandomNames(+amount);
-  await Category.bulkCreate(
-    names.map((name) => ({
-      name: name.first_name
-    }))
-  );
+  const categories: any = [];
+  for (let i = 0; i < +amount; i++) {
+    categories.push({
+      name: faker.random.word() + " " + faker.random.uuid().substr(0, 4)
+    });
+  }
+
+  await Category.bulkCreate(categories);
   res.sendStatus(200);
 });
 

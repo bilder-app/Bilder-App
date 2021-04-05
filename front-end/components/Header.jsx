@@ -1,18 +1,30 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useDispatch } from 'react-redux'
+
+import { setTabMenu } from '../redux/actions/navigation.js'
 
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
-export default function Header({ title, other }) {
+
+export default function Header({ title, redirectHome, other }) {
   const navigation = useNavigation();
+  const dispatch = useDispatch()
 
   return (
     <View style={styles.header}>
       <TouchableOpacity
         style={styles.itemBox}
-        onPress={() => navigation.goBack()}
+        onPress={() => {
+          if(redirectHome) {
+            dispatch(setTabMenu('Home'));
+            navigation.navigate('Home');
+          } else {
+            navigation.goBack()
+          }
+        }}
       >
         <FontAwesomeIcon
           icon={faAngleLeft}

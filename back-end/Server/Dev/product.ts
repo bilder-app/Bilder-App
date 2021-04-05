@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import Product from "../Models/Product";
 import faker from "faker";
+import Category from "../Models/Category";
 
 router.post("/:amount", async (req, res) => {
   const { amount } = req.params;
@@ -24,6 +25,24 @@ router.post("/:amount", async (req, res) => {
   }
 
   await Product.bulkCreate(products);
+  res.sendStatus(200);
+});
+
+router.get("/associate/category/all", async (req, res) => {
+  const products = await Product.findAll();
+  const categories: string[] = await (await Category.findAll()).map(
+    (cat) => cat.name
+  );
+
+  const randomIdx = () => ~~(Math.random() * categories.length);
+
+  await products.forEach(async (product) => {
+    await product.$set("categories", [
+      categories[randomIdx()],
+      categories[randomIdx()]
+    ]);
+  });
+
   res.sendStatus(200);
 });
 

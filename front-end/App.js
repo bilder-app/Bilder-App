@@ -13,6 +13,8 @@ import Favourites from './screen/Favourites.jsx'
 import Cart from './screen/Cart.jsx'
 import Search from './screen/Search.jsx'
 import Results from './screen/Results.jsx'
+import Order from './screen/Order.jsx'
+import OrderDetail from './screen/OrderDetail.jsx'
 
 
 const store = configureStore();
@@ -28,8 +30,8 @@ export default function App() {
         {/* Acá van los menu del tabBar */}
         <Tab.Screen name='Home' component={ Home } />
         <Tab.Screen name='Favourites' component={ Favourites } />
-
-
+        <Tab.Screen name='Order' component={ Order } />
+      
       </Tab.Navigator>
     )
   }
@@ -44,6 +46,7 @@ export default function App() {
           <Stack.Screen name='Cart' component={ Cart } />
           <Stack.Screen name='Search' component={ Search } />
           <Stack.Screen name='Results' component={ Results } />
+          <Stack.Screen name='OrderDetail' component={ OrderDetail } />
 
 
         </Stack.Navigator>

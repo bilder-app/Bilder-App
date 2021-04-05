@@ -4,7 +4,8 @@ import {
   getProduct,
   paginatedSearchProducts,
   getAllProducts,
-  addProduct
+  addProduct,
+  searchByCategories
 } from "../Controllers/productController";
 
 //Devuelve todos los productos
@@ -23,6 +24,13 @@ router.get("/search", ({ query: { name, limit, page } }, res) => {
       res.sendStatus(400);
     })
     .then((resp) => res.json(resp));
+});
+
+router.get("/category", ({ query: { names: categoriesString } }, res) => {
+  if (!categoriesString) return res.sendStatus(400);
+  const categories = categoriesString && categoriesString.toString().split(",");
+  if (categories === [""] || categories === "") return res.sendStatus(400);
+  searchByCategories(categories).then((resp) => res.json(resp));
 });
 
 //Devuelve un producto

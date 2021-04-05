@@ -12,6 +12,15 @@ import {
   CLEARED_CART_ITEMS,
   CLEARING_CART_ITEMS,
   CLEARING_CART_ITEMS_ERROR,
+  ADDED_ITEM_TO_FAVORITES,
+  ADDING_ITEM_TO_FAVORITES,
+  ADDING_ITEM_TO_FAVORITES_ERROR,
+  FETCHED_FAVORITE_ITEMS,
+  FETCHING_FAVORITE_ITEMS,
+  FETCHING_FAVORITE_ITEMS_ERROR,
+  REMOVED_ITEM_FROM_FAVORITES,
+  REMOVING_ITEM_FROM_FAVORITES,
+  REMOVING_ITEM_FROM_FAVORITES_ERROR,
 } from "../types.js";
 
 const initialState = {
@@ -29,6 +38,13 @@ const initialState = {
   isFetchingCartItemsError: null,
   isClearingCartItems: false,
   isClearingCartItemsError: null,
+  favoriteProducts: [],
+  isAddingItemToFavorites: false,
+  isAddingItemToFavoritesError: null,
+  isRemovingItemFromFavorites: false,
+  isRemovingItemFromFavoritesError: null,
+  isFetchingFavoriteItems: false,
+  isFetchingFavoriteItemsError: null,
 };
 
 export default function productsList(state = initialState, action) {
@@ -124,6 +140,70 @@ export default function productsList(state = initialState, action) {
         ...state,
         isClearingCartItems: false,
         isClearingCartItemsError: action.payload,
+      };
+
+    case ADDING_ITEM_TO_FAVORITES:
+      return {
+        ...state,
+        isAddingItemToFavorites: true,
+        isAddingItemToFavoritesError: false,
+      };
+
+    case ADDED_ITEM_TO_FAVORITES:
+      return {
+        ...state,
+        isAddingItemToFavorites: false,
+        isAddingItemToFavoritesError: false,
+      };
+
+    case ADDING_ITEM_TO_FAVORITES_ERROR:
+      return {
+        ...state,
+        isAddingItemToFavorites: false,
+        isAddingItemToFavoritesError: action.payload,
+      };
+
+    case FETCHING_FAVORITE_ITEMS:
+      return {
+        ...state,
+        isFetchingFavoriteItems: true,
+        isFetchingFavoriteItemsError: false,
+      };
+
+    case FETCHED_FAVORITE_ITEMS:
+      return {
+        ...state,
+        isFetchingFavoriteItems: false,
+        isFetchingFavoriteItemsError: false,
+        favoriteProducts: action.payload,
+      };
+
+    case FETCHING_FAVORITE_ITEMS_ERROR:
+      return {
+        ...state,
+        isFetchingFavoriteItems: false,
+        isFetchingFavoriteItemsError: action.payload,
+      };
+
+    case REMOVING_ITEM_FROM_FAVORITES:
+      return {
+        ...state,
+        isRemovingItemFromFavorites: true,
+        isRemovingItemFromFavoritesError: false,
+      };
+
+    case REMOVED_ITEM_FROM_FAVORITES:
+      return {
+        ...state,
+        isRemovingItemFromFavorites: false,
+        isRemovingItemFromFavoritesError: false,
+      };
+
+    case REMOVING_ITEM_FROM_FAVORITES_ERROR:
+      return {
+        ...state,
+        isRemovingItemFromFavorites: false,
+        isRemovingItemFromFavoritesError: action.payload,
       };
 
     default:

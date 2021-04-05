@@ -1,26 +1,30 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
+
+import { setTabMenu } from '../redux/actions/navigation.js'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHome, faMoneyCheckAlt, faHeart, faTruck, faUser } from '@fortawesome/free-solid-svg-icons'
 
 
 
-export function Item({ data, navigation }) {
+function Item({ data, navigation, setTabMenu, tabMenu }) {
   const {name, icon, title} = data;
-  const menu = 'Profile';
-
 
   return (
     <View style={ styles.itemBox }>
       <TouchableOpacity
-        onPress={() => { navigation.navigate(name) }}
-        disabled={ menu === name }
+        onPress={() => { 
+          setTabMenu(name)
+          navigation.navigate(name) 
+        }}
+        disabled={ tabMenu === name }
       >
       <FontAwesomeIcon 
         icon={icon} 
         style={styles.item}
-        color={menu === name ? '#E49012' : '#3F3C3C'} 
+        color={tabMenu === name ? '#E49012' : '#3F3C3C'} 
         size={24}
       />
       <Text style={styles.title}>
@@ -32,9 +36,9 @@ export function Item({ data, navigation }) {
 };
 
 
-export default function TabBar({ navigation }) {
+function TabBar({ navigation, setTabMenu, tabMenu }) {
 
-   const items = [
+  const items = [
     { name: 'Home', icon: faHome, title: 'Inicio' },
     { name: 'Offers', icon: faMoneyCheckAlt, title: 'Ofertas' },
     { name: 'Favourites', icon: faHeart, title: 'Favoritos' },
@@ -47,7 +51,13 @@ export default function TabBar({ navigation }) {
       <View style={styles.tabBar}>
         {items.map((item, index) => {
           return (
-            <Item data={item} navigation={navigation} key={index}/>
+            <Item
+              data={item}
+              navigation={navigation}
+              setTabMenu={setTabMenu}
+              tabMenu={tabMenu}
+              key={index}
+            />
           )
         })}
       </View>
@@ -55,6 +65,12 @@ export default function TabBar({ navigation }) {
   )
 }
 
+function mapStateToProps(state){
+  return {
+    tabMenu: state.navigation.tabMenu,
+  }
+}
+export default connect(mapStateToProps, { setTabMenu })(TabBar)
 
 const styles = StyleSheet.create({
   container: {

@@ -25,3 +25,15 @@ export function getCartAmount() {
 export function clearAllCartItems() {
   return axios.put("/cart/clear");
 }
+
+export function postProductToFavorites(productId) {
+  return axios.post(`/favorite/${productId}`);
+}
+
+export function deleteProductFromFavorites(productId) {
+  return axios.delete(`/favorite/${productId}`);
+}
+
+export function getFavoriteProducts() {
+  return axios.get(`/favorite`).then((resp) => resp.data);
+}
