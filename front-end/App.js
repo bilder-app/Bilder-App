@@ -15,6 +15,7 @@ import Search from './screen/Search.jsx'
 import Results from './screen/Results.jsx'
 import Order from './screen/Order.jsx'
 import OrderDetail from './screen/OrderDetail.jsx'
+import CategoryFilter from './screen/CategoryFilter.jsx'
 
 
 const store = configureStore();
@@ -47,7 +48,7 @@ export default function App() {
           <Stack.Screen name='Search' component={ Search } />
           <Stack.Screen name='Results' component={ Results } />
           <Stack.Screen name='OrderDetail' component={ OrderDetail } />
-
+          <Stack.Screen name='CategoryFilter' component={ CategoryFilter } />
 
         </Stack.Navigator>
       </NavigationContainer>
