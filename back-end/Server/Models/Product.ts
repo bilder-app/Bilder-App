@@ -45,7 +45,7 @@ export default class Product extends Model {
   orders: Order[];
 
   @BelongsToMany(() => Category, () => ProductCategory)
-  categories: ProductCategory[];
+  categories: Array<ProductCategory & { ProductCategory: ProductCategory }>;
 
   @BelongsTo(() => Business)
   business: Business;

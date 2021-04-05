@@ -1,4 +1,5 @@
 import { Op } from "sequelize";
+import Category from "../../Models/Category";
 import Product from "../../Models/Product";
 
 export async function getAllProducts() {
@@ -25,23 +26,23 @@ export async function addProduct(
       stock: stock,
       images: [
         "https://images.app.goo.gl/RcgLkEbTz1aRegpeA",
-        "https://images.app.goo.gl/oXwgPP32RdmAkd6T7",
-      ],
-    },
+        "https://images.app.goo.gl/oXwgPP32RdmAkd6T7"
+      ]
+    }
   });
 }
 
 export async function paginatedSearchProducts({
   name,
   page,
-  limit = 5,
+  limit = 5
 }: {
   name: string;
   page: number;
   limit?: number;
 }) {
   const productsAmount = await Product.count({
-    where: { name: { [Op.iLike]: `%${name}%` } },
+    where: { name: { [Op.iLike]: `%${name}%` } }
   });
 
   const startIndex = (page - 1) * limit;
@@ -53,14 +54,14 @@ export async function paginatedSearchProducts({
   if (startIndex > 0) {
     previous = {
       page: page - 1,
-      limit,
+      limit
     };
   }
 
   if (endIndex < productsAmount) {
     next = {
       page: page + 1,
-      limit,
+      limit
     };
   }
 
@@ -71,16 +72,43 @@ export async function paginatedSearchProducts({
 
   return Product.findAndCountAll({
     where: {
-      name: { [Op.iLike]: `%${name}%` },
+      name: { [Op.iLike]: `%${name}%` }
     },
     order: [["name", "ASC"]],
     limit,
-    offset: Math.max(0, startIndex),
+    offset: Math.max(0, startIndex)
   }).then((resp) => ({
     totalProducts: productsAmount,
     totalPaginationPages,
     next,
     previous,
-    products: resp.rows,
+    products: resp.rows
   }));
+}
+
+export async function searchByCategories(categories: string[]) {
+  return Product.findAll({
+    where: {
+      "$categories.name$": {
+        [Op.or]: categories.map((cat) => ({ [Op.iLike]: cat }))
+      }
+    },
+    include: [
+      {
+        model: Category,
+        through: { attributes: [] },
+        attributes: [],
+        as: "categories"
+      }
+    ]
+  }).then(
+    async (prods) =>
+      await Promise.all(
+        prods.map(async (prod) => {
+          const newProdData: any = { ...prod.toJSON() };
+          const categories: any = await prod.$get("categories");
+          return { ...newProdData, categories };
+        })
+      )
+  );
 }
