@@ -33,3 +33,9 @@ export function deleteProductFromFavorites(productId) {
 export function getFavoriteProducts() {
   return axios.get(`/favorite`).then((resp) => resp.data);
 }
+
+export function getProductsByCategories(categories) {
+  return axios
+    .get(`/product/category?names=${categories.join(",")}`)
+    .then((resp) => resp.data);
+}

@@ -1,9 +1,12 @@
 import { Op } from "sequelize";
 import Category from "../../Models/Category";
 import Product from "../../Models/Product";
+import { removeDiacritics } from "../../utils";
 
 export async function getAllProducts() {
-  return Product.findAll();
+  return Product.findAll({
+    include: [{ model: Category, through: { attributes: [] } }]
+  });
 }
 
 export async function getProduct(id: any) {
@@ -87,6 +90,7 @@ export async function paginatedSearchProducts({
 }
 
 export async function searchByCategories(categories: string[]) {
+  categories = categories.map((cat) => removeDiacritics(cat));
   return Product.findAll({
     where: {
       "$categories.name$": {
