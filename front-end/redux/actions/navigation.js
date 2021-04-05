@@ -8,7 +8,6 @@ import {
 
 export const setTabMenu = (menuSelected) => {
   return function (dispatch) {
-    console.log(menuSelected)
     return dispatch({
       type: SET_TAB_MENU,
       payload: menuSelected

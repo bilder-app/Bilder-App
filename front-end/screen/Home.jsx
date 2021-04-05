@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Image, StatusBar, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, ScrollView } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { setTabMenu } from '../redux/actions/navigation.js';
 
@@ -12,13 +12,12 @@ import { useRoute } from '@react-navigation/native'
 
 
 function Home() {
-  // const menu = useNavigationState(state => state);
-  // console.log(menu)
   const route = useRoute();
   const dispatch = useDispatch();
-  console.log(route)
-  dispatch(setTabMenu(route))
-  
+  useEffect(() => {
+    dispatch(setTabMenu('Home'))
+  }, [route])
+
   return (
     <View style={styles.main}>
       <StatusBar
