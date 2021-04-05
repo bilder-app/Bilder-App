@@ -1,6 +1,7 @@
 import {
   ADD_PRODUCT,
   GET_PRODUCTS,
+  GET_CART_AMOUNT,
   SET_MODAL,
   UNSHIFT_HISTORY,
   ADDED_TO_CART,
@@ -11,21 +12,22 @@ import {
   FETCHING_CART_ITEMS_ERROR,
   CLEARED_CART_ITEMS,
   CLEARING_CART_ITEMS,
-  CLEARING_CART_ITEMS_ERROR
+  CLEARING_CART_ITEMS_ERROR,
 } from "../types.js";
 
 import axios from "axios";
 import {
+  getCartAmount,
   putProductInCart,
   getAllCartProducts,
-  clearAllCartItems
+  clearAllCartItems,
 } from "../../api";
 
 export const addProduct = (product) => {
   return function (dispatch) {
     return dispatch({
       type: ADD_PRODUCT,
-      payload: product
+      payload: product,
     });
   };
 };
@@ -37,7 +39,7 @@ export const getProducts = () => {
       .then((res) => {
         return dispatch({
           type: GET_PRODUCTS,
-          payload: res.data
+          payload: res.data,
         });
       })
       .catch((err) => {
@@ -52,8 +54,8 @@ export const showModal = (product) => {
       type: SET_MODAL,
       payload: {
         product,
-        visible: true
-      }
+        visible: true,
+      },
     });
   };
 };
@@ -63,7 +65,7 @@ export const hideModal = () => {
     return dispatch({
       type: SET_MODAL,
       payload: {},
-      visible: false
+      visible: false,
     });
   };
 };
@@ -72,12 +74,25 @@ export const unshiftHistory = (input) => {
   return function (dispatch) {
     return dispatch({
       type: UNSHIFT_HISTORY,
-      payload: input
+      payload: input,
     });
   };
 };
 
 export const addToCart = (productId, amount) => (dispatch) => {
+  dispatch({ type: ADDING_TO_CART });
+  putProductInCart({ productId, amount })
+    .then((resp) => {
+      dispatch({ type: ADDED_TO_CART, payload: resp });
+      getCartAmount().then((resp) => {
+        dispatch({ type: GET_CART_AMOUNT, payload: resp });
+      });
+    })
+
+    .catch((e) => dispatch({ type: ADDING_TO_CART_ERROR, payload: e }));
+};
+
+export const removeToCart = (productId, amount) => (dispatch) => {
   dispatch({ type: ADDING_TO_CART });
   putProductInCart({ productId, amount })
     .then((resp) => dispatch({ type: ADDED_TO_CART, payload: resp }))

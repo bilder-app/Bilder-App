@@ -11,14 +11,15 @@ import {
   FETCHING_CART_ITEMS_ERROR,
   CLEARED_CART_ITEMS,
   CLEARING_CART_ITEMS,
-  CLEARING_CART_ITEMS_ERROR
+  CLEARING_CART_ITEMS_ERROR,
 } from "../types.js";
 
 const initialState = {
   products: [],
+  amount: 0,
   modal: {
     isVisible: false,
-    product: {}
+    product: {},
   },
   history: [],
   cart: [],
@@ -27,7 +28,7 @@ const initialState = {
   isFetchingCartItems: false,
   isFetchingCartItemsError: null,
   isClearingCartItems: false,
-  isClearingCartItemsError: null
+  isClearingCartItemsError: null,
 };
 
 export default function productsList(state = initialState, action) {
@@ -35,13 +36,13 @@ export default function productsList(state = initialState, action) {
     case ADD_PRODUCT:
       return {
         ...state,
-        products: [...state.products, action.payload]
+        products: [...state.products, action.payload],
       };
 
     case GET_PRODUCTS:
       return {
         ...state,
-        products: action.payload
+        products: action.payload,
       };
 
     case SET_MODAL:
@@ -49,14 +50,14 @@ export default function productsList(state = initialState, action) {
         ...state,
         modal: {
           isVisible: action.payload.visible,
-          product: action.payload.product
-        }
+          product: action.payload.product,
+        },
       };
 
     case UNSHIFT_HISTORY:
       return {
         ...state,
-        history: [action.payload, ...state.history]
+        history: [action.payload, ...state.history],
       };
 
     case ADDING_TO_CART:
@@ -66,21 +67,26 @@ export default function productsList(state = initialState, action) {
       return {
         ...state,
         isAddingToCart: false,
-        isAddingToCartError: false
+        isAddingToCartError: false,
+      };
+    case GET_CART_AMOUNT:
+      return {
+        ...state,
+        amount: action.payload,
       };
 
     case ADDING_TO_CART_ERROR:
       return {
         ...state,
         isAddingToCart: false,
-        isAddingToCartError: action.payload
+        isAddingToCartError: action.payload,
       };
 
     case FETCHING_CART_ITEMS:
       return {
         ...state,
         isFetchingCartItems: true,
-        isFetchingCartItemsError: false
+        isFetchingCartItemsError: false,
       };
 
     case FETCHED_CART_ITEMS:
@@ -88,21 +94,21 @@ export default function productsList(state = initialState, action) {
         ...state,
         isFetchingCartItems: false,
         isFetchingCartItemsError: false,
-        cart: action.payload
+        cart: action.payload,
       };
 
     case FETCHING_CART_ITEMS_ERROR:
       return {
         ...state,
         isFetchingCartItems: false,
-        isFetchingCartItemsError: action.payload
+        isFetchingCartItemsError: action.payload,
       };
 
     case CLEARING_CART_ITEMS:
       return {
         ...state,
         isClearingCartItems: true,
-        isClearingCartItemsError: false
+        isClearingCartItemsError: false,
       };
 
     case CLEARED_CART_ITEMS:
@@ -110,14 +116,14 @@ export default function productsList(state = initialState, action) {
         ...state,
         isClearingCartItems: false,
         isClearingCartItemsError: false,
-        cart: []
+        cart: [],
       };
 
     case CLEARING_CART_ITEMS_ERROR:
       return {
         ...state,
         isClearingCartItems: false,
-        isClearingCartItemsError: action.payload
+        isClearingCartItemsError: action.payload,
       };
 
     default:
