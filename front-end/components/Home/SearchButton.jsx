@@ -16,6 +16,7 @@ export default function Search() {
   const { amount } = useSelector((state) => state.productsList);
   console.log(amount);
   const navigation = useNavigation();
+  const [cartButton, setCartButton] = useState(false)
 
   return (
     <View style={styles.container}>
@@ -37,7 +38,15 @@ export default function Search() {
         <View style={styles.itemBox}>
           <TouchableOpacity
             style={styles.item}
-            onPress={() => navigation.push("Cart")}
+            onPress={() => {
+              setCartButton(true);
+              navigation.push('Cart')
+              setTimeout(() => {
+                setCartButton(false)
+              }, 500)
+            }}
+            activeOpacity={ 0.5 }
+            disabled={cartButton}
           >
             <FontAwesomeIcon
               icon={faShoppingCart}
