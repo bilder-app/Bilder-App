@@ -1,56 +1,28 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-
-import configureStore from './store.js'
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
-import TabBar from './components/TabBar.jsx'
-import Home from './screen/Home.jsx'
-import ProductDetail from './screen/ProductDetail.jsx'
-import Favourites from './screen/Favourites.jsx'
-import Cart from './screen/Cart.jsx'
-import Search from './screen/Search.jsx'
-import Results from './screen/Results.jsx'
-import Order from './screen/Order.jsx'
-import OrderDetail from './screen/OrderDetail.jsx'
-
-
-const store = configureStore();
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from "./screen/Home"
 
 
 export default function App() {
+  const Stack = createStackNavigator();
 
-  function MyTabBar () {
-    return(
-      <Tab.Navigator initialRouteName='Home' tabBar={(props) => <TabBar {...props}/> }>
-        {/* Acá van los menu del tabBar */}
-        <Tab.Screen name='Home' component={ Home } />
-        <Tab.Screen name='Favourites' component={ Favourites } />
-        <Tab.Screen name='Order' component={ Order } />
-      
-      </Tab.Navigator>
-    )
-  }
-  
   return (
-    <Provider store={ store }>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name='MyTabBar' component={ MyTabBar }/>
-          {/* Acá van las pantallas sin tabBar */}
-          <Stack.Screen name='ProductDetail' component={ ProductDetail } />
-          <Stack.Screen name='Cart' component={ Cart } />
-          <Stack.Screen name='Search' component={ Search } />
-          <Stack.Screen name='Results' component={ Results } />
-          <Stack.Screen name='OrderDetail' component={ OrderDetail } />
-
-
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
