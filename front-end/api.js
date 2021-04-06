@@ -19,7 +19,7 @@ export function getAllCartProducts() {
 }
 
 export function getCartAmount() {
-  return axios.get("orde/amount/").then((resp) => resp.data);
+  return axios.get("/cart/amount/").then((resp) => resp.data);
 }
 
 export function clearAllCartItems() {

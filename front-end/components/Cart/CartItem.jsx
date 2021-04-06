@@ -11,7 +11,7 @@ export default function CartItem({ product }) {
   };
   const dispatch = useDispatch();
 
-  const { name, shortDescription, price } = product || auxiliar;
+  const { name, shortDescription, price, amount } = product || auxiliar;
 
   const images = [
     "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
@@ -55,7 +55,7 @@ export default function CartItem({ product }) {
               style={styles.add}
               onPress={() => dispatch(showModal(product))}
             >
-              <Text style={{ color: "#707070", fontSize: 13 }}>14</Text>
+              <Text style={{ color: "#707070", fontSize: 13 }}>{amount}</Text>
             </TouchableOpacity>
           </View>
           <View>

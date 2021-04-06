@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
 
 import { Badge } from "react-native-paper";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -12,6 +13,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 export default function Search() {
+  const { amount } = useSelector((state) => state.productsList);
+  console.log(amount);
   const navigation = useNavigation();
 
   return (
@@ -41,7 +44,7 @@ export default function Search() {
               color={"#E49012"}
               size={25}
             />
-            <Badge style={styles.badge}>14</Badge>
+            <Badge style={styles.badge}>{amount}</Badge>
           </TouchableOpacity>
         </View>
       </View>
