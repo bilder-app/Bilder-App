@@ -1,5 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
+import FlashMessage from 'react-native-flash-message'
 
 import configureStore from './store.js'
 import { NavigationContainer } from '@react-navigation/native'
@@ -27,7 +28,7 @@ export default function App() {
 
   function MyTabBar () {
     return(
-      <Tab.Navigator initialRouteName='Home' tabBar={(props) => <TabBar {...props}/> }>
+      <Tab.Navigator initialRouteName='Cart' tabBar={(props) => <TabBar {...props}/> }>
         {/* Acá van los menu del tabBar */}
         <Tab.Screen name='Home' component={ Home } />
         <Tab.Screen name='Favourites' component={ Favourites } />
@@ -52,6 +53,11 @@ export default function App() {
 
         </Stack.Navigator>
       </NavigationContainer>
+      <FlashMessage 
+        position='top'
+        icon='auto'
+        style={{ top: -30 }}
+      />
     </Provider>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native'
 
 export default function Search() {
   const navigation = useNavigation()
+  const [cartButton, setCartButton] = useState(false)
 
   return(
     <View style={styles.container}>
@@ -32,7 +33,15 @@ export default function Search() {
         <View style={ styles.itemBox }>
           <TouchableOpacity
             style={styles.item}
-            onPress={() => navigation.push('Cart')}
+            onPress={() => {
+              setCartButton(true);
+              navigation.push('Cart')
+              setTimeout(() => {
+                setCartButton(false)
+              }, 500)
+            }}
+            activeOpacity={ 0.5 }
+            disabled={cartButton}
           >
             <FontAwesomeIcon 
               icon={faShoppingCart} 

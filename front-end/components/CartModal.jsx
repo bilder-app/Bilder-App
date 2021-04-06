@@ -10,6 +10,7 @@ import {
 import Modal from "react-native-modal";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/actions/products";
+import { showMessage } from "react-native-flash-message";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
@@ -89,7 +90,15 @@ export default function CartModal({ product, hideModal }) {
         </View>
         <TouchableOpacity
           style={styles.button}
-          onPress={handleAddToCart}
+          onPress={() => {
+            handleAddToCart()
+            showMessage({
+              message: `Se ha añadido ${name} al carrito!`,
+              type: "success",
+              backgroundColor: "#33bd4e", // background color
+              color: "#fff", // text color
+            });
+          }}
           activeOpacity={0.7}
         >
           <Text style={styles.cart}>Agregar al carrito</Text>
