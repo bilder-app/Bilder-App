@@ -43,3 +43,9 @@ export function getProductsByCategories(categories) {
     .get(`/product/category?names=${categories.join(",")}`)
     .then((resp) => resp.data);
 }
+
+export function removeProductFromCart (productId) {
+  return axios
+  .delete(`/cart/product/${productId}`)
+  .then((resp) => resp.data);
+}

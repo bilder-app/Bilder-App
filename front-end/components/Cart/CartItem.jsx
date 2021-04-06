@@ -1,7 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { showModal } from "../../redux/actions/products";
+import { showModal, getCartItems } from "../../redux/actions/products";
 import { useDispatch } from "react-redux";
+
+import {removeProductFromCart} from "../../api"
 
 export default function CartItem({ product }) {
   const auxiliar = {
@@ -11,7 +13,7 @@ export default function CartItem({ product }) {
   };
   const dispatch = useDispatch();
 
-  const { name, shortDescription, price, amount } = product || auxiliar;
+  const { name, shortDescription, price, amount, id } = product || auxiliar;
 
   const images = [
     "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
@@ -46,7 +48,7 @@ export default function CartItem({ product }) {
         </View>
         <View style={styles.buttons}>
           <View>
-            <TouchableOpacity style={styles.delete}>
+            <TouchableOpacity onPress={() => removeProductFromCart(id).then(() => dispatch(getCartItems()))} style={styles.delete}>
               <Text style={{ color: "#E49012", fontSize: 13 }}>Eliminar</Text>
             </TouchableOpacity>
           </View>
