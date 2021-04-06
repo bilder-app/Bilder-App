@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
-  StyleSheet
+  StyleSheet,
 } from "react-native";
 import Modal from "react-native-modal";
 import { useDispatch } from "react-redux";
@@ -18,7 +18,7 @@ export default function CartModal({ product, hideModal }) {
   const dispatch = useDispatch();
   const productData = {
     ...product,
-    images: ["https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png"]
+    images: ["https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png"],
   };
   const { name, stock, price, images, id } = productData;
 
@@ -110,29 +110,29 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderTopLeftRadius: 20,
-    borderTopRightRadius: 20
+    borderTopRightRadius: 20,
   },
   modal: {
     width: "100%",
     height: "100%",
     justifyContent: "space-around",
-    alignItems: "center"
+    alignItems: "center",
   },
   content: {
     width: "100%",
     height: "70%",
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   box: {
     width: "33%",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
   },
   title: {
     fontSize: 17,
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   image: {
     width: "95%",
@@ -141,19 +141,19 @@ const styles = StyleSheet.create({
     marginTop: "auto",
     marginRight: "auto",
     marginBottom: "auto",
-    marginLeft: "auto"
+    marginLeft: "auto",
   },
   cant: {
     height: "45%",
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
   },
   input: {
     width: 30,
     textAlign: "center",
-    fontSize: 15
+    fontSize: 15,
   },
   price: {
     color: "#F5943E",
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     position: "absolute",
-    top: "40%"
+    top: "40%",
   },
   button: {
     backgroundColor: "#E49012",
@@ -169,11 +169,11 @@ const styles = StyleSheet.create({
     height: "27%",
     borderRadius: 20,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   cart: {
     color: "#fff",
     fontSize: 15,
-    fontWeight: "bold"
-  }
+    fontWeight: "bold",
+  },
 });
