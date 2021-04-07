@@ -6,14 +6,9 @@ import { useDispatch } from "react-redux";
 import {removeProductFromCart} from "../../api"
 
 export default function CartItem({ product }) {
-  const auxiliar = {
-    name: "Nombre del producto",
-    shortDescription: "Descripción del producto",
-    price: 999.5,
-  };
   const dispatch = useDispatch();
 
-  const { name, shortDescription, price, amount, id } = product || auxiliar;
+  const { name, shortDescription, price, amount, id } = product;
 
   const images = [
     "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",

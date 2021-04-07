@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
@@ -14,7 +14,6 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function Search() {
   const { amount } = useSelector((state) => state.productsList);
-  console.log(amount);
   const navigation = useNavigation();
   const [cartButton, setCartButton] = useState(false)
 

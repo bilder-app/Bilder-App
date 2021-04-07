@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -8,30 +8,34 @@ import {
   StyleSheet,
 } from "react-native";
 import Modal from "react-native-modal";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/actions/products";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, getCartItems } from "../redux/actions/products";
 import { showMessage } from "react-native-flash-message";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 export default function CartModal({ product, hideModal }) {
-  const dispatch = useDispatch();
-  const productData = {
-    ...product,
-    images: ["https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png"],
-  };
-  const { name, stock, price, images, id } = productData;
+  useEffect(() => {
+    dispatch(getCartItems());
+  }, [])
 
+  const dispatch = useDispatch();
+
+  const { name, stock, price, images, id } = product;
   const [input, setInput] = useState({ value: 1 });
 
   let a = price * input.value || 1400 * input.value,
-    subTotal = a > 100000 ? Math.floor(a / 1000) + "," + (a % 1000) / 100 : a;
+      subTotal = a > 100000 ? Math.floor(a / 1000) + "," + (a % 1000) / 100 : a;
 
   const handleAddToCart = () => {
     hideModal();
     dispatch(addToCart(id, input.value));
   };
+
+  const cartData = useSelector((state) => state.productsList.cart);
+  const currentValue = cartData.find((item) => item.id === id);
+
 
   return (
     <Modal
@@ -58,7 +62,7 @@ export default function CartModal({ product, hideModal }) {
               </TouchableOpacity>
               <TextInput
                 style={styles.input}
-                defaultValue={`${input.value}`}
+                defaultValue={`${currentValue ? currentValue.amount : input.value}`}
                 keyboardType="numeric"
                 onChange={({ nativeEvent }) => {
                   const number = parseInt(nativeEvent.text, 10);
