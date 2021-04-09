@@ -1,48 +1,48 @@
-// import constants from '/constants'
+import global from '../globalStyles.js'
 
-const global = {
-  primary: '#E49012',
-  secondary: '#858585',
-  success: '#28A745',
-  error: '#DC3545',
-}
 
 export default {
   center: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  outline: (color) => {
-    return {
-      backgroundColor: '#FFFFFF',
-      borderWidth: 1.8,
-      borderColor: global[color] || '#E49012',
-    }
+  outline: {
+    backgroundColor: 'transparent',
+    borderWidth: 1.8,
   },
-  large: (color) => {
-    return {
-      width: '85%',
-      height: 40,
-      borderRadius: 20,
-      backgroundColor: global[color] || '#E49012',
-    }
+  large: {
+    width: '85%',
+    height: 40,
+    borderRadius: 20,
   },
-  medium: (color) => {
-    return {
-      width: '70%',
-      height: 32,
-      borderRadius: 16,
-      backgroundColor: global[color] || '#52DB6C',
-    }
+  medium: {
+    width: '65%',
+    height: 32,
+    borderRadius: 16,
   },
-  small: (color) => {
-    return {
-      width: 130,
-      height: 25,
-      borderRadius: 12,
-      backgroundColor: global[color] || '#E49012',
-    }
+  small:{
+    width: 130,
+    height: 25,
+    borderRadius: 12,
   },
+
+  primary: [
+    { backgroundColor: global.colors.primary },
+    { borderColor: global.colors.primary }
+  ],
+  secondary: [
+    { backgroundColor: global.colors.secondary },
+    { borderColor: global.colors.secondary }
+  ],
+  success: [
+    { backgroundColor: global.colors.success },
+    { borderColor: global.colors.success }
+  ],
+  danger: [
+    { backgroundColor: global.colors.danger },
+    { borderColor: global.colors.danger }
+  ],
+
 
   textSize: (type) => {
     switch(type){
@@ -64,7 +64,7 @@ export default {
   },
   textColor: (outline, color) => {
     return {
-      color: outline ? global[color] : '#FFFFFF'
+      color: outline ? global.colors[color] : '#FFFFFF'
     }
   }
 };

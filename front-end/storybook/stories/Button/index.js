@@ -7,13 +7,14 @@ export default function Button({ onPress, children, type, outline, color }) {
 
   const styleButton = [
     styles.center,
-    styles[type || 'large'](color),
-    outline ? styles.outline(color) : null,
-  ]
-  const styleText = [
+    styles[type || 'large'],
+    outline && styles.outline,
+    outline ? styles[color || 'primary'][1] : styles[color || 'primary'][0]
+  ],
+  styleText = [
     styles.textSize(type || 'large'),
     styles.textColor(outline, color)
-  ]
+  ];
 
   
   return(
@@ -21,7 +22,6 @@ export default function Button({ onPress, children, type, outline, color }) {
       <Text style={styleText}>{children}</Text>
     </TouchableOpacity>
   )
-  
 }
 
 Button.defaultProps = {
