@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, Text } from 'react-native';
 import styles from './style.js';
 
-export default function Button({ onPress, children, type, outline, color }) {
+export default function Button({ onPress, children, variant, outline, color }) {
 
   const styleButton = [
     styles.center,
-    styles[type || 'large'],
+    styles[variant || 'large'],
     outline && styles.outline,
     outline ? styles[color || 'primary'][1] : styles[color || 'primary'][0]
   ],
   styleText = [
-    styles.textSize(type || 'large'),
+    styles.textSize(variant || 'large'),
     styles.textColor(outline, color)
   ];
 

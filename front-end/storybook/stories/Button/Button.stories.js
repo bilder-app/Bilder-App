@@ -12,14 +12,14 @@ storiesOf('Button', module)
     <Button onPress={action('continue')} children='Continuar' />
   ))
   .add('medium secondary', () => (
-    <Button onPress={action('continue')} children='Agregar más productos' type='medium' color='secondary' />
+    <Button onPress={action('continue')} children='Agregar más productos' variant='medium' color='secondary' />
   ))
   .add('small success outline', () => (
-    <Button onPress={action('continue')} children='Agregar al carrito' type='small' color='success' outline />
+    <Button onPress={action('continue')} children='Agregar al carrito' variant='small' color='success' outline />
   ))
   .add('large danger outline', () => (
-    <Button onPress={action('continue')} children='Eliminar' type='large' color='danger' outline />
+    <Button onPress={action('continue')} children='Eliminar' variant='large' color='danger' outline />
   ))
   .add('small', () => (
-    <Button onPress={action('continue')} children='Agregar al carrito' type='small'/>
+    <Button onPress={action('continue')} children='Agregar al carrito' variant='small'/>
   ))
