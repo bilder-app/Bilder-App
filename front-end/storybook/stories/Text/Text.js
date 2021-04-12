@@ -7,58 +7,58 @@ const colors = { primary: "#E49012" };
 const variants = {
   h1: {
     fontWeight: "300",
-    fontSize: 6 * fontSize
+    fontSize: 6 * fontSize,
   },
   h2: {
     fontWeight: "300",
-    fontSize: 3.75 * fontSize
+    fontSize: 3.75 * fontSize,
   },
   h3: {
     fontWeight: "400",
-    fontSize: 3 * fontSize
+    fontSize: 3 * fontSize,
   },
   h4: {
     fontWeight: "400",
-    fontSize: 2.125 * fontSize
+    fontSize: 2.125 * fontSize,
   },
   h5: {
     fontWeight: "400",
-    fontSize: 1.5 * fontSize
+    fontSize: 1.5 * fontSize,
   },
   h6: {
     fontWeight: "500",
-    fontSize: 1.25 * fontSize
+    fontSize: 1.25 * fontSize,
   },
   subtitle1: {
     fontWeight: "400",
-    fontSize: 1 * fontSize
+    fontSize: 1 * fontSize,
   },
   subtitle2: {
     fontWeight: "500",
-    fontSize: 0.875 * fontSize
+    fontSize: 0.875 * fontSize,
   },
   body1: {
     fontWeight: "400",
-    fontSize: 1 * fontSize
+    fontSize: 1 * fontSize,
   },
   body2: {
     fontWeight: "400",
-    fontSize: 0.875 * fontSize
+    fontSize: 0.875 * fontSize,
   },
   button: {
     fontWeight: "500",
     textTransform: "uppercase",
-    fontSize: 0.875 * fontSize
+    fontSize: 0.875 * fontSize,
   },
   caption: {
     fontWeight: "400",
-    fontSize: 0.75 * fontSize
+    fontSize: 0.75 * fontSize,
   },
   overline: {
     fontWeight: "400",
     fontSize: 0.75 * fontSize,
-    textTransform: "uppercase"
-  }
+    textTransform: "uppercase",
+  },
 };
 
 export default function Typography({

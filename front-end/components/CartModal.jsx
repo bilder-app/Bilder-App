@@ -91,7 +91,7 @@ export default function CartModal({ product, hideModal }) {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            handleAddToCart()
+            handleAddToCart();
             showMessage({
               message: `Se ha añadido ${name} al carrito!`,
               type: "success",
