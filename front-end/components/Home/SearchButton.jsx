@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
@@ -16,7 +16,7 @@ export default function Search() {
   const { amount } = useSelector((state) => state.productsList);
   console.log(amount);
   const navigation = useNavigation();
-  const [cartButton, setCartButton] = useState(false)
+  const [cartButton, setCartButton] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -40,12 +40,12 @@ export default function Search() {
             style={styles.item}
             onPress={() => {
               setCartButton(true);
-              navigation.push('Cart')
+              navigation.push("Cart");
               setTimeout(() => {
-                setCartButton(false)
-              }, 500)
+                setCartButton(false);
+              }, 500);
             }}
-            activeOpacity={ 0.5 }
+            activeOpacity={0.5}
             disabled={cartButton}
           >
             <FontAwesomeIcon

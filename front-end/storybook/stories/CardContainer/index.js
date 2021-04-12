@@ -5,17 +5,17 @@ const variants = {
   vertical: {
     backgroundColor: "white",
     width: 170,
-    height: 225,
+    height: 250,
     borderRadius: 15,
-    padding: 5
+    padding: 10,
   },
   horizontal: {
     backgroundColor: "white",
     width: 374,
     height: 105,
     borderRadius: 15,
-    padding: 5
-  }
+    padding: 5,
+  },
 };
 
 export default function CardContainer({
@@ -25,7 +25,11 @@ export default function CardContainer({
   ...textProps
 }) {
   return (
-    <TouchableOpacity {...textProps} style={{ ...variants[variant], ...style }}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      {...textProps}
+      style={{ ...variants[variant], ...style }}
+    >
       {children}
     </TouchableOpacity>
   );
