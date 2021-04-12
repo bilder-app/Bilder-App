@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import CardContainer from ".";
+import CardContainer from "./";
 import { View } from "react-native";
 import CenterView from "../CenterView";
 import Text from "../Text/Text";
