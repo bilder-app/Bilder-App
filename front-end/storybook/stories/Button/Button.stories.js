@@ -8,13 +8,39 @@ import CenterView from "../CenterView";
 
 storiesOf("Button", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("with text", () => (
-    <Button onPress={action("clicked-text")}>
-      <Text>{text("Button text", "Hello Button")}</Text>
-    </Button>
+  .add("default", () => (
+    <Button onPress={action("continue")} children="Continuar" />
   ))
-  .add("with some emoji", () => (
-    <Button onPress={action("clicked-emoji")}>
-      <Text>😀 😎 👍 💯</Text>
-    </Button>
+  .add("medium secondary", () => (
+    <Button
+      onPress={action("continue")}
+      children="Agregar más productos"
+      type="medium"
+      color="secondary"
+    />
+  ))
+  .add("small success outline", () => (
+    <Button
+      onPress={action("continue")}
+      children="Agregar al carrito"
+      type="small"
+      color="success"
+      outline
+    />
+  ))
+  .add("large danger outline", () => (
+    <Button
+      onPress={action("continue")}
+      children="Eliminar"
+      type="large"
+      color="danger"
+      outline
+    />
+  ))
+  .add("small", () => (
+    <Button
+      onPress={action("continue")}
+      children="Agregar al carrito"
+      type="small"
+    />
   ));

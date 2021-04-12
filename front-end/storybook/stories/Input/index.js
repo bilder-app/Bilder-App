@@ -16,6 +16,8 @@ const variants = {
   },
   form: {
     backgroundColor: "#fff",
+    borderColor: "#E49012",
+    borderWidth: 2,
     height: 60,
     width: "100%",
     borderRadius: 20,
@@ -32,20 +34,3 @@ const variants = {
     paddingRight: 5,
   },
 };
-
-<Button
-  ariaLabel={text("aria-label", "aria-label")}
-  icon={PlusCircleIcon}
-  iconPosition={select("iconPosition", ["start", "end"])}
-  appearance={select("appearance", [
-    "default",
-    "primary",
-    "secondary",
-    "danger",
-  ])}
-  disabled={boolean("disabled", false)}
-  onClick={action("onClick")}
-  spinner={boolean("spinner", false)}
->
-  {text("children", "Text")}
-</Button>;
