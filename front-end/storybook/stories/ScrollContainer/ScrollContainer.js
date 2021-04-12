@@ -3,14 +3,14 @@ import { View, ScrollView } from "react-native";
 
 const styles = {
   vertical: {
-    backgroundColor: "gray",
+    backgroundColor: "",
     width: "100%",
     height: '100%',
     paddingHorizontal: 15,
     flexDirection: "column",
   },
   horizontal: {
-    backgroundColor: 'gray',
+    backgroundColor: '',
     width: "100%",
     height: '100%',
     maxHeight: 350,

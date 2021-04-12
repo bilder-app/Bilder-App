@@ -8,8 +8,8 @@ import Text from "../Text/Text";
 storiesOf("ScrollContainer", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add("vertical", () => (
-    <View style={{height: 500, width: 350, }}>
-      <ScrollContainer position='vertical'>
+    <View style={{height: 500, width: 350}}>
+      <ScrollContainer >
         {[1,2,3,4,5].map((item) => {
           return(
             <View style={{height: 120, width: '100%', backgroundColor: 'white', marginVertical: 10}} key={item}>
