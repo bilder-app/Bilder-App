@@ -1,8 +1,14 @@
 import React from "react";
 import { TextInput } from "react-native";
 
-export default function Input({ variant }) {
-  return <TextInput style={{ ...variants[variant] }} autoFocus={true} />;
+export default function Input({ variant, style, props }) {
+  return (
+    <TextInput
+      style={{ ...variants[variant], ...style }}
+      {...props}
+      autoFocus={true}
+    />
+  );
 }
 
 const variants = {
