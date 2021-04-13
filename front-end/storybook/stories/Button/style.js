@@ -44,8 +44,8 @@ export default {
   ],
 
 
-  textSize: (type) => {
-    switch(type){
+  textSize: (variant) => {
+    switch(variant){
       case 'large':
         return { 
           fontSize: 20,
