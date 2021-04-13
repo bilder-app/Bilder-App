@@ -17,12 +17,6 @@ const styles = {
     flexDirection: "row",
     paddingHorizontal: 5
   },
-  content: {
-    paddingLeft: 5,
-    display: "flex",
-    flexGrow: 1,
-    flex: 1
-  },
   middle: {
     display: "flex",
     flexDirection: "row",
@@ -37,10 +31,35 @@ const styles = {
     alignItems: "center",
     flexGrow: 1,
     flex: 1
+  },
+  middleCol: {
+    justifyContent: "space-between",
+    paddingBottom: 5
+  },
+  totalOrdered: {
+    marginLeft: "auto",
+    borderWidth: 1,
+    borderColor: "#b4b4b4",
+    borderRadius: 6,
+    paddingHorizontal: 12,
+    paddingTop: 2
+  },
+  lastCol: {
+    display: "flex",
+    alignItems: "center",
+    marginLeft: "auto",
+    paddingRight: 10,
+    justifyContent: "space-between"
   }
 };
 
-export default function Card({ title, shortDescription, price, id }) {
+export default function Card({
+  title,
+  shortDescription,
+  total,
+  singlePrice,
+  inOrder
+}) {
   return (
     <CardContainer variant="horizontal">
       <View style={styles.wrapper}>
@@ -50,20 +69,17 @@ export default function Card({ title, shortDescription, price, id }) {
             uri: "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png"
           }}
         />
-        <View style={styles.content}>
+        <View style={styles.middleCol}>
           <Text variant="h6">{title}</Text>
-          <View style={styles.middle}>
-            <Text>{shortDescription}</Text>
-            <Text style={styles.price} variant="h6">
-              {price}
-            </Text>
-          </View>
-          <View style={styles.buttonsContainer}>
-            <Pressable style={{ marginRight: "auto" }}>
-              <Text color="primary">Eliminar</Text>
-            </Pressable>
-            <Button type="small">Agregar al carrito</Button>
-          </View>
+          <Text style={{ color: "#5f5f5f" }}>{shortDescription}</Text>
+          <Text style={styles.totalOrdered}>{inOrder}</Text>
+        </View>
+        <View style={styles.lastCol}>
+          <Text style={{ textAlign: "center", color: "#5f5f5f" }}>
+            Precio{"\n"} Unitario
+          </Text>
+          <Text style={{ color: "#5f5f5f" }}>${singlePrice}</Text>
+          <Text variant="h5">${total}</Text>
         </View>
       </View>
     </CardContainer>
