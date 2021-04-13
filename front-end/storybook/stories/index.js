@@ -6,6 +6,7 @@ import "./OrderCard.stories";
 import "./OrderProductCard.stories";
 import "./CartProductCard.stories";
 import "./CardContainer/CardContainer.stories";
+import "./CategoryContainer/CategoryContainer.stories";
 import "./ScrollContainer/ScrollContainer.stories";
 import "./Card/Card.stories";
 

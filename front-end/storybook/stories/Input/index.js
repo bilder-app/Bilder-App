@@ -2,10 +2,7 @@ import React from "react";
 import { TextInput } from "react-native";
 
 export default function Input({ variant, style, props }) {
-  return <TextInput 
-    style={{ ...variants[variant], ...style }} 
-    {...props}
-  />;
+  return <TextInput style={{ ...variants[variant], ...style }} {...props} />;
 }
 
 const variants = {
