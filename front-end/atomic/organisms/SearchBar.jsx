@@ -10,7 +10,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'space-between',
     top: 0,
-    backgroundColor: '#77ff77',
+    backgroundColor: '#E5E5E5',
     flexDirection: 'row',
     paddingHorizontal: 15,
   },
