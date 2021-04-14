@@ -11,15 +11,14 @@ const styles = {
     top: 0,
     backgroundColor: "#fff",
     flexDirection: "row",
-    paddingHorizontal: 15,
-  },
+    paddingHorizontal: 15
+  }
 };
 
-export default function Header({ props }) {
-  const { icon, title } = props;
+export default function Header({ icon, title, style }) {
   return (
-    <View style={styles.container}>
-      <Icon icon={icon} onPress={() => alert("redirect to home")} />
+    <View style={{ ...styles.container, ...style }}>
+      {icon && <Icon icon={icon} onPress={() => alert("redirect to home")} />}
       <Text variant="h6">{title}</Text>
     </View>
   );

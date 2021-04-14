@@ -47,7 +47,7 @@ export default function Card({ orderNumber, date, status }) {
             Pedido #{orderNumber}
           </Text>
           <Text>{date}</Text>
-          <Button type="small">{status}</Button>
+          <Button variant="small">{status}</Button>
         </View>
         <TouchableOpacity style={styles.rightArea}>
           <View style={styles.icon}>

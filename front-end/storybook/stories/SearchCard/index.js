@@ -2,33 +2,33 @@ import React from "react";
 import CardContainer from "../CardContainer/index";
 import Text from "../Text/Text";
 import Button from "../Button/index";
-import { View, Image, Pressable } from "react-native";
+import { View, Image } from "react-native";
 
 const styles = {
   image: {
     height: "100%",
     width: "23%",
-    resizeMode: "contain",
+    resizeMode: "contain"
   },
   wrapper: {
     width: "100%",
     height: "100%",
     display: "flex",
     flexDirection: "row",
-    paddingHorizontal: 5,
+    paddingHorizontal: 5
   },
   content: {
     paddingLeft: 5,
     display: "flex",
     flexGrow: 1,
-    flex: 1,
+    flex: 1
   },
   middle: {
     display: "flex",
     flexDirection: "row",
     flex: 1,
     flexGrow: 1,
-    alignItems: "center",
+    alignItems: "center"
   },
   price: { marginLeft: "auto" },
   buttonsContainer: {
@@ -36,8 +36,8 @@ const styles = {
     flexDirection: "row",
     alignItems: "center",
     flexGrow: 1,
-    flex: 1,
-  },
+    flex: 1
+  }
 };
 
 export default function SearchCard({ title, shortDescription, price, id }) {
@@ -47,7 +47,7 @@ export default function SearchCard({ title, shortDescription, price, id }) {
         <Image
           style={styles.image}
           source={{
-            uri: "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
+            uri: "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png"
           }}
         />
         <View style={styles.content}>
@@ -59,7 +59,7 @@ export default function SearchCard({ title, shortDescription, price, id }) {
             </Text>
           </View>
           <View style={styles.buttonsContainer}>
-            <Button type="small">Agregar al carrito</Button>
+            <Button variant="small">Agregar al carrito</Button>
           </View>
         </View>
       </View>

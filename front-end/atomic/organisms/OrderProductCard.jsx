@@ -1,7 +1,6 @@
 import React from "react";
 import CardContainer from "../../storybook/stories/CardContainer";
 import Text from "../../storybook/stories/Text/Text";
-import Button from "../../storybook/stories/Button";
 import { View, Image, Pressable } from "react-native";
 
 const styles = {

@@ -1,7 +1,7 @@
 import React from "react";
 import { TextInput } from "react-native";
 
-export default function Input({ variant, style, props }) {
+export default function Input({ variant, style, ...props }) {
   return <TextInput style={{ ...variants[variant], ...style }} {...props} />;
 }
 
@@ -12,7 +12,7 @@ const variants = {
     width: "100%",
     borderRadius: 20,
     paddingLeft: 20,
-    paddingRight: 20,
+    paddingRight: 20
   },
   form: {
     backgroundColor: "#fff",
@@ -22,15 +22,14 @@ const variants = {
     width: "100%",
     borderRadius: 20,
     paddingLeft: 20,
-    paddingRight: 20,
+    paddingRight: 20
   },
   amount: {
     backgroundColor: "#fff",
     height: 40,
-    width: "8%",
     textAlign: "center",
     borderRadius: 5,
     paddingLeft: 5,
-    paddingRight: 5,
-  },
+    paddingRight: 5
+  }
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import CardContainer from "../../storybook/stories/CardContainer";
 import Text from "../../storybook/stories/Text/Text";
-import Button from "../../storybook/stories/Button";
+import Input from "../../storybook/stories/Input";
 import { View, Image, Pressable } from "react-native";
 
 const styles = {
@@ -33,10 +33,8 @@ const styles = {
   totalOrdered: {
     marginLeft: "auto",
     borderWidth: 1,
-    borderColor: "#b4b4b4",
-    borderRadius: 6,
-    paddingHorizontal: 12,
-    paddingTop: 2
+    borderColor: "#c0c0c0",
+    height: 21
   },
   lastCol: {
     display: "flex",
@@ -46,7 +44,8 @@ const styles = {
   },
   middleBottom: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    alignItems: "center"
   }
 };
 
@@ -70,10 +69,24 @@ export default function Card({
           <Text variant="h6">{title}</Text>
           <Text style={{ color: "#5f5f5f" }}>{shortDescription}</Text>
           <View style={styles.middleBottom}>
-            <Pressable style={{ marginRight: "auto" }}>
+            <Pressable
+              style={{
+                marginRight: "auto",
+                display: "flex",
+                alignItems: "center",
+                alignContent: "center",
+                justifyContent: "center",
+                justifyItems: "center",
+                height: "100%"
+              }}
+            >
               <Text color="primary">Eliminar</Text>
             </Pressable>
-            <Text style={styles.totalOrdered}>{inOrder}</Text>
+            <Input
+              style={styles.totalOrdered}
+              variant="amount"
+              value={inOrder + ""}
+            />
           </View>
         </View>
         <View style={styles.lastCol}>

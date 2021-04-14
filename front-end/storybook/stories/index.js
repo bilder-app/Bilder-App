@@ -17,3 +17,4 @@ import "./Home.stories";
 import "./Header.stories";
 // Views
 import "./CategorySearch/CategorySearch.stories";
+import "./Pages/Cart.stories";
