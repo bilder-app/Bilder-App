@@ -11,9 +11,10 @@ storiesOf("Card", module)
     <View style={{ padding: 15, backgroundColor: "gray" }}>
       <Card
         props={{
-          price: 100,
-          title: "Martill0",
-          shortDescription: "hola"
+          price: "$100",
+          title: "Martillo de 3/4 pulgadas ",
+          medidas: "Largo: 6 metros",
+          marca: "hierros Jr",
         }}
       />
     </View>

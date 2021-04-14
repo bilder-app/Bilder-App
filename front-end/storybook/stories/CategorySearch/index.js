@@ -2,8 +2,10 @@ import React from "react";
 import Text from "../Text/Text";
 
 import SearchBar from "../../../atomic/organisms/SearchBar";
-import { View, Image } from "react-native";
+import ScrollContainer from "../ScrollContainer/ScrollContainer";
+import { View } from "react-native";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import SearchCard from "../SearchCard/index";
 
 const styles = {
   image: {
@@ -31,6 +33,28 @@ export default function Card() {
         props={{ onPress: () => alert("redirect to Cart") }}
       />
       <Text variant="h6">Pinturas</Text>
+      <ScrollContainer>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => {
+          return (
+            <View
+              style={{
+                borderRadius: 20,
+                height: 120,
+                width: "100%",
+                backgroundColor: "white",
+                marginVertical: 10,
+              }}
+              key={item}
+            >
+              <SearchCard
+                shortDescription={"Medidas de 120 x 240"}
+                title={"Listones de Madera"}
+                price={"200$"}
+              />
+            </View>
+          );
+        })}
+      </ScrollContainer>
     </View>
   );
 }

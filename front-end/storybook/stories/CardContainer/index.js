@@ -5,7 +5,7 @@ const variants = {
   vertical: {
     backgroundColor: "white",
     width: 170,
-    height: 250,
+    height: 262,
     borderRadius: 15,
     padding: 10,
   },
