@@ -5,13 +5,11 @@ const styles = {
   backgroundColor: "white",
   width: 65,
   height: 50,
-  borderRadius: 10,
-  padding: 10,
 };
 
-export default function CategoryContainer({ children, onPress }) {
+export default function CategoryContainer({ children, onPress, style }) {
   return (
-    <TouchableOpacity activeOpacity={0.8} onPress={onPress} style={styles}>
+    <TouchableOpacity activeOpacity={0.8} onPress={onPress} style={[styles, {...style}]}>
       {children}
     </TouchableOpacity>
   );
