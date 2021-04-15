@@ -4,16 +4,16 @@ import { View } from "react-native";
 import Icon from '../atoms/Icon';
 import Text from '../../storybook/stories/Text/Text'
 
-import { faHome, faMoneyCheckAlt, faHeart, faTruck, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faSearch, faHeart, faTruck, faUser } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function TabBar({ showTitle }) {
 
   const items = [
     { name: 'Home', icon: faHome, title: 'Inicio' },
-    { name: 'Offers', icon: faMoneyCheckAlt, title: 'Ofertas' },
+    { name: 'Search', icon: faSearch, title: 'Buscar' },
     { name: 'Favourites', icon: faHeart, title: 'Favoritos' },
-    { name: 'Order', icon: faTruck, title: 'Pedido' },
+    { name: 'Orders', icon: faTruck, title: 'Pedidos' },
     { name: 'Profile', icon: faUser, title: 'Perfil' },
   ]
 
