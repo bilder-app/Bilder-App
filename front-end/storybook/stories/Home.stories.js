@@ -3,6 +3,8 @@ import { View } from 'react-native';
 import { storiesOf } from "@storybook/react-native";
 import SearchBar from "../../atomic/organisms/SearchBar";
 import CategoryIcon from "../../atomic/organisms/CategoryIcon";
+import TabBar from "../../atomic/organisms/TabBar";
+import Slider from "../../atomic/organisms/Slider";
 
 
 import { faShoppingCart, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
@@ -37,7 +39,7 @@ storiesOf("Home Stories", module)
   ))
   
   .add("CategoryIcon Home", () => (
-    <View style={{ backgroundColor: '#E5E5E5', width: '100%', paddingHorizontal: 15, height: 145, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between'}}>
+    <View style={{ width: '100%', paddingHorizontal: 15, height: 145, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between'}}>
       {items.map((data, i) => {
         return(
           <CategoryIcon key={i} data={data} onPress={() => console.log('Redirect to ' + data.title)}/>
@@ -46,3 +48,9 @@ storiesOf("Home Stories", module)
     </View>
   ))
 
+  .add("TabBar", () => (
+    <TabBar showTitle={false}/>
+  ))
+  .add("Slider", () => (
+    <Slider/>
+  ))

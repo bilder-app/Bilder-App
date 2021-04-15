@@ -12,7 +12,7 @@ const styles = {
     height: '46%',
     maxHeight: 70,
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     backgroundColor: 'transparent',
     borderRadius: 0,
     marginVertical: '1%',
@@ -24,6 +24,15 @@ const styles = {
     height: '75%',
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   text: {
     fontSize: 10,
