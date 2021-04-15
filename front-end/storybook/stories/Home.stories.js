@@ -49,8 +49,12 @@ storiesOf("Home Stories", module)
   ))
 
   .add("TabBar", () => (
-    <TabBar showTitle={false}/>
+    <TabBar/>
+  ))
+  .add("TabBar showTitle", () => (
+    <TabBar showTitle={true}/>
   ))
   .add("Slider", () => (
     <Slider/>
   ))
+
