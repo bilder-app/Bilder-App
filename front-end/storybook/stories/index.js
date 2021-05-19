@@ -20,3 +20,5 @@ import "./CategorySearch/CategorySearch.stories";
 import "./Pages/Cart.stories";
 import "./Pages/Orders.stories";
 import "./Pages/Payment.stories";
+
+import "./RecentHistory.stories";
