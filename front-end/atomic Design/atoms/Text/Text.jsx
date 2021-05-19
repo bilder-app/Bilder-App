@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "react-native";
 
 const fontSize = 10;
-const colors = { primary: "#E49012" };
+const colors = { primary: "#FF8000" };
 
 const variants = {
   h1: {

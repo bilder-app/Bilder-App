@@ -8,9 +8,9 @@ import Text from "../Text/Text";
 storiesOf("CategoryContainer", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add("default", () => (
-    <View style={{ padding: 15, backgroundColor: "gray" }}>
-      <CategoryContainer>
-        <Text variant="h5">ico</Text>
+    <View>
+      <CategoryContainer onPress={() => console.log("On Press")}>
+        <Text variant="h5">icon</Text>
       </CategoryContainer>
     </View>
   ));
