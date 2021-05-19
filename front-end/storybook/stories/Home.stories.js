@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import SearchBar from "../../atomic/organisms/SearchBar";
 import CategoryIcon from "../../atomic/organisms/CategoryIcon";
-import TabBar from "../../atomic/organisms/TabBar";
+import TabBar from "../../atomic Design/molecules/TabBar/TabBar";
 import Slider from "../../atomic Design/atoms/Slider/Slider";
 
 import { faShoppingCart, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
@@ -17,7 +17,7 @@ import {
   faStream,
   faSink,
   faPencilRuler,
-  faClone,
+  faClone
 } from "@fortawesome/free-solid-svg-icons";
 
 import CenterView from "./CenterView";
@@ -32,7 +32,7 @@ const items = [
   { name: "Wood", icon: faStream, title: "Maderas" },
   { name: "Faucet", icon: faSink, title: "Grifería" },
   { name: "Services", icon: faPencilRuler, title: "Serv. & Ins." },
-  { name: "Floors", icon: faClone, title: "Pisos" },
+  { name: "Floors", icon: faClone, title: "Pisos" }
 ];
 
 storiesOf("Home Stories", module)
@@ -56,7 +56,7 @@ storiesOf("Home Stories", module)
         height: 145,
         flexDirection: "row",
         flexWrap: "wrap",
-        justifyContent: "space-between",
+        justifyContent: "space-between"
       }}
     >
       {items.map((data, i) => {
