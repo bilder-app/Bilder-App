@@ -1,7 +1,7 @@
 import React from "react";
 import CardContainer from "../../storybook/stories/CardContainer";
 import Text from "../../storybook/stories/Text/Text";
-import Input from "../../storybook/stories/Input";
+import Input from "../../atomic Design/molecules/Input";
 import { View, Image, Pressable } from "react-native";
 
 const styles = {
