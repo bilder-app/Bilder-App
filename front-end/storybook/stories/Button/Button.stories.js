@@ -1,46 +1,37 @@
-import { action } from "@storybook/addon-actions";
-import { text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react-native";
 import React from "react";
-import { Text } from "react-native";
-import Button from ".";
+import Button from "../../../atomic Design/atoms/Button/Button.jsx";
 import CenterView from "../CenterView";
+
 
 storiesOf("Button", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add("default", () => (
-    <Button onPress={action("continue")} children="Continuar" />
+    <Button onPress={() => console.log("Agregar")} children="Agregar" />
   ))
-  .add("medium secondary", () => (
+  .add("medium styled", () => (
     <Button
-      onPress={action("continue")}
-      children="Agregar más productos"
-      type="medium"
-      color="secondary"
+      onPress={() => console.log("Iniciar sesión")} 
+      children="Iniciar sesión"
+      size="medium"
+      style={{ height: 40 }}
+    />
+  ))
+  .add("small outline styled", () => (
+    <Button
+      onPress={() => console.log("Producto agregado")} 
+      children="+"
+      size="small"
+      style={{ width: 25, borderRadius: 15 }}
+      outline
     />
   ))
   .add("small success outline", () => (
     <Button
-      onPress={action("continue")}
-      children="Agregar al carrito"
-      type="small"
+      onPress={() => console.log("Aceptar")}
+      children="Aceptar"
+      size="small"
       color="success"
       outline
     />
   ))
-  .add("large danger outline", () => (
-    <Button
-      onPress={action("continue")}
-      children="Eliminar"
-      type="large"
-      color="danger"
-      outline
-    />
-  ))
-  .add("small", () => (
-    <Button
-      onPress={action("continue")}
-      children="Agregar al carrito"
-      type="small"
-    />
-  ));

@@ -2,8 +2,6 @@ import React from "react";
 import { Text } from "react-native";
 
 const fontSize = 10;
-const colors = { primary: "#FF8000" };
-
 const variants = {
   h1: {
     fontWeight: "bold",
@@ -58,13 +56,12 @@ const variants = {
 export default function Typography({
   children,
   variant,
-  color,
   style,
   ...textProps
 }) {
   return (
     <Text
-      style={{ ...variants[variant], ...{ color: colors[color] }, ...style }}
+      style={{ ...variants[variant], ...style }}
       {...textProps}
     >
       {children}
