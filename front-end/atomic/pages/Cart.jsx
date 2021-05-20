@@ -2,9 +2,9 @@ import React from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import Header from "../organisms/Header";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import Button from "../../storybook/stories/Button";
 import CartProductCard from "../organisms/CartProductCard";
-import Text from "../../atomic Design/atoms/Text/Text.jsx";
+import Text from "../../atomic Design/atoms/Text/Text";
+import Button from "../../atomic Design/atoms/Button/Button";
 import ActionButton from "../atoms/Actionbutton";
 
 const items = [

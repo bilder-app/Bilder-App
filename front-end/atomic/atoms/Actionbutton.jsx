@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import Button from "../../storybook/stories/Button";
+import Button from "../../atomic Design/atoms/Button/Button";
 
 function ActionButton({ text }) {
   return (

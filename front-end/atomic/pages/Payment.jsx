@@ -2,8 +2,8 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import Header from "../organisms/Header";
 import { faTimes as CloseIcon } from "@fortawesome/free-solid-svg-icons";
-import Text from "../../atomic Design/atoms/Text/Text.jsx";
-import Button from "../../storybook/stories/Button";
+import Text from "../../atomic Design/atoms/Text/Text";
+import Button from "../../atomic Design/atoms/Button/Button";
 import ActionButton from "../atoms/Actionbutton";
 
 function Cart() {
