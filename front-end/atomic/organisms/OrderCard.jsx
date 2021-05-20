@@ -1,5 +1,5 @@
 import React from "react";
-import CardContainer from "../../storybook/stories/CardContainer";
+import CardContainer from "../../atomic Design/atoms/CardContainer/CardContainer";
 import Text from "../../atomic Design/atoms/Text/Text";
 import Button from "../../atomic Design/atoms/Button/Button";
 import { View, TouchableOpacity } from "react-native";
@@ -47,7 +47,7 @@ export default function Card({ orderNumber, date, status }) {
             Pedido #{orderNumber}
           </Text>
           <Text>{date}</Text>
-          <Button variant="small">{status}</Button>
+          <Button size="small">{status}</Button>
         </View>
         <TouchableOpacity style={styles.rightArea}>
           <View style={styles.icon}>

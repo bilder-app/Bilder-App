@@ -1,5 +1,5 @@
 import React from "react";
-import CardContainer from "../CardContainer/index";
+import CardContainer from "../../../atomic Design/atoms/CardContainer/CardContainer";
 import Text from "../../../atomic Design/atoms/Text/Text.jsx";
 import Button from "../../../atomic Design/atoms/Button/Button.jsx";
 import { View, Image } from "react-native";

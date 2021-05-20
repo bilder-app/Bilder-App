@@ -21,6 +21,7 @@ const variants = {
 export default function CardContainer({
   children,
   style,
+  onPress,
   variant = "vertical",
   ...textProps
 }) {
@@ -29,6 +30,7 @@ export default function CardContainer({
       activeOpacity={0.8}
       {...textProps}
       style={{ ...variants[variant], ...style }}
+      onPress={onPress}
     >
       {children}
     </TouchableOpacity>
