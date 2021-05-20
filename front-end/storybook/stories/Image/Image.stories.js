@@ -14,7 +14,7 @@ storiesOf("Image", module)
     return (
       <Image
         variant="mini"
-        url="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
+        children="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
       />
     )
   })
@@ -22,7 +22,7 @@ storiesOf("Image", module)
     return (
       <Image
         variant="small"
-        url="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
+        children="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
       />
     )
   })
@@ -31,7 +31,7 @@ storiesOf("Image", module)
       <Image
         variant="medium"
         style={{ borderRadius: 170 }}
-        url="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
+        children="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
       />
     )
   })
@@ -39,7 +39,7 @@ storiesOf("Image", module)
     return (
       <Image
         variant="big"
-        url="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
+        children="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
       />
     )
   })
@@ -48,7 +48,7 @@ storiesOf("Image", module)
       <View style={{ width: 385, height: 385, backgroundColor: "#f00" }}>
         <Image
           variant="max"
-          url="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
+          children="https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
         />
       </View>
     )
