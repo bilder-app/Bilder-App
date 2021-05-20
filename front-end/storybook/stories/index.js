@@ -13,6 +13,18 @@ import "./Card/Card.stories";
 import "./Chip/Chip.stories";
 import "./Image/Image.stories";
 
+// atoms
+import "./atoms/Button.stories";
+import "./atoms/Chip.stories";
+import "./atoms/IconContainer.stories";
+import "./atoms/Image.stories";
+import "./atoms/Input.stories";
+import "./atoms/Slider.stories";
+import "./atoms/Text.stories";
+
+// molecules
+import "./molecules/RecentHistory.stories";
+import "./molecules/TabBar.stories";
 
 // Organisms
 import "./FavoriteCard.stories";
