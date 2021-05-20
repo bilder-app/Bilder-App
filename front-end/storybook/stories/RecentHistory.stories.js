@@ -5,4 +5,4 @@ import CenterView from "./CenterView";
 
 storiesOf("Recent Historial")
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("default", () => <RecentHistory />);
+  .add("default", () => <RecentHistory content="Martillo" />);
