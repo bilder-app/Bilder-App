@@ -11,6 +11,8 @@ import "./CategoryContainer/CategoryContainer.stories";
 import "./ScrollContainer/ScrollContainer.stories";
 import "./Card/Card.stories";
 import "./Chip/Chip.stories";
+import "./Image/Image.stories";
+
 
 // Organisms
 import "./FavoriteCard.stories";
