@@ -10,11 +10,13 @@ import "./CardContainer/CardContainer.stories";
 import "./CategoryContainer/CategoryContainer.stories";
 import "./ScrollContainer/ScrollContainer.stories";
 import "./Card/Card.stories";
+import "./Chip/Chip.stories";
 
 // Organisms
 import "./FavoriteCard.stories";
 import "./Home.stories";
 import "./Header.stories";
+
 // Views
 import "./CategorySearch/CategorySearch.stories";
 import "./Pages/Cart.stories";
