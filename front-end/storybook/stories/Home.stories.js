@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
-import SearchBar from "../../atomic/organisms/SearchBar";
+import SearchBar from "../../atomic Design/molecules/SearchBar/SearchBar";
 import CategoryIcon from "../../atomic/organisms/CategoryIcon";
 import TabBar from "../../atomic Design/molecules/TabBar/TabBar";
 import Slider from "../../atomic Design/atoms/Slider/Slider";

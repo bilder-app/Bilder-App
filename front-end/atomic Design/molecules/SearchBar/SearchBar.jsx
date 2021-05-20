@@ -1,6 +1,6 @@
 import React from "react";
-import Input from "../../atomic Design/molecules/Input";
-import Icon from "../atoms/Icon";
+import Input from "../../atoms/Input/Input";
+import Icon from "../../../atomic/atoms/Icon";
 import { View } from "react-native";
 
 const styles = {

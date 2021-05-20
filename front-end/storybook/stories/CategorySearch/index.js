@@ -1,7 +1,7 @@
 import React from "react";
 import Text from "../Text/Text";
 
-import SearchBar from "../../../atomic/organisms/SearchBar";
+import SearchBar from "../../../atomic Design/molecules/SearchBar/SearchBar";
 import ScrollContainer from "../ScrollContainer/ScrollContainer";
 import { View } from "react-native";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
@@ -11,17 +11,17 @@ const styles = {
   image: {
     width: "100%",
     height: "100%",
-    resizeMode: "contain",
+    resizeMode: "contain"
   },
   content: {
     width: "100%",
-    height: "55%",
+    height: "55%"
   },
   boton: {
     marginTop: 5,
     marginLeft: "auto",
-    marginRight: "auto",
-  },
+    marginRight: "auto"
+  }
 };
 
 export default function Card() {
@@ -42,7 +42,7 @@ export default function Card() {
                 height: 120,
                 width: "100%",
                 backgroundColor: "white",
-                marginVertical: 10,
+                marginVertical: 10
               }}
               key={item}
             >

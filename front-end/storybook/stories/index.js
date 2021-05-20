@@ -13,7 +13,6 @@ import "./Card/Card.stories";
 import "./Chip/Chip.stories";
 import "./Image/Image.stories";
 
-
 // Organisms
 import "./FavoriteCard.stories";
 import "./Home.stories";
@@ -24,5 +23,6 @@ import "./CategorySearch/CategorySearch.stories";
 import "./Pages/Cart.stories";
 import "./Pages/Orders.stories";
 import "./Pages/Payment.stories";
+import "./Pages/Search.stories";
 
 import "./RecentHistory.stories";
