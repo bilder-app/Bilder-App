@@ -1,7 +1,7 @@
 import React from "react";
 import CardContainer from "../../storybook/stories/CardContainer";
-import Text from "../../storybook/stories/Text/Text";
-import Button from "../../storybook/stories/Button";
+import Text from "../../atomic Design/atoms/Text/Text";
+import Button from "../../atomic Design/atoms/Button/Button";
 import { View, TouchableOpacity } from "react-native";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";

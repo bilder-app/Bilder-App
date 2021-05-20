@@ -4,7 +4,7 @@ import Header from "../organisms/Header";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../storybook/stories/Button";
 import CartProductCard from "../organisms/CartProductCard";
-import Text from "../../storybook/stories/Text/Text";
+import Text from "../../atomic Design/atoms/Text/Text.jsx";
 import ActionButton from "../atoms/Actionbutton";
 
 const items = [

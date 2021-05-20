@@ -1,6 +1,6 @@
 import React from "react";
 import CategoryContainer from "../../storybook/stories/CategoryContainer"
-import Text from '../../storybook/stories/Text/Text'
+import Text from "../../atomic Design/atoms/Text/Text";
 import { View } from "react-native";
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 

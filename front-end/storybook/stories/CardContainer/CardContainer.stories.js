@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react-native";
 import CardContainer from "./";
 import { View } from "react-native";
 import CenterView from "../CenterView";
-import Text from "../Text/Text";
+import Text from "../../../atomic Design/atoms/Text/Text.jsx";
 
 storiesOf("CardContainer", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)

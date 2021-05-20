@@ -1,5 +1,5 @@
 import React from "react";
-import Text from "../../storybook/stories/Text/Text";
+import Text from "../../atomic Design/atoms/Text/Text";
 import Icon from "../atoms/Icon";
 import { View } from "react-native";
 

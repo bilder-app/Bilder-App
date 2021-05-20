@@ -1,9 +1,9 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import ScrollContainer from "./ScrollContainer";
+import ScrollContainer from "../../../atomic Design/atoms/ScrollContainer/ScrollContainer.jsx";
 import { View } from "react-native";
 import CenterView from "../CenterView";
-import Text from "../Text/Text";
+import Text from "../../../atomic Design/atoms/Text/Text.jsx";
 
 storiesOf("ScrollContainer", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)

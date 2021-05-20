@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import Header from "../organisms/Header";
 import { faTimes as CloseIcon } from "@fortawesome/free-solid-svg-icons";
-import Text from "../../storybook/stories/Text/Text";
+import Text from "../../atomic Design/atoms/Text/Text.jsx";
 import Button from "../../storybook/stories/Button";
 import ActionButton from "../atoms/Actionbutton";
 

@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 
 import Icon from "../../../atomic/atoms/Icon";
-import Text from "../../../storybook/stories/Text/Text";
+import Text from "../../../atomic Design/atoms/Text/Text";
 
 import {
   faHome,

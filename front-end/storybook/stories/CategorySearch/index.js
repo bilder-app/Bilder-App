@@ -1,8 +1,7 @@
 import React from "react";
-import Text from "../Text/Text";
-
+import Text from "../../../atomic Design/atoms/Text/Text.jsx";
 import SearchBar from "../../../atomic Design/molecules/SearchBar/SearchBar";
-import ScrollContainer from "../ScrollContainer/ScrollContainer";
+import ScrollContainer from "../../../atomic Design/atoms/ScrollContainer/ScrollContainer.jsx";
 import { View } from "react-native";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import SearchCard from "../SearchCard/index";

@@ -1,7 +1,7 @@
 import React from "react";
 import CardContainer from "../CardContainer/index";
-import Text from "../Text/Text";
-import Button from "../Button/index";
+import Text from "../../../atomic Design/atoms/Text/Text.jsx";
+import Button from "../../../atomic Design/atoms/Button/Button.jsx";
 import { View, Image } from "react-native";
 
 const styles = {
