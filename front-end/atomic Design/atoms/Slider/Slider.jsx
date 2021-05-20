@@ -1,8 +1,6 @@
 import React from "react";
-import { Image, Dimensions, ScrollView } from "react-native";
+import { Image, Dimensions, ScrollView, Pressable } from "react-native";
 
-const url =
-  "https://c8.alamy.com/comp/2D4MCPB/tools-background-horizontal-isolated-vector-objects-instuments-carpenter-home-master-handyman-repair-of-premises-buildings-2D4MCPB.jpg";
 const { width } = Dimensions.get("window");
 
 const styles = {
@@ -34,7 +32,11 @@ export default function Slider({ children, onPress }) {
       snapToInterval={width - 40}
     >
       {[1, 2, 3, 4, 5].map((item, index) => {
-        return <Image key={index} source={{ uri: url }} style={styles.image} />;
+        return (
+          <Pressable onPress={onPress} key={index}>
+            <Image source={{ uri: children }} style={styles.image} />
+          </Pressable>
+          );
       })}
     </ScrollView>
   );

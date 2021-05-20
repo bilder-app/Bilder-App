@@ -3,8 +3,8 @@ import { Image, Dimensions } from "react-native";
 
 const { width } = Dimensions.get("window");
 
-export default function ImageAtom({ url, variant, style }) {
-  return <Image source={{uri: url}} style={[styles[variant || "default"], {...style}]}/>
+export default function ImageAtom({ children, variant, style }) {
+  return <Image source={{uri: children}} style={[styles[variant || "default"], {...style}]}/>
 }
 const styles = {
   base: {

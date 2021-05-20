@@ -73,4 +73,11 @@ storiesOf("Home Stories", module)
 
   .add("TabBar", () => <TabBar />)
   .add("TabBar showTitle", () => <TabBar showTitle={true} />)
-  .add("Slider", () => <Slider />);
+  .add("Slider", () => {
+    return (
+      <Slider 
+        children="https://c8.alamy.com/comp/2D4MCPB/tools-background-horizontal-isolated-vector-objects-instuments-carpenter-home-master-handyman-repair-of-premises-buildings-2D4MCPB.jpg"
+        onPress={() => alert("Redirigir a la página principal del vendedor")}
+      />
+    )
+  });
