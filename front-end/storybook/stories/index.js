@@ -21,6 +21,9 @@ import "./atoms/Text.stories";
 import "./molecules/RecentHistory.stories";
 import "./molecules/TabBar.stories";
 
+// organisms
+import "./organisms/Search.stories";
+
 import "./FavoriteCard.stories";
 import "./Home.stories";
 import "./Header.stories";
