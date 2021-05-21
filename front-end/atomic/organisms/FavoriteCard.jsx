@@ -62,7 +62,7 @@ export default function Card({ title, shortDescription, price, id }) {
             <Pressable style={{ marginRight: "auto" }}>
               <Text color="primary">Eliminar</Text>
             </Pressable>
-            <Button type="small">Agregar al carrito</Button>
+            <Button size="small">Agregar al carrito</Button>
           </View>
         </View>
       </View>
