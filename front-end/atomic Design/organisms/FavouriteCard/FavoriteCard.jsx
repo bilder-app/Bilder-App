@@ -1,34 +1,34 @@
 import React from "react";
-import CardContainer from "../../../atomic Design/atoms/CardContainer/CardContainer";
-import Text from "../../../atomic Design/atoms/Text/Text.jsx";
-import Button from "../../../atomic Design/atoms/Button/Button.jsx";
-import { View, Image } from "react-native";
+import CardContainer from "../../atoms/CardContainer/CardContainer";
+import Text from "../../atoms/Text/Text";
+import Button from "../../atoms/Button/Button";
+import { View, Image, Pressable } from "react-native";
 
 const styles = {
   image: {
     height: "100%",
     width: "23%",
-    resizeMode: "contain"
+    resizeMode: "contain",
   },
   wrapper: {
     width: "100%",
     height: "100%",
     display: "flex",
     flexDirection: "row",
-    paddingHorizontal: 5
+    paddingHorizontal: 5,
   },
   content: {
     paddingLeft: 5,
     display: "flex",
     flexGrow: 1,
-    flex: 1
+    flex: 1,
   },
   middle: {
     display: "flex",
     flexDirection: "row",
     flex: 1,
     flexGrow: 1,
-    alignItems: "center"
+    alignItems: "center",
   },
   price: { marginLeft: "auto" },
   buttonsContainer: {
@@ -36,18 +36,18 @@ const styles = {
     flexDirection: "row",
     alignItems: "center",
     flexGrow: 1,
-    flex: 1
-  }
+    flex: 1,
+  },
 };
 
-export default function SearchCard({ title, shortDescription, price, id }) {
+export default function Card({ title, shortDescription, price, id }) {
   return (
     <CardContainer variant="horizontal">
       <View style={styles.wrapper}>
         <Image
           style={styles.image}
           source={{
-            uri: "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png"
+            uri: "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
           }}
         />
         <View style={styles.content}>
@@ -59,7 +59,10 @@ export default function SearchCard({ title, shortDescription, price, id }) {
             </Text>
           </View>
           <View style={styles.buttonsContainer}>
-            <Button variant="small">Agregar al carrito</Button>
+            <Pressable style={{ marginRight: "auto" }}>
+              <Text color="primary">Eliminar</Text>
+            </Pressable>
+            <Button type="small">Agregar al carrito</Button>
           </View>
         </View>
       </View>

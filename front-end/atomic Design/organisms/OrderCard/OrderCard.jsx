@@ -1,7 +1,7 @@
 import React from "react";
-import CardContainer from "../../atomic Design/atoms/CardContainer/CardContainer";
-import Text from "../../atomic Design/atoms/Text/Text";
-import Button from "../../atomic Design/atoms/Button/Button";
+import CardContainer from "../../atoms/CardContainer/CardContainer";
+import Text from "../../atoms/Text/Text";
+import Button from "../../atoms/Button/Button";
 import { View, TouchableOpacity } from "react-native";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -13,11 +13,11 @@ const styles = {
     display: "flex",
     flexDirection: "row",
     paddingHorizontal: 5,
-    padding: 5
+    padding: 5,
   },
   leftContent: {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   icon: {
     borderColor: "black",
@@ -27,15 +27,15 @@ const styles = {
     width: 25,
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   rightArea: {
     marginLeft: "auto",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 20
-  }
+    paddingHorizontal: 20,
+  },
 };
 
 export default function Card({ orderNumber, date, status }) {

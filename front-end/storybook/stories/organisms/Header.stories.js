@@ -1,9 +1,9 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import Header from "../../atomic/organisms/Header";
+import Header from "../../../atomic Design/organisms/Header/Header";
 
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import CenterView from "./CenterView";
+import CenterView from "../CenterView";
 
 storiesOf("Header", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)

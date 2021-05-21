@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/actions/products";
+import { addToCart } from "../../redux/actions/products";
 import { showMessage } from "react-native-flash-message";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";

@@ -1,6 +1,6 @@
 import React from "react";
 import Input from "../../atoms/Input/Input";
-import Icon from "../../../atomic/atoms/Icon";
+import Icon from "../../atoms/Icon/Icon";
 import { View } from "react-native";
 
 const styles = {
@@ -12,8 +12,8 @@ const styles = {
     top: 0,
     backgroundColor: "#E5E5E5",
     flexDirection: "row",
-    paddingHorizontal: 15
-  }
+    paddingHorizontal: 15,
+  },
 };
 
 export default function SearchBar({ position, icon, props }) {

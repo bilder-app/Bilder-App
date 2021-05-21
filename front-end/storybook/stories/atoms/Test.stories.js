@@ -1,14 +1,13 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import CategorySearch from "./";
+import CartModal from "../../../atomic/components/CartModal";
 import { View } from "react-native";
 import CenterView from "../CenterView";
-import Text from "../../../atomic Design/atoms/Text/Text.jsx";
 
-storiesOf("CategorySearch", module)
+storiesOf("Test atoms", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("default", () => (
-    <View style={{ backgroundColor: "gray" }}>
-      <CategorySearch />
+  .add("All", () => (
+    <View style={{ padding: 20 }}>
+      <CartModal />
     </View>
   ));

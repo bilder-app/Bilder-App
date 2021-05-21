@@ -1,28 +1,27 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 
-import { setTabMenu } from '../redux/actions/navigation.js'
+import { setTabMenu } from " ../../../redux/actions/navigation";
 
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
-
 export default function Header({ title, redirectHome, other }) {
   const navigation = useNavigation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.header}>
       <TouchableOpacity
         style={styles.itemBox}
         onPress={() => {
-          if(redirectHome) {
-            dispatch(setTabMenu('Home'));
-            navigation.navigate('Home');
+          if (redirectHome) {
+            dispatch(setTabMenu("Home"));
+            navigation.navigate("Home");
           } else {
-            navigation.goBack()
+            navigation.goBack();
           }
         }}
       >
@@ -49,18 +48,18 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     top: 0,
-    flexDirection: "row"
+    flexDirection: "row",
   },
   itemBox: {
     // backgroundColor: '#666',
     height: "100%",
     width: "10%",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   title: {
     fontSize: 20,
     color: "#3F3C3C",
-    fontWeight: "bold"
-  }
+    fontWeight: "bold",
+  },
 });

@@ -1,11 +1,10 @@
 import React from "react";
 import { View, FlatList, StyleSheet } from "react-native";
-import Header from "../organisms/Header";
+import Header from "../organisms/Header/Header";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import CartProductCard from "../organisms/CartProductCard";
+import ProductCard from "../organisms/ProductCard/ProductCard";
 import Text from "../../atomic Design/atoms/Text/Text";
 import Button from "../../atomic Design/atoms/Button/Button";
-import ActionButton from "../atoms/Actionbutton";
 
 const items = [
   {
@@ -14,7 +13,7 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
+    inOrder: 2,
   },
   {
     id: 2,
@@ -22,7 +21,7 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
+    inOrder: 2,
   },
   {
     id: 3,
@@ -30,7 +29,7 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
+    inOrder: 2,
   },
   {
     id: 4,
@@ -38,7 +37,7 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
+    inOrder: 2,
   },
   {
     id: 5,
@@ -46,7 +45,7 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
+    inOrder: 2,
   },
   {
     id: 6,
@@ -54,7 +53,7 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
+    inOrder: 2,
   },
   {
     id: 7,
@@ -62,7 +61,7 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
+    inOrder: 2,
   },
   {
     id: 8,
@@ -70,7 +69,7 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
+    inOrder: 2,
   },
   {
     id: 9,
@@ -78,7 +77,7 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
+    inOrder: 2,
   },
   {
     id: 10,
@@ -86,7 +85,7 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
+    inOrder: 2,
   },
   {
     id: 11,
@@ -94,7 +93,7 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
+    inOrder: 2,
   },
   {
     id: 12,
@@ -102,15 +101,15 @@ const items = [
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
-    inOrder: 2
-  }
+    inOrder: 2,
+  },
 ];
 
 const renderItem = ({
-  item: { title, shortDescription, total, singlePrice, inOrder }
+  item: { title, shortDescription, total, singlePrice, inOrder },
 }) => (
   <View style={{ marginVertical: 10, marginLeft: "auto", marginRight: "auto" }}>
-    <CartProductCard
+    <ProductCard
       title={title}
       shortDescription={shortDescription}
       total={total}
@@ -143,14 +142,14 @@ function Cart() {
             backgroundColor: "#878585",
             marginLeft: "auto",
             marginRight: "auto",
-            marginTop: 15
+            marginTop: 15,
           }}
         >
           Agregar más products
         </Button>
       </View>
       <View style={styles.bottomButton}>
-        <ActionButton text="Continuar" />
+        <Button text="Continuar" />
       </View>
     </View>
   );
@@ -163,14 +162,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 10
+    marginTop: 10,
   },
   price: {
-    marginLeft: "auto"
+    marginLeft: "auto",
   },
   totalContainer: {
     marginBottom: "auto",
-    paddingHorizontal: 25
+    paddingHorizontal: 25,
   },
   hr: {
     paddingTop: 5,
@@ -178,7 +177,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: "90%",
     marginLeft: "auto",
-    marginRight: "auto"
+    marginRight: "auto",
   },
   bottomButton: {
     marginRight: "auto",
@@ -186,8 +185,8 @@ const styles = StyleSheet.create({
     width: "90%",
     paddingVertical: 15,
     backgroundColor: "white",
-    marginTop: "auto"
-  }
+    marginTop: "auto",
+  },
 });
 
 export default Cart;

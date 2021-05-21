@@ -1,10 +1,9 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import Header from "../organisms/Header";
+import Header from "../organisms/Header/Header";
 import { faTimes as CloseIcon } from "@fortawesome/free-solid-svg-icons";
-import Text from "../../atomic Design/atoms/Text/Text";
-import Button from "../../atomic Design/atoms/Button/Button";
-import ActionButton from "../atoms/Actionbutton";
+import Text from "../atoms/Text/Text";
+import Button from "../atoms/Button/Button";
 
 function Cart() {
   return (
@@ -21,7 +20,7 @@ function Cart() {
           style={{
             marginLeft: "auto",
             marginRight: "auto",
-            backgroundColor: "#878585"
+            backgroundColor: "#878585",
           }}
         >
           Agregar tarjeta
@@ -33,14 +32,14 @@ function Cart() {
           style={{
             marginLeft: "auto",
             marginRight: "auto",
-            backgroundColor: "#52DB6C"
+            backgroundColor: "#52DB6C",
           }}
         >
           Efectivo
         </Button>
       </View>
       <View style={styles.bottomButton}>
-        <ActionButton text="Continuar" />
+        <Button text="Continuar" />
       </View>
     </View>
   );
@@ -54,8 +53,8 @@ const styles = StyleSheet.create({
     width: "90%",
     paddingVertical: 15,
     backgroundColor: "white",
-    marginTop: "auto"
-  }
+    marginTop: "auto",
+  },
 });
 
 export default Cart;

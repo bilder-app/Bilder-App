@@ -1,12 +1,12 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import SearchCard from "./index";
+import FavoriteCard from "../../../atomic Design/organisms/FavouriteCard/FavoriteCard";
 import CenterView from "../CenterView";
 
-storiesOf("SearchCard")
+storiesOf("FavoriteCard")
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add("default", () => (
-    <SearchCard
+    <FavoriteCard
       shortDescription={"Medidas de 120 x 240"}
       title={"Listones de Madera"}
       price={"200$"}

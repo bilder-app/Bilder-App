@@ -1,7 +1,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import OrderProductCard from "../../atomic/organisms/OrderProductCard";
-import CenterView from "./CenterView";
+import OrderProductCard from "../../../atomic Design/organisms/OrderProductCard/OrderProductCard";
+import CenterView from "../CenterView";
 
 storiesOf("Order Product Card")
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
