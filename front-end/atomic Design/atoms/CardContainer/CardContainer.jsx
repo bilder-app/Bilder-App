@@ -11,7 +11,7 @@ const variants = {
   },
   horizontal: {
     backgroundColor: "white",
-    width: 374,
+    width: 375,
     height: 105,
     borderRadius: 15,
     padding: 5,
@@ -23,12 +23,10 @@ export default function CardContainer({
   style,
   onPress,
   variant = "vertical",
-  ...textProps
 }) {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      {...textProps}
       style={{ ...variants[variant], ...style }}
       onPress={onPress}
     >

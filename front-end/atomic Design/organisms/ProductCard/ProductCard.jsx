@@ -16,7 +16,7 @@ const styles = {
   },
 };
 
-export default function Card({ children, onPress, style }) {
+export default function ProductCard({ children, onPress, style }) {
   const { price, name, brand, contentType, content } = children;
   const images = [
     "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",

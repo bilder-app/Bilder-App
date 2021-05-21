@@ -4,6 +4,7 @@ import ScrollContainer from "../../../atomic Design/atoms/ScrollContainer/Scroll
 import { View } from "react-native";
 import CenterView from "../CenterView";
 import Text from "../../../atomic Design/atoms/Text/Text.jsx";
+import ProductSlider from "../../../atomic Design/organisms/ProductSlider/ProductSlider.jsx";
 
 storiesOf("ScrollContainer", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
@@ -21,7 +22,7 @@ storiesOf("ScrollContainer", module)
     </View>
   ))
   .add("horizontal", () => (
-    <View style={{height: 250, width: '100%', }}>
+    <View style={{height: 225, width: '100%', }}>
       <ScrollContainer position='horizontal'>
         {[1,2,3,4,5].map((item) => {
           return(
@@ -32,4 +33,7 @@ storiesOf("ScrollContainer", module)
         })}
       </ScrollContainer>
     </View>
+  ))
+  .add("Products Slider", () => (
+    <ProductSlider/>
   ));
