@@ -4,14 +4,19 @@ import { Image, Dimensions } from "react-native";
 const { width } = Dimensions.get("window");
 
 export default function ImageAtom({ children, variant, style }) {
-  return <Image source={{uri: children}} style={[ styles["base"], styles[variant || "default"], {...style}]}/>
+  return (
+    <Image
+      source={{ uri: children }}
+      style={[styles[variant || "default"], { ...style }]}
+    />
+  );
 }
 const styles = {
   base: {
     marginTop: "auto",
     marginBottom: "auto",
     marginLeft: "auto",
-    marginRight: "auto"
+    marginRight: "auto",
   },
   default: {
     backgroundColor: "#FFF",
@@ -45,5 +50,5 @@ const styles = {
   max: {
     width: "100%",
     height: "100%",
-  }
+  },
 };
