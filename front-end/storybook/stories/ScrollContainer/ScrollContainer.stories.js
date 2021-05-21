@@ -22,7 +22,7 @@ storiesOf("ScrollContainer", module)
     </View>
   ))
   .add("horizontal", () => (
-    <View style={{height: 225, width: '100%', }}>
+    <View style={{height: 250, width: '100%', }}>
       <ScrollContainer position='horizontal'>
         {[1,2,3,4,5].map((item) => {
           return(
