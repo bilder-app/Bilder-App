@@ -20,6 +20,7 @@ import "./atoms/Text.stories";
 // molecules
 import "./molecules/RecentHistory.stories";
 import "./molecules/TabBar.stories";
+import "./molecules/Tab.stories";
 
 // organisms
 import "./organisms/Search.stories";
