@@ -17,7 +17,7 @@ import {
   faStream,
   faSink,
   faPencilRuler,
-  faClone
+  faClone,
 } from "@fortawesome/free-solid-svg-icons";
 
 import CenterView from "./CenterView";
@@ -32,7 +32,7 @@ const items = [
   { name: "Wood", icon: faStream, title: "Maderas" },
   { name: "Faucet", icon: faSink, title: "Grifería" },
   { name: "Services", icon: faPencilRuler, title: "Serv. & Ins." },
-  { name: "Floors", icon: faClone, title: "Pisos" }
+  { name: "Floors", icon: faClone, title: "Pisos" },
 ];
 
 storiesOf("Home Stories", module)
@@ -56,7 +56,7 @@ storiesOf("Home Stories", module)
         height: 145,
         flexDirection: "row",
         flexWrap: "wrap",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
       }}
     >
       {items.map((data, i) => {
@@ -71,13 +71,12 @@ storiesOf("Home Stories", module)
     </View>
   ))
 
-  .add("TabBar", () => <TabBar />)
   .add("TabBar showTitle", () => <TabBar showTitle={true} />)
   .add("Slider", () => {
     return (
-      <Slider 
+      <Slider
         children="https://c8.alamy.com/comp/2D4MCPB/tools-background-horizontal-isolated-vector-objects-instuments-carpenter-home-master-handyman-repair-of-premises-buildings-2D4MCPB.jpg"
         onPress={() => alert("Redirigir a la página principal del vendedor")}
       />
-    )
+    );
   });
