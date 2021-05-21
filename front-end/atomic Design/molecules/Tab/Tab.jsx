@@ -2,24 +2,26 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 import Text from "../../atoms/Text/Text";
 
-function Tab({ children, selected = false, style = {}, ...otherProps }) {
+function Tab({ text, children, selected = false, style = {}, ...otherProps }) {
   return (
     <TouchableOpacity
       {...otherProps}
-      style={{ display: "flex", flexGrow: 1, alignItems: "center", ...style }}
+      style={{
+        display: "flex",
+        flexGrow: 1,
+        alignItems: "center",
+        ...style
+      }}
     >
-      {typeof children === "string" ? (
-        <Text style={{ fontSize: 17 }}>{children}</Text>
-      ) : (
-        children
-      )}
+      {children ? children : <Text style={{ fontSize: 17 }}>{text}</Text>}
       {selected && (
         <View
           style={{
             backgroundColor: "#ff8000",
+            minHeight: 2,
             height: 2,
-            width: "100%",
-            marginTop: 5
+            marginTop: 5,
+            alignSelf: "stretch"
           }}
         />
       )}
