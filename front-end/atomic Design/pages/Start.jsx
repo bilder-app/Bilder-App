@@ -4,7 +4,7 @@ import {
   Text,
   TouchableOpacity,
   StatusBar,
-  StyleSheet
+  StyleSheet,
 } from "react-native";
 
 function Start({ navigation }) {
@@ -15,7 +15,7 @@ function Start({ navigation }) {
         backgroundColor="#E49012"
         barStyle="dark-content"
       />
-      <Text style={styles.title}>Bienvenido a{"\n"}Builder</Text>
+      <Text style={styles.title}>Bienvenido a Bilder</Text>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Text style={styles.button}>Persona</Text>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#E49012"
+    backgroundColor: "#E49012",
   },
   title: {
     fontSize: 45,
@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
     marginTop: 100,
     color: "white",
     fontWeight: "700",
-    letterSpacing: 1.25
+    letterSpacing: 1.25,
   },
   buttonsContainer: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
   },
   button: {
     fontSize: 30,
@@ -56,12 +56,12 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingHorizontal: 25,
     backgroundColor: "white",
-    borderRadius: 13
+    borderRadius: 13,
   },
   buttonRight: {
     marginLeft: 20,
-    marginRight: 20
-  }
+    marginRight: 20,
+  },
 });
 
 export default Start;

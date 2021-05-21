@@ -6,8 +6,8 @@ import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 import {
   getProducts,
   showModal,
-  hideModal
-} from "../../redux/actions/products.js";
+  hideModal,
+} from "../../../redux/actions/products";
 import Product from "./Product.jsx";
 import CartModal from "../CartModal.jsx";
 
@@ -33,7 +33,7 @@ function ListProducts({ products, modal, getProducts, showModal, hideModal }) {
                       paddingLeft: 10,
                       paddingRight: 10,
                       display: "flex",
-                      flexDirection: "column"
+                      flexDirection: "column",
                     }}
                   >
                     <View
@@ -48,7 +48,7 @@ function ListProducts({ products, modal, getProducts, showModal, hideModal }) {
                         marginTop: 35,
                         marginLeft: 5,
                         marginRight: 5,
-                        borderRadius: 25
+                        borderRadius: 25,
                       }}
                     />
                   </View>
@@ -64,7 +64,7 @@ function ListProducts({ products, modal, getProducts, showModal, hideModal }) {
 function mapStateToProps(state) {
   return {
     products: state.productsList.products,
-    modal: state.productsList.modal
+    modal: state.productsList.modal,
   };
 }
 export default connect(mapStateToProps, { getProducts, showModal, hideModal })(
@@ -75,12 +75,12 @@ const styles = StyleSheet.create({
   container: {
     height: 250,
     width: "100%",
-    marginBottom: 25
+    marginBottom: 25,
   },
   products: {
     height: "100%",
     paddingLeft: 5,
     paddingRight: 5,
-    flexDirection: "row"
-  }
+    flexDirection: "row",
+  },
 });
