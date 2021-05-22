@@ -59,7 +59,7 @@ export default function SearchCard({ title, shortDescription, price, id }) {
             </Text>
           </View>
           <View style={styles.buttonsContainer}>
-            <Button variant="small">Agregar al carrito</Button>
+            <Button size="small">Agregar al carrito</Button>
           </View>
         </View>
       </View>
