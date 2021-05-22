@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react-native";
 import FavoriteCard from "../../../atomic Design/organisms/FavouriteCard/FavoriteCard";
 import CenterView from "../CenterView";
 
-storiesOf("FavoriteCard")
+storiesOf("FavoriteCard (o)")
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add("default", () => (
     <FavoriteCard

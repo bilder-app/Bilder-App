@@ -29,7 +29,7 @@ function ListProducts({ products, modal, getProducts, showModal, hideModal }) {
                 <SkeletonPlaceholder key={i}>
                   <View
                     style={{
-                      width: 170,
+                      width: 172,
                       paddingLeft: 10,
                       paddingRight: 10,
                       display: "flex",

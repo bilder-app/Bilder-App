@@ -1,4 +1,5 @@
 // atoms
+import "./atoms/Test.stories";
 import "./atoms/Button.stories";
 import "./atoms/Chip.stories";
 import "./atoms/IconContainer.stories";
@@ -6,7 +7,6 @@ import "./atoms/Image.stories";
 import "./atoms/Input.stories";
 import "./atoms/Slider.stories";
 import "./atoms/Text.stories";
-import "./atoms/Test.stories";
 import "./atoms/CardContainer.stories";
 import "./atoms/ScrollContainer.stories";
 

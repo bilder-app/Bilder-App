@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react-native";
 import OrderProductCard from "../../../atomic Design/organisms/OrderProductCard/OrderProductCard";
 import CenterView from "../CenterView";
 
-storiesOf("Order Product Card")
+storiesOf("Order Product Card (o)")
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add("default", () => (
     <OrderProductCard

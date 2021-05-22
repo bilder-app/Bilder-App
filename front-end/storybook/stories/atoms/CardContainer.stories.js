@@ -6,7 +6,7 @@ import { View } from "react-native";
 import CenterView from "../CenterView";
 import Text from "../../../atomic Design/atoms/Text/Text.jsx";
 
-storiesOf("CardContainer", module)
+storiesOf("CardContainer (a)", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add("vertical", () => (
     <View style={{ padding: 15, backgroundColor: "gray" }}>

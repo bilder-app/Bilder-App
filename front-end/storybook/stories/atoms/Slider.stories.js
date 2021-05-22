@@ -5,7 +5,7 @@ import Slider from "../../../atomic Design/atoms/Slider/Slider";
 
 import CenterView from "../CenterView";
 
-storiesOf("Slider atoms", module)
+storiesOf("Slider (a)", module)
   .addDecorator((getStory) => (
     <CenterView>
       <View>{getStory()}</View>

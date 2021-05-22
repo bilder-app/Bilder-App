@@ -4,7 +4,7 @@ import ProductCard from "../../../atomic Design/organisms/ProductCard/ProductCar
 import { View } from "react-native";
 import CenterView from "../CenterView";
 
-storiesOf("ProductCard", module)
+storiesOf("ProductCard (o)", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add("example1", () => (
     <View style={{ padding: 15, backgroundColor: "gray" }}>
@@ -33,4 +33,4 @@ storiesOf("ProductCard", module)
         onPress={alert}
       />
     </View>
-  ))
+  ));
