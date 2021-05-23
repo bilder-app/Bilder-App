@@ -3,7 +3,7 @@ import { View } from "react-native";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 import Text from "../../atoms/Text/Text";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faAngleLeft, faHeart as faFillHeart, faShareAlt } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faHeart as faFillHeart } from "@fortawesome/free-solid-svg-icons";
 import { Ionicons } from '@expo/vector-icons'; 
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 

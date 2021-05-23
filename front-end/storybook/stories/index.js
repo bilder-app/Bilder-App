@@ -5,16 +5,17 @@
 // import "./atoms/Image.stories";
 // import "./atoms/Input.stories";
 // import "./atoms/Slider.stories";
-import "./atoms/Text.stories";
+// import "./atoms/Text.stories";
 
 // // molecules
+import "./molecules/ModalCart.stories";
 // import "./molecules/RecentHistory.stories";
 // import "./molecules/TabBar.stories";
 // import "./molecules/Tab.stories";
 
 // // organisms
 // import "./organisms/Search.stories";
-import "./organisms/Header.stories";
+// import "./organisms/Header.stories";
 import "./organisms/CardItem.stories";
 
 

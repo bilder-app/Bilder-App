@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import Image from "../../atoms/Image/Image";
 import Text from "../../atoms/Text/Text";
-import Input from "../../atoms/Input/Input";
+import ModalCart from "../../molecules/ModalCart/ModalCart";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 import { Ionicons } from '@expo/vector-icons';
 
@@ -28,9 +28,7 @@ export default function CardItem({ variant, children, onPress, style }) {
               <Ionicons name={cart ? "cart" : "cart-outline" } size={28} color="#ff8000" />
             </IconContainer>
           }
-          {variant === "card" && 
-            <Text variant="h6">texto de ejemplo</Text>
-          }
+          {variant === "cart" &&  <ModalCart/> }
           {variant === "shippingDetail" && 
             <Text variant="subtitle1">
               <Text variant="h6">{children.units} </Text>unidades
