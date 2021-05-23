@@ -32,7 +32,9 @@ export default function CardItem({ variant, children, onPress, style }) {
             <Text variant="h6">texto de ejemplo</Text>
           }
           {variant === "shippingDetail" && 
-            <Text variant="h6">texto de ejemplo</Text>
+            <Text variant="subtitle1">
+              <Text variant="h6">{children.units} </Text>unidades
+            </Text>
           }
         </View>
       </View>

@@ -37,19 +37,35 @@ storiesOf("CardItem", module)
   .add("cart", () => (
     <CardItem 
       variant="cart" 
-      children={{ id: Math.floor((Math.random() * 100) + 1) }} 
+      children={{ 
+        id: Math.floor((Math.random() * 100) + 1),
+        image: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+        description: "Muñeco de baby Joda coleccionable",
+        price: Math.floor((Math.random() * 1000) + 1),
+      }} 
+      onPress={console.log}
     />
   ))
   .add("shippingCard", () => (
     <CardItem 
       variant="shippingCard" 
-      children={{ id: Math.floor((Math.random() * 100) + 1) }} 
+      children={{ 
+        idOrder: Math.floor((Math.random() * 100) + 1),
+      }} 
+      onPress={console.log}
     />
   ))
   .add("shippingDetail", () => (
     <CardItem 
       variant="shippingDetail" 
-      children={{ id: Math.floor((Math.random() * 100) + 1) }} 
+      children={{ 
+        id: Math.floor((Math.random() * 100) + 1),
+        image: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+        description: "Muñeco de baby Joda coleccionable",
+        price: Math.floor((Math.random() * 1000) + 1),
+        units: Math.floor((Math.random() * 50) + 2),
+      }} 
+      onPress={console.log}
     />
   ))
   .add("example", () => (
