@@ -22,11 +22,3 @@ storiesOf("Header", module)
       }}
     />
   ))
-  // .add("medium styled", () => (
-  //   <Button
-  //     onPress={() => console.log("Iniciar sesión")} 
-  //     children="Iniciar sesión"
-  //     size="medium"
-  //     style={{ height: 40 }}
-  //   />
-  // ))

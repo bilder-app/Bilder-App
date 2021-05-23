@@ -26,10 +26,10 @@ const styles = {
     justifyContent: "center",
   },
   mini: {
-    width: width * 0.16,
-    maxWidth: 65,
-    height: width * 0.16,
-    maxHeight: 65,
+    width: width * 0.19,
+    maxWidth: 75,
+    height: width * 0.19,
+    maxHeight: 75,
   },
   small: {
     width: width * 0.25,
