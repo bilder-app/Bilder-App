@@ -17,6 +17,7 @@ const styles = {
     borderRadius: 14,
     paddingHorizontal: 28,
     justifyContent: "center",
+    elevation: 1,
   },
   text: {
     color: "#FF8000",
