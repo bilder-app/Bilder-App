@@ -14,7 +14,6 @@ export default function CategoryIcon({ children, onPress, style }) {
       <View style={styles.icon}>
         <FontAwesomeIcon 
           icon={icon} 
-          style={styles.item}
           color={'#3F3C3C'} 
           size={30}
         />
@@ -26,8 +25,10 @@ export default function CategoryIcon({ children, onPress, style }) {
 
 const styles = {
   base: {
-    width: 60,
-    height: 70,
+    width: 65,
+    height: 75,
+    marginVertical: 5,
+    marginHorizontal: 3,
     alignItems: 'center',
     justifyContent: 'space-between',
   },

@@ -2,7 +2,7 @@ import * as React from "react";
 import { View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import SearchBar from "../../atomic Design/organisms/SearchBar/SearchBar";
-import CategoryIcon from "../../atomic/organisms/CategoryIcon";
+import CategoryIcon from "../../atomic Design/molecules/CategoryIcon/CategoryIcon";
 import TabBar from "../../atomic Design/molecules/TabBar/TabBar";
 import Slider from "../../atomic Design/atoms/Slider/Slider";
 
@@ -59,12 +59,12 @@ storiesOf("Home Stories", module)
         justifyContent: "space-between",
       }}
     >
-      {items.map((data, i) => {
+      {items.map((children, i) => {
         return (
           <CategoryIcon
             key={i}
-            data={data}
-            onPress={() => console.log("Redirect to " + data.title)}
+            children={children}
+            onPress={() => console.log("Redirect to " + children.title)}
           />
         );
       })}
