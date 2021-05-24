@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../organisms/Header/Header";
-import Footer from "../../atomic/components/Footer.jsx";
-import Slider from "../../atomic/components/ProductDetail/Slider.jsx";
+import Footer from "../organisms/Footer/Footer";
+import Slider from "../organisms/Slider";
 import {
   showModal,
   getFavoriteProducts,

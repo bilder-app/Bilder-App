@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, ScrollView, Button } from "react-native";
 
-import SearchBar from "../components/SearchBar.jsx";
-import HorizontalProductCard from "../components/HorizontalProductCard/HorizontalProductCard";
+import SearchBar from "../../atomic Design/organisms/SearchBar/SearchBar";
+import HorizontalProductCard from "../../atomic Design/organisms/HorizontalProductCard";
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
-import { searchProducts } from "../api";
+import { searchProducts } from "../../api.js";
 
 const PRODUCTS_LIMIT = 50;
 
