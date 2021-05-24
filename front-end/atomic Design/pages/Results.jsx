@@ -11,7 +11,7 @@ import { searchProducts } from "../../api.js";
 
 const PRODUCTS_LIMIT = 50;
 
-export default function Result({ route }) {
+export default function Result({ route = { params: { name: "a", page: 1 } } }) {
   const [productsData, setProductsData] = useState();
   const [page, setPage] = useState(1);
 
