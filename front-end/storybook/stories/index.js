@@ -1,5 +1,4 @@
 // atoms
-import "./atoms/Test.stories";
 import "./atoms/Button.stories";
 import "./atoms/Chip.stories";
 import "./atoms/IconContainer.stories";
@@ -14,6 +13,8 @@ import "./atoms/ScrollContainer.stories";
 import "./molecules/RecentHistory.stories";
 import "./molecules/TabBar.stories";
 import "./molecules/Tab.stories";
+import "./molecules/CategoryIcon.stories";
+import "./molecules/ModalCart.stories";
 
 // organisms
 import "./organisms/Search.stories";
@@ -22,6 +23,9 @@ import "./organisms/OrderProductCard.stories";
 import "./organisms/FavoriteCard.stories";
 import "./organisms/Card.stories";
 import "./organisms/OrderCard.stories";
+import "./organisms/CardItem.stories";
+import "./organisms/ProductSlider.stories";
+import "./organisms/SearchBar.stories";
 
 // pages
 import "./Pages/Cart.stories";

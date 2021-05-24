@@ -1,65 +1,87 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useDispatch } from "react-redux";
-
-import { setTabMenu } from " ../../../redux/actions/navigation";
-
-import { useNavigation } from "@react-navigation/native";
+import React, { useState } from "react";
+import { View } from "react-native";
+import IconContainer from "../../atoms/IconContainer/IconContainer";
+import Text from "../../atoms/Text/Text";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faHeart as faFillHeart } from "@fortawesome/free-solid-svg-icons";
+import { Ionicons } from '@expo/vector-icons'; 
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
-export default function Header({ title, redirectHome, other }) {
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
+/*
+  children: {
+    text: "Carrito",
+    id: productId,
+  },
+  onPress: {
+    favouriteAction: function,
+    shareAction: function,
+  }
+*/ 
 
-  return (
-    <View style={styles.header}>
-      <TouchableOpacity
-        style={styles.itemBox}
-        onPress={() => {
-          if (redirectHome) {
-            dispatch(setTabMenu("Home"));
-            navigation.navigate("Home");
-          } else {
-            navigation.goBack();
-          }
-        }}
-      >
-        <FontAwesomeIcon
-          icon={faAngleLeft}
-          style={styles.item}
-          color={"#E49012"}
-          size={25}
-        />
-      </TouchableOpacity>
-      <View>
-        <Text style={styles.title}>{title}</Text>
+export default function Header({ variant, children, onPress, style }) {
+  const [favourite, setFavourite] = useState(false);
+  
+  return(
+    <View style={[styles.default, style]}>
+      <IconContainer onPress={() => alert("back")} style={styles.icon}>
+        <FontAwesomeIcon icon={faAngleLeft} color="#3F3C3C" size={28} />
+      </IconContainer>
+      <View style={[styles.content, styles[variant || "title"]]}>
+        {children.text && <Text variant="h6">{children.text}</Text>}
+        {variant === "icons" && 
+          <View style={styles.boxContent}>
+            <IconContainer onPress={() => {
+              setFavourite(!favourite);
+              onPress.favouriteAction(id, !favourite)
+            }} style={{ ...styles.icon, width: "50%" }}>
+              {favourite 
+                ? <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
+                : <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
+              }
+            </IconContainer>
+            <IconContainer onPress={() => onPress.shareAction(id)} style={{ ...styles.icon, width: "50%" }}>
+                <Ionicons name="share-social-outline" size={32} color="#3F3C3C" />
+            </IconContainer>
+          </View>
+        }
       </View>
-      {other}
     </View>
-  );
+  )
 }
 
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: "#fff",
+const styles = {
+  default: {
     width: "100%",
     height: 50,
-    justifyContent: "flex-start",
     alignItems: "center",
-    top: 0,
+    backgroundColor: "white",
     flexDirection: "row",
   },
-  itemBox: {
-    // backgroundColor: '#666',
+  content: {
+    width: "88%",
     height: "100%",
-    width: "10%",
-    justifyContent: "center",
     alignItems: "center",
   },
-  title: {
-    fontSize: 20,
-    color: "#3F3C3C",
-    fontWeight: "bold",
+  icon: {
+    width: "11%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "transparent",
   },
-});
+  title: {
+    justifyContent: "center",
+    alignItems: "flex-start"
+  },
+  icons: {
+    alignItems: "flex-end",
+    justifyContent: "center",
+  },
+  boxContent: {
+    width: "25%",
+    height: "100%",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    marginRight: 3,
+  }
+}

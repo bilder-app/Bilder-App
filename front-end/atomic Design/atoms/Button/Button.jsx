@@ -8,6 +8,7 @@ export default function Button({
   size,
   outline,
   color,
+  props,
   style,
 }) {
   const styleButton = [
@@ -23,8 +24,11 @@ export default function Button({
     ];
 
   return (
-    <TouchableOpacity onPress={onPress} style={styleButton} activeOpacity={0.7}>
-      <Text style={styleText}>{children}</Text>
+    <TouchableOpacity onPress={onPress} style={styleButton} activeOpacity={0.7} {...props}>
+      {typeof children === 'string' ?
+       <Text style={styleText}>{children}</Text>
+       : children
+      }
     </TouchableOpacity>
   );
 }

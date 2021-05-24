@@ -1,9 +1,10 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-
-import { View } from "react-native";
 import CenterView from "../CenterView";
+import ProductSlider from "../../../atomic Design/organisms/ProductSlider/ProductSlider.jsx";
 
-storiesOf("Test atoms", module)
+storiesOf("ProductSlider", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("All", () => <View style={{ padding: 20 }}></View>);
+  .add("default", () => (
+    <ProductSlider/>
+  ));

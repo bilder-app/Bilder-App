@@ -1,10 +1,24 @@
-import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import Header from "../../../atomic Design/organisms/Header/Header";
-
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import React from "react";
+import Header from "../../../atomic Design/organisms/Header/Header.jsx";
 import CenterView from "../CenterView";
 
-storiesOf("Header (o)", module)
+
+storiesOf("Header", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("default", () => <Header title={"Pedidos"} icon={faAngleLeft} />);
+  .add("title", () => (
+    <Header 
+      children={{ text: "Carrito" }} 
+      variant="title" 
+    />
+  ))
+  .add("icons", () => (
+    <Header 
+      variant="icons" 
+      children={{ id: Math.floor((Math.random() * 100) + 1) }} 
+      onPress={{
+        favouriteAction: alert,
+        shareAction: console.log
+      }}
+    />
+  ))
