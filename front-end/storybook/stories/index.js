@@ -23,9 +23,6 @@ import "./organisms/SearchBar.stories";
 import "./organisms/Header.stories";
 import "./organisms/CardItem.stories";
 
-
-
-
 import "./FavoriteCard.stories";
 import "./OrderCard.stories";
 import "./SearchCard/SearchCard.stories";
@@ -37,3 +34,4 @@ import "./CategorySearch/CategorySearch.stories";
 import "./Pages/Cart.stories";
 import "./Pages/Orders.stories";
 import "./Pages/Payment.stories";
+import "./Pages/Home.stories";
