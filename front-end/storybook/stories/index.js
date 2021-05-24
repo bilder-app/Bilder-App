@@ -35,3 +35,4 @@ import "./Pages/Cart.stories";
 import "./Pages/Orders.stories";
 import "./Pages/Payment.stories";
 import "./Pages/Home.stories";
+import "./Pages/ProductDetails.stories";
