@@ -31,7 +31,6 @@ import "./OrderCard.stories";
 import "./SearchCard/SearchCard.stories";
 import "./OrderProductCard.stories";
 import "./CartProductCard.stories";
-import "./CategoryContainer/CategoryContainer.stories";
 
 import "./Home.stories";
 import "./CategorySearch/CategorySearch.stories";

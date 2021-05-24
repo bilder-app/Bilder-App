@@ -1,7 +1,7 @@
 import React from "react";
 import CardContainer from "../../atomic Design/atoms/CardContainer/CardContainer";
 import Text from "../../atomic Design/atoms/Text/Text";
-import Input from "../../atomic Design/molecules/Input";
+import Input from "../../atomic Design/atoms/Input/Input";
 import { View, Image, Pressable } from "react-native";
 
 const styles = {
