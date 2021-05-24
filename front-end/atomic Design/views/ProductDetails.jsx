@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../organisms/Header/Header";
-import Footer from "../organisms/Footer/Footer";
+// import Footer from "../organisms/Footer/Footer";
 import Slider from "../organisms/Slider";
 import {
   showModal,
@@ -43,7 +43,7 @@ function ProductDetails({
   return (
     <View style={styles.main}>
       <View style={{ width: "100%", height: 50, flexDirection: "row" }}>
-        <Header text={"Detalle del producto"} />
+        <Header children={{ text: "Detalle del producto" }} />
         <View style={styles.icons}>
           <TouchableOpacity
             style={styles.item}
