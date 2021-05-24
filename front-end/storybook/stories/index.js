@@ -7,8 +7,10 @@ import "./atoms/Slider.stories";
 import "./atoms/Button.stories";
 import "./atoms/Chip.stories";
 import "./atoms/Image.stories";
+import "./atoms/CardContainer.stories";
 
 // molecules
+import "./molecules/CategoryIcon.stories";
 import "./molecules/ModalCart.stories";
 import "./molecules/RecentHistory.stories";
 import "./molecules/TabBar.stories";
@@ -29,7 +31,6 @@ import "./OrderCard.stories";
 import "./SearchCard/SearchCard.stories";
 import "./OrderProductCard.stories";
 import "./CartProductCard.stories";
-import "./CardContainer/CardContainer.stories";
 import "./CategoryContainer/CategoryContainer.stories";
 
 import "./Home.stories";
