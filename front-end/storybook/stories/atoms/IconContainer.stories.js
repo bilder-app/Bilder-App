@@ -5,7 +5,7 @@ import { View } from "react-native";
 import CenterView from "../CenterView";
 import Text from "../../../atomic Design/atoms/Text/Text.jsx";
 
-storiesOf("IconContainer atoms", module)
+storiesOf("IconContainer (a)", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add("default", () => (
     <View>

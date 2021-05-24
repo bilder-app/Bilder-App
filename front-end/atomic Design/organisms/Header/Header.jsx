@@ -5,7 +5,7 @@ import Text from "../../atoms/Text/Text";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faAngleLeft,
-  faHeart as faFillHeart
+  faHeart as faFillHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -21,7 +21,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
   }
 */
 
-export default function Header({ variant, text, onPress, style }) {
+export default function Header({ variant, children, onPress, style }) {
   const [favourite, setFavourite] = useState(false);
 
   return (
@@ -30,7 +30,7 @@ export default function Header({ variant, text, onPress, style }) {
         <FontAwesomeIcon icon={faAngleLeft} color="#3F3C3C" size={28} />
       </IconContainer>
       <View style={[styles.content, styles[variant || "title"]]}>
-        {text && <Text variant="h6">{text}</Text>}
+        {children.text && <Text variant="h6">{children.text}</Text>}
         {variant === "icons" && (
           <View style={styles.boxContent}>
             <IconContainer
@@ -65,33 +65,33 @@ const styles = {
     height: 50,
     alignItems: "center",
     backgroundColor: "white",
-    flexDirection: "row"
+    flexDirection: "row",
   },
   content: {
     width: "88%",
     height: "100%",
-    alignItems: "center"
+    alignItems: "center",
   },
   icon: {
     width: "11%",
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
   },
   title: {
     justifyContent: "center",
-    alignItems: "flex-start"
+    alignItems: "flex-start",
   },
   icons: {
     alignItems: "flex-end",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   boxContent: {
     width: "25%",
     height: "100%",
     justifyContent: "space-between",
     flexDirection: "row",
-    marginRight: 3
-  }
+    marginRight: 3,
+  },
 };

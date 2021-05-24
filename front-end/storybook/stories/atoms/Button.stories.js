@@ -3,7 +3,7 @@ import React from "react";
 import Button from "../../../atomic Design/atoms/Button/Button";
 import CenterView from "../CenterView";
 
-storiesOf("Button atoms", module)
+storiesOf("Button (a)", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add("default", () => (
     <Button onPress={() => console.log("Agregar")} children="Agregar" />

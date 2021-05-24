@@ -1,15 +1,15 @@
 import React from "react";
 import { View } from "react-native";
 
-import Icon from "../../../atomic/atoms/Icon";
-import Text from "../../../atomic Design/atoms/Text/Text";
+import Icon from "../../atoms/Icon/Icon";
+import Text from "../../atoms/Text/Text";
 
 import {
   faHome,
   faSearch,
   faHeart,
   faTruck,
-  faUser
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function TabBar({ showTitle }) {
@@ -18,7 +18,7 @@ export default function TabBar({ showTitle }) {
     { name: "Search", icon: faSearch, title: "Buscar" },
     { name: "Favourites", icon: faHeart, title: "Favoritos" },
     { name: "Orders", icon: faTruck, title: "Pedidos" },
-    { name: "Profile", icon: faUser, title: "Perfil" }
+    { name: "Profile", icon: faUser, title: "Perfil" },
   ];
 
   return (
@@ -49,7 +49,7 @@ const styles = {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: 50
+    paddingHorizontal: 50,
   },
   icon: {
     backgroundColor: "white",
@@ -57,9 +57,9 @@ const styles = {
     width: "95%",
     height: "75%",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   text: {
-    fontSize: 9
-  }
+    fontSize: 9,
+  },
 };

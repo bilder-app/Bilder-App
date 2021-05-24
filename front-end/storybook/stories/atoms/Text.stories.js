@@ -4,7 +4,7 @@ import Text from "../../../atomic Design/atoms/Text/Text.jsx";
 import { View } from "react-native";
 import CenterView from "../CenterView";
 
-storiesOf("Text atoms", module)
+storiesOf("Text (a)", module)
   .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
   .add("All", () => (
     <View style={{ padding: 20 }}>

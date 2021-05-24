@@ -1,5 +1,5 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import Cart from "../../../atomic/pages/Cart.jsx";
+import Cart from "../../../atomic Design/pages/Cart";
 
-storiesOf("Cart view").add("default", () => <Cart />);
+storiesOf("Cart pages (p)").add("default", () => <Cart />);
