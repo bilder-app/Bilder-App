@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import RecentHistory from "../molecules/RecentHistory/RecentHistory";
-import SearchBar from "../molecules/SearchBar/SearchBar";
+import SearchBar from "../organisms/SearchBar/SearchBar";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function Search() {

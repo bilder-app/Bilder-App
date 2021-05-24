@@ -18,7 +18,7 @@ import "./molecules/CategoryIcon.stories";
 import "./molecules/ModalCart.stories";
 
 // organisms
-import "./organisms/Search.stories";
+
 import "./organisms/Header.stories";
 import "./organisms/OrderProductCard.stories";
 import "./organisms/FavoriteCard.stories";
