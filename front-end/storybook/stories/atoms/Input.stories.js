@@ -4,7 +4,7 @@ import Input from "../../../atomic Design/atoms/Input/Input";
 import CenterView from "../CenterView";
 import { View } from "react-native";
 
-storiesOf("Input atoms", module)
+storiesOf("Input (a)", module)
   .addDecorator((getStory) => (
     <CenterView>
       <View>{getStory()}</View>

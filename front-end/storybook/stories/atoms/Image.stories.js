@@ -4,7 +4,7 @@ import Image from "../../../atomic Design/atoms/Image/Image.jsx";
 import CenterView from "../CenterView";
 import { View } from "react-native";
 
-storiesOf("Image atoms", module)
+storiesOf("Image (a)", module)
   .addDecorator((getStory) => (
     <CenterView>
       <View>{getStory()}</View>
