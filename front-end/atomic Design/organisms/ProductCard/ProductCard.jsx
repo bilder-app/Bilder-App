@@ -7,22 +7,22 @@ import Image from "../../atoms/Image/Image";
 const styles = {
   content: {
     width: "100%",
-    height: "46%",
+    height: "46%"
   },
   boton: {
     marginTop: 5,
     marginLeft: "auto",
-    marginRight: "auto",
-  },
+    marginRight: "auto"
+  }
 };
 
 export default function ProductCard({ children, onPress, style }) {
   const { price, name, brand, contentType, content } = children;
   const images = [
     "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
-    "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg",
+    "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg"
   ];
-  const id = Math.floor((Math.random() * 100) + 1);
+  const id = Math.floor(Math.random() * 100 + 1);
 
   return (
     <CardContainer onPress={() => onPress(id)} style={style}>
