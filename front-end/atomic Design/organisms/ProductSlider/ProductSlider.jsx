@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import ProductCard from "../ProductCard/ProductCard";
 import ScrollContainer from "../../atoms/ScrollContainer/ScrollContainer";
 

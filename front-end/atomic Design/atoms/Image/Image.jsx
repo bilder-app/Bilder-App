@@ -7,7 +7,7 @@ export default function ImageAtom({ children, variant, style }) {
   return (
     <Image
       source={{ uri: children }}
-      style={[styles[variant || "default"], { ...style }]}
+      style={[styles.base, styles[variant], { ...style }]}
     />
   );
 }
@@ -17,13 +17,6 @@ const styles = {
     marginBottom: "auto",
     marginLeft: "auto",
     marginRight: "auto",
-  },
-  default: {
-    backgroundColor: "#FFF",
-    height: 28,
-    borderRadius: 14,
-    paddingHorizontal: 28,
-    justifyContent: "center",
   },
   mini: {
     width: width * 0.19,

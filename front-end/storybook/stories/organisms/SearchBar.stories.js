@@ -1,5 +1,12 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import Search from "../../../atomic Design/views/Search";
+import SearchBar from "../../../atomic Design/organisms/SearchBar/SearchBar";
 
-storiesOf("Search template").add("default", () => <Search />);
+storiesOf("SearchBar")
+  .add("alert", () => {
+    return (
+      <SearchBar 
+        onPress={alert}
+      />
+    )
+  });
