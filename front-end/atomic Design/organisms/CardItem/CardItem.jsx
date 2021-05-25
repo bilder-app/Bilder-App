@@ -14,10 +14,10 @@ export default function CardItem({ variant, children, onPress, style }) {
   if(variant === "shippingCard") {
     return(
       <View style={[styles.base, style]}>
-        <View style={{height: "95%", justifyContent: "space-between" }}>
+        <View style={{ height: "95%", justifyContent: "space-between" }}>
           <Text variant="h6">Pedido #00{children.orderId}</Text>
           <Text variant="subtitle2" style={{ color: "#777" }}>{children.date}</Text>
-          <Chip>{children.state}</Chip>
+          <Chip style={styles.chip}>{children.state}</Chip>
         </View>
         <TouchableOpacity style={styles.shippingCard} onPress={() => onPress(children.orderId)} activeOpacity={0.5}>
           <Entypo name="chevron-with-circle-right" size={28} color="#3F3C3C" />
@@ -64,7 +64,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "white",
-    elevation: 1,
+    elevation: 2,
     borderRadius: 15,
     marginVertical: 5,
     paddingVertical: 5,
@@ -96,5 +96,10 @@ const styles = {
     justifyContent: "center",
     alignItems: "flex-end",
     paddingRight: 5,
+  },
+  chip: {
+    elevation: 0,
+    borderColor: "#FF8000",
+    borderWidth: 1,
   }
 }
