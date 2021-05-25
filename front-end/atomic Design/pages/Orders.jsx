@@ -1,99 +1,112 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
+import Tab from "../molecules/Tab/Tab";
 import Header from "../organisms/Header/Header";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import OrderCard from "../organisms/OrderCard/OrderCard";
+import CardItem from "../organisms/CardItem/CardItem";
 
+const random = Math.floor((Math.random() * 100) + 1);
 const items = [
   {
-    id: 1,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
+    orderId: random ,
+    date: "Abril 5, 2020 - 19:36",
+    state: "Para entregar",
   },
   {
-    id: 2,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
+    orderId: random + 1,
+    date: "Abril 5, 2020 - 19:36",
+    state: "Completado",
   },
   {
-    id: 3,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
+    orderId: random + 2,
+    date: "Abril 5, 2020 - 19:36",
+    state: "En preparación",
   },
   {
-    id: 4,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
+    orderId: random + 3,
+    date: "Abril 5, 2020 - 19:36",
+    state: "En preparación",
   },
   {
-    id: 5,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
+    orderId: random + 4,
+    date: "Abril 5, 2020 - 19:36",
+    state: "Para entregar",
   },
   {
-    id: 6,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
+    orderId: random + 5,
+    date: "Abril 5, 2020 - 19:36",
+    state: "Completado",
   },
   {
-    id: 7,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
+    orderId: random + 6,
+    date: "Abril 5, 2020 - 19:36",
+    state: "En preparación",
+  },
+    {
+    orderId: random + 7,
+    date: "Abril 5, 2020 - 19:36",
+    state: "Para entregar",
   },
   {
-    id: 8,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
+    orderId: random + 8,
+    date: "Abril 5, 2020 - 19:36",
+    state: "En preparación",
   },
   {
-    id: 9,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
-  },
-  {
-    id: 10,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
-  },
-  {
-    id: 11,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
-  },
-  {
-    id: 12,
-    orderNumber: "0003",
-    date: "Abril 5, 2020 - 19:32",
-    status: "En preparación",
+    orderId: random + 9,
+    date: "Abril 5, 2020 - 19:36",
+    state: "Completado",
   },
 ];
 
-const renderItem = ({ item: { orderNumber, date, status } }) => (
-  <View style={{ marginVertical: 10, marginLeft: "auto", marginRight: "auto" }}>
-    <OrderCard orderNumber={orderNumber} date={date} status={status} />
-  </View>
-);
+const RenderItem = ({ item, filter }) => {  // item ---> default prop of Flatlist
+  console.log(filter === 1 && item.state === "Completado")
 
-function Cart() {
+  if(filter === 1 && item.state === "Completado") {
+    return(
+      <View style={{ marginVertical: 10, marginLeft: 15, marginRight: 15 }}>
+        <CardItem variant="shippingCard" children={item} />
+      </View>
+    )
+  }
+  if(filter === 0 && item.state !== "Completado") {
+    return(
+      <View style={{ marginVertical: 10, marginLeft: 15, marginRight: 15 }}>
+        <CardItem variant="shippingCard" children={item} />
+      </View>
+    )
+  }
+  return null;
+};
+
+const TwoTabs = ({ selected, setSelected }) => {
+  return (
+    <View style={{ display: "flex", flexDirection: "row" }}>
+      <Tab
+        onPress={() => setSelected(0)}
+        selected={selected === 0}
+        text="Pendientes"
+      />
+      <Tab
+        onPress={() => setSelected(1)}
+        selected={selected === 1}
+        text="Confirmados"
+      />
+    </View>
+  );
+};
+
+
+export default function Shipping() {
+  const [selected, setSelected] = useState(0);
   return (
     <View style={styles.wrapper}>
-      <Header icon={faAngleLeft} title="Pedidos" />
+      <Header children={{ text: "Pedidos" }} />
+      <TwoTabs selected={selected} setSelected={setSelected}/>
       <FlatList
         style={styles.list}
         data={items}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <RenderItem item={item} filter={selected}/>}
+        keyExtractor={(item) => item.orderId}
       />
     </View>
   );
@@ -104,4 +117,3 @@ const styles = StyleSheet.create({
   list: { flexGrow: 0 },
 });
 
-export default Cart;

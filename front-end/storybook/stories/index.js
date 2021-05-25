@@ -30,6 +30,7 @@ import "./organisms/SearchBar.stories";
 
 // pages
 import "./Pages/Cart.stories";
+import "./Pages/Favourites.stories";
 import "./Pages/Orders.stories";
 import "./Pages/Payment.stories";
 import "./Pages/Home.stories";
