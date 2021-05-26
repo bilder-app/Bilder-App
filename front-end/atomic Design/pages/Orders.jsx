@@ -26,7 +26,7 @@ const items = [
     date: "Abril 5, 2020 - 19:36",
     state: "En preparación",
   },
-  {
+  {  
     orderId: random + 4,
     date: "Abril 5, 2020 - 19:36",
     state: "Para entregar",
@@ -64,14 +64,14 @@ const RenderItem = ({ item, filter }) => {  // item ---> default prop of Flatlis
   if(filter === 1 && item.state === "Completado") {
     return(
       <View style={{ marginVertical: 10, marginLeft: 15, marginRight: 15 }}>
-        <CardItem variant="shippingCard" children={item} />
+        <CardItem variant="shippingCard" children={item} onPress={alert}/>
       </View>
     )
   }
   if(filter === 0 && item.state !== "Completado") {
     return(
       <View style={{ marginVertical: 10, marginLeft: 15, marginRight: 15 }}>
-        <CardItem variant="shippingCard" children={item} />
+        <CardItem variant="shippingCard" children={item} onPress={alert}/>
       </View>
     )
   }
