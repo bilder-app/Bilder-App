@@ -4,20 +4,37 @@ import { Image, Dimensions, ScrollView, Pressable } from "react-native";
 const { width } = Dimensions.get("window");
 
 const styles = {
+  // scroll: {
+  //   height: 150,
+  //   paddingVertical: 10,
+  //   paddingLeft: 20,
+  //   paddingRigth: 0,
+  // },
+  // image: {
+  //   width: width - 61,
+  //   height: "100%",
+  //   resizeMode: "cover",
+  //   borderRadius: 15,
+  //   marginLeft: 0,
+  //   marginRight: 20,
+  //   borderColor: "#EEE",
+  //   borderWidth: 0.8,
+  // },
+
   scroll: {
-    backgroundColor: "#7f7",
-    height: 150,
-    paddingVertical: 10,
-    paddingLeft: 20,
+    height: 140,
+    paddingVertical: 7,
+    paddingLeft: 15,
     paddingRigth: 0,
   },
   image: {
-    width: width - 61,
+    width: width - 45,
     height: "100%",
     resizeMode: "cover",
     borderRadius: 15,
     marginLeft: 0,
-    marginRight: 20,
+    marginRight: 15,
+    
   },
 };
 
@@ -33,7 +50,7 @@ export default function Slider({ children, onPress }) {
     >
       {[1, 2, 3, 4, 5].map((item, index) => {
         return (
-          <Pressable onPress={onPress} key={index}>
+          <Pressable onPress={() => onPress(item)} key={index}>
             <Image source={{ uri: children }} style={styles.image} />
           </Pressable>
           );

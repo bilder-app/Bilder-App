@@ -5,13 +5,10 @@ import ScrollContainer from "../../atoms/ScrollContainer/ScrollContainer";
 const styles = {
   default: {
     width: "100%",
-    height: 300,
-    marginTop: "auto",
-    marginBottom: "auto",
-    backgroundColor: "grey",
+    paddingHorizontal: 10,
   },
   card: {
-    marginHorizontal: 7,
+    marginHorizontal: 5,
     justifyContent: "center",
   }
 };

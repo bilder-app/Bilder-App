@@ -11,8 +11,8 @@ const styles = {
   horizontal: {
     width: "100%",
     height: "100%",
-    maxHeight: 350,
-    paddingVertical: 20,
+    maxHeight: 325,
+    paddingVertical: 5,
     flexDirection: "row",
   },
 };

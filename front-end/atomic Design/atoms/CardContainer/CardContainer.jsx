@@ -8,6 +8,14 @@ const variants = {
     height: 262,
     borderRadius: 15,
     padding: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 2,
+    elevation: 2,
   },
   horizontal: {
     backgroundColor: "white",

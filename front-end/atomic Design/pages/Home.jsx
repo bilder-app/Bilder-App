@@ -1,8 +1,11 @@
 import React from "react";
-import { View } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faShoppingCart, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { View, StyleSheet } from "react-native";
+import ProductSlider from "../organisms/ProductSlider/ProductSlider";
+import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Slider from "../atoms/Slider/Slider";
+import Text from "../atoms/Text/Text";
+import Logo from "../../assets/bilderlogo.svg";
+
 import {
   faPaintRoller,
   faBorderAll,
@@ -15,10 +18,9 @@ import {
   faPencilRuler,
   faClone
 } from "@fortawesome/free-solid-svg-icons";
-import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
-import Text from "../atoms/Text/Text";
-import ProductSlider from "../organisms/ProductSlider/ProductSlider";
-import Logo from "../../assets/bilderlogo.svg";
+import { faShoppingCart, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+
 
 const items = [
   { name: "Paintings", icon: faPaintRoller, title: "Pinturas" },
@@ -33,39 +35,22 @@ const items = [
   { name: "Floors", icon: faClone, title: "Pisos" }
 ];
 
+
 export default function Home() {
   return (
-    <View>
-      <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 15 }}>
+    <View style={styles.main}>
+      <View style={styles.header}>
         <FontAwesomeIcon size={25} icon={faPhone} />
         {/* <Logo width={120} height={40} /> */}
         <FontAwesomeIcon size={25} icon={faShoppingCart} />
       </View>
-      <Slider children="https://c8.alamy.com/comp/2D4MCPB/tools-background-horizontal-isolated-vector-objects-instuments-carpenter-home-master-handyman-repair-of-premises-buildings-2D4MCPB.jpg" />
+      <Slider onPress={console.log} children="https://thumbs.dreamstime.com/b/ge%C3%AFsoleerdk-op-witte-achtergrond-het-knippen-weg-93838355.jpg" />
 
-      <View
-        style={{
-          paddingHorizontal: 15
-        }}
-      >
-        <Text
-          variant="h6"
-          style={{
-            color: "#ff8000",
-            fontWeight: "500"
-          }}
-        >
+      <View style={{ marginTop: 10 }}>
+        <Text variant="h6" style={styles.subtitle}>
           Categorias
         </Text>
-        <View
-          style={{
-            width: "100%",
-            height: 145,
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "space-between"
-          }}
-        >
+        <View style={styles.categories}>
           {items.map((children, i) => {
             return (
               <CategoryIcon
@@ -78,8 +63,8 @@ export default function Home() {
         </View>
       </View>
 
-      <View style={{ marginTop: 25 }}>
-        <Text variant="h6"  style={{ paddingHorizontal: 15, color: "#ff8000", fontWeight: "500" }}>
+      <View style={{ marginTop: 10 }}>
+        <Text variant="h6" style={styles.subtitle}>
           Nuevos
         </Text>
         <ProductSlider />
@@ -87,3 +72,29 @@ export default function Home() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  main: {
+    backgroundColor: "#FCFCFC",
+  },
+  header: {
+    height: 50,
+    width: "100%",
+    paddingHorizontal: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  categories: {
+    width: "100%",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+  },
+  subtitle: {
+    paddingHorizontal: 15,
+    color: "#FF8000",
+    fontWeight: "700",
+  },
+});
