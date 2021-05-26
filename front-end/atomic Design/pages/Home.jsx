@@ -4,7 +4,7 @@ import ProductSlider from "../organisms/ProductSlider/ProductSlider";
 import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Slider from "../atoms/Slider/Slider";
 import Text from "../atoms/Text/Text";
-import Logo from "../../assets/bilderlogo.svg";
+import Logo from "../atoms/Logo.jsx";
 
 import {
   faPaintRoller,
@@ -41,15 +41,13 @@ export default function Home() {
     <View style={styles.main}>
       <View style={styles.header}>
         <FontAwesomeIcon size={25} icon={faPhone} />
-        {/* <Logo width={120} height={40} /> */}
+        <Logo width={120} height={35} />
         <FontAwesomeIcon size={25} icon={faShoppingCart} />
       </View>
       <Slider onPress={console.log} children="https://thumbs.dreamstime.com/b/ge%C3%AFsoleerdk-op-witte-achtergrond-het-knippen-weg-93838355.jpg" />
 
       <View style={{ marginTop: 10 }}>
-        <Text variant="h6" style={styles.subtitle}>
-          Categorias
-        </Text>
+        <Text variant="h6" style={styles.subtitle}>Categorias</Text>
         <View style={styles.categories}>
           {items.map((children, i) => {
             return (
@@ -64,11 +62,10 @@ export default function Home() {
       </View>
 
       <View style={{ marginTop: 10 }}>
-        <Text variant="h6" style={styles.subtitle}>
-          Nuevos
-        </Text>
+        <Text variant="h6" style={styles.subtitle}>Nuevos</Text>
         <ProductSlider />
       </View>
+
     </View>
   );
 }

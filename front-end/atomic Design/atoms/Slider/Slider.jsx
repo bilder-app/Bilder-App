@@ -4,37 +4,21 @@ import { Image, Dimensions, ScrollView, Pressable } from "react-native";
 const { width } = Dimensions.get("window");
 
 const styles = {
-  // scroll: {
-  //   height: 150,
-  //   paddingVertical: 10,
-  //   paddingLeft: 20,
-  //   paddingRigth: 0,
-  // },
-  // image: {
-  //   width: width - 61,
-  //   height: "100%",
-  //   resizeMode: "cover",
-  //   borderRadius: 15,
-  //   marginLeft: 0,
-  //   marginRight: 20,
-  //   borderColor: "#EEE",
-  //   borderWidth: 0.8,
-  // },
-
   scroll: {
-    height: 140,
-    paddingVertical: 7,
+    height: 150,
+    paddingVertical: 10,
     paddingLeft: 15,
-    paddingRigth: 0,
+    paddingRight: 0,
   },
   image: {
-    width: width - 45,
+    width: width - 55,
     height: "100%",
     resizeMode: "cover",
     borderRadius: 15,
     marginLeft: 0,
     marginRight: 15,
-    
+    borderColor: "#EEE",
+    borderWidth: 0.8,
   },
 };
 

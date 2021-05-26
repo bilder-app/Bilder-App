@@ -29,7 +29,7 @@ export default function ProductCard({ children, onPress, style }) {
       <View style={styles.content}>
         <Image variant="small" children={images[0]} />
       </View>
-      <Text variant="h6" style={{ color: "#E49012", fontWeight: "bold" }}>
+      <Text variant="h6" style={{ color: "#FF8000", fontWeight: "bold" }}>
         ${price}
       </Text>
       <Text
