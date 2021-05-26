@@ -54,7 +54,7 @@ const styles = {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    elevation: 13,
+    elevation: 5,
   },
   content: {
     width: "78%",
