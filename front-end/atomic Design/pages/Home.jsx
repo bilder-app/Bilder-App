@@ -1,93 +1,89 @@
-import React, { useEffect } from "react";
-import { View, Text, StyleSheet, StatusBar, ScrollView } from "react-native";
-import { useDispatch } from "react-redux";
-import { setTabMenu } from "../../redux/actions/navigation";
+import React from "react";
+import { View } from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faShoppingCart, faPhone } from "@fortawesome/free-solid-svg-icons";
+import Slider from "../atoms/Slider/Slider";
+import {
+  faPaintRoller,
+  faBorderAll,
+  faBolt,
+  faFaucet,
+  faWrench,
+  faTools,
+  faStream,
+  faSink,
+  faPencilRuler,
+  faClone
+} from "@fortawesome/free-solid-svg-icons";
+import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
+import Text from "../atoms/Text/Text";
+import ProductSlider from "../organisms/ProductSlider/ProductSlider";
+import Logo from "../../assets/bilderlogo.svg";
 
-import SearchButton from "../components/Home/SearchButton.jsx";
-import ListProducts from "../components/Home/ListProducts.jsx";
-import ListCategories from "../components/Home/ListCategories.jsx";
-import SlideImages from "../components/Home/SlideImages.jsx";
+const items = [
+  { name: "Paintings", icon: faPaintRoller, title: "Pinturas" },
+  { name: "Buildings", icon: faBorderAll, title: "Construcción" },
+  { name: "Electricity", icon: faBolt, title: "Electricidad" },
+  { name: "Plumbing", icon: faFaucet, title: "Plomería" },
+  { name: "Tools", icon: faWrench, title: "Herramientas" },
+  { name: "Hardware", icon: faTools, title: "Ferretería" },
+  { name: "Wood", icon: faStream, title: "Maderas" },
+  { name: "Faucet", icon: faSink, title: "Grifería" },
+  { name: "Services", icon: faPencilRuler, title: "Serv. & Ins." },
+  { name: "Floors", icon: faClone, title: "Pisos" }
+];
 
-import { useRoute } from "@react-navigation/native";
-
-function Home() {
-  const route = useRoute();
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setTabMenu("Home"));
-  }, [route]);
-
+export default function Home() {
   return (
-    <View style={styles.main}>
-      <StatusBar
-        translucent={false}
-        backgroundColor="#E49012"
-        barStyle="dark-content"
-      />
-      <SearchButton />
+    <View>
+      <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", paddingHorizontal: 15 }}>
+        <FontAwesomeIcon size={25} icon={faPhone} />
+        {/* <Logo width={120} height={40} /> */}
+        <FontAwesomeIcon size={25} icon={faShoppingCart} />
+      </View>
+      <Slider children="https://c8.alamy.com/comp/2D4MCPB/tools-background-horizontal-isolated-vector-objects-instuments-carpenter-home-master-handyman-repair-of-premises-buildings-2D4MCPB.jpg" />
 
       <View
-        style={{ height: "86%", width: "100%", position: "absolute", top: 80 }}
+        style={{
+          paddingHorizontal: 15
+        }}
       >
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ width: "100%", height: "100%", marginVertical: 15 }}>
-            <SlideImages />
+        <Text
+          variant="h6"
+          style={{
+            color: "#ff8000",
+            fontWeight: "500"
+          }}
+        >
+          Categorias
+        </Text>
+        <View
+          style={{
+            width: "100%",
+            height: 145,
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "space-between"
+          }}
+        >
+          {items.map((children, i) => {
+            return (
+              <CategoryIcon
+                key={i}
+                children={children}
+                onPress={() => console.log("Redirect to " + children.title)}
+              />
+            );
+          })}
+        </View>
+      </View>
 
-            <View style={styles.title}>
-              <Text style={styles.text}>Categorías</Text>
-            </View>
-            <ListCategories />
-
-            <View style={styles.title}>
-              <Text style={styles.text}>Más Vendidos</Text>
-            </View>
-            <ListProducts />
-
-            <View style={styles.title}>
-              <Text style={styles.text}>Productos comprados</Text>
-            </View>
-            <ListProducts />
-          </View>
-        </ScrollView>
+      <View style={{ marginTop: 25 }}>
+        <Text variant="h6"  style={{ paddingHorizontal: 15, color: "#ff8000", fontWeight: "500" }}>
+          Nuevos
+        </Text>
+        <ProductSlider />
       </View>
     </View>
   );
 }
-
-export default Home;
-
-const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  searchBar: {
-    flexDirection: "row",
-    height: 50,
-    width: "100%",
-    paddingHorizontal: 15,
-    position: "absolute",
-    top: 0,
-  },
-  itemBox: {
-    height: "100%",
-    width: "13%",
-  },
-  item: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    width: "100%",
-    paddingLeft: 15,
-    marginBottom: 10,
-  },
-  text: {
-    fontSize: 20,
-    color: "#E49012",
-    fontWeight: "bold",
-  },
-});

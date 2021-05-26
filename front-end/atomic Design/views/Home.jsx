@@ -21,6 +21,7 @@ import {
 import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Text from "../atoms/Text/Text";
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
+import Logo from "../../assets/bilderlogo.svg";
 
 const items = [
   { name: "Paintings", icon: faPaintRoller, title: "Pinturas" },
@@ -35,7 +36,7 @@ const items = [
   { name: "Floors", icon: faClone, title: "Pisos" }
 ];
 
-export default function Search() {
+export default function Home() {
   return (
     <View>
       <View
@@ -47,6 +48,7 @@ export default function Search() {
         }}
       >
         <FontAwesomeIcon size={25} icon={faPhone} />
+        <Logo width={120} height={40} />
         <FontAwesomeIcon size={25} icon={ShoppingCartIcon} />
       </View>
       <Slider children="https://c8.alamy.com/comp/2D4MCPB/tools-background-horizontal-isolated-vector-objects-instuments-carpenter-home-master-handyman-repair-of-premises-buildings-2D4MCPB.jpg" />

@@ -1,5 +1,12 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import Home from "../../../atomic Design/views/Home";
+import Home from "../../../atomic Design/pages/Home";
 
-storiesOf("Home view").add("default", () => <Home />);
+storiesOf("Home view").add("default", () => {
+  return(
+    <Home />
+  )
+});
+
+
+
