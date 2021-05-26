@@ -1,5 +1,5 @@
 // atoms
-import "./atoms/IconContainer.stories";
+// import "./atoms/IconContainer.stories";
 import "./atoms/Text.stories";
 import "./atoms/ScrollContainer.stories";
 import "./atoms/Input.stories";

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import Text from "../../../atomic Design/atoms/Text/Text.jsx";
+import Text from "../../../atomic Design/atoms/Text/Text";
 import { View } from "react-native";
 import CenterView from "../CenterView";
 

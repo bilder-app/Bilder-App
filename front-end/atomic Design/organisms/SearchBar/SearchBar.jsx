@@ -3,48 +3,56 @@ import { View } from "react-native";
 import Input from "../../atoms/Input/Input";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faAngleLeft, faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleLeft,
+  faShoppingCart,
+  faSearch
+} from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 
-
-export default function SearchBar({ children, onPress, style}) {
+export default function SearchBar({ children, onPress, style }) {
   const [searchQuery, setSearchQuery] = useState();
   useEffect(() => {
-    children && setSearchQuery(children)
-  }, [])
+    children && setSearchQuery(children);
+  }, []);
 
-  return(
+  return (
     <View style={[styles.default, style]}>
       <IconContainer onPress={() => alert("back")} style={styles.icons}>
         <FontAwesomeIcon icon={faAngleLeft} color="#3F3C3C" size={28} />
       </IconContainer>
       <View style={styles.content}>
-        <Input 
-          variant="input" 
-          placeholder="¿Qué deseas buscar?" 
+        <Input
+          variant="input"
+          placeholder="¿Qué deseas buscar?"
           style={styles.input}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.nativeEvent.text)}
           onSubmitEditing={() => onPress(searchQuery)}
-          />
-        {!searchQuery 
-          ? 
+        />
+        {!searchQuery ? (
           <View style={styles.alternative}>
             <FontAwesomeIcon icon={faSearch} color="#666" size={20} />
           </View>
-          : 
-          <IconContainer onPress={() => setSearchQuery("")} style={styles.alternative}>
+        ) : (
+          <IconContainer
+            onPress={() => setSearchQuery("")}
+            style={styles.alternative}
+          >
             <FontAwesomeIcon icon={faTimesCircle} color="#666" size={20} />
           </IconContainer>
-        }
+        )}
       </View>
 
-      <IconContainer onPress={() => alert("redirect to cart")} style={styles.icons}>
+      <IconContainer
+        onPress={() => alert("redirect to cart")}
+        style={styles.icons}
+      >
         <FontAwesomeIcon icon={faShoppingCart} color="#3F3C3C" size={26} />
       </IconContainer>
     </View>
-  )
-} 
+  );
+}
 
 const styles = {
   default: {
@@ -54,7 +62,7 @@ const styles = {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    elevation: 13,
+    elevation: 13
   },
   content: {
     width: "78%",
@@ -63,24 +71,24 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#F6F6F6",
-    borderRadius: 20,
+    borderRadius: 20
   },
   input: {
-    width: "90%", 
+    width: "90%",
     height: "100%",
-    paddingRight: 10,
+    paddingRight: 10
   },
   alternative: {
     justifyContent: "center",
     alignItems: "flex-start",
     width: "10%",
     height: "100%",
-    backgroundColor: "transparent",
+    backgroundColor: "transparent"
   },
   icons: {
     width: "11%",
     height: "100%",
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "center"
   }
-}
+};
