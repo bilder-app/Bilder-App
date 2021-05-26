@@ -9,7 +9,7 @@ import Button from "../../atomic Design/atoms/Button/Button";
 const items = [
   {
     id: 1,
-    title: "Listones de Madera",
+    title: "Listones de Madera de pino",
     shortDescription: "Medidas de 120 x 240",
     total: 400,
     singlePrice: 200,
