@@ -1,26 +1,44 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-
-import Header from "../components/Header.jsx";
-import Footer from "../components/Footer.jsx";
-import Slider from "../components/ProductDetail/Slider.jsx";
 import {
   showModal,
   getFavoriteProducts,
   addProductToFavorites,
   removeProductFromFavorites
-} from "../redux/actions/products.js";
+} from "../../redux/actions/products";
+import Header from "../organisms/Header/Header";
+import Slider from "../organisms/Slider";
+import Footer from "../organisms/Footer/Footer";
+import Text from "../atoms/Text/Text";
+import Chip from "../atoms/Chip/Chip";
 
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  faHeart as faHeartFill,
-  faShareAlt
-} from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
-function ProductDetails({ route, navigation }) {
-  const { images, name, description, price, id } = route.params;
+export default function ProductDetails({
+  route = { params: { images: ["https://picsum.photos/seed/picsum/900/900"] } },
+  navigation
+}) {
+  const {
+    images,
+    name = "Latex interior Alba ultralabable Blanco",
+    description = `
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+    `,
+    price = 999,
+    id = 1,
+    specs = `
+  Marca: Alba
+  Tipo de pintura: Latex
+  Volumen: 6 Litros (L)
+  Modelo: Albalatex ultra labable
+  Color: Blanco
+    `,
+    categories = ["Pinturas", "Latex", "Interior", "Blanco"],
+  } = route.params;
+
   const dispatch = useDispatch();
   const showModalDispatched = () => dispatch(showModal(route.params));
   const { favoriteProducts } = useSelector((state) => state.productsList);
@@ -33,53 +51,35 @@ function ProductDetails({ route, navigation }) {
 
   return (
     <View style={styles.main}>
-      <View style={{ width: "100%", height: 50, flexDirection: "row" }}>
-        <Header title={"Detalle del producto"} />
-        <View style={styles.icons}>
-          <TouchableOpacity
-            style={styles.item}
-            onPress={() => {
-              if (isFavorite) {
-                dispatch(removeProductFromFavorites(id)).then(() =>
-                  dispatch(getFavoriteProducts())
-                );
-              } else {
-                dispatch(addProductToFavorites(id)).then(() =>
-                  dispatch(getFavoriteProducts())
-                );
-              }
-            }}
-          >
-            <FontAwesomeIcon
-              icon={isFavorite ? faHeartFill : faHeart}
-              color={"#E49012"}
-              size={25}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.item}
-            onPress={() => alert("Compartir")}
-          >
-            <FontAwesomeIcon icon={faShareAlt} color={"#E49012"} size={25} />
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Header 
+        variant="icons" 
+        children={{ id: Math.floor((Math.random() * 100) + 1) }} 
+        onPress={{
+          favouriteAction: console.log,
+          shareAction: alert,
+        }}
+        style={{ elevation: 5 }}
+      />
 
-      <View style={styles.content}>
+      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <Slider images={images} />
         <View style={styles.data}>
-          <Text style={{ fontSize: 34 }}>$ {price}</Text>
-          <Text style={{ fontSize: 23, fontWeight: "bold" }}>{name}</Text>
-          <Text style={{ color: "#707070" }}>{description}</Text>
+          <Text variant="h1" style={{ color: "#FF8000" }}>$ {price}</Text>
+          <Text variant="h4">{name}</Text>
+          <Text variant="subtitle1" style={{ color: "#707070" }}>{description}</Text>
+          <Text variant="h4">Información General</Text>
+          <Text variant="subtitle1" style={{ color: "#707070" }}>{specs}</Text>
+          <Text variant="h4" >Categorias</Text>   
+          <View style={styles.categories}>
+            {categories.map((title, i) => <Chip key={i} children={title} style={styles.chip}/>)}
+          </View>
         </View>
-      </View>
+      </ScrollView>
 
-      <Footer title={"Agregar al carrito"} onPress={showModalDispatched} />
+      <Footer title="Comprar ahora" onPress={console.log} />
     </View>
-  );
+  )
 }
-
-export default ProductDetails;
 
 const styles = StyleSheet.create({
   main: {
@@ -89,20 +89,23 @@ const styles = StyleSheet.create({
   content: {
     width: "100%",
     paddingHorizontal: 15,
-    borderTopWidth: 0.5,
-    borderTopColor: "#707070",
-    backgroundColor: "#fff"
-  },
-  icons: {
-    height: 50,
-    width: 75,
-    left: -90,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
+    backgroundColor: "#FCFCFC"
   },
   data: {
     width: "100%",
-    marginBottom: 15
+    marginBottom: 5
+  },
+  chip: {
+    marginVertical: 5,
+    elevation: 0,
+    borderColor: "#CCC",
+    borderWidth: 0.5,
+  },
+  categories: {
+    marginTop: 10,
+    marginBottom: 5,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
   }
 });

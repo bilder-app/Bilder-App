@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 export default function Footer({ title, onPress }) {
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   return (
     <View style={styles.header}>
@@ -25,18 +25,14 @@ export default function Footer({ title, onPress }) {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#fff',
+    backgroundColor: "#FFF",
     width: '100%',
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'absolute',
-    bottom: 0, 
-    borderBottomColor: '#E49012',
-    borderBottomWidth: 0.5,
   },
   button: {
-    backgroundColor: '#E49012',
+    backgroundColor: "#FF8000",
     height: '80%',
     width: '80%',
     justifyContent: 'center',

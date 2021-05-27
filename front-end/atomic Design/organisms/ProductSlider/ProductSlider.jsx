@@ -20,6 +20,7 @@ export default function ProductSlider({ children, style }) {
         {[1,2,3,4,5].map((item) => {
           return(
             <ProductCard
+              key={item}
               children={{
                 price: "280",
                 name: "Bolsa de arena",

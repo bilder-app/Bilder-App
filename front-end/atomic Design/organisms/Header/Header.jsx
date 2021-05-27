@@ -36,18 +36,17 @@ export default function Header({ variant, children, onPress, style }) {
             <IconContainer
               onPress={() => {
                 setFavourite(!favourite);
-                onPress.favouriteAction(id, !favourite);
+                onPress.favouriteAction(children.id, !favourite);
               }}
               style={{ ...styles.icon, width: "50%" }}
             >
-              {favourite ? (
-                <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
-              ) : (
-                <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
-              )}
+              {favourite 
+                ? <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
+                : <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
+              }
             </IconContainer>
             <IconContainer
-              onPress={() => onPress.shareAction(id)}
+              onPress={() => onPress.shareAction(children.id)}
               style={{ ...styles.icon, width: "50%" }}
             >
               <Ionicons name="share-social-outline" size={32} color="#3F3C3C" />

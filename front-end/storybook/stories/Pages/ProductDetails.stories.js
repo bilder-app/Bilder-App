@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react-native";
-import ProductDetails from "../../../atomic Design/views/ProductDetails";
+import ProductDetails from "../../../atomic Design/pages/ProductDetail";
 import { Provider } from "react-redux";
 import configureStore from "../../../store";
 import { createStackNavigator } from "@react-navigation/stack";
