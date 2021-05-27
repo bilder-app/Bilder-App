@@ -69,24 +69,23 @@ export default function Result({ route }) {
         <>
           <View style={styles.content}>
             <View>
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+              <Text style={{ fontSize: 18, fontWeight: "bold" }}>
                 {productsData.length} Resultados
               </Text>
             </View>
             <View style={styles.icons}>
-              <FontAwesomeIcon icon={faFilter} color={"#AAA"} size={20} />
-              <Text style={{ fontSize: 15 }}>Filtros</Text>
+              <FontAwesomeIcon icon={faFilter} color={"#AAA"} size={18} />
+              <Text style={{ fontSize: 16 }}> Filtros</Text>
             </View>
           </View>
-            <ScrollView showsVerticalScrollIndicator={false}>
-              <View style={styles.results}>
-                {productsData.map((props, index) => {
-                  return <ProductCard children={props} onPress={alert} key={index} style={{ marginVertical: 5 }}/>;
-                })}
-              </View>
-            </ScrollView>
-            <View style={{ backgroundColor: "grey", height: 50 }}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.results}>
+              {productsData.map((props, index) => {
+                return <ProductCard children={props} onPress={alert} key={index} style={{ marginVertical: 5 }}/>;
+              })}
             </View>
+          </ScrollView>
+          <View style={{ backgroundColor: "grey", height: 50 }}></View>
         </>
       ) }
     </View>
