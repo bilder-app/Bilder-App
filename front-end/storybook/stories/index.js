@@ -33,6 +33,7 @@ import "./Pages/Favourites.stories";
 import "./Pages/Orders.stories";
 import "./Pages/Payment.stories";
 import "./Pages/Home.stories";
+import "./Pages/Profile.stories";
 import "./Pages/ProductDetails.stories";
 import "./Pages/Results.stories";
 import "./Pages/Search.stories";

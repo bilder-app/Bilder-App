@@ -26,7 +26,7 @@ export default function TabBar({ showTitle }) {
       {items.map(({ name, icon, title }, index) => {
         return (
           <Icon
-            color={index === 0 && "#E49012"}
+            color={index === 0 && "#FF8000"}
             icon={icon}
             onPress={() => alert("redirect to " + name)}
             key={index}
@@ -45,6 +45,7 @@ const styles = {
     width: "100%",
     height: 50,
     bottom: 0,
+    position: "absolute",
     backgroundColor: "white",
     flexDirection: "row",
     alignItems: "center",

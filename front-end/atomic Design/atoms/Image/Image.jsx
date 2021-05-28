@@ -31,9 +31,9 @@ const styles = {
     maxHeight: 120,
   },
   medium: {
-    width: width * 0.5,
+    width: width * 0.45,
     maxWidth: 200,
-    height: width * 0.5,
+    height: width * 0.45,
     maxHeight: 200,
   },
   big: {
