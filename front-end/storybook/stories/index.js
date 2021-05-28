@@ -31,6 +31,7 @@ import "./organisms/SearchBar.stories";
 import "./Pages/Cart.stories";
 import "./Pages/Favourites.stories";
 import "./Pages/Orders.stories";
+import "./Pages/OrderDetail.stories";
 import "./Pages/Payment.stories";
 import "./Pages/Home.stories";
 import "./Pages/Profile.stories";
