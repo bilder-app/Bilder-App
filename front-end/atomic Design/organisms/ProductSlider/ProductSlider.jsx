@@ -28,7 +28,7 @@ export default function ProductSlider({ children, style }) {
                 content: "1",
                 brand: "Corralón de materiales",
               }}
-              onPress={alert}
+              onPress={console.log}
               style={styles.card}
             />
           )

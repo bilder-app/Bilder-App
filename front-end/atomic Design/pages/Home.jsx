@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, ScrollView, StyleSheet, StatusBar, Dimensions } from "react-native";
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
 import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Slider from "../atoms/Slider/Slider";
@@ -21,6 +21,7 @@ import {
 import { faShoppingCart, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
+const { height } = Dimensions.get("window");
 
 const items = [
   { name: "Paintings", icon: faPaintRoller, title: "Pinturas" },
@@ -38,7 +39,10 @@ const items = [
 
 export default function Home() {
   return (
-    <View style={styles.main}>
+    <ScrollView style={styles.main} showsVerticalScrollIndicator={false}>
+
+      <StatusBar animated={true} backgroundColor="#FF8000"/>
+      
       <View style={styles.header}>
         <FontAwesomeIcon size={25} icon={faPhone} />
         <Logo width={120} height={35} />
@@ -66,13 +70,14 @@ export default function Home() {
         <ProductSlider />
       </View>
 
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   main: {
     backgroundColor: "#FCFCFC",
+    height: height - 50,
   },
   header: {
     height: 50,

@@ -1,5 +1,5 @@
-import React from "react";
-import { TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { Pressable } from "react-native";
 
 const variants = {
   vertical: {
@@ -8,14 +8,7 @@ const variants = {
     height: 262,
     borderRadius: 15,
     padding: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 2,
-    elevation: 2,
+
   },
   horizontal: {
     backgroundColor: "white",
@@ -32,13 +25,18 @@ export default function CardContainer({
   onPress,
   variant = "vertical",
 }) {
+
+  const [shadown, setShadown] = useState(2)
+
   return (
-    <TouchableOpacity
+    <Pressable
       activeOpacity={0.8}
-      style={{ ...variants[variant], ...style }}
+      style={[variants[variant], { elevation: shadown }, {...style} ]}
       onPress={onPress}
+      onPressIn={() => setShadown(0)}
+      onPressOut={() => setShadown(2)}
     >
       {children}
-    </TouchableOpacity>
+    </Pressable>
   );
 }
