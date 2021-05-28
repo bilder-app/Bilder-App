@@ -11,8 +11,8 @@ export default function CategoryIcon({ children, onPress, style }) {
     <Pressable
       activeOpacity={0.8}
       style={[styles.base, style]}
-      onPress={onPress}
       onPressIn={() => setShadown(0)}
+      onPress={onPress}
       onPressOut={() => setShadown(2)}
     >
       <View style={[styles.icon, { elevation: shadown }]}>

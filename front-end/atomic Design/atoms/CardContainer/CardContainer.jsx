@@ -30,10 +30,9 @@ export default function CardContainer({
 
   return (
     <Pressable
-      activeOpacity={0.8}
       style={[variants[variant], { elevation: shadown }, {...style} ]}
-      onPress={onPress}
       onPressIn={() => setShadown(0)}
+      onPress={onPress}
       onPressOut={() => setShadown(2)}
     >
       {children}
