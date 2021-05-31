@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
+import { useNavigation } from '@react-navigation/native'
 
 import Icon from "../../atoms/Icon/Icon";
 import Text from "../../atoms/Text/Text";
@@ -20,15 +21,23 @@ export default function TabBar({ showTitle }) {
     { name: "Orders", icon: faTruck, title: "Pedidos" },
     { name: "Profile", icon: faUser, title: "Perfil" },
   ];
+  const navigation = useNavigation();
+  const [currentValue, setValue] = useState("Home");
+  const handleChange = (name) => {
+    console.log(name)
+    setValue(name);
+    navigation.navigate(name);
+  };
+
 
   return (
     <View style={styles.container}>
       {items.map(({ name, icon, title }, index) => {
         return (
           <Icon
-            color={index === 0 && "#FF8000"}
+            color={currentValue === name && "#FF8000"}
             icon={icon}
-            onPress={() => alert("redirect to " + name)}
+            onPress={() => handleChange(name)}
             key={index}
             style={{ width: 40 }}
           >

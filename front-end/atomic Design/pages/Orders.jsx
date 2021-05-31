@@ -59,8 +59,7 @@ const items = [
 ];
 
 const RenderItem = ({ item, filter }) => {  // item ---> default prop of Flatlist
-  console.log(filter === 1 && item.state === "Completado")
-
+  
   if(filter === 1 && item.state === "Completado") {
     return(
       <View style={{ marginVertical: 10, marginLeft: 15, marginRight: 15 }}>
@@ -116,4 +115,3 @@ const styles = StyleSheet.create({
   wrapper: { height: "100%", display: "flex" },
   list: { flexGrow: 0 },
 });
-
