@@ -1,75 +1,87 @@
-import React, { useState } from "react";
-import { View } from "react-native";
-import { useNavigation } from '@react-navigation/native'
-
-import Icon from "../../atoms/Icon/Icon";
+import React from "react";
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import Text from "../../atoms/Text/Text";
 
-import {
-  faHome,
-  faSearch,
-  faHeart,
-  faTruck,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesome } from '@expo/vector-icons';
 
-export default function TabBar({ showTitle }) {
-  const items = [
-    { name: "Home", icon: faHome, title: "Inicio" },
-    { name: "Search", icon: faSearch, title: "Buscar" },
-    { name: "Favourites", icon: faHeart, title: "Favoritos" },
-    { name: "Orders", icon: faTruck, title: "Pedidos" },
-    { name: "Profile", icon: faUser, title: "Perfil" },
-  ];
-  const navigation = useNavigation();
-  const [currentValue, setValue] = useState("Home");
-  const handleChange = (name) => {
-    console.log(name)
-    setValue(name);
-    navigation.navigate(name);
-  };
+export default function MyTabBar({ state, descriptors, navigation, title }) {
+  const focusedOptions = descriptors[state.routes[state.index].key].options;
+  const menu = {
+    "Home": { icon: "home", title: "Inicio" },
+    "Search": { icon: "search", title: "Buscar" },
+    "Favourites": { icon: "heart", title: "Favoritos" },
+    "Orders": { icon: "truck", title: "Pedidos" },
+    "Profile": { icon: "user", title: "Perfil" },
+  }
 
+  if (focusedOptions.tabBarVisible === false) {
+    return null;
+  }
 
   return (
     <View style={styles.container}>
-      {items.map(({ name, icon, title }, index) => {
+      {state.routes.map((route, index) => {
+        const { options } = descriptors[route.key];
+        const label =
+          options.tabBarLabel !== undefined
+            ? options.tabBarLabel
+            : options.title !== undefined
+            ? options.title
+            : route.name;
+
+        const isFocused = state.index === index;
+
+        const onPress = () => {
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: route.key,
+            canPreventDefault: true,
+          });
+
+          if (!isFocused && !event.defaultPrevented) navigation.navigate(route.name);
+        };
+
+        const onLongPress = () => {
+          navigation.emit({
+            type: 'tabLongPress',
+            target: route.key,
+          });
+        };
+
         return (
-          <Icon
-            color={currentValue === name && "#FF8000"}
-            icon={icon}
-            onPress={() => handleChange(name)}
-            key={index}
-            style={{ width: 40 }}
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityState={isFocused ? { selected: true } : {}}
+            accessibilityLabel={options.tabBarAccessibilityLabel}
+            testID={options.tabBarTestID}
+            onPress={onPress}
+            onLongPress={onLongPress}
+            style={styles.item}
           >
-            {showTitle && <Text style={styles.text}>{title}</Text>}
-          </Icon>
+            <FontAwesome name={menu[label].icon} size={title ? 24 : 28} color={ isFocused ? '#FF8000' : '#444D52' } />
+            {title &&
+              <Text style={{ color: isFocused ? '#FF8000' : '#444D52' }} variant="body1">
+                {menu[label].title}
+              </Text> 
+            }
+          </TouchableOpacity>
         );
       })}
     </View>
   );
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
-    width: "100%",
     height: 50,
-    bottom: 0,
-    position: "absolute",
-    backgroundColor: "white",
-    flexDirection: "row",
+    flexDirection: 'row',
     alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 50,
+    backgroundColor: "#FFF",
+    paddingHorizontal: 40,
   },
-  icon: {
-    backgroundColor: "white",
-    borderRadius: 10,
-    width: "95%",
-    height: "75%",
-    alignItems: "center",
+  item: {
+    flex: 1,
     justifyContent: "center",
-  },
-  text: {
-    fontSize: 9,
-  },
-};
+    alignItems: "center",
+  }
+})

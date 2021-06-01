@@ -25,9 +25,10 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   function MyTabBar () {
     return(
-      <Tab.Navigator initialRouteName='Cart' tabBar={(props) => <TabBar {...props}/> }>
+      <Tab.Navigator initialRouteName='Cart' backBehavior="history" tabBar={(props) => <TabBar {...props}/> }>
         {/* Acá van los menu del tabBar */}
         <Tab.Screen name='Home' component={ Home } />
+        <Stack.Screen name='Search' component={ Search } />
         {/* <Tab.Screen name='Favourites' component={ Favourites } /> */}
         <Tab.Screen name='Orders' component={ Orders } />
 
@@ -40,10 +41,10 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name='MyTabBar' component={ MyTabBar }/>
+
           {/* Acá van las pantallas sin tabBar */}
           <Stack.Screen name='ProductDetail' component={ ProductDetail } />
           {/* <Stack.Screen name='Cart' component={ Cart } /> */}
-          <Stack.Screen name='Search' component={ Search } />
           <Stack.Screen name='Results' component={ Results } />
           {/* <Stack.Screen name='OrderDetail' component={ OrderDetail } /> */}
           {/* <Stack.Screen name='CategoryFilter' component={ CategoryFilter } /> */}

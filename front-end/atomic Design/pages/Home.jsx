@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, ScrollView, StyleSheet, StatusBar, Dimensions } from "react-native";
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
 import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
@@ -20,7 +20,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-
 const { height } = Dimensions.get("window");
 
 const items = [
@@ -38,6 +37,7 @@ const items = [
 
 
 export default function Home() {
+
   return (
     <View style={{ height: height - 50 }}>
       <StatusBar animated={true} backgroundColor="#FF8000"/>
