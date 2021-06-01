@@ -17,7 +17,7 @@ export default function Profile() {
 
   return(
     <View style={styles.default}>
-      <Header children={{ text: "Mi cuenta" }} />
+      <Header children={{ text: "Mi cuenta" }} style={{ elevation: 5 }}/>
 
       <View style={styles.info}>
         <Image children={user.photo} variant="medium" style={{ borderRadius: 100 }}/>
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     alignItems: "center",
+    backgroundColor: "#FAFAFA",
   },
   info: {
     width: "100%",

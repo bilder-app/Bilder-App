@@ -15,7 +15,7 @@ export default function MyTabBar({ state, descriptors, navigation, title }) {
   }
 
   if (focusedOptions.tabBarVisible === false)  return null;
-  console.log(state.routes);
+
   return (
     <View style={styles.container}>
       {state.routes.map((route, index) => {
@@ -48,6 +48,7 @@ export default function MyTabBar({ state, descriptors, navigation, title }) {
 
         return (
           <TouchableOpacity
+            key={index}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}

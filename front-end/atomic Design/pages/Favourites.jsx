@@ -51,7 +51,7 @@ function Favourites() {
 
   return (
     <View style={styles.main}>
-      <Header  children={{ text: "Favoritos" }} style={{ elevation: 3 }}/>
+      <Header  children={{ text: "Favoritos" }} style={{ elevation: 5 }}/>
       <View style={{ width: "93%", height: "88%" }}>
         <ScrollView
           style={{ width: "100%" }}
