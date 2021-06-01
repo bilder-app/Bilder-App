@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet, Dimensions } from "react-native";
 import Tab from "../molecules/Tab/Tab";
 import Header from "../organisms/Header/Header";
 import CardItem from "../organisms/CardItem/CardItem";
 
+const { height } = Dimensions.get("window");
 const random = Math.floor((Math.random() * 100) + 1);
 const items = [
   {
@@ -62,14 +63,14 @@ const RenderItem = ({ item, filter }) => {  // item ---> default prop of Flatlis
   
   if(filter === 1 && item.state === "Completado") {
     return(
-      <View style={{ marginVertical: 10, marginLeft: 15, marginRight: 15 }}>
+      <View style={styles.item}>
         <CardItem variant="shippingCard" children={item} onPress={alert}/>
       </View>
     )
   }
   if(filter === 0 && item.state !== "Completado") {
     return(
-      <View style={{ marginVertical: 10, marginLeft: 15, marginRight: 15 }}>
+      <View style={styles.item}>
         <CardItem variant="shippingCard" children={item} onPress={alert}/>
       </View>
     )
@@ -79,7 +80,7 @@ const RenderItem = ({ item, filter }) => {  // item ---> default prop of Flatlis
 
 const TwoTabs = ({ selected, setSelected }) => {
   return (
-    <View style={{ display: "flex", flexDirection: "row" }}>
+    <View style={styles.flatList}>
       <Tab
         onPress={() => setSelected(0)}
         selected={selected === 0}
@@ -102,7 +103,8 @@ export default function Shipping() {
       <Header children={{ text: "Pedidos" }} />
       <TwoTabs selected={selected} setSelected={setSelected}/>
       <FlatList
-        style={styles.list}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ padding: 15 }}
         data={items}
         renderItem={({ item }) => <RenderItem item={item} filter={selected}/>}
         keyExtractor={(item) => item.orderId}
@@ -112,6 +114,16 @@ export default function Shipping() {
 }
 
 const styles = StyleSheet.create({
-  wrapper: { height: "100%", display: "flex" },
-  list: { flexGrow: 0 },
+  wrapper: { 
+    height: height - 50, 
+    backgroundColor: "#FAFAFA",
+  },
+  flatList: {
+    display: "flex", 
+    flexDirection: "row", 
+    backgroundColor: "#FFF", 
+  },
+  item: {
+    marginVertical: 5, 
+  },
 });

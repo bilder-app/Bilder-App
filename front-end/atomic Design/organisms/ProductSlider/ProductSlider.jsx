@@ -6,6 +6,7 @@ const styles = {
   default: {
     width: "100%",
     paddingHorizontal: 10,
+    marginBottom: 10,
   },
   card: {
     marginHorizontal: 5,
