@@ -8,12 +8,11 @@ import Text from "../atoms/Text/Text";
 
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'; 
 
-export default function Profile({}) {
+export default function Profile() {
   const user = {
     photo: "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png",
     name: "Bilder",
     email: "soyBilder@gmail.com",
-
   }
 
   return(
@@ -40,8 +39,6 @@ export default function Profile({}) {
           <Text variante="subtitle1" style={styles.text}> Cerrar sesión</Text>
         </TouchableOpacity>
       </View>
-
-      <TabBar/>
     </View>
   )
 }

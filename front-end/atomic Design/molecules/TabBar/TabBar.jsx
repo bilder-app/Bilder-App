@@ -14,10 +14,8 @@ export default function MyTabBar({ state, descriptors, navigation, title }) {
     "Profile": { icon: "user", title: "Perfil" },
   }
 
-  if (focusedOptions.tabBarVisible === false) {
-    return null;
-  }
-
+  if (focusedOptions.tabBarVisible === false)  return null;
+  console.log(state.routes);
   return (
     <View style={styles.container}>
       {state.routes.map((route, index) => {
@@ -58,8 +56,8 @@ export default function MyTabBar({ state, descriptors, navigation, title }) {
             onLongPress={onLongPress}
             style={styles.item}
           >
-            <FontAwesome name={menu[label].icon} size={title ? 24 : 28} color={ isFocused ? '#FF8000' : '#444D52' } />
-            {title &&
+            <FontAwesome name={menu[label].icon} size={title || isFocused ? 24 : 28} color={ isFocused ? '#FF8000' : '#444D52' } />
+            {title || isFocused &&
               <Text style={{ color: isFocused ? '#FF8000' : '#444D52' }} variant="body1">
                 {menu[label].title}
               </Text> 
