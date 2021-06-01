@@ -1,6 +1,7 @@
 import React from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import ScrollContainer from "../../atoms/ScrollContainer/ScrollContainer";
+import { useNavigation } from "@react-navigation/native";
 
 const styles = {
   default: {
@@ -15,6 +16,8 @@ const styles = {
 };
 
 export default function ProductSlider({ children, style }) {
+
+  // const navigation = useNavigation();
   
   return (
       <ScrollContainer position='horizontal' style={styles.default}>

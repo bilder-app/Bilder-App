@@ -17,7 +17,7 @@ export default function Profile() {
 
   return(
     <View style={styles.default}>
-      <Header children={{ text: "Mi cuenta" }} style={{ elevation: 5 }}/>
+      <Header children={{ text: "Mi cuenta" }}/>
 
       <View style={styles.info}>
         <Image children={user.photo} variant="medium" style={{ borderRadius: 100 }}/>

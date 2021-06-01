@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  showModal,
-  getFavoriteProducts,
-  addProductToFavorites,
-  removeProductFromFavorites
-} from "../../redux/actions/products";
+// import { useDispatch, useSelector } from "react-redux";
+// import {
+//   showModal,
+//   getFavoriteProducts,
+//   addProductToFavorites,
+//   removeProductFromFavorites
+// } from "../../redux/actions/products";
 import Header from "../organisms/Header/Header";
 import Slider from "../organisms/Slider";
 import Footer from "../organisms/Footer/Footer";
@@ -14,40 +14,37 @@ import Text from "../atoms/Text/Text";
 import Chip from "../atoms/Chip/Chip";
 
 
-export default function ProductDetails({
-  route = { params: { images: ["https://picsum.photos/seed/picsum/900/900"] } },
-  navigation
-}) {
-  const {
-    images,
-    name = "Latex interior Alba ultralabable Blanco",
-    description = `
+export default function ProductDetails({}) {
+  const { images, name, description, price, id, specs, categories } = {
+    images: ["https://picsum.photos/seed/picsum/900/900"],
+    name: "Latex interior Alba ultralabable Blanco",
+    description: `
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
     `,
-    price = 999,
-    id = 1,
-    specs = `
+    price: 999,
+    id: 1,
+    specs: `
   Marca: Alba
   Tipo de pintura: Latex
   Volumen: 6 Litros (L)
   Modelo: Albalatex ultra labable
   Color: Blanco
     `,
-    categories = ["Pinturas", "Latex", "Interior", "Blanco"],
-  } = route.params;
+    categories: ["Pinturas", "Latex", "Interior", "Blanco"],
+  } ;
 
-  const dispatch = useDispatch();
-  const showModalDispatched = () => dispatch(showModal(route.params));
-  const { favoriteProducts } = useSelector((state) => state.productsList);
+  // const dispatch = useDispatch();
+  // const showModalDispatched = () => dispatch(showModal(route.params));
+  // const { favoriteProducts } = useSelector((state) => state.productsList);
 
-  const isFavorite = !!favoriteProducts.find((prod) => prod.id === id);
+  // const isFavorite = !!favoriteProducts.find((prod) => prod.id === id);
 
-  useEffect(() => {
-    dispatch(getFavoriteProducts());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getFavoriteProducts());
+  // }, []);
 
   return (
     <View style={styles.main}>
@@ -58,7 +55,6 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           favouriteAction: console.log,
           shareAction: alert,
         }}
-        style={{ elevation: 5 }}
       />
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
@@ -89,7 +85,7 @@ const styles = StyleSheet.create({
   content: {
     width: "100%",
     paddingHorizontal: 15,
-    backgroundColor: "#FCFCFC"
+    backgroundColor: "#FAFAFA",
   },
   data: {
     width: "100%",

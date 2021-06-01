@@ -1,20 +1,11 @@
 import React from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
+
 import CardContainer from "../../atoms/CardContainer/CardContainer";
 import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
 
-const styles = {
-  content: {
-    width: "100%",
-    height: "46%"
-  },
-  boton: {
-    marginTop: 5,
-    marginLeft: "auto",
-    marginRight: "auto"
-  }
-};
+import { useNavigation } from "@react-navigation/native";
 
 export default function ProductCard({ children, onPress, style }) {
   const { price, name, brand, contentType, content } = children;
@@ -23,9 +14,10 @@ export default function ProductCard({ children, onPress, style }) {
     "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg"
   ];
   const id = Math.floor(Math.random() * 100 + 1);
+  const navigation = useNavigation();
 
   return (
-    <CardContainer onPress={() => onPress(id)} style={style}>
+    <CardContainer onPress={() => {onPress(id); navigation.navigate("ProductDetail")}} style={style}>
       <View style={styles.content}>
         <Image variant="small" children={images[0]} />
       </View>
@@ -53,3 +45,14 @@ export default function ProductCard({ children, onPress, style }) {
     </CardContainer>
   );
 }
+const styles = StyleSheet.create({
+  content: {
+    width: "100%",
+    height: "46%"
+  },
+  boton: {
+    marginTop: 5,
+    marginLeft: "auto",
+    marginRight: "auto"
+  }
+});

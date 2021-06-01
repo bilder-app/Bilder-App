@@ -100,7 +100,7 @@ export default function Shipping() {
   const [selected, setSelected] = useState(0);
   return (
     <View style={styles.wrapper}>
-      <Header children={{ text: "Pedidos" }} />
+      <Header children={{ text: "Pedidos" }} style={{ elevation: 0 }}/>
       <TwoTabs selected={selected} setSelected={setSelected}/>
       <FlatList
         showsVerticalScrollIndicator={false}

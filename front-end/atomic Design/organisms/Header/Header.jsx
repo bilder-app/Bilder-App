@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { View } from "react-native";
+
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 import Text from "../../atoms/Text/Text";
+
+import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faAngleLeft,
@@ -23,10 +26,11 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 export default function Header({ variant, children, onPress, style }) {
   const [favourite, setFavourite] = useState(false);
-
+  const navigation = useNavigation();
+  
   return (
     <View style={[styles.default, style]}>
-      <IconContainer onPress={() => alert("back")} style={styles.icon}>
+      <IconContainer onPress={() => navigation.goBack() } style={styles.icon}>
         <FontAwesomeIcon icon={faAngleLeft} color="#3F3C3C" size={28} />
       </IconContainer>
       <View style={[styles.content, styles[variant || "title"]]}>
@@ -65,6 +69,7 @@ const styles = {
     alignItems: "center",
     backgroundColor: "white",
     flexDirection: "row",
+    elevation: 5,
   },
   content: {
     width: "88%",

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
+
 import Input from "../../atoms/Input/Input";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
+
+import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faAngleLeft, faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
@@ -12,10 +15,11 @@ export default function SearchBar({ children, onPress, style}) {
   useEffect(() => {
     children && setSearchQuery(children)
   }, [])
+  const navigation = useNavigation();
 
   return(
     <View style={[styles.default, style]}>
-      <IconContainer onPress={() => alert("back")} style={styles.icons}>
+      <IconContainer onPress={() => navigation.goBack()} style={styles.icons}>
         <FontAwesomeIcon icon={faAngleLeft} color="#3F3C3C" size={28} />
       </IconContainer>
       <View style={styles.content}>
