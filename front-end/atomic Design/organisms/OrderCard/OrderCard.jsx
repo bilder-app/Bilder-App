@@ -1,10 +1,35 @@
 import React from "react";
+import { View, TouchableOpacity } from "react-native";
+
 import CardContainer from "../../atoms/CardContainer/CardContainer";
 import Text from "../../atoms/Text/Text";
 import Button from "../../atoms/Button/Button";
-import { View, TouchableOpacity } from "react-native";
+
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+
+
+export default function Card({ orderNumber, date, status }) {
+
+  return (
+    <CardContainer variant="horizontal">
+      <View style={styles.wrapper}>
+        <View style={styles.leftContent}>
+          <Text variant="h6" style={{ fontWeight: "bold" }}>
+            Pedido #{orderNumber}
+          </Text>
+          <Text>{date}</Text>
+          <Button size="small">{status}</Button>
+        </View>
+        <TouchableOpacity style={styles.rightArea}>
+          <View style={styles.icon}>
+            <FontAwesomeIcon size={15} icon={faChevronRight} />
+          </View>
+        </TouchableOpacity>
+      </View>
+    </CardContainer>
+  );
+}
 
 const styles = {
   wrapper: {
@@ -37,24 +62,3 @@ const styles = {
     paddingHorizontal: 20,
   },
 };
-
-export default function Card({ orderNumber, date, status }) {
-  return (
-    <CardContainer variant="horizontal">
-      <View style={styles.wrapper}>
-        <View style={styles.leftContent}>
-          <Text variant="h6" style={{ fontWeight: "bold" }}>
-            Pedido #{orderNumber}
-          </Text>
-          <Text>{date}</Text>
-          <Button size="small">{status}</Button>
-        </View>
-        <TouchableOpacity style={styles.rightArea}>
-          <View style={styles.icon}>
-            <FontAwesomeIcon size={15} icon={faChevronRight} />
-          </View>
-        </TouchableOpacity>
-      </View>
-    </CardContainer>
-  );
-}

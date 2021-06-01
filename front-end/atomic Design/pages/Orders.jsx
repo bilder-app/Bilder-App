@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { View, FlatList, StyleSheet, Dimensions } from "react-native";
+
 import Tab from "../molecules/Tab/Tab";
 import Header from "../organisms/Header/Header";
 import CardItem from "../organisms/CardItem/CardItem";
+
+import { useNavigation } from "@react-navigation/native";
+
 
 const { height } = Dimensions.get("window");
 const random = Math.floor((Math.random() * 100) + 1);
@@ -60,18 +64,19 @@ const items = [
 ];
 
 const RenderItem = ({ item, filter }) => {  // item ---> default prop of Flatlist
+  const navigation = useNavigation();
   
   if(filter === 1 && item.state === "Completado") {
     return(
       <View style={styles.item}>
-        <CardItem variant="shippingCard" children={item} onPress={alert}/>
+        <CardItem variant="shippingCard" children={item} onPress={() => navigation.navigate("OrderDetail")}/>
       </View>
     )
   }
   if(filter === 0 && item.state !== "Completado") {
     return(
       <View style={styles.item}>
-        <CardItem variant="shippingCard" children={item} onPress={alert}/>
+        <CardItem variant="shippingCard" children={item} onPress={() => navigation.navigate("OrderDetail")}/>
       </View>
     )
   }

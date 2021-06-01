@@ -20,7 +20,7 @@ export default function SearchBar({ children, onPress, style}) {
   return(
     <View style={[styles.default, style]}>
       <IconContainer onPress={() => navigation.goBack()} style={styles.icons}>
-        <FontAwesomeIcon icon={faAngleLeft} color="#3F3C3C" size={28} />
+        <FontAwesomeIcon icon={faAngleLeft} color="#444D52" size={28} />
       </IconContainer>
       <View style={styles.content}>
         <Input 

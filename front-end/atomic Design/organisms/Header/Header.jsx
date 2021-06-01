@@ -31,7 +31,7 @@ export default function Header({ variant, children, onPress, style }) {
   return (
     <View style={[styles.default, style]}>
       <IconContainer onPress={() => navigation.goBack() } style={styles.icon}>
-        <FontAwesomeIcon icon={faAngleLeft} color="#3F3C3C" size={28} />
+        <FontAwesomeIcon icon={faAngleLeft} color="#444D52" size={28} />
       </IconContainer>
       <View style={[styles.content, styles[variant || "title"]]}>
         {children.text && <Text variant="h6">{children.text}</Text>}
