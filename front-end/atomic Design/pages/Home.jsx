@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { View, ScrollView, StyleSheet, StatusBar, Dimensions } from "react-native";
+import { View, ScrollView, StyleSheet, StatusBar, Dimensions, TouchableOpacity } from "react-native";
+
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
 import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Slider from "../atoms/Slider/Slider";
@@ -20,8 +21,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-const { height } = Dimensions.get("window");
 
+
+const { height } = Dimensions.get("window");
 const items = [
   { name: "Paintings", icon: faPaintRoller, title: "Pinturas" },
   { name: "Buildings", icon: faBorderAll, title: "Construcción" },
@@ -36,15 +38,17 @@ const items = [
 ];
 
 
-export default function Home() {
-
+export default function Home({ navigation }) {
   return (
     <View style={{ height: height - 50 }}>
       <StatusBar animated={true} backgroundColor="#FF8000"/>
       <View style={styles.header}>
         <FontAwesomeIcon size={25} icon={faPhone} color="#444D52"/>
         <Logo width={120} height={30} />
-        <FontAwesomeIcon size={25} icon={faShoppingCart} color="#444D52"/>
+        <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate("Cart")}>
+          <FontAwesomeIcon size={25} icon={faShoppingCart} color="#444D52"/>
+        </TouchableOpacity>
+          
       </View>
 
       <ScrollView style={styles.main} showsVerticalScrollIndicator={false}>
