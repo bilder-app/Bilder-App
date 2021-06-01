@@ -42,9 +42,9 @@ export default function Home() {
     <View style={{ height: height - 50 }}>
       <StatusBar animated={true} backgroundColor="#FF8000"/>
       <View style={styles.header}>
-        <FontAwesomeIcon size={25} icon={faPhone} />
+        <FontAwesomeIcon size={25} icon={faPhone} color="#444D52"/>
         <Logo width={120} height={30} />
-        <FontAwesomeIcon size={25} icon={faShoppingCart} />
+        <FontAwesomeIcon size={25} icon={faShoppingCart} color="#444D52"/>
       </View>
 
       <ScrollView style={styles.main} showsVerticalScrollIndicator={false}>

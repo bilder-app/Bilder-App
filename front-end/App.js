@@ -10,7 +10,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import TabBar from './atomic Design/molecules/TabBar/TabBar.jsx'
 import Home from './atomic Design/pages/Home.jsx'
 import ProductDetail from './atomic Design/pages/ProductDetail.jsx'
-// import Favourites from './atomic Design/pages/Favourites.jsx'
+import Favourites from './atomic Design/pages/Favourites.jsx'
 // import Cart from './atomic Design/pages/Cart.jsx'
 import Search from './atomic Design/pages/Search.jsx'
 import Results from './atomic Design/pages/Results.jsx'
@@ -29,7 +29,7 @@ export default function App() {
         {/* Acá van los menu del tabBar */}
         <Tab.Screen name='Home' component={ Home } />
         <Stack.Screen name='Search' component={ Search } />
-        {/* <Tab.Screen name='Favourites' component={ Favourites } /> */}
+        <Tab.Screen name='Favourites' component={ Favourites } />
         <Tab.Screen name='Orders' component={ Orders } />
 
       </Tab.Navigator>
