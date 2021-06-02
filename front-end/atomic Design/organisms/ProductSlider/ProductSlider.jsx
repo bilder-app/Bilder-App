@@ -7,36 +7,60 @@ const styles = {
   default: {
     width: "100%",
     paddingHorizontal: 10,
-    marginBottom: 10,
+    marginBottom: 10
   },
   card: {
     marginHorizontal: 5,
-    justifyContent: "center",
+    justifyContent: "center"
   }
 };
 
-export default function ProductSlider({ children, style }) {
-
+export default function ProductSlider({ children, style, productsData = [] }) {
   // const navigation = useNavigation();
-  
-  return (
-      <ScrollContainer position='horizontal' style={styles.default}>
-        {[1,2,3,4,5].map((item) => {
-          return(
+  if (productsData.length) {
+    return (
+      <ScrollContainer position="horizontal" style={styles.default}>
+        {productsData.map((product) => {
+          const { name, price, brand, id, images } = product;
+
+          return (
             <ProductCard
-              key={item}
+              key={id}
               children={{
-                price: "280",
-                name: "Bolsa de arena",
+                price: price,
+                name: name,
                 contentType: "Unidad (u)",
                 content: "1",
-                brand: "Corralón de materiales",
+                brand: brand,
+                images
               }}
               onPress={console.log}
               style={styles.card}
             />
-          )
+          );
         })}
       </ScrollContainer>
+    );
+  }
+
+  return (
+    <ScrollContainer position="horizontal" style={styles.default}>
+      {[1, 2, 3, 4, 5].map((item) => {
+        return (
+          <ProductCard
+            key={item}
+            children={{
+              price: "280",
+              name: "Bolsa de arena",
+              contentType: "Unidad (u)",
+              content: "1",
+              brand: "Corralón de materiales"
+            }}
+            onPress={console.log}
+            style={styles.card}
+          />
+        );
+      })}
+    </ScrollContainer>
   );
 }

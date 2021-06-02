@@ -1,6 +1,10 @@
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.MY_IP;
+axios.defaults.baseURL = "https://bilder-backend.herokuapp.com";
+
+export function getProducts() {
+  return axios.get(`/products`);
+}
 
 export function searchProducts(name, page, limit = 10) {
   return axios
@@ -44,8 +48,6 @@ export function getProductsByCategories(categories) {
     .then((resp) => resp.data);
 }
 
-export function removeProductFromCart (productId) {
-  return axios
-  .delete(`/cart/product/${productId}`)
-  .then((resp) => resp.data);
+export function removeProductFromCart(productId) {
+  return axios.delete(`/cart/product/${productId}`).then((resp) => resp.data);
 }
