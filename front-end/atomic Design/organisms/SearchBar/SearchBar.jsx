@@ -34,16 +34,16 @@ export default function SearchBar({ children, onPress, style}) {
         {!searchQuery 
           ? 
           <View style={styles.alternative}>
-            <FontAwesomeIcon icon={faSearch} color="#666" size={20} />
+            <FontAwesomeIcon icon={faSearch} color="#888" size={18} />
           </View>
           : 
           <IconContainer onPress={() => setSearchQuery("")} style={styles.alternative}>
-            <FontAwesomeIcon icon={faTimesCircle} color="#666" size={20} />
+            <FontAwesomeIcon icon={faTimesCircle} color="#888" size={20} />
           </IconContainer>
         }
       </View>
 
-      <IconContainer onPress={() => alert("redirect to cart")} style={styles.icons}>
+      <IconContainer onPress={() => navigation.navigate("Cart")} style={styles.icons}>
         <FontAwesomeIcon icon={faShoppingCart} color="#3F3C3C" size={26} />
       </IconContainer>
     </View>

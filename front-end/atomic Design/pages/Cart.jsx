@@ -59,10 +59,11 @@ const renderItem = ({ item }) => (
   </View>
 );
 
-function Cart() {
+export default function Cart({ navigation }) {
+
   return (
     <View style={styles.main}>
-      <Header children={{ text: "Mi Carrito" }} style={{ elevation: 5 }}/>
+      <Header children={{ text: "Mi Carrito" }}/>
 
       <FlatList
         data={items}
@@ -70,7 +71,7 @@ function Cart() {
         keyExtractor={(item) => item.id}
       />
  
-      <View style={{ paddingHorizontal: 20 }}>
+      <View style={{ paddingHorizontal: 20, backgroundColor: "#FFF" }}>
         <View style={styles.hr}/>
         <View style={styles.content}>
           <Text style={{ color: "#707070" }} variant="subtitle2">Subtotal</Text>
@@ -79,7 +80,7 @@ function Cart() {
       </View>
 
       <View style={styles.button}>
-        <Button onPress={() => console.log("Continuar")} children="Continuar" />
+        <Button onPress={() => navigation.navigate("Payment")} children="Continuar" />
       </View>
     </View>
   );
@@ -108,8 +109,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     paddingVertical: 5,
-    backgroundColor: "transparent",
+    backgroundColor: "#FFF",
   },
 });
 
-export default Cart;
