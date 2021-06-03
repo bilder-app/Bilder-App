@@ -8,6 +8,7 @@ import { createStackNavigator } from "@react-navigation/stack"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 import TabBar from "./atomic Design/molecules/TabBar/TabBar.jsx"
+import Login from "./atomic Design/pages/Login.jsx"
 
 import Home from "./atomic Design/pages/Home.jsx"
 import ProductDetail from "./atomic Design/pages/ProductDetail.jsx"
@@ -31,7 +32,7 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   function MyTabBar () {
     return(
-      <Tab.Navigator initialRouteName="Cart" backBehavior="history" tabBar={(props) => <TabBar {...props}/> }>
+      <Tab.Navigator initialRouteName="Home" backBehavior="history" tabBar={(props) => <TabBar {...props}/> }>
         {/* Acá van los menu del tabBar */}
         <Tab.Screen name="Home" component={ Home } />
         <Tab.Screen name="Search" component={ Search } />
@@ -47,6 +48,7 @@ export default function App() {
     <Provider store={ store }>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="Login" component={ Login }/>
           <Stack.Screen name="MyTabBar" component={ MyTabBar }/>
 
           {/* Acá van las pantallas sin tabBar */}
