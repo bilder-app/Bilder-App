@@ -1,9 +1,10 @@
-import React from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, TouchableOpacity, StatusBar } from "react-native";
 
 import Header from "../organisms/Header/Header";
 import Image from "../atoms/Image/Image";
 import Text from "../atoms/Text/Text";
+import { getMyUser } from "../../api";
 
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'; 
 
@@ -14,8 +15,13 @@ export default function Profile() {
     email: "soyBilder@gmail.com",
   }
 
+  useEffect(() => {
+    getMyUser().then((user) => console.log(user));
+  }, [])
+
   return(
     <View style={styles.default}>
+      <StatusBar animated={true} backgroundColor="#FF8000"/>
       <Header children={{ text: "Mi cuenta" }}/>
 
       <View style={styles.info}>

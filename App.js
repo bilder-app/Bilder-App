@@ -32,7 +32,7 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   function MyTabBar () {
     return(
-      <Tab.Navigator initialRouteName="Home" backBehavior="history" tabBar={(props) => <TabBar {...props}/> }>
+      <Tab.Navigator initialRouteName="Profile" backBehavior="history" tabBar={(props) => <TabBar {...props}/> }>
         {/* Acá van los menu del tabBar */}
         <Tab.Screen name="Home" component={ Home } />
         <Tab.Screen name="Search" component={ Search } />

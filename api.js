@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosLink = axios.create({
+const axiosInst = axios.create({
   // baseURL: "http://localhost:3001",
   baseURL: process.env.MY_IP,
   withCredentials: true
@@ -9,53 +9,57 @@ const axiosLink = axios.create({
 
 
 export function searchProducts(name, page, limit = 10) {
-  return axiosLink
+  return axiosInst
     .get(`/product/search?name=${name}&page=${page}&limit=${limit}`)
     .then((resp) => resp.data);
 }
 
 export function putProductInCart({ productId, amount }) {
-  return axiosLink
+  return axiosInst
     .put(`/cart/product/${productId}`, { amount })
     .then((resp) => resp.data);
 }
 
 export function getAllCartProducts() {
-  return axiosLink.get("/cart/").then((resp) => resp.data);
+  return axiosInst.get("/cart/").then((resp) => resp.data);
 }
 
 export function getCartAmount() {
-  return axiosLink.get("/cart/amount/").then((resp) => resp.data);
+  return axiosInst.get("/cart/amount/").then((resp) => resp.data);
 }
 
 export function clearAllCartItems() {
-  return axiosLink.put("/cart/clear");
+  return axiosInst.put("/cart/clear");
 }
 
 export function postProductToFavorites(productId) {
-  return axiosLink.post(`/favorite/${productId}`);
+  return axiosInst.post(`/favorite/${productId}`);
 }
 
 export function deleteProductFromFavorites(productId) {
-  return axiosLink.delete(`/favorite/${productId}`);
+  return axiosInst.delete(`/favorite/${productId}`);
 }
 
 export function getFavoriteProducts() {
-  return axiosLink.get(`/favorite`).then((resp) => resp.data);
+  return axiosInst.get(`/favorite`).then((resp) => resp.data);
 }
 
 export function getProductsByCategories(categories) {
-  return axiosLink
+  return axiosInst
     .get(`/product/category?names=${categories.join(",")}`)
     .then((resp) => resp.data);
 }
 
 export function removeProductFromCart (productId) {
-  return axiosLink
+  return axiosInst
   .delete(`/cart/product/${productId}`)
   .then((resp) => resp.data);
 }
 
 export function logIn({ email, password }) {
-  return axiosLink.post("/auth/login", { email, password });
+  return axiosInst.post("/auth/login", { email, password });
+}
+
+export function getMyUser() {
+  return axiosInst.get("/user/me").then((res) => res.data);
 }

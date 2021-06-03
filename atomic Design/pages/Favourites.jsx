@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet, Text, ScrollView } from "react-native";
+import { View, StyleSheet, Text, ScrollView, StatusBar } from "react-native";
 
 import Header from "../../atomic Design/organisms/Header/Header";
 import CardItem from "../../atomic Design/organisms/CardItem/CardItem";
@@ -51,7 +51,9 @@ function Favourites() {
 
   return (
     <View style={styles.main}>
+      <StatusBar animated={true} backgroundColor="#FF8000"/>
       <Header children={{ text: "Favoritos" }}/>
+
       <View style={{ width: "93%", height: "88%" }}>
         <ScrollView
           style={{ width: "100%" }}

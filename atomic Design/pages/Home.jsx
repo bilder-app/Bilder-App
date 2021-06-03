@@ -42,6 +42,7 @@ export default function Home({ navigation }) {
   return (
     <View style={{ height: height - 50 }}>
       <StatusBar animated={true} backgroundColor="#FF8000"/>
+      
       <View style={styles.header}>
         <FontAwesomeIcon size={25} icon={faPhone} color="#444D52"/>
         <Logo width={120} height={30} />

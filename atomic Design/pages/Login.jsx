@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { View, Image, TextInput, StyleSheet } from "react-native";
+
 import Text from "../atoms/Text/Text";
 import Button from "../atoms/Button/Button";
+
 const login = require("../../assets/logo.png");
 import { logIn } from "../../api";
 
@@ -16,7 +18,8 @@ export default function Login({ navigation }) {
   const [values, setValues] = useState({});
   
   const handleSubmit = () => {
-    logIn(values).then(() => navigation.replace("MyTabBar"));
+    logIn(values).then(() => navigation.replace
+     ("MyTabBar"));
   };
 
   return (

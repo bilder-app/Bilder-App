@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, FlatList, StyleSheet, Dimensions } from "react-native";
+import { View, FlatList, StyleSheet, Dimensions, StatusBar } from "react-native";
 
 import Tab from "../molecules/Tab/Tab";
 import Header from "../organisms/Header/Header";
@@ -105,7 +105,9 @@ export default function Shipping() {
   const [selected, setSelected] = useState(0);
   return (
     <View style={styles.wrapper}>
+      <StatusBar animated={true} backgroundColor="#FF8000"/>
       <Header children={{ text: "Pedidos" }} style={{ elevation: 0 }}/>
+
       <TwoTabs selected={selected} setSelected={setSelected}/>
       <FlatList
         showsVerticalScrollIndicator={false}
