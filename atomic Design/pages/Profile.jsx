@@ -9,15 +9,15 @@ import { getMyUser } from "../../api";
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 export default function Profile() {
-  const user = {
+  const fakeUser = {
     photo: "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png",
-    name: "Bilder",
-    email: "soyBilder@gmail.com",
   }
 
+  const [user, setUser] = useState();
   useEffect(() => {
-    getMyUser().then((user) => console.log(user));
+    getMyUser().then((user) => {setUser(user); console.log(user)});
   }, [])
+
 
   return(
     <View style={styles.default}>
@@ -25,9 +25,9 @@ export default function Profile() {
       <Header children={{ text: "Mi cuenta" }}/>
 
       <View style={styles.info}>
-        <Image children={user.photo} variant="medium" style={{ borderRadius: 100 }}/>
-        <Text variant="h6">{user.name}</Text>
-        <Text variant="subtitle1" style={{ color: "#707070" }}>{user.email}</Text>
+        <Image children={fakeUser.photo} variant="medium" style={{ borderRadius: 100 }}/>
+        <Text variant="h6">{ user ? (user.name + user.lastname) : "Cargando..." }</Text>
+        <Text variant="subtitle1" style={{ color: "#707070" }}>{user ? user.email : "Cargando..."}</Text>
       </View>
 
       <View style={styles.menu}>
