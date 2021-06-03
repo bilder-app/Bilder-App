@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, ScrollView, StyleSheet, StatusBar, Dimensions, TouchableOpacity } from "react-native";
+import { View,
+  ScrollView,
+  StyleSheet,
+  StatusBar,
+  Dimensions,
+  TouchableOpacity 
+} from "react-native";
 
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
 import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
@@ -22,6 +28,7 @@ import {
 import { faShoppingCart, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
+import { getProducts } from "../../api";
 
 const { height } = Dimensions.get("window");
 const items = [
@@ -39,6 +46,13 @@ const items = [
 
 
 export default function Home({ navigation }) {
+
+  const [productsData, setProductsData] = useState();
+
+  useEffect(() => {
+    getProducts().then((resp) => setProductsData(resp.data));
+  }, []);
+  
   return (
     <View style={{ height: height - 50 }}>
       <StatusBar animated={true} backgroundColor="#FF8000"/>
@@ -73,7 +87,7 @@ export default function Home({ navigation }) {
 
         <View style={{ marginTop: 10 }}>
           <Text variant="h6" style={styles.subtitle}>Nuevos</Text>
-          <ProductSlider />
+          <ProductSlider productsData={productsData} />
         </View>
         <View style={{ marginTop: 10 }}>
           <Text variant="h6" style={styles.subtitle}>Productos en Oferta</Text>

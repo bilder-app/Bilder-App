@@ -8,16 +8,28 @@ import Image from "../../atoms/Image/Image";
 import { useNavigation } from "@react-navigation/native";
 
 export default function ProductCard({ children, onPress, style }) {
-  const { price, name, brand, contentType, content } = children;
-  const images = [
-    "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
-    "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg"
-  ];
+  const {
+    price,
+    name,
+    brand,
+    contentType,
+    content,
+    images = [
+      "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
+      "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg"
+    ]
+  } = children;
   const id = Math.floor(Math.random() * 100 + 1);
   const navigation = useNavigation();
 
   return (
-    <CardContainer onPress={() => {onPress(id); navigation.navigate("ProductDetail")}} style={style}>
+    <CardContainer 
+      onPress={() => {
+        onPress(id); 
+        navigation.navigate("ProductDetail")}
+      } 
+      style={style}
+    >
       <View style={styles.content}>
         <Image variant="small" children={images[0]} />
       </View>
