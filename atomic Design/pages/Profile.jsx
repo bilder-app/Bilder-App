@@ -26,7 +26,7 @@ export default function Profile() {
 
       <View style={styles.info}>
         <Image children={fakeUser.photo} variant="medium" style={{ borderRadius: 100 }}/>
-        <Text variant="h6">{ user ? (user.name + user.lastname) : "Cargando..." }</Text>
+        <Text variant="h6">{ user ? `${user.name} ${user.lastname}` : "Cargando..." }</Text>
         <Text variant="subtitle1" style={{ color: "#707070" }}>{user ? user.email : "Cargando..."}</Text>
       </View>
 
