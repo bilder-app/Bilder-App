@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD:atomic Design/pages/Home.jsx
 import { View,
-=======
-import {
-  View,
->>>>>>> 7b32338ecae12ee9b2257c2483e27fd80dc39e71:front-end/atomic Design/pages/Home.jsx
   ScrollView,
   StyleSheet,
   StatusBar,
   Dimensions,
-<<<<<<< HEAD:atomic Design/pages/Home.jsx
   TouchableOpacity 
 } from "react-native";
 
-=======
-  TouchableOpacity
-} from "react-native";
-import { getProducts } from "../../api";
->>>>>>> 7b32338ecae12ee9b2257c2483e27fd80dc39e71:front-end/atomic Design/pages/Home.jsx
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
 import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Slider from "../atoms/Slider/Slider";
@@ -39,11 +28,8 @@ import {
 import { faShoppingCart, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-<<<<<<< HEAD:atomic Design/pages/Home.jsx
 import { getProducts } from "../../api";
 
-=======
->>>>>>> 7b32338ecae12ee9b2257c2483e27fd80dc39e71:front-end/atomic Design/pages/Home.jsx
 const { height } = Dimensions.get("window");
 const items = [
   { name: "Paintings", icon: faPaintRoller, title: "Pinturas" },
@@ -59,10 +45,6 @@ const items = [
 ];
 
 export default function Home({ navigation }) {
-<<<<<<< HEAD:atomic Design/pages/Home.jsx
-
-=======
->>>>>>> 7b32338ecae12ee9b2257c2483e27fd80dc39e71:front-end/atomic Design/pages/Home.jsx
   const [productsData, setProductsData] = useState();
 
   useEffect(() => {
@@ -108,13 +90,7 @@ export default function Home({ navigation }) {
         </View>
 
         <View style={{ marginTop: 10 }}>
-<<<<<<< HEAD:atomic Design/pages/Home.jsx
           <Text variant="h6" style={styles.subtitle}>Nuevos</Text>
-=======
-          <Text variant="h6" style={styles.subtitle}>
-            Nuevos
-          </Text>
->>>>>>> 7b32338ecae12ee9b2257c2483e27fd80dc39e71:front-end/atomic Design/pages/Home.jsx
           <ProductSlider productsData={productsData} />
         </View>
         <View style={{ marginTop: 10 }}>
