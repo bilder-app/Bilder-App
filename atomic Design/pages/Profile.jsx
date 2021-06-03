@@ -2,7 +2,6 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 
 import Header from "../organisms/Header/Header";
-import TabBar from "../molecules/TabBar/TabBar";
 import Image from "../atoms/Image/Image";
 import Text from "../atoms/Text/Text";
 

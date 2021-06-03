@@ -57,6 +57,5 @@ export function removeProductFromCart (productId) {
 }
 
 export function logIn({ email, password }) {
-  console.log(process.env.MY_IP)
   return axiosLink.post("/auth/login", { email, password });
 }

@@ -3,7 +3,7 @@ import { View, Image, TextInput, StyleSheet } from "react-native";
 import Text from "../atoms/Text/Text";
 import Button from "../atoms/Button/Button";
 const login = require("../../assets/logo.png");
-import { logIn, getAllCartProducts } from "../../api";
+import { logIn } from "../../api";
 
 
 export default function Login({ navigation }) {
@@ -16,7 +16,7 @@ export default function Login({ navigation }) {
   const [values, setValues] = useState({});
   
   const handleSubmit = () => {
-    logIn(values).then((res) => console.log(res));
+    logIn(values).then(() => navigation.replace("MyTabBar"));
   };
 
   return (
@@ -39,7 +39,7 @@ export default function Login({ navigation }) {
           value={values.password}
         />
       </View>
-      <Button children="Iniciar sesión" style={styles.button} onPress={() => handleSubmit()}/>
+      <Button children="Iniciar sesión" style={styles.button} onPress={handleSubmit}/>
     </View>
   );
 }
