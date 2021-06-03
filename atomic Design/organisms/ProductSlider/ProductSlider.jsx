@@ -18,7 +18,7 @@ const styles = {
 export default function ProductSlider({ children, style, productsData = [] }) {
 
   // const navigation = useNavigation();
-  console.log(productsData)
+  
   if(productsData.length) {
     return (
       <ScrollContainer position='horizontal' style={styles.default}>
