@@ -23,11 +23,11 @@ export default function ProductCard({ children, onPress, style }) {
   const navigation = useNavigation();
 
   return (
-    <CardContainer 
+    <CardContainer
       onPress={() => {
-        onPress(id); 
-        navigation.navigate("ProductDetail")}
-      } 
+        onPress(id);
+        navigation.navigate("ProductDetail");
+      }}
       style={style}
     >
       <View style={styles.content}>
