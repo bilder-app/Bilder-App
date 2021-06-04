@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 
 import Header from "../organisms/Header/Header";
@@ -6,67 +6,46 @@ import CardItem from "../organisms/CardItem/CardItem";
 import Text from "../../atomic Design/atoms/Text/Text";
 import Button from "../../atomic Design/atoms/Button/Button";
 
- 
+import { getAllCartProducts } from "../../api";
+
 const random =  Math.floor((Math.random() * 100) + 1)
 const items = [
   {
     id: random,
-    image: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+    image: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
     description: "Muñeco de baby Joda coleccionable",
     price: Math.floor((Math.random() * 1000) + 1),
   },
   {
     id: random + 1,
-    image: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
-    description: "Muñeco de baby Joda coleccionable",
-    price: Math.floor((Math.random() * 1000) + 1),
-  },
-  {
-    id: random + 2,
-    image: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
-    description: "Muñeco de baby Joda coleccionable",
-    price: Math.floor((Math.random() * 1000) + 1),
-  },
-  {
-    id: random + 3,
-    image: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
-    description: "Muñeco de baby Joda coleccionable",
-    price: Math.floor((Math.random() * 1000) + 1),
-  },
-  {
-    id: random + 4,
-    image: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
-    description: "Muñeco de baby Joda coleccionable",
-    price: Math.floor((Math.random() * 1000) + 1),
-  },
-  {
-    id: random + 5,
-    image: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
-    description: "Muñeco de baby Joda coleccionable",
-    price: Math.floor((Math.random() * 1000) + 1),
-  },
-  {
-    id: random + 6,
-    image: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+    image: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
     description: "Muñeco de baby Joda coleccionable",
     price: Math.floor((Math.random() * 1000) + 1),
   },
 ];
 
-const renderItem = ({ item }) => (
-  <View style={{ marginVertical: 5, marginHorizontal: 15 }} key={item.id}>
-    <CardItem variant="cart" children={item} onPress={alert}/>
-  </View>
-);
+const renderItem = ({ item }) => {
+
+  return (
+    <View style={{ marginVertical: 5, marginHorizontal: 15 }} key={item.id}>
+      <CardItem variant="cart" children={item} onPress={alert}/>
+    </View>
+  ) 
+};
 
 export default function Cart({ navigation }) {
+  const [productsInCart, setProducts] = useState();
+
+  useEffect(() => {
+    getAllCartProducts().then((data) => setProducts(data));
+  }, []);
 
   return (
     <View style={styles.main}>
       <Header children={{ text: "Mi Carrito" }}/>
 
       <FlatList
-        data={items}
+        data={productsInCart || items}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />

@@ -10,7 +10,6 @@ import { Ionicons, Entypo } from '@expo/vector-icons';
 
 export default function CardItem({ variant, children, onPress, style }) {
   const [cart, setCart] = useState(false)
-
   if(variant === "shippingCard") {
     return(
       <View style={[styles.base, style]}>
@@ -28,10 +27,10 @@ export default function CardItem({ variant, children, onPress, style }) {
 
   return(
     <View style={[styles.base, style]}>
-      <Image children={children.image} variant="mini"/>
+      <Image children={children.images ? children.images[0] : "http://www.colores.org.es/imagenes_colores/gris.jpg"} variant="mini"/>
       <View style={styles.content}>
           <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52" }}>
-            {children.description}
+            {children.name}
           </Text>
         <View style={styles.footer}>
           <Text variant="h6" style={{ color: "#ff8000" }}>$ {children.price}</Text>

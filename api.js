@@ -25,15 +25,15 @@ export function postProductToCart(productId) {
 }
 
 export function getAllCartProducts() {
-  return axios.get("/cart/").then((resp) => resp.data);
+  return axios.get("/user/cart/").then((resp) => resp.data);
 }
 
 export function getCartAmount() {
-  return axios.get("/cart/amount/").then((resp) => resp.data);
+  return axios.get("/user/cart/amount/").then((resp) => resp.data);
 }
 
 export function clearAllCartItems() {
-  return axios.put("/cart/clear");
+  return axios.put("/user/cart/clear");
 }
 
 export function postProductToFavorites(productId) {
