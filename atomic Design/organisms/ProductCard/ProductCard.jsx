@@ -30,7 +30,7 @@ export default function ProductCard({ children, onPress, style }) {
     <CardContainer
       onPress={() => {
         onPress(id);
-        navigation.navigate("ProductDetail");
+        navigation.navigate("ProductDetail", children);
       }}
       style={style}
     >
@@ -46,7 +46,7 @@ export default function ProductCard({ children, onPress, style }) {
           {name}
         </Text>
         <Text variant="subtitle2" style={{ color: "#898C8E" }} >
-          {`${content} ${contentType}`}
+          {`${content || 1} ${contentType}`}
         </Text>
         <Text variant="subtitle2" style={{ color: "#898C8E" }} >
           {brand}

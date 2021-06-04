@@ -14,27 +14,23 @@ import Text from "../atoms/Text/Text";
 import Chip from "../atoms/Chip/Chip";
 
 
-export default function ProductDetails({}) {
-  const { images, name, description, price, id, specs, categories } = {
-    images: ["https://picsum.photos/seed/picsum/900/900"],
-    name: "Latex interior Alba ultralabable Blanco",
-    description: `
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-    `,
-    price: 999,
-    id: 1,
-    specs: `
-  Marca: Alba
-  Tipo de pintura: Latex
-  Volumen: 6 Litros (L)
-  Modelo: Albalatex ultra labable
-  Color: Blanco
-    `,
-    categories: ["Pinturas", "Latex", "Interior", "Blanco"],
-  } ;
+export default function ProductDetails({ route }) {
+  console.log(route.params)
+
+  const {
+    brand, 
+    bussinessId,
+    categories,
+    content,
+    contentType,
+    description,
+    id,
+    images,
+    model,
+    name,
+    price,
+    stock,
+  } = route.params;
 
   // const dispatch = useDispatch();
   // const showModalDispatched = () => dispatch(showModal(route.params));
@@ -50,7 +46,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     <View style={styles.main}>
       <Header 
         variant="icons" 
-        children={{ id: Math.floor((Math.random() * 100) + 1) }} 
+        children={{ id: id }} 
         onPress={{
           favouriteAction: console.log,
           shareAction: alert,
@@ -63,11 +59,21 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
           <Text variant="h1" style={{ color: "#FF8000" }}>$ {price}</Text>
           <Text variant="h4">{name}</Text>
           <Text variant="subtitle1" style={{ color: "#707070" }}>{description}</Text>
-          <Text variant="h4">Información General</Text>
-          <Text variant="subtitle1" style={{ color: "#707070" }}>{specs}</Text>
-          <Text variant="h4" >Categorias</Text>   
+
+
+          <Text variant="h4" style={{ marginTop: 15 }}>Información General</Text>
+          {!brand && <Text variant="subtitle1" style={{ color: "#707070" }}> Marca: {brand ||  "Black&Decker"}</Text>}
+          {contentType && <Text variant="subtitle1" style={{ color: "#707070" }}> Contenido: {content || 1} {contentType}</Text>}
+          {!model && <Text variant="subtitle1" style={{ color: "#707070" }}> Modelo: {model || "700GH B&D"}</Text>}
+          {stock && <Text variant="subtitle1" style={{ color: "#707070" }}> Stock: {stock}</Text>}
+
+
+          <Text variant="h4" style={{ marginTop: 15 }}>Categorias</Text>   
           <View style={styles.categories}>
-            {categories.map((title, i) => <Chip key={i} children={title} style={styles.chip}/>)}
+            {categories.length
+            ? categories.map((title, i) => <Chip key={i} children={title} style={styles.chip}/>)
+            : <Text variant="subtitle1" style={{ color: "#707070" }}>Este producto no tiene categorías</Text>
+            }
           </View>
         </View>
       </ScrollView>

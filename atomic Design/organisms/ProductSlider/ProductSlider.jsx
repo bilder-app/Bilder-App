@@ -22,20 +22,11 @@ export default function ProductSlider({ children, style, productsData = [] }) {
   if(productsData.length) {
     return (
       <ScrollContainer position='horizontal' style={styles.default}>
-        {productsData.map((product) => {
-          const { name, price, brand, id, images } = product;
+        {productsData.map((product, i) => {
           return(
             <ProductCard
-              key={id}
-              children={{
-                price: price,
-                name: name,
-                contentType: "Unidad (u)",
-                content: "1",
-                brand: brand,
-                images,
-                id,
-              }}
+              key={i}
+              children={product}
               onPress={console.log}
               style={styles.card}
             />
