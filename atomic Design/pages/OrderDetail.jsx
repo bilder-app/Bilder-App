@@ -8,8 +8,8 @@ import CardItem from "../organisms/CardItem/CardItem";
 
 const children = {
   id: Math.floor((Math.random() * 100) + 1),
-  image: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
-  description: "Muñeco de baby Joda coleccionable",
+  images: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
+  name: "Muñeco de baby Joda coleccionable",
   price: Math.floor((Math.random() * 1000) + 1),
   units: Math.floor((Math.random() * 50) + 2),
 }

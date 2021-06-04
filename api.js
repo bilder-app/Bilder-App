@@ -13,22 +13,27 @@ export function searchProducts(name, page, limit = 10) {
     .then((resp) => resp.data);
 }
 
+
 export function putProductInCart({ productId, amount }) {
   return axios
     .put(`/cart/product/${productId}`, { amount })
     .then((resp) => resp.data);
 }
 
+export function postProductToCart(productId) {
+  return axios.post(`/user/cart/${productId}`);
+}
+
 export function getAllCartProducts() {
-  return axios.get("/cart/").then((resp) => resp.data);
+  return axios.get("/user/cart/").then((resp) => resp.data);
 }
 
 export function getCartAmount() {
-  return axios.get("/cart/amount/").then((resp) => resp.data);
+  return axios.get("/user/cart/amount/").then((resp) => resp.data);
 }
 
 export function clearAllCartItems() {
-  return axios.put("/cart/clear");
+  return axios.put("/user/cart/clear");
 }
 
 export function postProductToFavorites(productId) {
