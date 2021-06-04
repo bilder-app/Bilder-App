@@ -11,7 +11,7 @@ const styles = {
   },
   card: {
     marginHorizontal: 5,
-    justifyContent: "center",
+    justifyContent: "space-between",
   }
 };
 
@@ -33,7 +33,8 @@ export default function ProductSlider({ children, style, productsData = [] }) {
                 contentType: "Unidad (u)",
                 content: "1",
                 brand: brand,
-                images
+                images,
+                id,
               }}
               onPress={console.log}
               style={styles.card}

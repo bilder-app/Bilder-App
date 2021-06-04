@@ -5,12 +5,12 @@ import Text from "../../atoms/Text/Text";
 import { Entypo } from '@expo/vector-icons'; 
 
 
-export default function ModalCart({ onPress }) {
+export default function ModalCart({ onPress, style }) {
   const [value, setValue] = useState(1);
   const stock = 17;
 
   return(
-    <View style={styles.default}>
+    <View style={[styles.default, {...style}]}>
       <Button 
         onPress={() => {
           value === 1 ? alert("Desea eliminar este producto del carrito?") :  setValue(value - 1)

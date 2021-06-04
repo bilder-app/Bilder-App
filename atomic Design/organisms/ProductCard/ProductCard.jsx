@@ -4,8 +4,12 @@ import { View, StyleSheet } from "react-native";
 import CardContainer from "../../atoms/CardContainer/CardContainer";
 import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
+import IconContainer from "../../atoms/IconContainer/IconContainer";
 
+import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
+
+import { postProductToCart } from "../../../api";
 
 export default function ProductCard({ children, onPress, style }) {
   const {
@@ -14,12 +18,12 @@ export default function ProductCard({ children, onPress, style }) {
     brand,
     contentType,
     content,
+    id,
     images = [
       "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
       "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg"
     ]
-  } = children;
-  const id = Math.floor(Math.random() * 100 + 1);
+  } = children; 
   const navigation = useNavigation();
 
   return (
@@ -31,40 +35,53 @@ export default function ProductCard({ children, onPress, style }) {
       style={style}
     >
       <View style={styles.content}>
-        <Image variant="small" children={images[0]} />
+        <Image variant="max" children={images[0]} />
       </View>
-      <Text variant="h6" style={{ color: "#FF8000", fontWeight: "bold" }}>
-        ${price}
-      </Text>
-      <Text
-        variant="subtitle1"
-        style={{ color: "#444D52", fontWeight: "bold" }}
+
+      <View style={styles.body}>
+        <Text variant="h6" style={{ color: "#FF8000", fontWeight: "bold" }}>
+          ${price}
+        </Text>
+        <Text variant="subtitle1" style={{ color: "#444D52", fontWeight: "bold" }} >
+          {name}
+        </Text>
+        <Text variant="subtitle2" style={{ color: "#898C8E" }} >
+          {`${content} ${contentType}`}
+        </Text>
+        <Text variant="subtitle2" style={{ color: "#898C8E" }} >
+          {brand}
+        </Text>
+      </View>
+
+      <IconContainer 
+        style={styles.button} 
+        onPress={() => {
+          postProductToCart(id);
+          alert("Se ha añadido al carrito")
+        }}
       >
-        {name}
-      </Text>
-      <Text
-        variant="subtitle2"
-        style={{ color: "#898C8E", fontWeight: "bold" }}
-      >
-        {`${content} ${contentType}`}
-      </Text>
-      <Text
-        variant="subtitle2"
-        style={{ color: "#898C8E", fontWeight: "bold" }}
-      >
-        {brand}
-      </Text>
+        <AntDesign name="pluscircleo" size={25} color="#FF8000" />
+      </IconContainer>
     </CardContainer>
   );
 }
 const styles = StyleSheet.create({
   content: {
     width: "100%",
-    height: "46%"
+    height: "46%",
+    resizeMode: "contain",
   },
-  boton: {
-    marginTop: 5,
+  body: {
+    flex: 1, 
+    marginTop: 3,
+    justifyContent: "center", 
+  },
+  button: {
+    width: "30%",
+    height: 30,
     marginLeft: "auto",
-    marginRight: "auto"
+    justifyContent: "center",
+    alignItems: "flex-end",
+    marginTop: 3,
   }
 });

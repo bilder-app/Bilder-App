@@ -13,10 +13,15 @@ export function searchProducts(name, page, limit = 10) {
     .then((resp) => resp.data);
 }
 
+
 export function putProductInCart({ productId, amount }) {
   return axios
     .put(`/cart/product/${productId}`, { amount })
     .then((resp) => resp.data);
+}
+
+export function postProductToCart(productId) {
+  return axios.post(`/user/cart/${productId}`);
 }
 
 export function getAllCartProducts() {
