@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#FFF",
-    elevation: 5,
   },
   categories: {
     width: "100%",

@@ -10,6 +10,7 @@ export default function Search() {
       <SearchBar position="right" icon={faArrowLeft} />
       <RecentHistory content="Martillo" />
       <RecentHistory content="Clavos" />
+      <RecentHistory content="Clavos" />
     </View>
   );
 }
