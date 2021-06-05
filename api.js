@@ -14,9 +14,10 @@ export function searchProducts(name, page, limit = 10) {
 }
 
 
-export function putProductInCart({ productId, amount }) {
+export function putProductInCart(productId, amount) {
+  console.log(productId, amount)
   return axios
-    .put(`/cart/product/${productId}`, { amount })
+    .put(`/user/cart/${productId}`, { amount })
     .then((resp) => resp.data);
 }
 

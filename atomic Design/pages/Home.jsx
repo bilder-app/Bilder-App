@@ -57,7 +57,7 @@ export default function Home({ navigation }) {
       
       <View style={styles.header}>
         <FontAwesomeIcon size={25} icon={faPhone} color="#444D52" />
-        <Logo width={120} height={30} />
+        <Logo width={120} height={30} /> 
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Cart")}
@@ -93,12 +93,10 @@ export default function Home({ navigation }) {
           <Text variant="h6" style={styles.subtitle}>Nuevos</Text>
           <ProductSlider productsData={productsData} />
         </View>
-        <View style={{ marginTop: 10 }}>
-          <Text variant="h6" style={styles.subtitle}>
-            Productos en Oferta
-          </Text>
+        {/* <View style={{ marginTop: 10 }}>
+          <Text variant="h6" style={styles.subtitle}>Productos en Oferta</Text>
           <ProductSlider />
-        </View>
+        </View> */}
       </ScrollView>
     </View>
   );

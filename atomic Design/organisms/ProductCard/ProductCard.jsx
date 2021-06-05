@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 
+import Modal from "../../molecules/ModalCart/Modal";
 import CardContainer from "../../atoms/CardContainer/CardContainer";
 import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
@@ -8,8 +9,6 @@ import IconContainer from "../../atoms/IconContainer/IconContainer";
 
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
-
-import { postProductToCart } from "../../../api";
 
 export default function ProductCard({ children, onPress, style }) {
   const {
@@ -19,6 +18,7 @@ export default function ProductCard({ children, onPress, style }) {
     contentType,
     content,
     id,
+    stock,
     images = [
       "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
       "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg"
@@ -49,11 +49,13 @@ export default function ProductCard({ children, onPress, style }) {
           {`${content || 1} ${contentType}`}
         </Text>
         <Text variant="subtitle2" style={{ color: "#898C8E" }} >
-          {brand}
+          {/* {brand} */}
+          Stock: {stock}
+          , Id: {id}
         </Text>
       </View>
 
-      <IconContainer 
+      {/* <IconContainer 
         style={styles.button} 
         onPress={() => {
           postProductToCart(id);
@@ -61,7 +63,15 @@ export default function ProductCard({ children, onPress, style }) {
         }}
       >
         <AntDesign name="pluscircleo" size={25} color="#FF8000" />
-      </IconContainer>
+      </IconContainer> */}
+
+      <Modal 
+        style={{ marginLeft: "auto" }} 
+        children={{ 
+          id: id, 
+          stock: stock,
+        }}
+      />
     </CardContainer>
   );
 }
