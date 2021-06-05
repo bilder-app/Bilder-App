@@ -6,7 +6,7 @@ import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 import { postProductToCart } from "../../../api";
@@ -21,9 +21,9 @@ export default function ProductCard({ children, onPress, style }) {
     id,
     images = [
       "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
-      "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg"
-    ]
-  } = children; 
+      "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg",
+    ],
+  } = children;
   const navigation = useNavigation();
 
   return (
@@ -42,22 +42,16 @@ export default function ProductCard({ children, onPress, style }) {
         <Text variant="h6" style={{ color: "#FF8000", fontWeight: "bold" }}>
           ${price}
         </Text>
-        <Text variant="subtitle1" style={{ color: "#444D52", fontWeight: "bold" }} >
+        <Text variant="h5" style={{ color: "#444D52" }}>
           {name}
-        </Text>
-        <Text variant="subtitle2" style={{ color: "#898C8E" }} >
-          {`${content || 1} ${contentType}`}
-        </Text>
-        <Text variant="subtitle2" style={{ color: "#898C8E" }} >
-          {brand}
         </Text>
       </View>
 
-      <IconContainer 
-        style={styles.button} 
+      <IconContainer
+        style={styles.button}
         onPress={() => {
           postProductToCart(id);
-          alert("Se ha añadido al carrito")
+          alert("Se ha añadido al carrito");
         }}
       >
         <AntDesign name="pluscircleo" size={25} color="#FF8000" />
@@ -72,9 +66,9 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   body: {
-    flex: 1, 
+    flex: 1,
     marginTop: 3,
-    justifyContent: "center", 
+    justifyContent: "center",
   },
   button: {
     width: "30%",
@@ -83,5 +77,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-end",
     marginTop: 3,
-  }
+  },
 });

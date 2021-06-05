@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 export default function RecentHistoryItem({
   content,
   onTextClick,
-  onRedirectPress
+  onRedirectPress,
 }) {
   return (
     <View
@@ -15,7 +15,7 @@ export default function RecentHistoryItem({
         display: "flex",
         flexDirection: "row",
         width: "100%",
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
       }}
     >
       <TouchableOpacity
@@ -25,11 +25,11 @@ export default function RecentHistoryItem({
           flexDirection: "row",
           alignItems: "center",
           flexGrow: 8,
-          paddingVertical: 12
+          paddingVertical: 12,
         }}
       >
         <View style={{ marginHorizontal: 15 }}>
-          <FontAwesomeIcon size={20} icon={faClock} />
+          <FontAwesomeIcon size={20} icon={faClock} color="#444D52" />
         </View>
         <Text>{content}</Text>
       </TouchableOpacity>
@@ -40,10 +40,10 @@ export default function RecentHistoryItem({
           paddingVertical: 12,
           display: "flex",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
-        <FontAwesomeIcon icon={faArrowRight} />
+        <FontAwesomeIcon icon={faArrowRight} color="#444D52" />
       </Pressable>
     </View>
   );

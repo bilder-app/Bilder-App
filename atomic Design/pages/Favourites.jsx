@@ -60,12 +60,25 @@ function Favourites() {
       <StatusBar animated={true} backgroundColor="#FF8000" />
       <Header children={{ text: "Favoritos" }} />
 
-      <View style={{ width: "93%", height: "88%" }}>
+      <View
+        style={{
+          width: "94%",
+          height: "88%",
+        }}
+      >
         <ScrollView
           style={{ width: "100%" }}
           showsVerticalScrollIndicator={false}
         >
-          <View style={{ width: "100%", marginTop: 10, marginBottom: 15 }}>
+          <View
+            style={{
+              width: "100%",
+              marginTop: 10,
+              marginBottom: 15,
+
+              padding: 2,
+            }}
+          >
             {/* {favoriteProducts.length
               ? favoriteProducts.map((product, i) => { */}
             {products.length
@@ -94,6 +107,6 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
 });

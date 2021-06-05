@@ -61,7 +61,6 @@ export default function Home({ navigation }) {
 
       <View style={styles.header}>
         <FontAwesomeIcon size={30} icon={faWhatsapp} color="#444D52" />
-        {/* <Logo width={120} height={30} /> */}
         <Image source={logo} style={styles.logo} />
         <TouchableOpacity
           activeOpacity={0.8}
@@ -113,7 +112,7 @@ export default function Home({ navigation }) {
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: "#Fff",
+    backgroundColor: "#fff",
     height: height - 50,
   },
   header: {

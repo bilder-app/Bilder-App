@@ -24,7 +24,7 @@ export default function CardContainer({
   onPress,
   variant = "vertical",
 }) {
-  const [shadown, setShadown] = useState(1);
+  const [shadown, setShadown] = useState(2);
 
   return (
     <Pressable
