@@ -37,7 +37,11 @@ export default function Cart({ navigation }) {
   const [productsInCart, setProducts] = useState();
 
   useEffect(() => {
-    getAllCartProducts().then((data) => setProducts(data));
+    getAllCartProducts().then((data) => {
+      setProducts(data)
+      console.log(data);
+    });
+    
   }, []);
 
   return (

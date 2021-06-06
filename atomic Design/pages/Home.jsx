@@ -28,7 +28,7 @@ import {
 import { faShoppingCart, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import { getProducts } from "../../api";
+import { getProducts, getAllCartProducts } from "../../api";
 
 const { height } = Dimensions.get("window");
 const items = [
@@ -45,10 +45,11 @@ const items = [
 ];
 
 export default function Home({ navigation }) {
-  const [productsData, setProductsData] = useState();
+  const [products, setProducts] = useState({});
 
   useEffect(() => {
-    getProducts().then((resp) => setProductsData(resp.data));
+    getProducts().then(res => setProducts({...products, newProducts: res.data }));
+    getAllCartProducts().then(data => setProducts({...products, cartProducts: data }));
   }, []);
   
   return (
@@ -91,7 +92,7 @@ export default function Home({ navigation }) {
 
         <View style={{ marginTop: 10 }}>
           <Text variant="h6" style={styles.subtitle}>Nuevos</Text>
-          <ProductSlider productsData={productsData} />
+          <ProductSlider children={products} />
         </View>
         {/* <View style={{ marginTop: 10 }}>
           <Text variant="h6" style={styles.subtitle}>Productos en Oferta</Text>

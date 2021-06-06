@@ -1,28 +1,18 @@
 import React from "react";
+import { StyleSheet } from "react-native";
+
 import ProductCard from "../ProductCard/ProductCard";
 import ScrollContainer from "../../atoms/ScrollContainer/ScrollContainer";
-import { useNavigation } from "@react-navigation/native";
 
-const styles = {
-  default: {
-    width: "100%",
-    paddingHorizontal: 10,
-    marginBottom: 10,
-  },
-  card: {
-    marginHorizontal: 5,
-    justifyContent: "space-between",
-  }
-};
 
-export default function ProductSlider({ children, style, productsData = [] }) {
+export default function ProductSlider({ children, style }) {
+  const { newProducts = [], cartProducts } = children;
+  console.log(cartProducts)
 
-  // const navigation = useNavigation();
-  
-  if(productsData.length) {
+  if(newProducts.length) {
     return (
       <ScrollContainer position='horizontal' style={styles.default}>
-        {productsData.map((product, i) => {
+        {newProducts.map((product, i) => {
           return(
             <ProductCard
               key={i}
@@ -38,7 +28,7 @@ export default function ProductSlider({ children, style, productsData = [] }) {
 
   return (
     <ScrollContainer position="horizontal" style={styles.default}>
-      {[1, 2, 3, 4, 5].map((item) => {
+      {[1, 2, 3].map((item) => {
         return (
           <ProductCard
             key={item}
@@ -57,3 +47,15 @@ export default function ProductSlider({ children, style, productsData = [] }) {
     </ScrollContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  default: {
+    width: "100%",
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  card: {
+    marginHorizontal: 5,
+    justifyContent: "space-between",
+  }
+})

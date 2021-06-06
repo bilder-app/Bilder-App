@@ -13,17 +13,26 @@ export function searchProducts(name, page, limit = 10) {
     .then((resp) => resp.data);
 }
 
+export function isProductInCart(productId) {
+  return axios.get(`/user/cart/${productId}`);
+}
 
-export function putProductInCart(productId, amount) {
+export function addProductToCart(productId) {
+  return axios.post(`/user/cart/${productId}`);
+}
+
+export function editProductInCart(productId, amount) {
   console.log(productId, amount)
   return axios
     .put(`/user/cart/${productId}`, { amount })
     .then((resp) => resp.data);
 }
 
-export function postProductToCart(productId) {
-  return axios.post(`/user/cart/${productId}`);
+export function deleteProductInCart(productId) {
+  return axios.delete(`/user/cart/${productId}`);
 }
+
+
 
 export function getAllCartProducts() {
   return axios.get("/user/cart/").then((resp) => resp.data);

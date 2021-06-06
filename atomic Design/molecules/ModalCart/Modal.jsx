@@ -1,27 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 
 import Text from "../../atoms/Text/Text";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 
 import { AntDesign } from '@expo/vector-icons';
-import { putProductInCart, postProductToCart } from "../../../api";
+import { 
+  addProductToCart, 
+  editProductInCart,
+  deleteProductInCart 
+} from "../../../api";
 
 
 export default function ModalCart({ onPress, style, children }) {
   
   const [visible, setVisible] = useState(false);
   const [value, setValue] = useState(0);
+  const [delay, handleDelay] = useState();
 
   const { stock, id } = children;
-
-  const [delay, handleDelay] = useState();
+  useEffect(() => {
+    //llamado a la store cart [{product}, {product}]
+    // buscar dentro de la cart si algún productId coincide con mi id, de ser así cambiar el value 
+  }, [])
 
   function start(currentValue) { 
     handleDelay(
       setTimeout(() => {
         setVisible(false);
-        putProductInCart(id, currentValue);
+        currentValue > 0 ? editProductInCart(id, currentValue) : deleteProductInCart(id);
         alert("Cantidad actualizada :)");
       }, 3000) 
     )
@@ -41,7 +48,7 @@ export default function ModalCart({ onPress, style, children }) {
             style={styles.addCart} 
             onPress={() => {
               setValue(1);
-              postProductToCart(id)
+              addProductToCart(id)
             }}
           >
             <AntDesign name="pluscircleo" size={25} color="#FF8000" />
