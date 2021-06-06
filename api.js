@@ -3,6 +3,15 @@ import axios from "axios";
 // axios.defaults.baseURL = "https://bilder-backend.herokuapp.com";
 axios.defaults.baseURL = process.env.MY_IP;
 
+export function logIn({ email, password }) {
+  return axios.post("/auth/login", { email, password });
+}
+
+export function getMyUser() {
+  return axios.get("/user/me").then((res) => res.data);
+}
+
+
 export function getProducts() {
   return axios.get(`/products`);
 }
@@ -13,16 +22,12 @@ export function searchProducts(name, page, limit = 10) {
     .then((resp) => resp.data);
 }
 
-export function isProductInCart(productId) {
-  return axios.get(`/user/cart/${productId}`);
-}
 
-export function addProductToCart(productId) {
+export function postProductToCart(productId) {
   return axios.post(`/user/cart/${productId}`);
 }
 
-export function editProductInCart(productId, amount) {
-  console.log(productId, amount)
+export function updateProductInCart(productId, amount) {
   return axios
     .put(`/user/cart/${productId}`, { amount })
     .then((resp) => resp.data);
@@ -32,19 +37,19 @@ export function deleteProductInCart(productId) {
   return axios.delete(`/user/cart/${productId}`);
 }
 
-
-
 export function getAllCartProducts() {
   return axios.get("/user/cart/").then((resp) => resp.data);
-}
-
-export function getCartAmount() {
-  return axios.get("/user/cart/amount/").then((resp) => resp.data);
 }
 
 export function clearAllCartItems() {
   return axios.put("/user/cart/clear");
 }
+
+// export function getCartAmount() {
+//   return axios.get("/user/cart/amount/").then((resp) => resp.data);
+// }
+
+
 
 export function postProductToFavorites(productId) {
   return axios.post(`/favorite/${productId}`);
@@ -66,12 +71,4 @@ export function getProductsByCategories(categories) {
 
 export function removeProductFromCart(productId) {
   return axios.delete(`/cart/product/${productId}`).then((resp) => resp.data);
-}
-
-export function logIn({ email, password }) {
-  return axios.post("/auth/login", { email, password });
-}
-
-export function getMyUser() {
-  return axios.get("/user/me").then((res) => res.data);
 }

@@ -5,14 +5,12 @@ import ProductCard from "../ProductCard/ProductCard";
 import ScrollContainer from "../../atoms/ScrollContainer/ScrollContainer";
 
 
-export default function ProductSlider({ children, style }) {
-  const { newProducts = [], cartProducts } = children;
-  console.log(cartProducts)
+export default function ProductSlider({ children = [], style }) {
 
-  if(newProducts.length) {
+  if(children.length) {
     return (
       <ScrollContainer position='horizontal' style={styles.default}>
-        {newProducts.map((product, i) => {
+        {children.map((product, i) => {
           return(
             <ProductCard
               key={i}

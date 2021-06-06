@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { View,
   ScrollView,
   StyleSheet,
@@ -29,6 +30,7 @@ import { faShoppingCart, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import { getProducts, getAllCartProducts } from "../../api";
+import { getCartItems } from "../../redux/actions/cart";
 
 const { height } = Dimensions.get("window");
 const items = [
@@ -44,14 +46,14 @@ const items = [
   { name: "Floors", icon: faClone, title: "Pisos" }
 ];
 
-export default function Home({ navigation }) {
-  const [products, setProducts] = useState({});
+function Home({ navigation, getCartItems, cart }) {
+  const [productsData, setProductsData] = useState();
 
   useEffect(() => {
-    getProducts().then(res => setProducts({...products, newProducts: res.data }));
-    getAllCartProducts().then(data => setProducts({...products, cartProducts: data }));
+    getProducts().then((resp) => setProductsData(resp.data));
+    getCartItems();   // redux
   }, []);
-  
+
   return (
     <View style={{ height: height - 50 }}>
       <StatusBar animated={true} backgroundColor="#FF8000"/>
@@ -92,7 +94,7 @@ export default function Home({ navigation }) {
 
         <View style={{ marginTop: 10 }}>
           <Text variant="h6" style={styles.subtitle}>Nuevos</Text>
-          <ProductSlider children={products} />
+          <ProductSlider children={productsData} />
         </View>
         {/* <View style={{ marginTop: 10 }}>
           <Text variant="h6" style={styles.subtitle}>Productos en Oferta</Text>
@@ -102,6 +104,14 @@ export default function Home({ navigation }) {
     </View>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    cart: state.cartList.cart
+  };
+}
+export default connect(mapStateToProps, { getCartItems })(Home);
+
 
 const styles = StyleSheet.create({
   main: {
