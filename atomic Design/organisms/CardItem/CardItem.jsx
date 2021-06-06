@@ -1,15 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { View, TouchableOpacity } from "react-native";
-import ModalCart from "../../molecules/ModalCart/ModalCart";
+
+import Modal from "../../molecules/ModalCart/Modal";
 import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
 import Chip from "../../atoms/Chip/Chip";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
+
 import { Ionicons, Entypo } from '@expo/vector-icons';
 
 
 export default function CardItem({ variant, children, onPress, style }) {
-  const [cart, setCart] = useState(false)
+  const [cartBoolean, setCartBoolean] = useState(false);
+  const [value, setValue] = useState();
+  const cart = useSelector(state => state.cartList.cart);
+
+  if(variant === "cart") {
+    useEffect(() => {
+      cart.map((product) => {
+        product.id === children.id && setValue(product.ProductInCart.amount)
+      })
+    }, [cart])
+  }
+
+
   if(variant === "shippingCard") {
     return(
       <View style={[styles.base, style]}>
@@ -37,13 +52,22 @@ export default function CardItem({ variant, children, onPress, style }) {
 
           {variant === "favourite" && 
             <IconContainer style={styles.favourite} onPress={() => {
-              setCart(!cart);
-              onPress(children.id, !cart);
+              setCartBoolean(!cartBoolean);
+              onPress(children.id, !cartBoolean);
             }}>
-              <Ionicons name={cart ? "cart" : "cart-outline" } size={28} color="#ff8000" />
+              <Ionicons name={cartBoolean ? "cart" : "cart-outline" } size={28} color="#ff8000" />
             </IconContainer>
           }
-          {variant === "cart" &&  <ModalCart/> }
+          {variant === "cart" &&  
+            <Modal 
+              style={{ marginLeft: "auto", width: "50%" }} 
+              children={{ 
+                id: children.id, 
+                stock: children.stock,
+                amount: value || 0
+              }}
+            /> 
+          }
           {variant === "shippingDetail" && 
             <Text variant="subtitle1">
               <Text variant="h6">{children.units} </Text>unidades

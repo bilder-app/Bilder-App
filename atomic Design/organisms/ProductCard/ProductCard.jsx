@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { View, StyleSheet } from "react-native";
 
 import Modal from "../../molecules/ModalCart/Modal";
 import CardContainer from "../../atoms/CardContainer/CardContainer";
 import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
-import IconContainer from "../../atoms/IconContainer/IconContainer";
 
-import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 
 export default function ProductCard({ children, onPress, style }) {
@@ -26,10 +25,18 @@ export default function ProductCard({ children, onPress, style }) {
   } = children; 
   const navigation = useNavigation();
 
+  const [value, setValue] = useState();
+  const cart = useSelector(state => state.cartList.cart);
+
+  useEffect(() => {
+    cart.map((product) => {
+      product.id === id && setValue(product.ProductInCart.amount)
+    })
+  }, [cart])
+
   return (
     <CardContainer
       onPress={() => {
-        onPress(id);
         navigation.navigate("ProductDetail", children);
       }}
       style={style}
@@ -55,26 +62,18 @@ export default function ProductCard({ children, onPress, style }) {
         </Text>
       </View>
 
-      {/* <IconContainer 
-        style={styles.button} 
-        onPress={() => {
-          postProductToCart(id);
-          alert("Se ha añadido al carrito")
-        }}
-      >
-        <AntDesign name="pluscircleo" size={25} color="#FF8000" />
-      </IconContainer> */}
-
       <Modal 
         style={{ marginLeft: "auto" }} 
         children={{ 
           id: id, 
           stock: stock,
+          amount: value || 0
         }}
       />
     </CardContainer>
   );
 }
+
 const styles = StyleSheet.create({
   content: {
     width: "100%",

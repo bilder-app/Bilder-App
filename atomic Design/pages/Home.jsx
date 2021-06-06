@@ -50,7 +50,7 @@ function Home({ navigation, getCartItems, cart }) {
   const [productsData, setProductsData] = useState();
 
   useEffect(() => {
-    getProducts().then((resp) => setProductsData(resp.data));
+    getProducts().then((resp) => setProductsData(resp.data))
     getCartItems();   // redux
   }, []);
 
@@ -59,7 +59,12 @@ function Home({ navigation, getCartItems, cart }) {
       <StatusBar animated={true} backgroundColor="#FF8000"/>
       
       <View style={styles.header}>
-        <FontAwesomeIcon size={25} icon={faPhone} color="#444D52" />
+         <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => console.log(cart)}
+        >
+          <FontAwesomeIcon size={25} icon={faPhone} color="#444D52" />
+        </TouchableOpacity>
         <Logo width={120} height={30} /> 
         <TouchableOpacity
           activeOpacity={0.8}
@@ -85,7 +90,8 @@ function Home({ navigation, getCartItems, cart }) {
                 <CategoryIcon
                   key={i}
                   children={children}
-                  onPress={() => console.log("Redirect to " + children.title)}
+                  onPress={() => 
+                  ("Redirect to " + children.title)}
                 />
               );
             })}

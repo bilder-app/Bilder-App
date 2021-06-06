@@ -5,6 +5,9 @@ import {
   REMOVING_ITEM_FROM_CART,
   REMOVED_ITEM_FROM_CART,
   REMOVING_ITEM_FROM_CART_ERROR,
+  EDITED_ITEM_FROM_CART,
+  EDITING_ITEM_FROM_CART,
+  EDITING_ITEM_FROM_CART_ERROR,
   FETCHING_CART_ITEMS,
   FETCHED_CART_ITEMS,
   FETCHING_CART_ITEMS_ERROR,
@@ -20,8 +23,10 @@ const initialState = {
   isAddingToCartError: null,
   isFetchingCartItems: false,
   isFetchingCartItemsError: null,
-  isRemovingToCart: false,
-  isRemovingToCartError: null,
+  isRemovingFromCart: false,
+  isRemovingFromCartError: null,
+  isEditingFromCart: false,
+  isEditingFromCartError: null,
   isClearingCartItems: false,
   isClearingCartItemsError: null,
 
@@ -72,6 +77,28 @@ export default function CartReducer(state = initialState, action) {
         ...state,
         isRemovingItemFromCart: false,
         isRemovingItemFromCartError: action.payload,
+      };
+    
+    case EDITING_ITEM_FROM_CART:
+      return {
+        ...state,
+        isEditingItemFromCart: true,
+        isEditingItemFromCartError: false,
+      };
+
+    case EDITED_ITEM_FROM_CART:
+      return {
+        ...state,
+        isEditingItemFromCart: false,
+        isEditingItemFromCartError: false,
+        cart: [...state.cart.map((item) => item.productId === action.payload.productId ? action.payload.ProductInCart : item)],
+      };
+
+    case EDITING_ITEM_FROM_CART_ERROR:
+      return {
+        ...state,
+        isEditingItemFromCart: false,
+        isEditingItemFromCartError: action.payload,
       };
 
     case FETCHING_CART_ITEMS:

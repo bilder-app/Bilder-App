@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { View, FlatList, StyleSheet } from "react-native";
 
 import Header from "../organisms/Header/Header";
@@ -6,26 +7,11 @@ import CardItem from "../organisms/CardItem/CardItem";
 import Text from "../../atomic Design/atoms/Text/Text";
 import Button from "../../atomic Design/atoms/Button/Button";
 
-import { getAllCartProducts } from "../../api";
+import { getCartItems } from "../../redux/actions/cart";
 
 const random =  Math.floor((Math.random() * 100) + 1)
-const items = [
-  {
-    id: random,
-    image: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
-    description: "Muñeco de baby Joda coleccionable",
-    price: Math.floor((Math.random() * 1000) + 1),
-  },
-  {
-    id: random + 1,
-    image: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
-    description: "Muñeco de baby Joda coleccionable",
-    price: Math.floor((Math.random() * 1000) + 1),
-  },
-];
 
 const renderItem = ({ item }) => {
-
   return (
     <View style={{ marginVertical: 5, marginHorizontal: 15 }} key={item.id}>
       <CardItem variant="cart" children={item} onPress={alert}/>
@@ -33,25 +19,19 @@ const renderItem = ({ item }) => {
   ) 
 };
 
-export default function Cart({ navigation }) {
-  const [productsInCart, setProducts] = useState();
-
+function Cart({ navigation, cart, getCartItems }) {
   useEffect(() => {
-    getAllCartProducts().then((data) => {
-      setProducts(data)
-      console.log(data);
-    });
-    
-  }, []);
+    getCartItems();   // redux
+  }, [cart])
 
   return (
     <View style={styles.main}>
       <Header children={{ text: "Mi Carrito" }}/>
 
       <FlatList
-        data={productsInCart || items}
+        data={cart}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => index.toString()}
       />
  
       <View style={{ paddingHorizontal: 20, backgroundColor: "#FFF" }}>
@@ -68,6 +48,14 @@ export default function Cart({ navigation }) {
     </View>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    cart: state.cartList.cart
+  };
+}
+export default connect(mapStateToProps, { getCartItems })(Cart);
+
 
 const styles = StyleSheet.create({
   main: { 

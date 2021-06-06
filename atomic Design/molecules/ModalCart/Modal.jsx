@@ -1,49 +1,40 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { View, StyleSheet } from "react-native";
 
 import Text from "../../atoms/Text/Text";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 
 import { AntDesign } from '@expo/vector-icons';
-import { 
-  postProductToCart, 
-  updateProductInCart,
-  deleteProductInCart 
-} from "../../../api";
 
 import { 
   addToCart,
   editItemFromCart,
   removeItemFromCart,
 } from "../../../redux/actions/cart";
+import { 
+  postProductToCart,
+  updateProductInCart,
+  deleteProductInCart,
+} from "../../../api"
 
 
-export default function ModalCart({ onPress, style, children }) {
-  
+export default function Modal({ onPress, style, children }) {
   const [visible, setVisible] = useState(false);
   const [value, setValue] = useState(0);
   const [delay, handleDelay] = useState();
 
 
-  const { stock, id } = children;
-  const dispatch = useDispatch();
-  const cart = useSelector(state => state.cartList.cart);
-
-
-  useEffect(() => {
-    cart.map((product) => {
-      product.id === id && setValue(product.ProductInCart.amount)
-    })
-  }, [cart])
+  const { stock, id, amount } = children;
+  
+  useEffect(() => setValue(amount), [amount])
   
   function start(currentValue) { 
     handleDelay(
       setTimeout(() => {
         setVisible(false);
-        currentValue > 0 ? dispatch(editItemFromCart(id, currentValue)) : dispatch(removeItemFromCart(id));
+        currentValue > 0 ? updateProductInCart(id, currentValue) : deleteProductInCart(id);
         alert("Cantidad actualizada :)");
-      }, 3000) 
+      }, 2000) 
     )
   }
   function restart(currentValue){ 
@@ -61,7 +52,7 @@ export default function ModalCart({ onPress, style, children }) {
             style={styles.addCart} 
             onPress={() => {
               setValue(1);
-              dispatch(addToCart(id))
+              postProductToCart(id)
             }}
           >
             <AntDesign name="pluscircleo" size={25} color="#FF8000" />

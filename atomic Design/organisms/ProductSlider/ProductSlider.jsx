@@ -15,7 +15,6 @@ export default function ProductSlider({ children = [], style }) {
             <ProductCard
               key={i}
               children={product}
-              onPress={console.log}
               style={styles.card}
             />
           )
@@ -37,7 +36,6 @@ export default function ProductSlider({ children = [], style }) {
               content: "1",
               brand: "Corralón de materiales"
             }}
-            onPress={console.log}
             style={styles.card}
           />
         );
