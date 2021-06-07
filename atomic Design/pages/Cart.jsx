@@ -24,9 +24,13 @@ function Cart({ navigation, cart, getCartItems }) {
     getCartItems();   // redux
   }, [cart])
 
-  const subtotal = cart.reduce((acc, { price, ProductInCart }) => {
-    return (acc.price * acc.ProductInCart.amount) + (price * ProductInCart.amount)
-  })
+  const reduceCart = (() => {
+    let acc = 0;
+    for(let a = 0; a < cart.length; a++){
+      acc += cart[a].ProductInCart.amount * cart[a].price
+    }
+    return acc;
+  })();
 
   return (
     <View style={styles.main}>
@@ -42,7 +46,7 @@ function Cart({ navigation, cart, getCartItems }) {
         <View style={styles.hr}/>
         <View style={styles.content}>
           <Text style={{ color: "#707070" }} variant="subtitle2">Subtotal</Text>
-          <Text style={styles.price} variant="h6">$ {cart ? subtotal : null}</Text>
+          <Text style={styles.price} variant="h6">$ {reduceCart}</Text>
         </View>
       </View>
 
