@@ -33,7 +33,6 @@ export default function Modal({ onPress, style, children }) {
       setTimeout(() => {
         setVisible(false);
         currentValue > 0 ? updateProductInCart(id, currentValue) : deleteProductInCart(id);
-        alert("Cantidad actualizada :)");
       }, 2000) 
     )
   }

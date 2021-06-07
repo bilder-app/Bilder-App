@@ -24,6 +24,10 @@ function Cart({ navigation, cart, getCartItems }) {
     getCartItems();   // redux
   }, [cart])
 
+  const subtotal = cart.reduce((acc, { price, ProductInCart }) => {
+    return (acc.price * acc.ProductInCart.amount) + (price * ProductInCart.amount)
+  })
+
   return (
     <View style={styles.main}>
       <Header children={{ text: "Mi Carrito" }}/>
@@ -38,7 +42,7 @@ function Cart({ navigation, cart, getCartItems }) {
         <View style={styles.hr}/>
         <View style={styles.content}>
           <Text style={{ color: "#707070" }} variant="subtitle2">Subtotal</Text>
-          <Text style={styles.price} variant="h6">$4400</Text>
+          <Text style={styles.price} variant="h6">$ {cart ? subtotal : null}</Text>
         </View>
       </View>
 
