@@ -15,8 +15,6 @@ import Chip from "../atoms/Chip/Chip";
 
 
 export default function ProductDetails({ route }) {
-  console.log(route.params)
-
   const {
     brand, 
     bussinessId,

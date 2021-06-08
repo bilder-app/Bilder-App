@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { View, StyleSheet } from "react-native";
 
+import Modal from "../../molecules/ModalCart/Modal";
 import CardContainer from "../../atoms/CardContainer/CardContainer";
 import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
-import IconContainer from "../../atoms/IconContainer/IconContainer";
 
-import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-
-import { postProductToCart } from "../../../api";
 
 export default function ProductCard({ children, onPress, style }) {
   const {
@@ -19,6 +17,7 @@ export default function ProductCard({ children, onPress, style }) {
     contentType,
     content,
     id,
+    stock,
     images = [
       "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
       "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg",
@@ -26,10 +25,18 @@ export default function ProductCard({ children, onPress, style }) {
   } = children;
   const navigation = useNavigation();
 
+  const [value, setValue] = useState();
+  const cart = useSelector((state) => state.cartList.cart);
+
+  useEffect(() => {
+    cart.map((product) => {
+      product.id === id && setValue(product.ProductInCart.amount);
+    });
+  }, [cart]);
+
   return (
     <CardContainer
       onPress={() => {
-        onPress(id);
         navigation.navigate("ProductDetail", children);
       }}
       style={style}
@@ -45,20 +52,27 @@ export default function ProductCard({ children, onPress, style }) {
         <Text variant="h5" style={{ color: "#444D52" }}>
           {name}
         </Text>
+        <Text variant="subtitle2" style={{ color: "#898C8E" }}>
+          {`${content || 1} ${contentType}`}
+        </Text>
+        <Text variant="subtitle2" style={{ color: "#898C8E" }}>
+          {/* {brand} */}
+          Stock: {stock}, Id: {id}
+        </Text>
       </View>
 
-      <IconContainer
-        style={styles.button}
-        onPress={() => {
-          postProductToCart(id);
-          alert("Se ha añadido al carrito");
+      <Modal
+        style={{ marginLeft: "auto" }}
+        children={{
+          id: id,
+          stock: stock,
+          amount: value || 0,
         }}
-      >
-        <AntDesign name="pluscircleo" size={25} color="#FF8000" />
-      </IconContainer>
+      />
     </CardContainer>
   );
 }
+
 const styles = StyleSheet.create({
   content: {
     width: "100%",

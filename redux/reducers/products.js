@@ -3,7 +3,6 @@ import {
   GET_PRODUCTS,
   GET_CART_AMOUNT,
   SET_MODAL,
-  UNSHIFT_HISTORY,
   ADDED_TO_CART,
   ADDING_TO_CART,
   ADDING_TO_CART_ERROR,
@@ -26,12 +25,11 @@ import {
 
 const initialState = {
   products: [],
-  amount: 0,
   modal: {
     isVisible: false,
     product: {},
   },
-  history: [],
+
   cart: [],
   isAddingToCart: false,
   isAddingToCartError: null,
@@ -39,6 +37,7 @@ const initialState = {
   isFetchingCartItemsError: null,
   isClearingCartItems: false,
   isClearingCartItemsError: null,
+
   favoriteProducts: [],
   isAddingItemToFavorites: false,
   isAddingItemToFavoritesError: null,
@@ -71,14 +70,12 @@ export default function productsList(state = initialState, action) {
         },
       };
 
-    case UNSHIFT_HISTORY:
+    case ADDING_TO_CART:
       return {
         ...state,
-        history: [action.payload, ...state.history],
+        isAddingToCart: true,
+        isAddingToCartError: false
       };
-
-    case ADDING_TO_CART:
-      return { ...state, isAddingToCart: true, isAddingToCartError: false };
 
     case ADDED_TO_CART:
       return {

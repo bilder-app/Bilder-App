@@ -7,12 +7,13 @@ const styles = {
   height: 60,
 };
 
-export default function CategoryContainer({ children, onPress, style }) {
+export default function CategoryContainer({ children, onPress, style, props }) {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       style={[styles, { ...style }]}
       onPress={onPress}
+      {...props}
     >
       {children}
     </TouchableOpacity>
