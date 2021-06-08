@@ -34,7 +34,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { getProducts, getAllCartProducts } from "../../api";
 import { getCartItems } from "../../redux/actions/cart";
 
-const logo = require("../../assets/logotipo.png");
+const logo = require("../../assets/logo.png");
 
 const { height } = Dimensions.get("window");
 const items = [
@@ -67,7 +67,7 @@ function Home({ navigation, getCartItems, cart }) {
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Search")}
         >
-          <FontAwesomeIcon size={25} icon={faSearch} color="#444D52" />
+          <FontAwesomeIcon size={24} icon={faSearch} color="#444D52" />
         </TouchableOpacity>
         <Image source={logo} style={styles.logo} />
         <TouchableOpacity
@@ -150,8 +150,8 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   logo: {
-    width: 90,
+    width: 120,
     resizeMode: "contain",
-    marginBottom: 5,
+    backgroundColor: "white",
   },
 });

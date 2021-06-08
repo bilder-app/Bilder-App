@@ -4,8 +4,8 @@ import Svg, { Path } from "react-native-svg";
 function SvgComponent(props) {
   return (
     <Svg
-      width="30"
-      height="30"
+      width="25"
+      height="25"
       color="#444D52"
       aria-hidden="true"
       data-prefix="far"
