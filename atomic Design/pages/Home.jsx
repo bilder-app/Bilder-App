@@ -14,7 +14,9 @@ import ProductSlider from "../organisms/ProductSlider/ProductSlider";
 import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Slider from "../atoms/Slider/Slider";
 import Text from "../atoms/Text/Text";
-import Cart from "../atoms/Cart.jsx";
+import Cart from "../atoms/Icons/Cart.jsx";
+
+import Search from "../atoms/Icons/Search";
 
 import {
   faPaintRoller,
@@ -50,7 +52,7 @@ const items = [
   { name: "Floors", icon: faClone, title: "Pisos" },
 ];
 
-function Home({ navigation, getCartItems, cart }) {
+function Home({ navigation, getCartItems }) {
   const [productsData, setProductsData] = useState();
 
   useEffect(() => {
@@ -67,14 +69,14 @@ function Home({ navigation, getCartItems, cart }) {
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Search")}
         >
-          <FontAwesomeIcon size={24} icon={faSearch} color="#444D52" />
+          <Search width="20" height="25" />
         </TouchableOpacity>
         <Image source={logo} style={styles.logo} />
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Cart")}
         >
-          <Cart />
+          <Cart width="25" height="25" />
         </TouchableOpacity>
       </View>
 

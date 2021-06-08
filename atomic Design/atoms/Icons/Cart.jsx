@@ -1,12 +1,13 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 
-function SvgComponent(props) {
+function SvgComponent({ width, height, props }) {
   return (
     <Svg
-      width="25"
-      height="25"
+      width={width}
+      height={height}
       color="#444D52"
+      stroke="#444D52"
       aria-hidden="true"
       data-prefix="far"
       data-icon="shopping-cart"

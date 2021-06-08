@@ -2,10 +2,10 @@ import React from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import Text from "../../atoms/Text/Text";
 // import SVG icons in assests/icons/IconName.jsx
-import Home from "../../../assets/icons/Home";
-import Truck from "../../../assets/icons/Truck";
-import Person from "../../../assets/icons/Person";
-import Favourite from "../../../assets/icons/Favourite";
+import Home from "../../atoms/Icons/Home";
+import Person from "../../atoms/Icons/Person";
+import Favourite from "../../atoms/Icons/Favourite";
+import Truck from "../../atoms/Icons/Truck";
 
 export default function MyTabBar({ state, descriptors, navigation, title }) {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
