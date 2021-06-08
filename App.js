@@ -35,7 +35,6 @@ export default function App() {
       <Tab.Navigator initialRouteName="Home" backBehavior="history" tabBar={(props) => <TabBar {...props}/> }>
         {/* Acá van los menu del tabBar */}
         <Tab.Screen name="Home" component={ Home } />
-        <Tab.Screen name="Search" component={ Search } />
         <Tab.Screen name="Favourites" component={ Favourites } />
         <Tab.Screen name="Orders" component={ Orders } />
         <Tab.Screen name="Profile" component={ Profile } />
@@ -52,6 +51,7 @@ export default function App() {
           <Stack.Screen name="MyTabBar" component={ MyTabBar }/>
 
           {/* Acá van las pantallas sin tabBar */}
+          <Stack.Screen name="Search" component={ Search } />
           <Stack.Screen name="ProductDetail" component={ ProductDetail } />
           <Stack.Screen name="Cart" component={ Cart } />
           <Stack.Screen name="Payment" component={ Payment } />

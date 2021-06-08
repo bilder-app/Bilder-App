@@ -7,6 +7,7 @@ import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
 import Chip from "../../atoms/Chip/Chip";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
+import Home from "../../../assets/icons/Home";
 
 import { Ionicons, Entypo } from '@expo/vector-icons';
 
@@ -51,12 +52,13 @@ export default function CardItem({ variant, children, onPress, style }) {
           <Text variant="h6" style={{ color: "#ff8000" }}>$ {children.price}</Text>
 
           {variant === "favourite" && 
-            <IconContainer style={styles.favourite} onPress={() => {
+            /* <IconContainer style={styles.favourite} onPress={() => {
               setCartBoolean(!cartBoolean);
               onPress(children.id, !cartBoolean);
             }}>
               <Ionicons name={cartBoolean ? "cart" : "cart-outline" } size={28} color="#ff8000" />
-            </IconContainer>
+            </IconContainer> */
+            <Home/>
           }
           {variant === "cart" &&  
             <Modal 
