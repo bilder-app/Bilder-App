@@ -15,12 +15,9 @@ import {
   ADDED_ITEM_TO_FAVORITES,
   ADDING_ITEM_TO_FAVORITES,
   ADDING_ITEM_TO_FAVORITES_ERROR,
-  FETCHED_FAVORITE_ITEMS,
-  FETCHING_FAVORITE_ITEMS,
-  FETCHING_FAVORITE_ITEMS_ERROR,
   REMOVED_ITEM_FROM_FAVORITES,
   REMOVING_ITEM_FROM_FAVORITES,
-  REMOVING_ITEM_FROM_FAVORITES_ERROR,
+  REMOVING_ITEM_FROM_FAVORITES_ERROR
 } from "../types.js";
 
 import axios from "axios";
@@ -29,16 +26,15 @@ import {
   putProductInCart,
   getAllCartProducts,
   clearAllCartItems,
-  getFavoriteProducts as getFavProducts,
   postProductToFavorites,
-  deleteProductFromFavorites,
+  deleteProductFromFavorites
 } from "../../api";
 
 export const addProduct = (product) => {
   return function (dispatch) {
     return dispatch({
       type: ADD_PRODUCT,
-      payload: product,
+      payload: product
     });
   };
 };
@@ -50,7 +46,7 @@ export const getProducts = () => {
       .then((res) => {
         return dispatch({
           type: GET_PRODUCTS,
-          payload: res.data,
+          payload: res.data
         });
       })
       .catch((err) => {
@@ -65,8 +61,8 @@ export const showModal = (product) => {
       type: SET_MODAL,
       payload: {
         product,
-        visible: true,
-      },
+        visible: true
+      }
     });
   };
 };
@@ -76,22 +72,19 @@ export const hideModal = () => {
     return dispatch({
       type: SET_MODAL,
       payload: {},
-      visible: false,
+      visible: false
     });
   };
 };
-
 
 export const addToCart = (productId, amount) => (dispatch) => {
   dispatch({ type: ADDING_TO_CART });
   putProductInCart(productId, amount)
     .then((resp) => {
       dispatch({ type: ADDED_TO_CART, payload: resp });
-      
     })
     .catch((e) => dispatch({ type: ADDING_TO_CART_ERROR, payload: e }));
 };
-
 
 export const removeToCart = (productId, amount) => (dispatch) => {
   dispatch({ type: ADDING_TO_CART });
@@ -112,15 +105,6 @@ export const clearCartItems = () => (dispatch) => {
   clearAllCartItems()
     .then(() => dispatch({ type: CLEARED_CART_ITEMS }))
     .catch((e) => dispatch({ type: CLEARING_CART_ITEMS_ERROR, payload: e }));
-};
-
-export const getFavoriteProducts = () => (dispatch) => {
-  dispatch({ type: FETCHING_FAVORITE_ITEMS });
-  getFavProducts()
-    .then((resp) => dispatch({ type: FETCHED_FAVORITE_ITEMS, payload: resp }))
-    .catch((e) =>
-      dispatch({ type: FETCHING_FAVORITE_ITEMS_ERROR, payload: e })
-    );
 };
 
 export const addProductToFavorites = (productId) => (dispatch) => {
