@@ -26,7 +26,7 @@ import {
   faPencilRuler,
   faClone
 } from "@fortawesome/free-solid-svg-icons";
-import { faShoppingCart, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import { getProducts, getAllCartProducts } from "../../api";
@@ -48,7 +48,7 @@ const items = [
 
 function Home({ navigation, getCartItems, cart }) {
   const [productsData, setProductsData] = useState();
-
+  
   useEffect(() => {
     getProducts().then((resp) => setProductsData(resp.data))
     getCartItems();   // redux
@@ -61,9 +61,9 @@ function Home({ navigation, getCartItems, cart }) {
       <View style={styles.header}>
          <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => console.log(cart)}
+          onPress={() => navigation.navigate("Search")}
         >
-          <FontAwesomeIcon size={25} icon={faPhone} color="#444D52" />
+          <FontAwesomeIcon size={25} icon={faSearch} color="#444D52" />
         </TouchableOpacity>
         <Logo width={120} height={30} /> 
         <TouchableOpacity
