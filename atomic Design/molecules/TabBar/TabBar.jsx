@@ -15,28 +15,22 @@ export default function MyTabBar({ state, descriptors, navigation, title }) {
     <View style={styles.container}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
-
+        const label = route.name;
         const isFocused = state.index === index;
 
         const menu = {
-          "Home": { Icon: <Home isFocused={isFocused}/>, title: "Inicio" },
-          "Favourites": { Icon: <Home isFocused={isFocused}/>, title: "Favoritos" },
-          "Orders": { Icon: <Home isFocused={isFocused}/> , title: "Pedidos" },
-          "Profile": { Icon: <Home isFocused={isFocused}/>, title: "Perfil" },
+          "Home": { icon: <Home isFocused={isFocused}/>, title: "Inicio" },
+          "Favourites": { icon: <Home isFocused={isFocused}/>, title: "Favoritos" },
+          "Orders": { icon: <Home isFocused={isFocused}/> , title: "Pedidos" },
+          "Profile": { icon: <Home isFocused={isFocused}/>, title: "Perfil" },
         }
+
         const onPress = () => {
           const event = navigation.emit({
             type: 'tabPress',
             target: route.key,
             canPreventDefault: true,
           });
-
           if (!isFocused && !event.defaultPrevented) navigation.navigate(route.name);
         };
 
@@ -58,7 +52,7 @@ export default function MyTabBar({ state, descriptors, navigation, title }) {
             onLongPress={onLongPress}
             style={styles.item}
           >
-            {menu[label].Icon}
+            {menu[label].icon}
             {title || isFocused &&
               <Text style={{ color: isFocused ? '#FF8000' : '#444D52' }} variant="body1">
                 {menu[label].title}
