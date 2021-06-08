@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
+import { connect } from "react-redux";
 import {
   View,
-=======
-import { connect } from "react-redux";
-import { View,
->>>>>>> deploy
   ScrollView,
   StyleSheet,
   StatusBar,
@@ -34,14 +30,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-<<<<<<< HEAD
-import { faWhatsapp } from "@fortawesome/fontawesome-free-brands";
-import { getProducts } from "../../api";
-=======
 
 import { getProducts, getAllCartProducts } from "../../api";
 import { getCartItems } from "../../redux/actions/cart";
->>>>>>> deploy
 
 const logo = require("../../assets/logotipo.png");
 
@@ -61,10 +52,10 @@ const items = [
 
 function Home({ navigation, getCartItems, cart }) {
   const [productsData, setProductsData] = useState();
-  
+
   useEffect(() => {
-    getProducts().then((resp) => setProductsData(resp.data))
-    getCartItems();   // redux
+    getProducts().then((resp) => setProductsData(resp.data));
+    getCartItems(); // redux
   }, []);
 
   return (
@@ -72,13 +63,13 @@ function Home({ navigation, getCartItems, cart }) {
       <StatusBar animated={true} backgroundColor="#FF8000" />
 
       <View style={styles.header}>
-         <TouchableOpacity
+        <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Search")}
         >
           <FontAwesomeIcon size={25} icon={faSearch} color="#444D52" />
         </TouchableOpacity>
-        <Logo width={120} height={30} /> 
+        <Image source={logo} style={styles.logo} />
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Cart")}
@@ -103,8 +94,7 @@ function Home({ navigation, getCartItems, cart }) {
                 <CategoryIcon
                   key={i}
                   children={children}
-                  onPress={() => 
-                  ("Redirect to " + children.title)}
+                  onPress={() => "Redirect to " + children.title}
                 />
               );
             })}
@@ -112,7 +102,9 @@ function Home({ navigation, getCartItems, cart }) {
         </View>
 
         <View style={{ marginTop: 10 }}>
-          <Text variant="h6" style={styles.subtitle}>Nuevos</Text>
+          <Text variant="h6" style={styles.subtitle}>
+            Nuevos
+          </Text>
           <ProductSlider children={productsData} />
         </View>
         {/* <View style={{ marginTop: 10 }}>
@@ -126,11 +118,10 @@ function Home({ navigation, getCartItems, cart }) {
 
 function mapStateToProps(state) {
   return {
-    cart: state.cartList.cart
+    cart: state.cartList.cart,
   };
 }
 export default connect(mapStateToProps, { getCartItems })(Home);
-
 
 const styles = StyleSheet.create({
   main: {
