@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, ScrollView, StatusBar } from "react-native";
 
 import Header from "../../atomic Design/organisms/Header/Header";
@@ -7,38 +7,46 @@ import CardItem from "../../atomic Design/organisms/CardItem/CardItem";
 // import { useDispatch, useSelector } from "react-redux";
 // import { getFavoriteProducts } from "../redux/actions/products";
 // import HorizontalItemSkeleton from "../components/HorizontalItemSkeleton";
+import { getFavoriteProducts } from "../../api";
 
 function Favourites() {
   // const dispatch = useDispatch();
   // const { favoriteProducts, isFetchingFavoriteItems } = useSelector(
   //   (state) => state.productsList
   // );
+  const [favoriteProductsData, setFavoriteProductsData] = useState([]);
 
-  // useEffect(() => {
-  //   dispatch(getFavoriteProducts());
-  // }, []);
+  useEffect(() => {
+    getFavoriteProducts().then((resp) => setFavoriteProductsData(resp));
+  }, []);
 
   const products = [
-    { 
-      id: Math.floor((Math.random() * 100) + 1),
-      images: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
+    {
+      id: Math.floor(Math.random() * 100 + 1),
+      images: [
+        "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
+      ],
       name: "Muñeco de baby Joda coleccionable",
-      price: Math.floor((Math.random() * 1000) + 1),
+      price: Math.floor(Math.random() * 1000 + 1)
     },
-    { 
-      id: Math.floor((Math.random() * 100) + 1),
-      images: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
+    {
+      id: Math.floor(Math.random() * 100 + 1),
+      images: [
+        "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
+      ],
       name: "Muñeco de baby Joda coleccionable",
-      price: Math.floor((Math.random() * 1000) + 1),
+      price: Math.floor(Math.random() * 1000 + 1)
     },
-    { 
-      id: Math.floor((Math.random() * 100) + 1),
-      images: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
+    {
+      id: Math.floor(Math.random() * 100 + 1),
+      images: [
+        "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
+      ],
       name: "Muñeco de baby Joda coleccionable",
-      price: Math.floor((Math.random() * 1000) + 1),
-    },
-  ]
-/*
+      price: Math.floor(Math.random() * 1000 + 1)
+    }
+  ];
+  /*
   children: {
     text: "Carrito",
     id: productId,
@@ -51,8 +59,8 @@ function Favourites() {
 
   return (
     <View style={styles.main}>
-      <StatusBar animated={true} backgroundColor="#FF8000"/>
-      <Header children={{ text: "Favoritos" }}/>
+      <StatusBar animated={true} backgroundColor="#FF8000" />
+      <Header children={{ text: "Favoritos" }} />
 
       <View style={{ width: "93%", height: "88%" }}>
         <ScrollView
@@ -63,11 +71,11 @@ function Favourites() {
             {/* {favoriteProducts.length
               ? favoriteProducts.map((product, i) => { */}
             {products.length
-              ? products.map((product, i) => {
+              ? favoriteProductsData.map((product, i) => {
                   return (
                     <CardItem
                       key={i}
-                      variant="favourite" 
+                      variant="favourite"
                       children={product}
                       onPress={console.log}
                     />
