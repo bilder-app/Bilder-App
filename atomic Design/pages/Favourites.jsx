@@ -1,61 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, ScrollView, StatusBar } from "react-native";
+import { useQuery } from "react-query";
 
 import Header from "../../atomic Design/organisms/Header/Header";
 import CardItem from "../../atomic Design/organisms/CardItem/CardItem";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import { getFavoriteProducts } from "../redux/actions/products";
-// import HorizontalItemSkeleton from "../components/HorizontalItemSkeleton";
+import HorizontalItemSkeleton from "../organisms/HorizontalItemSkeleton";
 import { getFavoriteProducts } from "../../api";
 
 function Favourites() {
-  // const dispatch = useDispatch();
-  // const { favoriteProducts, isFetchingFavoriteItems } = useSelector(
-  //   (state) => state.productsList
-  // );
-  const [favoriteProductsData, setFavoriteProductsData] = useState([]);
-
-  useEffect(() => {
-    getFavoriteProducts().then((resp) => setFavoriteProductsData(resp));
-  }, []);
-
-  const products = [
-    {
-      id: Math.floor(Math.random() * 100 + 1),
-      images: [
-        "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
-      ],
-      name: "Muñeco de baby Joda coleccionable",
-      price: Math.floor(Math.random() * 1000 + 1)
-    },
-    {
-      id: Math.floor(Math.random() * 100 + 1),
-      images: [
-        "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
-      ],
-      name: "Muñeco de baby Joda coleccionable",
-      price: Math.floor(Math.random() * 1000 + 1)
-    },
-    {
-      id: Math.floor(Math.random() * 100 + 1),
-      images: [
-        "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"
-      ],
-      name: "Muñeco de baby Joda coleccionable",
-      price: Math.floor(Math.random() * 1000 + 1)
-    }
-  ];
-  /*
-  children: {
-    text: "Carrito",
-    id: productId,
-  },
-  onPress: {
-    favouriteAction: function,
-    shareAction: function,
-  }
-   */
+  const { data: favoriteProductsData = [], isLoading } = useQuery(
+    "favorite products",
+    getFavoriteProducts
+  );
 
   return (
     <View style={styles.main}>
@@ -70,8 +27,9 @@ function Favourites() {
           <View style={{ width: "100%", marginTop: 10, marginBottom: 15 }}>
             {/* {favoriteProducts.length
               ? favoriteProducts.map((product, i) => { */}
-            {products.length
-              ? favoriteProductsData.map((product, i) => {
+            {isLoading
+              ? [1, 2, 3, 4].map((i) => <HorizontalItemSkeleton key={i} />)
+              : favoriteProductsData.map((product, i) => {
                   return (
                     <CardItem
                       key={i}
@@ -80,9 +38,7 @@ function Favourites() {
                       onPress={console.log}
                     />
                   );
-                })
-              : isFetchingFavoriteItems &&
-                [1, 2, 3, 4].map((i) => <HorizontalItemSkeleton key={i} />)}
+                })}
           </View>
         </ScrollView>
       </View>
