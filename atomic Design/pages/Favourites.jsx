@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, ScrollView, StatusBar } from "react-native";
+import React from "react";
+import { View, StyleSheet, ScrollView, StatusBar } from "react-native";
 import { useQuery } from "react-query";
 
 import Header from "../../atomic Design/organisms/Header/Header";
@@ -25,8 +25,6 @@ function Favourites() {
           showsVerticalScrollIndicator={false}
         >
           <View style={{ width: "100%", marginTop: 10, marginBottom: 15 }}>
-            {/* {favoriteProducts.length
-              ? favoriteProducts.map((product, i) => { */}
             {isLoading
               ? [1, 2, 3, 4].map((i) => <HorizontalItemSkeleton key={i} />)
               : favoriteProductsData.map((product, i) => {
