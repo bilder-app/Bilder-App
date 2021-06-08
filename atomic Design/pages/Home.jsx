@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { View,
+import {
+  View,
   ScrollView,
   StyleSheet,
   StatusBar,
   Dimensions,
-  TouchableOpacity 
+  TouchableOpacity,
+  Image,
 } from "react-native";
 
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
 import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Slider from "../atoms/Slider/Slider";
 import Text from "../atoms/Text/Text";
-import Logo from "../atoms/Logo.jsx";
+import Cart from "../atoms/Cart.jsx";
 
 import {
   faPaintRoller,
@@ -24,13 +26,15 @@ import {
   faStream,
   faSink,
   faPencilRuler,
-  faClone
+  faClone,
 } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import { getProducts, getAllCartProducts } from "../../api";
 import { getCartItems } from "../../redux/actions/cart";
+
+const logo = require("../../assets/logo.png");
 
 const { height } = Dimensions.get("window");
 const items = [
@@ -43,34 +47,34 @@ const items = [
   { name: "Wood", icon: faStream, title: "Maderas" },
   { name: "Faucet", icon: faSink, title: "Grifería" },
   { name: "Services", icon: faPencilRuler, title: "Serv. & Ins." },
-  { name: "Floors", icon: faClone, title: "Pisos" }
+  { name: "Floors", icon: faClone, title: "Pisos" },
 ];
 
 function Home({ navigation, getCartItems, cart }) {
   const [productsData, setProductsData] = useState();
-  
+
   useEffect(() => {
-    getProducts().then((resp) => setProductsData(resp.data))
-    getCartItems();   // redux
+    getProducts().then((resp) => setProductsData(resp.data));
+    getCartItems(); // redux
   }, []);
 
   return (
     <View style={{ height: height - 50 }}>
-      <StatusBar animated={true} backgroundColor="#FF8000"/>
-      
+      <StatusBar animated={true} backgroundColor="#FF8000" />
+
       <View style={styles.header}>
-         <TouchableOpacity
+        <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Search")}
         >
-          <FontAwesomeIcon size={25} icon={faSearch} color="#444D52" />
+          <FontAwesomeIcon size={24} icon={faSearch} color="#444D52" />
         </TouchableOpacity>
-        <Logo width={120} height={30} /> 
+        <Image source={logo} style={styles.logo} />
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Cart")}
         >
-          <FontAwesomeIcon size={25} icon={faShoppingCart} color="#444D52" />
+          <Cart />
         </TouchableOpacity>
       </View>
 
@@ -90,8 +94,7 @@ function Home({ navigation, getCartItems, cart }) {
                 <CategoryIcon
                   key={i}
                   children={children}
-                  onPress={() => 
-                  ("Redirect to " + children.title)}
+                  onPress={() => "Redirect to " + children.title}
                 />
               );
             })}
@@ -99,7 +102,9 @@ function Home({ navigation, getCartItems, cart }) {
         </View>
 
         <View style={{ marginTop: 10 }}>
-          <Text variant="h6" style={styles.subtitle}>Nuevos</Text>
+          <Text variant="h6" style={styles.subtitle}>
+            Nuevos
+          </Text>
           <ProductSlider children={productsData} />
         </View>
         {/* <View style={{ marginTop: 10 }}>
@@ -113,16 +118,15 @@ function Home({ navigation, getCartItems, cart }) {
 
 function mapStateToProps(state) {
   return {
-    cart: state.cartList.cart
+    cart: state.cartList.cart,
   };
 }
 export default connect(mapStateToProps, { getCartItems })(Home);
 
-
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: "#FAFAFA",
-    height: height - 50
+    backgroundColor: "#fff",
+    height: height - 50,
   },
   header: {
     height: 50,
@@ -132,18 +136,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#FFF",
-    elevation: 5
   },
   categories: {
     width: "100%",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   subtitle: {
     paddingHorizontal: 15,
     color: "#FF8000",
-    fontWeight: "700"
-  }
+    fontWeight: "700",
+  },
+  logo: {
+    width: 120,
+    resizeMode: "contain",
+    backgroundColor: "white",
+  },
 });

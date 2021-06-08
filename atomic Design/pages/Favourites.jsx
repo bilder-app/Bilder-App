@@ -19,7 +19,12 @@ function Favourites() {
       <StatusBar animated={true} backgroundColor="#FF8000" />
       <Header children={{ text: "Favoritos" }} />
 
-      <View style={{ width: "93%", height: "88%" }}>
+      <View
+        style={{
+          width: "94%",
+          height: "88%"
+        }}
+      >
         <ScrollView
           style={{ width: "100%" }}
           showsVerticalScrollIndicator={false}
@@ -49,6 +54,7 @@ export default Favourites;
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "white"
   }
 });

@@ -8,7 +8,6 @@ const variants = {
     height: 262,
     borderRadius: 15,
     padding: 10,
-
   },
   horizontal: {
     backgroundColor: "white",
@@ -25,12 +24,11 @@ export default function CardContainer({
   onPress,
   variant = "vertical",
 }) {
-
-  const [shadown, setShadown] = useState(2)
+  const [shadown, setShadown] = useState(2);
 
   return (
     <Pressable
-      style={[variants[variant], { elevation: shadown }, {...style} ]}
+      style={[variants[variant], { elevation: shadown }, { ...style }]}
       onPressIn={() => setShadown(0)}
       onPress={onPress}
       onPressOut={() => setShadown(2)}
