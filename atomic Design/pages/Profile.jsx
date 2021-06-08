@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet, TouchableOpacity, StatusBar } from "react-native";
 
 import Header from "../organisms/Header/Header";
+import Whatsapp from "../molecules/WhatsappButton/WhatsappButton";
 import Image from "../atoms/Image/Image";
 import Text from "../atoms/Text/Text";
 import { getMyUser } from "../../api";
@@ -33,7 +34,7 @@ export default function Profile() {
       <View style={styles.menu}>
         <TouchableOpacity style={styles.buttons}>
           <MaterialCommunityIcons name="book-account" size={27} color="#444D52" style={{ left: -2 }}/>
-          <Text variante="subtitle1" style={styles.text}>Cerrar sesión</Text>
+          <Text variante="subtitle1" style={styles.text}>Mis datos</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttons}>
           <FontAwesome name="question-circle" size={27} color="#444D52" />
@@ -44,6 +45,7 @@ export default function Profile() {
           <Text variante="subtitle1" style={styles.text}> Cerrar sesión</Text>
         </TouchableOpacity>
       </View>
+      <Whatsapp />
     </View>
   )
 }
