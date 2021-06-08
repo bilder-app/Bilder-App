@@ -34,6 +34,37 @@ export function deleteProductInCart(productId) {
   return axios.delete(`/user/cart/${productId}`);
 }
 
+/**
+ * @typedef ProductInCart
+ * @property {string} amount
+ * @property {string} createdAt
+ * @property {number} personId
+ * @property {number} productId
+ * @property {string} updatedAt
+ */
+
+/**
+ * @typedef Product
+ * @type {object}
+ * @property {ProductInCart} ProductInCart
+ * @property {string} brand
+ * @property {string} businessId
+ * @property {string} content
+ * @property {string} contentType
+ * @property {string} createdAt
+ * @property {string} description
+ * @property {string} id
+ * @property {string[]} images
+ * @property {string} model
+ * @property {string} name
+ * @property {string} price
+ * @property {string} stock
+ * @property {string} updatedAt
+ */
+
+/**
+ * @returns {Promise<Product[]>}
+ */
 export function getAllCartProducts() {
   return axios.get("/user/cart/").then((resp) => resp.data);
 }
@@ -65,5 +96,9 @@ export function getProductsByCategories(categories) {
 }
 
 export function removeProductFromCart(productId) {
-  return axios.delete(`/cart/product/${productId}`).then((resp) => resp.data);
+  return axios.delete(`/user/cart/${productId}`);
+}
+
+export function editProductInCart({ amount, productId }) {
+  return axios.put(`/user/cart/${productId}`, { amount });
 }
