@@ -6,9 +6,6 @@ import {
   ADDED_TO_CART,
   ADDING_TO_CART,
   ADDING_TO_CART_ERROR,
-  FETCHED_CART_ITEMS,
-  FETCHING_CART_ITEMS,
-  FETCHING_CART_ITEMS_ERROR,
   CLEARED_CART_ITEMS,
   CLEARING_CART_ITEMS,
   CLEARING_CART_ITEMS_ERROR,
@@ -91,13 +88,6 @@ export const removeToCart = (productId, amount) => (dispatch) => {
   putProductInCart({ productId, amount })
     .then((resp) => dispatch({ type: ADDED_TO_CART, payload: resp }))
     .catch((e) => dispatch({ type: ADDING_TO_CART_ERROR, payload: e }));
-};
-
-export const getCartItems = () => (dispatch) => {
-  dispatch({ type: FETCHING_CART_ITEMS });
-  getAllCartProducts()
-    .then((resp) => dispatch({ type: FETCHED_CART_ITEMS, payload: resp }))
-    .catch((e) => dispatch({ type: FETCHING_CART_ITEMS_ERROR, payload: e }));
 };
 
 export const clearCartItems = () => (dispatch) => {

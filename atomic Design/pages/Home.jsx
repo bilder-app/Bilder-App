@@ -7,7 +7,7 @@ import {
   StatusBar,
   Dimensions,
   TouchableOpacity,
-  Image,
+  Image
 } from "react-native";
 
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
@@ -26,13 +26,12 @@ import {
   faStream,
   faSink,
   faPencilRuler,
-  faClone,
+  faClone
 } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import { getProducts, getAllCartProducts } from "../../api";
-import { getCartItems } from "../../redux/actions/cart";
 
 const logo = require("../../assets/logo.png");
 
@@ -47,15 +46,14 @@ const items = [
   { name: "Wood", icon: faStream, title: "Maderas" },
   { name: "Faucet", icon: faSink, title: "Grifería" },
   { name: "Services", icon: faPencilRuler, title: "Serv. & Ins." },
-  { name: "Floors", icon: faClone, title: "Pisos" },
+  { name: "Floors", icon: faClone, title: "Pisos" }
 ];
 
-function Home({ navigation, getCartItems, cart }) {
+function Home({ navigation }) {
   const [productsData, setProductsData] = useState();
 
   useEffect(() => {
     getProducts().then((resp) => setProductsData(resp.data));
-    getCartItems(); // redux
   }, []);
 
   return (
@@ -116,17 +114,12 @@ function Home({ navigation, getCartItems, cart }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    cart: state.cartList.cart,
-  };
-}
-export default connect(mapStateToProps, { getCartItems })(Home);
+export default Home;
 
 const styles = StyleSheet.create({
   main: {
     backgroundColor: "#fff",
-    height: height - 50,
+    height: height - 50
   },
   header: {
     height: 50,
@@ -135,23 +128,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#FFF",
+    backgroundColor: "#FFF"
   },
   categories: {
     width: "100%",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
+    paddingHorizontal: 10
   },
   subtitle: {
     paddingHorizontal: 15,
     color: "#FF8000",
-    fontWeight: "700",
+    fontWeight: "700"
   },
   logo: {
     width: 120,
     resizeMode: "contain",
-    backgroundColor: "white",
-  },
+    backgroundColor: "white"
+  }
 });
