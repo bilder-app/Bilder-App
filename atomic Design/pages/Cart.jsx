@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { View, FlatList, StyleSheet } from "react-native";
+import CartProduct from "../organisms/CartProductCard";
 
 import Header from "../organisms/Header/Header";
 import CardItem from "../organisms/CardItem/CardItem";
@@ -8,30 +8,47 @@ import Text from "../../atomic Design/atoms/Text/Text";
 import Button from "../../atomic Design/atoms/Button/Button";
 import { useQuery } from "react-query";
 import { getAllCartProducts } from "../../api";
+import { useFocusEffect } from "@react-navigation/native";
 
 const random = Math.floor(Math.random() * 100 + 1);
 
-const renderItem = ({ item }) => {
+const renderItem = ({ item = {} }) => {
+  const { images, price, name, id, ProductInCart = {}, stock } = item;
+  const { amount } = ProductInCart;
+
   return (
     <View style={{ marginVertical: 5, marginHorizontal: 15 }} key={item.id}>
-      <CardItem variant="cart" children={item} onPress={alert} />
+      <CartProduct
+        stock={stock}
+        image={images[0]}
+        price={price}
+        name={name}
+        productId={id}
+        amount={amount}
+      />
     </View>
   );
 };
 
 function Cart({ navigation }) {
-  const { data: cartProducts = [] } = useQuery(
+  const { data: cartProducts = [], refetch } = useQuery(
     "cart items",
     getAllCartProducts
   );
 
-  const reduceCart = (() => {
-    let acc = 0;
-    for (let a = 0; a < cartProducts.length; a++) {
-      acc += cartProducts[a].ProductInCart.amount * cartProducts[a].price;
-    }
-    return acc;
-  })();
+  useFocusEffect(
+    React.useCallback(() => {
+      refetch();
+    }, [])
+  );
+
+  // const reduceCart = (() => {
+  //   let acc = 0;
+  //   for (let a = 0; a < cartProducts.length; a++) {
+  //     acc += cartProducts[a].ProductInCart.amount * cartProducts[a].price;
+  //   }
+  //   return acc;
+  // })();
 
   return (
     <View style={styles.main}>
@@ -50,7 +67,7 @@ function Cart({ navigation }) {
             Subtotal
           </Text>
           <Text style={styles.price} variant="h6">
-            $ {reduceCart}
+            {/* $ {reduceCart} */}
           </Text>
         </View>
       </View>
