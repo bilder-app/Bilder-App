@@ -1,10 +1,9 @@
 import React from "react";
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import Text from "../../atoms/Text/Text";
+// import SVG icons in assests/icons/IconName.jsx
 import Home from "../../../assets/icons/Home";
 
-import { FontAwesome } from '@expo/vector-icons';
-import { Menu } from "react-native-paper";
 
 export default function MyTabBar({ state, descriptors, navigation, title }) {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: "center",
     backgroundColor: "#FFF",
-    paddingHorizontal: 40,
+    paddingHorizontal: 35,
   },
   item: {
     flex: 1,
