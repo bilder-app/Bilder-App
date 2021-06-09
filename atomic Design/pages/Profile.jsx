@@ -34,7 +34,10 @@ export default function Profile({ navigation }) {
       };
     }, [])
   );
-
+  const fakeUser = {
+    photo:
+      "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png",
+  };
 
   return (
     <View style={styles.default}>
