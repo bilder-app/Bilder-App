@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.MY_IP || "http://192.168.0.12:7000";
+axios.defaults.baseURL = "http://192.168.0.20:7000";
 
 export function logIn({ email, password }) {
   return axios.post("/auth/login", { email, password });
