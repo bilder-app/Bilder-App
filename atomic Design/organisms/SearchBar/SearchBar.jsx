@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 
 import Input from "../../atoms/Input/Input";
-import Cart from "../../atoms/Cart";
+import Cart from "../../atoms/Icons/Cart";
+import Search from "../../atoms/Icons/Search";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 
 import { useNavigation } from "@react-navigation/native";
@@ -37,7 +38,7 @@ export default function SearchBar({ children, onPress, style }) {
         />
         {!searchQuery ? (
           <View style={styles.alternative}>
-            <FontAwesomeIcon icon={faSearch} color="#444D52" size={18} />
+            <Search height="20" width="20" />
           </View>
         ) : (
           <IconContainer
@@ -53,7 +54,7 @@ export default function SearchBar({ children, onPress, style }) {
         onPress={() => navigation.navigate("Cart")}
         style={styles.icons}
       >
-        <Cart />
+        <Cart width="25" height="25" />
       </IconContainer>
     </View>
   );

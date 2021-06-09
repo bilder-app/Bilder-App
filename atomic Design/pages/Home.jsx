@@ -14,7 +14,9 @@ import ProductSlider from "../organisms/ProductSlider/ProductSlider";
 import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Slider from "../atoms/Slider/Slider";
 import Text from "../atoms/Text/Text";
-import Cart from "../atoms/Cart.jsx";
+import Cart from "../atoms/Icons/Cart.jsx";
+
+import Search from "../atoms/Icons/Search";
 
 import {
   faPaintRoller,
@@ -33,7 +35,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import { getProducts, getAllCartProducts } from "../../api";
 
-const logo = require("../../assets/logo.png");
+const logo = require("../../assets/bilderapp.png");
+const images = [
+  require("../../assets/img/1.png"),
+  require("../../assets/img/2.png"),
+  require("../../assets/img/3.png"),
+  require("../../assets/img/4.png"),
+  require("../../assets/img/5.png"),
+];
 
 const { height } = Dimensions.get("window");
 const items = [
@@ -65,22 +74,27 @@ function Home({ navigation }) {
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Search")}
         >
-          <FontAwesomeIcon size={24} icon={faSearch} color="#444D52" />
+          <Search width="20" height="25" />
         </TouchableOpacity>
-        <Image source={logo} style={styles.logo} />
+        <View style={styles.address}>
+          <Image source={logo} style={styles.logo} />
+          <TouchableOpacity
+            onPress={() => alert("Ingresa la dirrección de entrega")}
+          >
+            <Text>Lima 639 </Text>
+          </TouchableOpacity>
+        </View>
+
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Cart")}
         >
-          <Cart />
+          <Cart width="25" height="25" />
         </TouchableOpacity>
       </View>
 
       <ScrollView style={styles.main} showsVerticalScrollIndicator={false}>
-        <Slider
-          onPress={console.log}
-          children="https://thumbs.dreamstime.com/b/ge%C3%AFsoleerdk-op-witte-achtergrond-het-knippen-weg-93838355.jpg"
-        />
+        <Slider onPress={console.log} source={images} />
 
         <View style={{ marginTop: 10 }}>
           <Text variant="h6" style={styles.subtitle}>
@@ -105,6 +119,13 @@ function Home({ navigation }) {
           </Text>
           <ProductSlider children={productsData} />
         </View>
+        <View style={{ marginTop: 10 }}>
+          <Text variant="h6" style={styles.subtitle}>
+            Más vendidos
+          </Text>
+          <ProductSlider children={productsData} />
+        </View>
+
         {/* <View style={{ marginTop: 10 }}>
           <Text variant="h6" style={styles.subtitle}>Productos en Oferta</Text>
           <ProductSlider />
@@ -122,7 +143,7 @@ const styles = StyleSheet.create({
     height: height - 50
   },
   header: {
-    height: 50,
+    height: 70,
     width: "100%",
     paddingHorizontal: 15,
     flexDirection: "row",
@@ -143,8 +164,13 @@ const styles = StyleSheet.create({
     fontWeight: "700"
   },
   logo: {
-    width: 120,
+    width: 140,
+    height: 40,
     resizeMode: "contain",
-    backgroundColor: "white"
-  }
+  },
+  address: {
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+  },
 });

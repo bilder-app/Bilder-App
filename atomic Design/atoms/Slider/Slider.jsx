@@ -22,7 +22,7 @@ const styles = {
   },
 };
 
-export default function Slider({ children, onPress }) {
+export default function Slider({ onPress, source }) {
   return (
     <ScrollView
       pagingEnabled
@@ -32,12 +32,12 @@ export default function Slider({ children, onPress }) {
       decelerationRate={0.6}
       snapToInterval={width - 40}
     >
-      {[1, 2, 3, 4, 5].map((item, index) => {
+      {source.map((item, index) => {
         return (
           <Pressable onPress={() => onPress(item)} key={index}>
-            <Image source={{ uri: children }} style={styles.image} />
+            <Image source={item} style={styles.image} />
           </Pressable>
-          );
+        );
       })}
     </ScrollView>
   );

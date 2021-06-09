@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet, TouchableOpacity, StatusBar } from "react-native";
 
 import Header from "../organisms/Header/Header";
+import Whatsapp from "../molecules/WhatsappButton/WhatsappButton";
 import Image from "../atoms/Image/Image";
 import Text from "../atoms/Text/Text";
 import { getMyUser } from "../../api";
@@ -15,7 +16,7 @@ const fakeUser = {
     "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png"
 };
 
-export default function Profile() {
+export default function Profile({ navigation }) {
   const {
     data: userData = {},
     isLoading,
@@ -33,11 +34,15 @@ export default function Profile() {
       // };
     }, [])
   );
+  const fakeUser = {
+    photo:
+      "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png",
+  };
 
   return (
     <View style={styles.default}>
       <StatusBar animated={true} backgroundColor="#FF8000" />
-      <Header children={{ text: "Mi cuenta" }} />
+      <Header children={{ text: "Mi Perfil " }} />
 
       <View style={styles.info}>
         <Image
@@ -54,7 +59,7 @@ export default function Profile() {
       </View>
 
       <View style={styles.menu}>
-        <TouchableOpacity style={styles.buttons}>
+        <TouchableOpacity style={styles.buttons} onPress={() => navigation.push("About")}>
           <MaterialCommunityIcons
             name="book-account"
             size={27}
@@ -62,7 +67,7 @@ export default function Profile() {
             style={{ left: -2 }}
           />
           <Text variante="subtitle1" style={styles.text}>
-            Cerrar sesión
+            Mis datos
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttons}>
@@ -78,6 +83,7 @@ export default function Profile() {
           </Text>
         </TouchableOpacity>
       </View>
+      <Whatsapp />
     </View>
   );
 }
