@@ -7,7 +7,7 @@ import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
 import Chip from "../../atoms/Chip/Chip";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
-import Home from "../../../assets/icons/Home";
+import Cart from "../../atoms/Icons/Cart";
 
 import { Ionicons, Entypo } from "@expo/vector-icons";
 
@@ -74,7 +74,7 @@ export default function CardItem({ variant, children, onPress, style }) {
             }}>
               <Ionicons name={cartBoolean ? "cart" : "cart-outline" } size={28} color="#ff8000" />
             </IconContainer> */
-            <Home />
+            <Cart width="25" height="25" />
           )}
           {variant === "cart" && (
             <Modal

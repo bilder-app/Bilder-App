@@ -22,7 +22,8 @@ import Favourites from "./atomic Design/pages/Favourites.jsx";
 import Orders from "./atomic Design/pages/Orders.jsx";
 import OrderDetail from "./atomic Design/pages/OrderDetail.jsx";
 
-import Profile from "./atomic Design/pages/Profile.jsx";
+import Profile from "./atomic Design/pages/Profile.jsx"
+import About from "./atomic Design/pages/About.jsx"
 // import CategoryFilter from "./atomic Design/pages/CategoryFilter.jsx"
 import { QueryClientProvider, QueryClient } from "react-query";
 
@@ -56,15 +57,17 @@ export default function App() {
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="MyTabBar" component={MyTabBar} />
-
+          
             {/* Acá van las pantallas sin tabBar */}
-            <Stack.Screen name="Search" component={Search} />
-            <Stack.Screen name="ProductDetail" component={ProductDetail} />
-            <Stack.Screen name="Cart" component={Cart} />
-            <Stack.Screen name="Payment" component={Payment} />
-            <Stack.Screen name="Results" component={Results} />
-            <Stack.Screen name="OrderDetail" component={OrderDetail} />
-            {/* <Stack.Screen name="CategoryFilter" component={ CategoryFilter } /> */}
+            <Stack.Screen name="Search" component={ Search } />
+            <Stack.Screen name="ProductDetail" component={ ProductDetail } />
+            <Stack.Screen name="Cart" component={ Cart } />
+            <Stack.Screen name="Payment" component={ Payment } />
+            <Stack.Screen name="Results" component={ Results } />
+            <Stack.Screen name="OrderDetail" component={ OrderDetail } />
+            <Stack.Screen name="About" component={ About } />
+
+          {/* <Stack.Screen name="CategoryFilter" component={ CategoryFilter } /> */}
           </Stack.Navigator>
         </NavigationContainer>
         <FlashMessage position="top" icon="auto" style={{ top: -30 }} />
