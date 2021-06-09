@@ -9,49 +9,56 @@ import Button from "../../atomic Design/atoms/Button/Button";
 
 import { getCartItems } from "../../redux/actions/cart";
 
-const random =  Math.floor((Math.random() * 100) + 1)
+const random = Math.floor(Math.random() * 100 + 1);
 
 const renderItem = ({ item }) => {
   return (
     <View style={{ marginVertical: 5, marginHorizontal: 15 }} key={item.id}>
-      <CardItem variant="cart" children={item} onPress={alert}/>
+      <CardItem variant="cart" children={item} onPress={alert} />
     </View>
-  ) 
+  );
 };
 
 function Cart({ navigation, cart, getCartItems }) {
   useEffect(() => {
-    getCartItems();   // redux
-  }, [cart])
+    getCartItems(); // redux
+  }, [cart]);
 
   const reduceCart = (() => {
     let acc = 0;
-    for(let a = 0; a < cart.length; a++){
-      acc += cart[a].ProductInCart.amount * cart[a].price
+    for (let a = 0; a < cart.length; a++) {
+      acc += cart[a].ProductInCart.amount * cart[a].price;
     }
     return acc;
   })();
 
   return (
     <View style={styles.main}>
-      <Header children={{ text: "Mi Carrito" }}/>
+      <Header children={{ text: "Mi Carrito" }} />
 
       <FlatList
         data={cart}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
       />
- 
+
       <View style={{ paddingHorizontal: 20, backgroundColor: "#FFF" }}>
-        <View style={styles.hr}/>
+        <View style={styles.hr} />
         <View style={styles.content}>
-          <Text style={{ color: "#707070" }} variant="subtitle2">Subtotal</Text>
-          <Text style={styles.price} variant="h6">$ {reduceCart}</Text>
+          <Text style={{ color: "#707070" }} variant="subtitle2">
+            Subtotal
+          </Text>
+          <Text style={styles.price} variant="h6">
+            $ {reduceCart}
+          </Text>
         </View>
       </View>
 
       <View style={styles.button}>
-        <Button onPress={() => navigation.navigate("Payment")} children="Continuar" />
+        <Button
+          onPress={() => navigation.navigate("Payment")}
+          children="Continuar"
+        />
       </View>
     </View>
   );
@@ -59,14 +66,14 @@ function Cart({ navigation, cart, getCartItems }) {
 
 function mapStateToProps(state) {
   return {
-    cart: state.cartList.cart
+    cart: state.cartList.cart,
   };
 }
 export default connect(mapStateToProps, { getCartItems })(Cart);
 
-
 const styles = StyleSheet.create({
-  main: { 
+  main: {
+    backgroundColor: "#fff",
     height: "100%",
     width: "100%",
   },
@@ -91,4 +98,3 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
   },
 });
-

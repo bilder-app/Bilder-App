@@ -7,78 +7,94 @@ import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
 import Chip from "../../atoms/Chip/Chip";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
-import Home from "../../../assets/icons/Home";
+import Cart from "../../atoms/Icons/Cart";
 
-import { Ionicons, Entypo } from '@expo/vector-icons';
-
+import { Ionicons, Entypo } from "@expo/vector-icons";
 
 export default function CardItem({ variant, children, onPress, style }) {
   const [cartBoolean, setCartBoolean] = useState(false);
   const [value, setValue] = useState();
-  const cart = useSelector(state => state.cartList.cart);
+  const cart = useSelector((state) => state.cartList.cart);
 
-  if(variant === "cart") {
+  if (variant === "cart") {
     useEffect(() => {
       cart.map((product) => {
-        product.id === children.id && setValue(product.ProductInCart.amount)
-      })
-    }, [cart])
+        product.id === children.id && setValue(product.ProductInCart.amount);
+      });
+    }, [cart]);
   }
 
-
-  if(variant === "shippingCard") {
-    return(
+  if (variant === "shippingCard") {
+    return (
       <View style={[styles.base, style]}>
         <View style={{ height: "95%", justifyContent: "space-between" }}>
           <Text variant="h6">Pedido #00{children.orderId}</Text>
-          <Text variant="subtitle2" style={{ color: "#777" }}>{children.date}</Text>
+          <Text variant="subtitle2" style={{ color: "#777" }}>
+            {children.date}
+          </Text>
           <Chip style={styles.chip}>{children.state}</Chip>
         </View>
-        <TouchableOpacity style={styles.shippingCard} onPress={() => onPress(children.orderId)} activeOpacity={0.5}>
+        <TouchableOpacity
+          style={styles.shippingCard}
+          onPress={() => onPress(children.orderId)}
+          activeOpacity={0.5}
+        >
           <Entypo name="chevron-with-circle-right" size={28} color="#3F3C3C" />
         </TouchableOpacity>
       </View>
-    )
+    );
   }
 
-  return(
+  return (
     <View style={[styles.base, style]}>
-      <Image children={children.images ? children.images[0] : "http://www.colores.org.es/imagenes_colores/gris.jpg"} variant="mini"/>
+      <Image
+        children={
+          children.images
+            ? children.images[0]
+            : "http://www.colores.org.es/imagenes_colores/gris.jpg"
+        }
+        variant="mini"
+      />
       <View style={styles.content}>
-          <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52" }}>
-            {children.name}
-          </Text>
+        <Text
+          variant="subtitle2"
+          style={{ fontWeight: "bold", color: "#444D52" }}
+        >
+          {children.name}
+        </Text>
         <View style={styles.footer}>
-          <Text variant="h6" style={{ color: "#ff8000" }}>$ {children.price}</Text>
+          <Text variant="h6" style={{ color: "#ff8000" }}>
+            $ {children.price}
+          </Text>
 
-          {variant === "favourite" && 
+          {variant === "favourite" && (
             /* <IconContainer style={styles.favourite} onPress={() => {
               setCartBoolean(!cartBoolean);
               onPress(children.id, !cartBoolean);
             }}>
               <Ionicons name={cartBoolean ? "cart" : "cart-outline" } size={28} color="#ff8000" />
             </IconContainer> */
-            <Home/>
-          }
-          {variant === "cart" &&  
-            <Modal 
-              style={{ marginLeft: "auto", width: "50%" }} 
-              children={{ 
-                id: children.id, 
+            <Cart width="25" height="25" />
+          )}
+          {variant === "cart" && (
+            <Modal
+              style={{ marginLeft: "auto", width: "50%" }}
+              children={{
+                id: children.id,
                 stock: children.stock,
-                amount: value || 0
+                amount: value || 0,
               }}
-            /> 
-          }
-          {variant === "shippingDetail" && 
+            />
+          )}
+          {variant === "shippingDetail" && (
             <Text variant="subtitle1">
               <Text variant="h6">{children.units} </Text>unidades
             </Text>
-          }
+          )}
         </View>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = {
@@ -126,5 +142,5 @@ const styles = {
     elevation: 0,
     borderColor: "#FF8000",
     borderWidth: 1,
-  }
-}
+  },
+};

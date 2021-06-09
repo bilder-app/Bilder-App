@@ -1,14 +1,16 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 import Text from "../../atoms/Text/Text";
 // import SVG icons in assests/icons/IconName.jsx
-import Home from "../../../assets/icons/Home";
-
+import Home from "../../atoms/Icons/Home";
+import Person from "../../atoms/Icons/Person";
+import Favourite from "../../atoms/Icons/Favourite";
+import Truck from "../../atoms/Icons/Truck";
 
 export default function MyTabBar({ state, descriptors, navigation, title }) {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
 
-  if (focusedOptions.tabBarVisible === false)  return null;
+  if (focusedOptions.tabBarVisible === false) return null;
 
   return (
     <View style={styles.container}>
@@ -18,24 +20,28 @@ export default function MyTabBar({ state, descriptors, navigation, title }) {
         const isFocused = state.index === index;
 
         const menu = {
-          "Home": { icon: <Home isFocused={isFocused}/>, title: "Inicio" },
-          "Favourites": { icon: <Home isFocused={isFocused}/>, title: "Favoritos" },
-          "Orders": { icon: <Home isFocused={isFocused}/> , title: "Pedidos" },
-          "Profile": { icon: <Home isFocused={isFocused}/>, title: "Perfil" },
-        }
+          Home: { icon: <Home isFocused={isFocused} />, title: "Inicio" },
+          Favourites: {
+            icon: <Favourite isFocused={isFocused} />,
+            title: "Favoritos",
+          },
+          Orders: { icon: <Truck isFocused={isFocused} />, title: "Pedidos" },
+          Profile: { icon: <Person isFocused={isFocused} />, title: "Perfil" },
+        };
 
         const onPress = () => {
           const event = navigation.emit({
-            type: 'tabPress',
+            type: "tabPress",
             target: route.key,
             canPreventDefault: true,
           });
-          if (!isFocused && !event.defaultPrevented) navigation.navigate(route.name);
+          if (!isFocused && !event.defaultPrevented)
+            navigation.navigate(route.name);
         };
 
         const onLongPress = () => {
           navigation.emit({
-            type: 'tabLongPress',
+            type: "tabLongPress",
             target: route.key,
           });
         };
@@ -52,11 +58,15 @@ export default function MyTabBar({ state, descriptors, navigation, title }) {
             style={styles.item}
           >
             {menu[label].icon}
-            {title || isFocused &&
-              <Text style={{ color: isFocused ? '#FF8000' : '#444D52' }} variant="body1">
-                {menu[label].title}
-              </Text> 
-            }
+            {title ||
+              (isFocused && (
+                <Text
+                  style={{ color: isFocused ? "#FF8000" : "#444D52" }}
+                  variant="body1"
+                >
+                  {menu[label].title}
+                </Text>
+              ))}
           </TouchableOpacity>
         );
       })}
@@ -67,14 +77,14 @@ export default function MyTabBar({ state, descriptors, navigation, title }) {
 const styles = StyleSheet.create({
   container: {
     height: 50,
-    flexDirection: 'row',
+    flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#FFF",
-    paddingHorizontal: 35,
+    paddingHorizontal: 30,
   },
   item: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  }
-})
+  },
+});

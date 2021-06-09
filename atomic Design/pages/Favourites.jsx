@@ -19,26 +19,32 @@ function Favourites() {
   // }, []);
 
   const products = [
-    { 
-      id: Math.floor((Math.random() * 100) + 1),
-      images: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
+    {
+      id: Math.floor(Math.random() * 100 + 1),
+      images: [
+        "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+      ],
       name: "Muñeco de baby Joda coleccionable",
-      price: Math.floor((Math.random() * 1000) + 1),
+      price: Math.floor(Math.random() * 1000 + 1),
     },
-    { 
-      id: Math.floor((Math.random() * 100) + 1),
-      images: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
+    {
+      id: Math.floor(Math.random() * 100 + 1),
+      images: [
+        "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+      ],
       name: "Muñeco de baby Joda coleccionable",
-      price: Math.floor((Math.random() * 1000) + 1),
+      price: Math.floor(Math.random() * 1000 + 1),
     },
-    { 
-      id: Math.floor((Math.random() * 100) + 1),
-      images: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
+    {
+      id: Math.floor(Math.random() * 100 + 1),
+      images: [
+        "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
+      ],
       name: "Muñeco de baby Joda coleccionable",
-      price: Math.floor((Math.random() * 1000) + 1),
+      price: Math.floor(Math.random() * 1000 + 1),
     },
-  ]
-/*
+  ];
+  /*
   children: {
     text: "Carrito",
     id: productId,
@@ -51,15 +57,28 @@ function Favourites() {
 
   return (
     <View style={styles.main}>
-      <StatusBar animated={true} backgroundColor="#FF8000"/>
-      <Header children={{ text: "Favoritos" }}/>
+      <StatusBar animated={true} backgroundColor="#FF8000" />
+      <Header children={{ text: "Favoritos" }} />
 
-      <View style={{ width: "93%", height: "88%" }}>
+      <View
+        style={{
+          width: "94%",
+          height: "88%",
+        }}
+      >
         <ScrollView
           style={{ width: "100%" }}
           showsVerticalScrollIndicator={false}
         >
-          <View style={{ width: "100%", marginTop: 10, marginBottom: 15 }}>
+          <View
+            style={{
+              width: "100%",
+              marginTop: 10,
+              marginBottom: 15,
+
+              padding: 2,
+            }}
+          >
             {/* {favoriteProducts.length
               ? favoriteProducts.map((product, i) => { */}
             {products.length
@@ -67,7 +86,7 @@ function Favourites() {
                   return (
                     <CardItem
                       key={i}
-                      variant="favourite" 
+                      variant="favourite"
                       children={product}
                       onPress={console.log}
                     />
@@ -87,6 +106,7 @@ export default Favourites;
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    alignItems: "center"
-  }
+    alignItems: "center",
+    backgroundColor: "white",
+  },
 });

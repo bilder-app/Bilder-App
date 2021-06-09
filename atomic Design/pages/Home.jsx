@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { View,
+import {
+  View,
   ScrollView,
   StyleSheet,
   StatusBar,
   Dimensions,
-  TouchableOpacity 
+  TouchableOpacity,
+  Image,
 } from "react-native";
 
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
 import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Slider from "../atoms/Slider/Slider";
 import Text from "../atoms/Text/Text";
-import Logo from "../atoms/Logo.jsx";
+import Cart from "../atoms/Icons/Cart.jsx";
+
+import Search from "../atoms/Icons/Search";
 
 import {
   faPaintRoller,
@@ -24,13 +28,22 @@ import {
   faStream,
   faSink,
   faPencilRuler,
-  faClone
+  faClone,
 } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 import { getProducts, getAllCartProducts } from "../../api";
 import { getCartItems } from "../../redux/actions/cart";
+
+const logo = require("../../assets/bilderapp.png");
+const images = [
+  require("../../assets/img/1.png"),
+  require("../../assets/img/2.png"),
+  require("../../assets/img/3.png"),
+  require("../../assets/img/4.png"),
+  require("../../assets/img/5.png"),
+];
 
 const { height } = Dimensions.get("window");
 const items = [
@@ -43,42 +56,47 @@ const items = [
   { name: "Wood", icon: faStream, title: "Maderas" },
   { name: "Faucet", icon: faSink, title: "Grifería" },
   { name: "Services", icon: faPencilRuler, title: "Serv. & Ins." },
-  { name: "Floors", icon: faClone, title: "Pisos" }
+  { name: "Floors", icon: faClone, title: "Pisos" },
 ];
 
-function Home({ navigation, getCartItems, cart }) {
+function Home({ navigation, getCartItems }) {
   const [productsData, setProductsData] = useState();
-  
+
   useEffect(() => {
-    getProducts().then((resp) => setProductsData(resp.data))
-    getCartItems();   // redux
+    getProducts().then((resp) => setProductsData(resp.data));
+    getCartItems(); // redux
   }, []);
 
   return (
     <View style={{ height: height - 50 }}>
-      <StatusBar animated={true} backgroundColor="#FF8000"/>
-      
+      <StatusBar animated={true} backgroundColor="#FF8000" />
+
       <View style={styles.header}>
-         <TouchableOpacity
+        <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Search")}
         >
-          <FontAwesomeIcon size={25} icon={faSearch} color="#444D52" />
+          <Search width="20" height="25" />
         </TouchableOpacity>
-        <Logo width={120} height={30} /> 
+        <View style={styles.address}>
+          <Image source={logo} style={styles.logo} />
+          <TouchableOpacity
+            onPress={() => alert("Ingresa la dirrección de entrega")}
+          >
+            <Text>Lima 639 </Text>
+          </TouchableOpacity>
+        </View>
+
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigation.navigate("Cart")}
         >
-          <FontAwesomeIcon size={25} icon={faShoppingCart} color="#444D52" />
+          <Cart width="25" height="25" />
         </TouchableOpacity>
       </View>
 
       <ScrollView style={styles.main} showsVerticalScrollIndicator={false}>
-        <Slider
-          onPress={console.log}
-          children="https://thumbs.dreamstime.com/b/ge%C3%AFsoleerdk-op-witte-achtergrond-het-knippen-weg-93838355.jpg"
-        />
+        <Slider onPress={console.log} source={images} />
 
         <View style={{ marginTop: 10 }}>
           <Text variant="h6" style={styles.subtitle}>
@@ -90,8 +108,7 @@ function Home({ navigation, getCartItems, cart }) {
                 <CategoryIcon
                   key={i}
                   children={children}
-                  onPress={() => 
-                  ("Redirect to " + children.title)}
+                  onPress={() => "Redirect to " + children.title}
                 />
               );
             })}
@@ -99,9 +116,18 @@ function Home({ navigation, getCartItems, cart }) {
         </View>
 
         <View style={{ marginTop: 10 }}>
-          <Text variant="h6" style={styles.subtitle}>Nuevos</Text>
+          <Text variant="h6" style={styles.subtitle}>
+            Nuevos
+          </Text>
           <ProductSlider children={productsData} />
         </View>
+        <View style={{ marginTop: 10 }}>
+          <Text variant="h6" style={styles.subtitle}>
+            Más vendidos
+          </Text>
+          <ProductSlider children={productsData} />
+        </View>
+
         {/* <View style={{ marginTop: 10 }}>
           <Text variant="h6" style={styles.subtitle}>Productos en Oferta</Text>
           <ProductSlider />
@@ -113,37 +139,46 @@ function Home({ navigation, getCartItems, cart }) {
 
 function mapStateToProps(state) {
   return {
-    cart: state.cartList.cart
+    cart: state.cartList.cart,
   };
 }
 export default connect(mapStateToProps, { getCartItems })(Home);
 
-
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: "#FAFAFA",
-    height: height - 50
+    backgroundColor: "#fff",
+    height: height - 50,
   },
   header: {
-    height: 50,
+    height: 70,
     width: "100%",
     paddingHorizontal: 15,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#FFF",
-    elevation: 5
+    backgroundColor: "white",
   },
   categories: {
     width: "100%",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   subtitle: {
     paddingHorizontal: 15,
     color: "#FF8000",
-    fontWeight: "700"
-  }
+    fontWeight: "700",
+  },
+  logo: {
+    width: 140,
+    height: 40,
+
+    resizeMode: "contain",
+  },
+  address: {
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "column",
+  },
 });

@@ -20,19 +20,19 @@ export default function ProductCard({ children, onPress, style }) {
     stock,
     images = [
       "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
-      "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg"
-    ]
-  } = children; 
+      "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg",
+    ],
+  } = children;
   const navigation = useNavigation();
 
   const [value, setValue] = useState();
-  const cart = useSelector(state => state.cartList.cart);
+  const cart = useSelector((state) => state.cartList.cart);
 
   useEffect(() => {
     cart.map((product) => {
-      product.id === id && setValue(product.ProductInCart.amount)
-    })
-  }, [cart])
+      product.id === id && setValue(product.ProductInCart.amount);
+    });
+  }, [cart]);
 
   return (
     <CardContainer
@@ -49,25 +49,24 @@ export default function ProductCard({ children, onPress, style }) {
         <Text variant="h6" style={{ color: "#FF8000", fontWeight: "bold" }}>
           ${price}
         </Text>
-        <Text variant="subtitle1" style={{ color: "#444D52", fontWeight: "bold" }} >
+        <Text variant="h5" style={{ color: "#444D52" }}>
           {name}
         </Text>
-        <Text variant="subtitle2" style={{ color: "#898C8E" }} >
+        <Text variant="subtitle2" style={{ color: "#898C8E" }}>
           {`${content || 1} ${contentType}`}
         </Text>
-        <Text variant="subtitle2" style={{ color: "#898C8E" }} >
+        <Text variant="subtitle2" style={{ color: "#898C8E" }}>
           {/* {brand} */}
-          Stock: {stock}
-          , Id: {id}
+          Stock: {stock}, Id: {id}
         </Text>
       </View>
 
-      <Modal 
-        style={{ marginLeft: "auto" }} 
-        children={{ 
-          id: id, 
+      <Modal
+        style={{ marginLeft: "auto" }}
+        children={{
+          id: id,
           stock: stock,
-          amount: value || 0
+          amount: value || 0,
         }}
       />
     </CardContainer>
@@ -81,9 +80,9 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   body: {
-    flex: 1, 
+    flex: 1,
     marginTop: 3,
-    justifyContent: "center", 
+    justifyContent: "center",
   },
   button: {
     width: "30%",
@@ -92,5 +91,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-end",
     marginTop: 3,
-  }
+  },
 });

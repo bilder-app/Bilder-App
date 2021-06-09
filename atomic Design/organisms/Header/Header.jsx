@@ -27,10 +27,10 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 export default function Header({ variant, children, onPress, style }) {
   const [favourite, setFavourite] = useState(false);
   const navigation = useNavigation();
-  
+
   return (
     <View style={[styles.default, style]}>
-      <IconContainer onPress={() => navigation.goBack() } style={styles.icon}>
+      <IconContainer onPress={() => navigation.goBack()} style={styles.icon}>
         <FontAwesomeIcon icon={faAngleLeft} color="#444D52" size={28} />
       </IconContainer>
       <View style={[styles.content, styles[variant || "title"]]}>
@@ -44,10 +44,11 @@ export default function Header({ variant, children, onPress, style }) {
               }}
               style={{ ...styles.icon, width: "50%" }}
             >
-              {favourite 
-                ? <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
-                : <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
-              }
+              {favourite ? (
+                <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
+              ) : (
+                <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
+              )}
             </IconContainer>
             <IconContainer
               onPress={() => onPress.shareAction(children.id)}
@@ -69,7 +70,6 @@ const styles = {
     alignItems: "center",
     backgroundColor: "white",
     flexDirection: "row",
-    elevation: 5,
   },
   content: {
     width: "88%",

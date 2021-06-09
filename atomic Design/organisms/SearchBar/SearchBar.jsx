@@ -2,53 +2,63 @@ import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 
 import Input from "../../atoms/Input/Input";
+import Cart from "../../atoms/Icons/Cart";
+import Search from "../../atoms/Icons/Search";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faAngleLeft, faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleLeft,
+  faShoppingCart,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 
-
-export default function SearchBar({ children, onPress, style}) {
+export default function SearchBar({ children, onPress, style }) {
   const [searchQuery, setSearchQuery] = useState();
   useEffect(() => {
-    children && setSearchQuery(children)
-  }, [])
+    children && setSearchQuery(children);
+  }, []);
   const navigation = useNavigation();
 
-  return(
+  return (
     <View style={[styles.default, style]}>
       <IconContainer onPress={() => navigation.goBack()} style={styles.icons}>
         <FontAwesomeIcon icon={faAngleLeft} color="#444D52" size={28} />
       </IconContainer>
       <View style={styles.content}>
-        <Input 
-          variant="input" 
-          placeholder="¿Qué deseas buscar?" 
+        <Input
+          variant="input"
+          placeholder="¿Qué deseas buscar?"
           style={styles.input}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.nativeEvent.text)}
           onSubmitEditing={() => onPress(searchQuery)}
-          />
-        {!searchQuery 
-          ? 
+        />
+        {!searchQuery ? (
           <View style={styles.alternative}>
-            <FontAwesomeIcon icon={faSearch} color="#888" size={18} />
+            <Search height="20" width="20" />
           </View>
-          : 
-          <IconContainer onPress={() => setSearchQuery("")} style={styles.alternative}>
-            <FontAwesomeIcon icon={faTimesCircle} color="#888" size={20} />
+        ) : (
+          <IconContainer
+            onPress={() => setSearchQuery("")}
+            style={styles.alternative}
+          >
+            <FontAwesomeIcon icon={faTimesCircle} color="#444D52" size={20} />
           </IconContainer>
-        }
+        )}
       </View>
 
-      <IconContainer onPress={() => navigation.navigate("Cart")} style={styles.icons}>
-        <FontAwesomeIcon icon={faShoppingCart} color="#3F3C3C" size={26} />
+      <IconContainer
+        onPress={() => navigation.navigate("Cart")}
+        style={styles.icons}
+      >
+        <Cart width="25" height="25" />
       </IconContainer>
     </View>
-  )
-} 
+  );
+}
 
 const styles = {
   default: {
@@ -58,7 +68,7 @@ const styles = {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    elevation: 5,
+    elevation: 2,
   },
   content: {
     width: "78%",
@@ -70,7 +80,7 @@ const styles = {
     borderRadius: 20,
   },
   input: {
-    width: "90%", 
+    width: "90%",
     height: "100%",
     paddingRight: 10,
   },
@@ -86,5 +96,5 @@ const styles = {
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-  }
-}
+  },
+};
