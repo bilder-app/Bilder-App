@@ -23,6 +23,7 @@ import Orders from "./atomic Design/pages/Orders.jsx"
 import OrderDetail from "./atomic Design/pages/OrderDetail.jsx"
 
 import Profile from "./atomic Design/pages/Profile.jsx"
+import About from "./atomic Design/pages/About.jsx"
 // import CategoryFilter from "./atomic Design/pages/CategoryFilter.jsx"
 
 const store = configureStore();
@@ -57,6 +58,8 @@ export default function App() {
           <Stack.Screen name="Payment" component={ Payment } />
           <Stack.Screen name="Results" component={ Results } />
           <Stack.Screen name="OrderDetail" component={ OrderDetail } />
+          <Stack.Screen name="About" component={ About } />
+
           {/* <Stack.Screen name="CategoryFilter" component={ CategoryFilter } /> */}
 
         </Stack.Navigator>

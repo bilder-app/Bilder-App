@@ -9,7 +9,7 @@ import { getMyUser } from "../../api";
 
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function Profile() {
+export default function Profile({ navigation }) {
   const fakeUser = {
     photo:
       "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png",
@@ -19,14 +19,13 @@ export default function Profile() {
   useEffect(() => {
     getMyUser().then((user) => {
       setUser(user);
-      console.log(user);
     });
   }, []);
 
   return (
     <View style={styles.default}>
       <StatusBar animated={true} backgroundColor="#FF8000" />
-      <Header children={{ text: "Mi cuenta" }} />
+      <Header children={{ text: "Mi Perfil " }} />
 
       <View style={styles.info}>
         <Image
@@ -43,7 +42,7 @@ export default function Profile() {
       </View>
 
       <View style={styles.menu}>
-        <TouchableOpacity style={styles.buttons}>
+        <TouchableOpacity style={styles.buttons} onPress={() => navigation.push("About")}>
           <MaterialCommunityIcons
             name="book-account"
             size={27}
@@ -51,8 +50,7 @@ export default function Profile() {
             style={{ left: -2 }}
           />
           <Text variante="subtitle1" style={styles.text}>
-            {" "}
-            Cerrar sesión
+            Mis datos
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttons}>

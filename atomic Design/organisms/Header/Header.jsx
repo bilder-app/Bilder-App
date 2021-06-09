@@ -44,11 +44,10 @@ export default function Header({ variant, children, onPress, style }) {
               }}
               style={{ ...styles.icon, width: "50%" }}
             >
-              {favourite ? (
-                <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
-              ) : (
-                <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
-              )}
+              {favourite 
+                ? <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
+                : <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
+              }
             </IconContainer>
             <IconContainer
               onPress={() => onPress.shareAction(children.id)}
