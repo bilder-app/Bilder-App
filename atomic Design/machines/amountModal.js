@@ -3,7 +3,7 @@ import { Machine, assign } from "xstate";
 export const amountMachine = Machine(
   {
     initial: "closed",
-    context: { amount: 0, stock: 0 },
+    context: { amount: 0, maxAmount: Infinity },
     states: {
       closed: {
         on: {
@@ -25,12 +25,20 @@ export const amountMachine = Machine(
           }
         }
       }
+    },
+    on: {
+      change_amount: {
+        actions: "changeAmount"
+      }
     }
   },
   {
     actions: {
-      addOne: assign({ amount: (ctx) => Math.min(ctx.amount + 1, ctx.stock) }),
-      removeOne: assign({ amount: (ctx) => Math.max(ctx.amount - 1, 0) })
+      addOne: assign({
+        amount: (ctx) => Math.min(ctx.amount + 1, ctx.maxAmount)
+      }),
+      removeOne: assign({ amount: (ctx) => Math.max(ctx.amount - 1, 0) }),
+      changeAmount: assign({ amount: (_, e) => e.amount })
     }
   }
 );
