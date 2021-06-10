@@ -14,9 +14,10 @@ export function getProducts() {
   return axios.get(`/products`);
 }
 
-export function searchProducts(name, page, limit = 10) {
+export function searchProducts({ name, page, limit = 10 }) {
+  const params = new URLSearchParams({ name, page, limit });
   return axios
-    .get(`/product/search?name=${name}&page=${page}&limit=${limit}`)
+    .get(`/products/search?${params.toString()}`)
     .then((resp) => resp.data);
 }
 
