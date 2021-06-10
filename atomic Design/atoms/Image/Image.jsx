@@ -31,10 +31,10 @@ const styles = {
     maxHeight: 120,
   },
   medium: {
-    width: width * 0.45,
-    maxWidth: 200,
-    height: width * 0.45,
-    maxHeight: 200,
+    width: width * 0.43,
+    maxWidth: 160,
+    height: width * 0.43,
+    maxHeight: 160,
   },
   big: {
     width: width * 0.85,

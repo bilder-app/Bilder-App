@@ -2,27 +2,47 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet, TouchableOpacity, StatusBar } from "react-native";
 
 import Header from "../organisms/Header/Header";
+import Whatsapp from "../molecules/WhatsappButton/WhatsappButton";
 import Image from "../atoms/Image/Image";
 import Text from "../atoms/Text/Text";
 import { getMyUser } from "../../api";
+import { useQuery } from "react-query";
+import { useFocusEffect } from "@react-navigation/native";
 
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function Profile() {
+const fakeUser = {
+  photo:
+    "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png",
+};
+
+export default function Profile({ navigation }) {
+  const {
+    data: userData = {},
+    isLoading,
+    refetch,
+  } = useQuery("user data", getMyUser);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      refetch();
+      // Do something when the screen is focused
+
+      return () => {
+        // Do something when the screen is unfocused
+        // Useful for cleanup functions
+      };
+    }, [])
+  );
   const fakeUser = {
     photo:
       "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png",
   };
 
-  const [user, setUser] = useState();
-  useEffect(() => {
-    getMyUser().then((user) => setUser(user));
-  }, []);
-
   return (
     <View style={styles.default}>
       <StatusBar animated={true} backgroundColor="#FF8000" />
-      <Header children={{ text: "Mi cuenta" }} />
+      <Header children={{ text: "Mi Perfil " }} />
 
       <View style={styles.info}>
         <Image
@@ -31,15 +51,18 @@ export default function Profile() {
           style={{ borderRadius: 100 }}
         />
         <Text variant="h6">
-          {user ? `${user.name} ${user.lastname}` : "Cargando..."}
+          {isLoading ? "Cargando..." : `${userData.name} ${userData.lastname}`}
         </Text>
         <Text variant="subtitle1" style={{ color: "#707070" }}>
-          {user ? user.email : "Cargando..."}
+          {isLoading ? "Cargando..." : userData.email}
         </Text>
       </View>
 
       <View style={styles.menu}>
-        <TouchableOpacity style={styles.buttons}>
+        <TouchableOpacity
+          style={styles.buttons}
+          onPress={() => navigation.push("About")}
+        >
           <MaterialCommunityIcons
             name="book-account"
             size={27}
@@ -47,24 +70,23 @@ export default function Profile() {
             style={{ left: -2 }}
           />
           <Text variante="subtitle1" style={styles.text}>
-            Cerrar sesión
+            Mis datos
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttons}>
           <FontAwesome name="question-circle" size={27} color="#444D52" />
           <Text variante="subtitle1" style={styles.text}>
-            {" "}
             Preguntas frecuentes
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttons}>
           <FontAwesome name="power-off" size={27} color="#444D52" />
           <Text variante="subtitle1" style={styles.text}>
-            {" "}
             Cerrar sesión
           </Text>
         </TouchableOpacity>
       </View>
+      <Whatsapp />
     </View>
   );
 }

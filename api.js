@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// axios.defaults.baseURL = "https://bilder-backend.herokuapp.com";
-axios.defaults.baseURL = process.env.MY_IP;
+axios.defaults.baseURL = process.env.MY_IP || "http://192.168.0.12:7000";
 
 export function logIn({ email, password }) {
   return axios.post("/auth/login", { email, password });
@@ -10,7 +9,6 @@ export function logIn({ email, password }) {
 export function getMyUser() {
   return axios.get("/user/me").then((res) => res.data);
 }
-
 
 export function getProducts() {
   return axios.get(`/products`);
@@ -21,7 +19,6 @@ export function searchProducts(name, page, limit = 10) {
     .get(`/product/search?name=${name}&page=${page}&limit=${limit}`)
     .then((resp) => resp.data);
 }
-
 
 export function postProductToCart(productId) {
   return axios.post(`/user/cart/${productId}`);
@@ -49,8 +46,6 @@ export function clearAllCartItems() {
 //   return axios.get("/user/cart/amount/").then((resp) => resp.data);
 // }
 
-
-
 export function postProductToFavorites(productId) {
   return axios.post(`/favorite/${productId}`);
 }
@@ -60,7 +55,7 @@ export function deleteProductFromFavorites(productId) {
 }
 
 export function getFavoriteProducts() {
-  return axios.get(`/favorite`).then((resp) => resp.data);
+  return axios.get(`/user/favorites`).then((resp) => resp.data);
 }
 
 export function getProductsByCategories(categories) {
