@@ -12,8 +12,15 @@ import Slider from "../organisms/Slider";
 import Footer from "../organisms/Footer/Footer";
 import Text from "../atoms/Text/Text";
 import Chip from "../atoms/Chip/Chip";
-import { postProductToCart, getProductDetails } from "../../api";
+import {
+  postProductToCart,
+  getProductDetails,
+  addProductToFavorites,
+  getFavoriteProduct,
+  removeProductFromFavorites
+} from "../../api";
 import { useQueryClient, useQuery } from "react-query";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function ProductDetails({ route }) {
   const queryClient = useQueryClient();
@@ -34,6 +41,19 @@ export default function ProductDetails({ route }) {
     contentType
   } = productData;
 
+  const { data: favoriteProductData, refetch } = useQuery(
+    ["get favorited product", productId],
+    () => getFavoriteProduct(productId)
+  );
+
+  useFocusEffect(
+    React.useCallback(() => {
+      refetch();
+    }, [])
+  );
+
+  const isFavorited = !!favoriteProductData;
+
   if (isFetching) return null;
 
   return (
@@ -41,8 +61,21 @@ export default function ProductDetails({ route }) {
       <Header
         variant="icons"
         children={{ id: productId }}
+        isFavorited={isFavorited}
         onPress={{
-          favouriteAction: () => alert(id),
+          favouriteAction: () => {
+            if (isFavorited) {
+              removeProductFromFavorites(productId).then(() => {
+                queryClient.invalidateQueries("favorite products");
+                queryClient.invalidateQueries("get favorited product");
+              });
+            } else {
+              addProductToFavorites(productId).then(() => {
+                queryClient.invalidateQueries("favorite products");
+                queryClient.invalidateQueries("get favorited product");
+              });
+            }
+          },
           shareAction: alert
         }}
       />

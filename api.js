@@ -128,3 +128,15 @@ export function editProductInCart({ amount, productId }) {
 export function getProductDetails(productId) {
   return axios.get(`/products/${productId}`).then((resp) => resp.data);
 }
+
+export function addProductToFavorites(productId) {
+  return axios.post(`/user/favorites`, { productId: productId });
+}
+
+export function getFavoriteProduct(productId) {
+  return axios.get(`/user/favorites/${productId}`).then((resp) => resp.data);
+}
+
+export function removeProductFromFavorites(productId) {
+  return axios.delete(`/user/favorites/${productId}`).then((resp) => resp.data);
+}

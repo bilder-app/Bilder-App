@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faAngleLeft,
-  faHeart as faFillHeart,
+  faHeart as faFillHeart
 } from "@fortawesome/free-solid-svg-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -24,8 +24,14 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
   }
 */
 
-export default function Header({ variant, children, onPress, style }) {
-  const [favourite, setFavourite] = useState(false);
+export default function Header({
+  variant,
+  children,
+  onPress,
+  style,
+  isFavorited = false
+}) {
+  const [favourite, setFavourite] = useState(isFavorited);
   const navigation = useNavigation();
 
   return (
@@ -44,10 +50,11 @@ export default function Header({ variant, children, onPress, style }) {
               }}
               style={{ ...styles.icon, width: "50%" }}
             >
-              {favourite 
-                ? <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
-                : <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
-              }
+              {favourite ? (
+                <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
+              ) : (
+                <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
+              )}
             </IconContainer>
             <IconContainer
               onPress={() => onPress.shareAction(children.id)}
@@ -68,33 +75,33 @@ const styles = {
     height: 50,
     alignItems: "center",
     backgroundColor: "white",
-    flexDirection: "row",
+    flexDirection: "row"
   },
   content: {
     width: "88%",
     height: "100%",
-    alignItems: "center",
+    alignItems: "center"
   },
   icon: {
     width: "11%",
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "transparent",
+    backgroundColor: "transparent"
   },
   title: {
     justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "flex-start"
   },
   icons: {
     alignItems: "flex-end",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   boxContent: {
     width: "25%",
     height: "100%",
     justifyContent: "space-between",
     flexDirection: "row",
-    marginRight: 3,
-  },
+    marginRight: 3
+  }
 };
