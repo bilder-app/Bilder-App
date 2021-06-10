@@ -7,6 +7,7 @@ import Search from "../atoms/Icons/Search";
 import Text from "../atoms/Text/Text";
 import Chip from "../atoms/Chip/Chip";
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
+import Button from "../atoms/Button/Button";
 
 import { getMyUser } from "../../api";
 import BackIcon from "../atoms/Icons/BackIcon";
@@ -17,7 +18,6 @@ export default function Category({ navigation, children }) {
   useEffect(() => {
     getMyUser().then((user) => {
       setUser(user);
-      console.log(user);
     });
   }, []);
 
@@ -48,6 +48,12 @@ export default function Category({ navigation, children }) {
           </ScrollContainer>
         </View>
       </View>
+      <View style={styles.button}>
+        <Button
+          onPress={() => navigation.navigate("Cart")}
+          children="Ir al Carrito"
+        />
+      </View>
     </View>
   );
 }
@@ -55,10 +61,10 @@ export default function Category({ navigation, children }) {
 const styles = StyleSheet.create({
   default: {
     width: "100%",
-    height: "100%",
+    height: "87.6%",
     paddingHorizontal: 10,
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "white",
   },
   header: {
     flexDirection: "row",
@@ -85,5 +91,12 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: 50,
+    backgroundColor: "white",
   },
 });
