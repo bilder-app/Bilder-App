@@ -140,3 +140,7 @@ export function getFavoriteProduct(productId) {
 export function removeProductFromFavorites(productId) {
   return axios.delete(`/user/favorites/${productId}`).then((resp) => resp.data);
 }
+
+export function getCartProduct(productId) {
+  return axios.get(`/user/cart/${productId}`).then((resp) => resp.data);
+}

@@ -17,7 +17,8 @@ import {
   getProductDetails,
   addProductToFavorites,
   getFavoriteProduct,
-  removeProductFromFavorites
+  removeProductFromFavorites,
+  getCartProduct
 } from "../../api";
 import { useQueryClient, useQuery } from "react-query";
 import { useFocusEffect } from "@react-navigation/native";
@@ -25,10 +26,11 @@ import { useFocusEffect } from "@react-navigation/native";
 export default function ProductDetails({ route }) {
   const queryClient = useQueryClient();
   const { productId } = route.params;
-  const { data: productData = {}, isFetching } = useQuery(
-    ["product data", productId],
-    () => getProductDetails(productId)
-  );
+  const {
+    data: productData = {},
+    isFetching,
+    refetch: refetchProductData
+  } = useQuery(["product data", productId], () => getProductDetails(productId));
   const {
     name,
     price,
@@ -41,18 +43,26 @@ export default function ProductDetails({ route }) {
     contentType
   } = productData;
 
-  const { data: favoriteProductData, refetch } = useQuery(
-    ["get favorited product", productId],
-    () => getFavoriteProduct(productId)
+  const { data: favoriteProductData, refetch: refetchFavoriteProduct } =
+    useQuery(["get favorited product", productId], () =>
+      getFavoriteProduct(productId)
+    );
+
+  const { data: cartProductData, refetch: refetchCartProduct } = useQuery(
+    ["get cart product", productId],
+    () => getCartProduct(productId)
   );
 
   useFocusEffect(
     React.useCallback(() => {
-      refetch();
+      refetchProductData();
+      refetchFavoriteProduct();
+      refetchCartProduct();
     }, [])
   );
 
   const isFavorited = !!favoriteProductData;
+  const isInCart = !!cartProductData;
 
   if (isFetching) return null;
 
@@ -133,14 +143,19 @@ export default function ProductDetails({ route }) {
         </View>
       </ScrollView>
 
-      <Footer
-        onPress={() => {
-          postProductToCart(id).then(() => {
-            queryClient.invalidateQueries("cart items");
-          });
-        }}
-        title="Comprar ahora"
-      />
+      {!isInCart && (
+        <Footer
+          onPress={() => {
+            postProductToCart(productId).then(() => {
+              queryClient.invalidateQueries("cart items");
+              queryClient.invalidateQueries(["get cart product", productId], {
+                exact: true
+              });
+            });
+          }}
+          title="Comprar ahora"
+        />
+      )}
     </View>
   );
 }
