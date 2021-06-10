@@ -41,7 +41,7 @@ const images = [
   require("../../assets/img/2.png"),
   require("../../assets/img/3.png"),
   require("../../assets/img/4.png"),
-  require("../../assets/img/5.png"),
+  require("../../assets/img/5.png")
 ];
 
 const { height } = Dimensions.get("window");
@@ -166,11 +166,11 @@ const styles = StyleSheet.create({
   logo: {
     width: 140,
     height: 40,
-    resizeMode: "contain",
+    resizeMode: "contain"
   },
   address: {
     alignItems: "center",
     display: "flex",
-    flexDirection: "column",
-  },
+    flexDirection: "column"
+  }
 });

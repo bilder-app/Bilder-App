@@ -10,7 +10,8 @@ import { useQuery, useQueryClient } from "react-query";
 import {
   editProductInCart,
   getCartProduct,
-  removeProductFromCart
+  removeProductFromCart,
+  postProductToCart
 } from "../../../api";
 
 import { useNavigation } from "@react-navigation/native";
@@ -32,9 +33,8 @@ export default function ProductCard({ children, onPress, style }) {
   } = children;
 
   const navigation = useNavigation();
-  const { data: cartProductData = {}, refetch: refetchCartProduct } = useQuery(
-    ["cart product", id],
-    () => getCartProduct(id)
+  const { data: cartProductData = {} } = useQuery(["cart product", id], () =>
+    getCartProduct(id)
   );
 
   const { ProductInCart = {} } = cartProductData;
@@ -68,6 +68,7 @@ export default function ProductCard({ children, onPress, style }) {
       <View style={{ marginLeft: "auto" }}>
         <AmountModal
           onClose={(ctx) => {
+            console.log(ctx.amount);
             if (ctx.amount === 0) {
               return removeProductFromCart(id).then(() =>
                 queryClient.invalidateQueries("cart items")
