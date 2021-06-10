@@ -8,12 +8,13 @@ import Text from "../../atomic Design/atoms/Text/Text";
 import Button from "../../atomic Design/atoms/Button/Button";
 
 import { getCartItems } from "../../redux/actions/cart";
+import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
 
 const random = Math.floor(Math.random() * 100 + 1);
 
 const renderItem = ({ item }) => {
   return (
-    <View style={{ marginVertical: 5, marginHorizontal: 15 }} key={item.id}>
+    <View style={{ marginVertical: 5 }} key={item.id}>
       <CardItem variant="cart" children={item} onPress={alert} />
     </View>
   );
@@ -35,43 +36,24 @@ function Cart({ navigation, cart, getCartItems }) {
   return (
     <View style={styles.main}>
       <Header children={{ text: "Mi Carrito" }} />
+      <View style={styles.scroll}>
+        <ScrollContainer>
+          <FlatList
+            data={cart}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+          />
 
-      <FlatList
-        data={cart}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
-      />
-
-      <View style={{ paddingHorizontal: 20, backgroundColor: "#FFF" }}>
-        <View style={styles.hr} />
-        <View style={styles.content}>
           <View style={styles.header}>
-            <Text style={{ color: "#707070" }} variant="subtitle2">
-              Subtotal
-            </Text>
-            <Text style={styles.price} variant="h6">
-              $ 0
-            </Text>
-          </View>
-          <View style={styles.header}>
-            <Text style={{ color: "#707070" }} variant="subtitle2">
-              Costo de Entrega Total
-            </Text>
-            <Text style={styles.price} variant="h6">
-              $ 0
-            </Text>
-          </View>
-          <View style={styles.header}>
-            <Text style={{ color: "#707070" }} variant="subtitle2">
+            <Text style={{ color: "#444D52" }} variant="h4">
               Total
             </Text>
-            <Text style={styles.price} variant="h6">
+            <Text style={{ color: "#444D52" }} variant="h6">
               $ 0
             </Text>
           </View>
-        </View>
+        </ScrollContainer>
       </View>
-
       <View style={styles.button}>
         <Button
           onPress={() => navigation.navigate("Payment")}
@@ -95,23 +77,14 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
-  hr: {
-    marginVertical: 10,
-    borderBottomColor: "#A0A0A0",
-    borderBottomWidth: 1.5,
-    width: "90%",
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-  content: {
-    flexDirection: "column",
-    justifyContent: "space-between",
+  scroll: {
+    height: "87.6%",
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "white",
+    height: 50,
   },
   button: {
     alignItems: "center",
