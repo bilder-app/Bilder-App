@@ -102,3 +102,28 @@ export function removeProductFromCart(productId) {
 export function editProductInCart({ amount, productId }) {
   return axios.put(`/user/cart/${productId}`, { amount });
 }
+
+/**
+ * @typedef SingularProduct
+ * @type {object}
+ * @property {string} brand
+ * @property {string} businessId
+ * @property {string} content
+ * @property {string} contentType
+ * @property {string} createdAt
+ * @property {string} description
+ * @property {string} id
+ * @property {string[]} images
+ * @property {string} model
+ * @property {string} name
+ * @property {string} price
+ * @property {string} stock
+ * @property {string} updatedAt
+ */
+
+/**
+ * @returns {Promise<SingularProduct>}
+ */
+export function getProductDetails(productId) {
+  return axios.get(`/products/${productId}`).then((resp) => resp.data);
+}
