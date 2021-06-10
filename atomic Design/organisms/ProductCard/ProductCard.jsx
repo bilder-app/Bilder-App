@@ -36,9 +36,9 @@ export default function ProductCard({ children, onPress, style }) {
 
   return (
     <CardContainer
-      onPress={() => {
-        navigation.navigate("ProductDetail", children);
-      }}
+      onPress={() => 
+        navigation.navigate("ProductDetail", {productId: id})
+      }
       style={style}
     >
       <View style={styles.content}>
