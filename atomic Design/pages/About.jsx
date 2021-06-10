@@ -5,16 +5,13 @@ import Image from "../atoms/Image/Image";
 import IconContainer from "../atoms/IconContainer/IconContainer";
 import Text from "../atoms/Text/Text";
 
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faAngleLeft, faPen } from "@fortawesome/free-solid-svg-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-
 import { getMyUser } from "../../api";
-
-
+import BackIcon from "../atoms/Icons/BackIcon";
+import Pen from "../atoms/Icons/Pen";
 
 export default function About({ navigation }) {
-  const url = "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png";
+  const url =
+    "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png";
   const [user, setUser] = useState();
   useEffect(() => {
     getMyUser().then((user) => {
@@ -23,23 +20,24 @@ export default function About({ navigation }) {
     });
   }, []);
 
-  return(
+  return (
     <View style={styles.default}>
       <View style={styles.header}>
         <IconContainer onPress={() => navigation.goBack()} style={styles.icon}>
-          <FontAwesomeIcon icon={faAngleLeft} color="#444D52" size={28}/>
+          <BackIcon width="28" height="28" />
         </IconContainer>
-        <Text variant="h6" style={{ marginRight: "auto" }}>Mis datos</Text>
-        <IconContainer onPress={() => alert("redirect to edit view")} style={styles.icon}>
-          <FontAwesomeIcon icon={faPen} color="#444D52" size={20}/>
+        <Text variant="h6" style={{ marginRight: "auto" }}>
+          Mis datos
+        </Text>
+        <IconContainer
+          onPress={() => alert("redirect to edit view")}
+          style={styles.icon}
+        >
+          <Pen width="24" height="24" />
         </IconContainer>
       </View>
       <View style={{ height: "23%" }}>
-        <Image
-          children={url}
-          variant="medium"
-          style={{ borderRadius: 100 }}
-        />
+        <Image children={url} variant="medium" style={{ borderRadius: 100 }} />
       </View>
 
       <View style={styles.content}>
@@ -67,24 +65,21 @@ export default function About({ navigation }) {
 
         <Text style={styles.label}>Teléfono</Text>
         <Text variante="subtitle1" style={styles.data}>
-          {user && "+54 9 11 2021-2021" }
+          {user && "+54 9 11 2021-2021"}
         </Text>
 
         <Text style={styles.label}>Dirección</Text>
         <Text variante="subtitle1" style={styles.data}>
           {user && user.address}
         </Text>
- 
+
         <Text style={styles.label}>N° de documento</Text>
         <Text variante="subtitle1" style={styles.data}>
           {user && user.dni}
         </Text>
-
-
       </View>
-     
-    </View> 
-  )
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -133,5 +128,5 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1.5,
     borderBottomColor: "#EDEDED",
     marginBottom: 0,
-  }
-})
+  },
+});

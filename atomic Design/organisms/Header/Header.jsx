@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import BackIcon from "../../atoms/Icons/BackIcon";
 
 /*
   children: {
@@ -31,7 +32,7 @@ export default function Header({ variant, children, onPress, style }) {
   return (
     <View style={[styles.default, style]}>
       <IconContainer onPress={() => navigation.goBack()} style={styles.icon}>
-        <FontAwesomeIcon icon={faAngleLeft} color="#444D52" size={28} />
+        <BackIcon width="28" height="28" />
       </IconContainer>
       <View style={[styles.content, styles[variant || "title"]]}>
         {children.text && <Text variant="h6">{children.text}</Text>}
@@ -44,10 +45,11 @@ export default function Header({ variant, children, onPress, style }) {
               }}
               style={{ ...styles.icon, width: "50%" }}
             >
-              {favourite 
-                ? <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
-                : <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
-              }
+              {favourite ? (
+                <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
+              ) : (
+                <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
+              )}
             </IconContainer>
             <IconContainer
               onPress={() => onPress.shareAction(children.id)}
