@@ -42,14 +42,6 @@ function Cart({ navigation }) {
     }, [])
   );
 
-  // const reduceCart = (() => {
-  //   let acc = 0;
-  //   for (let a = 0; a < cartProducts.length; a++) {
-  //     acc += cartProducts[a].ProductInCart.amount * cartProducts[a].price;
-  //   }
-  //   return acc;
-  // })();
-
   return (
     <View style={styles.main}>
       <Header children={{ text: "Mi Carrito" }} />
@@ -67,7 +59,13 @@ function Cart({ navigation }) {
             Subtotal
           </Text>
           <Text style={styles.price} variant="h6">
-            {/* $ {reduceCart} */}
+            $
+            {cartProducts.length
+              ? cartProducts.reduce(
+                  (prev, next) => next.price * next.ProductInCart.amount + prev,
+                  0
+                )
+              : 0}
           </Text>
         </View>
       </View>
