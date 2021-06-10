@@ -16,10 +16,7 @@ export default function Profile() {
 
   const [user, setUser] = useState();
   useEffect(() => {
-    getMyUser().then((user) => {
-      setUser(user);
-      console.log(user);
-    });
+    getMyUser().then((user) => setUser(user));
   }, []);
 
   return (

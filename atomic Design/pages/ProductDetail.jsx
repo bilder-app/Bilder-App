@@ -13,12 +13,11 @@ import Footer from "../organisms/Footer/Footer";
 import Text from "../atoms/Text/Text";
 import Chip from "../atoms/Chip/Chip";
 
-
 export default function ProductDetails({ route }) {
   const {
-    brand, 
+    brand,
     bussinessId,
-    categories,
+    // categories,
     content,
     contentType,
     description,
@@ -42,9 +41,9 @@ export default function ProductDetails({ route }) {
 
   return (
     <View style={styles.main}>
-      <Header 
-        variant="icons" 
-        children={{ id: id }} 
+      <Header
+        variant="icons"
+        children={{ id: id }}
         onPress={{
           favouriteAction: console.log,
           shareAction: alert,
@@ -54,37 +53,63 @@ export default function ProductDetails({ route }) {
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <Slider images={images} />
         <View style={styles.data}>
-          <Text variant="h1" style={{ color: "#FF8000" }}>$ {price}</Text>
+          <Text variant="h1" style={{ color: "#FF8000" }}>
+            $ {price}
+          </Text>
           <Text variant="h4">{name}</Text>
-          <Text variant="subtitle1" style={{ color: "#707070" }}>{description}</Text>
+          <Text variant="subtitle1" style={{ color: "#707070" }}>
+            {description}
+          </Text>
 
+          <Text variant="h4" style={{ marginTop: 15 }}>
+            Información General
+          </Text>
+          {!brand && (
+            <Text variant="subtitle1" style={{ color: "#707070" }}>
+              {" "}
+              Marca: {brand || "Black&Decker"}
+            </Text>
+          )}
+          {contentType && (
+            <Text variant="subtitle1" style={{ color: "#707070" }}>
+              {" "}
+              Contenido: {content || 1} {contentType}
+            </Text>
+          )}
+          {!model && (
+            <Text variant="subtitle1" style={{ color: "#707070" }}>
+              {" "}
+              Modelo: {model || "700GH B&D"}
+            </Text>
+          )}
+          {stock && (
+            <Text variant="subtitle1" style={{ color: "#707070" }}>
+              {" "}
+              Stock: {stock}
+            </Text>
+          )}
 
-          <Text variant="h4" style={{ marginTop: 15 }}>Información General</Text>
-          {!brand && <Text variant="subtitle1" style={{ color: "#707070" }}> Marca: {brand ||  "Black&Decker"}</Text>}
-          {contentType && <Text variant="subtitle1" style={{ color: "#707070" }}> Contenido: {content || 1} {contentType}</Text>}
-          {!model && <Text variant="subtitle1" style={{ color: "#707070" }}> Modelo: {model || "700GH B&D"}</Text>}
-          {stock && <Text variant="subtitle1" style={{ color: "#707070" }}> Stock: {stock}</Text>}
-
-
-          <Text variant="h4" style={{ marginTop: 15 }}>Categorias</Text>   
-          <View style={styles.categories}>
+          <Text variant="h4" style={{ marginTop: 15 }}>
+            Categorias
+          </Text>
+          {/* <View style={styles.categories}>
             {categories.length
             ? categories.map((title, i) => <Chip key={i} children={title} style={styles.chip}/>)
             : <Text variant="subtitle1" style={{ color: "#707070" }}>Este producto no tiene categorías</Text>
             }
-          </View>
+          </View> */}
         </View>
       </ScrollView>
 
       <Footer title="Comprar ahora" onPress={console.log} />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   main: {
     width: "100%",
-    height: "100%"
+    height: "100%",
   },
   content: {
     width: "100%",
@@ -93,7 +118,7 @@ const styles = StyleSheet.create({
   },
   data: {
     width: "100%",
-    marginBottom: 5
+    marginBottom: 5,
   },
   chip: {
     marginVertical: 5,
@@ -107,5 +132,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     flexWrap: "wrap",
-  }
+  },
 });
