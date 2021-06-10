@@ -12,41 +12,35 @@ import Slider from "../organisms/Slider";
 import Footer from "../organisms/Footer/Footer";
 import Text from "../atoms/Text/Text";
 import Chip from "../atoms/Chip/Chip";
-import { postProductToCart } from "../../api";
-import { useQueryClient } from "react-query";
+import { postProductToCart, getProductDetails } from "../../api";
+import { useQueryClient, useQuery } from "react-query";
 
 export default function ProductDetails({ route }) {
   const queryClient = useQueryClient();
+  const { productId } = route.params;
+  const { data: productData = {}, isFetching } = useQuery(
+    ["product data", productId],
+    () => getProductDetails(productId)
+  );
   const {
-    brand,
-    bussinessId,
-    categories,
-    content,
-    contentType,
-    description,
-    id,
-    images,
-    model,
     name,
     price,
-    stock
-  } = route.params;
+    description,
+    images,
+    stock,
+    model,
+    content,
+    brand,
+    contentType
+  } = productData;
 
-  // const dispatch = useDispatch();
-  // const showModalDispatched = () => dispatch(showModal(route.params));
-  // const { favoriteProducts } = useSelector((state) => state.productsList);
-
-  // const isFavorite = !!favoriteProducts.find((prod) => prod.id === id);
-
-  // useEffect(() => {
-  //   dispatch(getFavoriteProducts());
-  // }, []);
+  if (isFetching) return null;
 
   return (
     <View style={styles.main}>
       <Header
         variant="icons"
-        children={{ id: id }}
+        children={{ id: productId }}
         onPress={{
           favouriteAction: () => alert(id),
           shareAction: alert
@@ -56,6 +50,7 @@ export default function ProductDetails({ route }) {
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <Slider images={images} />
         <View style={styles.data}>
+          <Text>asd</Text>
           <Text variant="h1" style={{ color: "#FF8000" }}>
             $ {price}
           </Text>
@@ -69,30 +64,26 @@ export default function ProductDetails({ route }) {
           </Text>
           {!brand && (
             <Text variant="subtitle1" style={{ color: "#707070" }}>
-              {" "}
               Marca: {brand || "Black&Decker"}
             </Text>
           )}
           {contentType && (
             <Text variant="subtitle1" style={{ color: "#707070" }}>
-              {" "}
               Contenido: {content || 1} {contentType}
             </Text>
           )}
           {!model && (
             <Text variant="subtitle1" style={{ color: "#707070" }}>
-              {" "}
               Modelo: {model || "700GH B&D"}
             </Text>
           )}
           {stock && (
             <Text variant="subtitle1" style={{ color: "#707070" }}>
-              {" "}
               Stock: {stock}
             </Text>
           )}
 
-          <Text variant="h4" style={{ marginTop: 15 }}>
+          {/* <Text variant="h4" style={{ marginTop: 15 }}>
             Categorias
           </Text>
           <View style={styles.categories}>
@@ -104,8 +95,8 @@ export default function ProductDetails({ route }) {
               <Text variant="subtitle1" style={{ color: "#707070" }}>
                 Este producto no tiene categorías
               </Text>
-            )}
-          </View>
+            )} 
+          </View> */}
         </View>
       </ScrollView>
 
