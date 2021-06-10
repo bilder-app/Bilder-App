@@ -15,7 +15,6 @@ import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Slider from "../atoms/Slider/Slider";
 import Text from "../atoms/Text/Text";
 import Cart from "../atoms/Icons/Cart.jsx";
-
 import Search from "../atoms/Icons/Search";
 
 import {
@@ -30,10 +29,8 @@ import {
   faPencilRuler,
   faClone,
 } from "@fortawesome/free-solid-svg-icons";
-import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import { getProducts, getAllCartProducts } from "../../api";
+import { getProducts, getAllCartProducts, getMyUser } from "../../api";
 import { getCartItems } from "../../redux/actions/cart";
 
 const logo = require("../../assets/bilderapp.png");
@@ -67,6 +64,14 @@ function Home({ navigation, getCartItems }) {
     getCartItems(); // redux
   }, []);
 
+  const [user, setUser] = useState();
+  useEffect(() => {
+    getMyUser().then((user) => {
+      setUser(user);
+      console.log(user);
+    });
+  }, []);
+
   return (
     <View style={{ height: height - 50 }}>
       <StatusBar animated={true} backgroundColor="#FF8000" />
@@ -83,7 +88,7 @@ function Home({ navigation, getCartItems }) {
           <TouchableOpacity
             onPress={() => alert("Ingresa la dirrección de entrega")}
           >
-            <Text>Lima 639 </Text>
+            <Text> {user && user.address}</Text>
           </TouchableOpacity>
         </View>
 
