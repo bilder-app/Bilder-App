@@ -16,7 +16,6 @@ export default function About({ navigation }) {
   useEffect(() => {
     getMyUser().then((user) => {
       setUser(user);
-      console.log(user);
     });
   }, []);
 

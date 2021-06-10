@@ -104,16 +104,21 @@ function Home({ navigation, getCartItems }) {
         <Slider onPress={console.log} source={images} />
 
         <View style={{ marginTop: 10 }}>
-          <Text variant="h6" style={styles.subtitle}>
-            Categorias
-          </Text>
+          <TouchableOpacity
+            style={styles.buttons}
+            onPress={() => navigation.push("About")}
+          >
+            <Text variant="h6" style={styles.subtitle}>
+              Categorias
+            </Text>
+          </TouchableOpacity>
           <View style={styles.categories}>
             {items.map((children, i) => {
               return (
                 <CategoryIcon
                   key={i}
                   children={children}
-                  onPress={() => "Redirect to " + children.title}
+                  onPress={() => navigation.push("Category")}
                 />
               );
             })}

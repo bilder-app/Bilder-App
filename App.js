@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import TabBar from "./atomic Design/molecules/TabBar/TabBar.jsx";
 import Login from "./atomic Design/pages/Login.jsx";
+import Category from "./atomic Design/pages/Category";
 
 import Home from "./atomic Design/pages/Home.jsx";
 import ProductDetail from "./atomic Design/pages/ProductDetail.jsx";
@@ -22,8 +23,8 @@ import Favourites from "./atomic Design/pages/Favourites.jsx";
 import Orders from "./atomic Design/pages/Orders.jsx";
 import OrderDetail from "./atomic Design/pages/OrderDetail.jsx";
 
-import Profile from "./atomic Design/pages/Profile.jsx"
-import About from "./atomic Design/pages/About.jsx"
+import Profile from "./atomic Design/pages/Profile.jsx";
+import About from "./atomic Design/pages/About.jsx";
 // import CategoryFilter from "./atomic Design/pages/CategoryFilter.jsx"
 import { QueryClientProvider, QueryClient } from "react-query";
 
@@ -57,17 +58,18 @@ export default function App() {
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="MyTabBar" component={MyTabBar} />
-          
-            {/* Acá van las pantallas sin tabBar */}
-            <Stack.Screen name="Search" component={ Search } />
-            <Stack.Screen name="ProductDetail" component={ ProductDetail } />
-            <Stack.Screen name="Cart" component={ Cart } />
-            <Stack.Screen name="Payment" component={ Payment } />
-            <Stack.Screen name="Results" component={ Results } />
-            <Stack.Screen name="OrderDetail" component={ OrderDetail } />
-            <Stack.Screen name="About" component={ About } />
 
-          {/* <Stack.Screen name="CategoryFilter" component={ CategoryFilter } /> */}
+            {/* Acá van las pantallas sin tabBar */}
+            <Stack.Screen name="Search" component={Search} />
+            <Stack.Screen name="ProductDetail" component={ProductDetail} />
+            <Stack.Screen name="Cart" component={Cart} />
+            <Stack.Screen name="Payment" component={Payment} />
+            <Stack.Screen name="Results" component={Results} />
+            <Stack.Screen name="OrderDetail" component={OrderDetail} />
+            <Stack.Screen name="About" component={About} />
+            <Stack.Screen name="Category" component={Category} />
+
+            {/* <Stack.Screen name="CategoryFilter" component={ CategoryFilter } /> */}
           </Stack.Navigator>
         </NavigationContainer>
         <FlashMessage position="top" icon="auto" style={{ top: -30 }} />
