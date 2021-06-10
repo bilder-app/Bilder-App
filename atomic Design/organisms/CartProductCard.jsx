@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Image } from "react-native";
 import Text from "../atoms/Text/Text";
 import { AntDesign } from "@expo/vector-icons";
-import { Machine, assign } from "xstate";
+import { amountMachine } from "../machines/amountModal";
 import { useMachine } from "@xstate/react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useQueryClient } from "react-query";
@@ -118,38 +118,3 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 });
-
-const amountMachine = Machine(
-  {
-    initial: "closed",
-    context: { amount: 0, stock: 0 },
-    states: {
-      closed: {
-        on: {
-          open: "open"
-        }
-      },
-      open: {
-        after: {
-          2000: { target: "closed", actions: "onClose" }
-        },
-        on: {
-          add_one: {
-            actions: "addOne",
-            target: "open"
-          },
-          remove_one: {
-            actions: "removeOne",
-            target: "open"
-          }
-        }
-      }
-    }
-  },
-  {
-    actions: {
-      addOne: assign({ amount: (ctx) => Math.min(ctx.amount + 1, ctx.stock) }),
-      removeOne: assign({ amount: (ctx) => Math.max(ctx.amount - 1, 0) })
-    }
-  }
-);
