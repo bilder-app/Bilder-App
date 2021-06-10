@@ -14,7 +14,7 @@ export default function ({ image, price, name, productId, amount, stock }) {
   const [state, send] = useMachine(amountMachine, {
     context: {
       amount,
-      stock
+      maxAmount: stock
     },
     actions: {
       onClose: (ctx) => {

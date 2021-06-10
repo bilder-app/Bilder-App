@@ -2,14 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { View, StyleSheet } from "react-native";
 
-import Modal from "../../molecules/ModalCart/Modal";
 import CardContainer from "../../atoms/CardContainer/CardContainer";
 import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
+import AmountModal from "../../organisms/AmountModal";
+import { useQuery, useQueryClient } from "react-query";
+import {
+  editProductInCart,
+  getCartProduct,
+  removeProductFromCart
+} from "../../../api";
 
 import { useNavigation } from "@react-navigation/native";
 
 export default function ProductCard({ children, onPress, style }) {
+  const queryClient = useQueryClient();
   const {
     price,
     name,
@@ -20,25 +27,22 @@ export default function ProductCard({ children, onPress, style }) {
     stock,
     images = [
       "https://ingcoecuador.com/wp-content/uploads/2020/04/uni.png",
-      "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg",
-    ],
+      "https://http2.mlstatic.com/D_NQ_NP_868738-MLA31322428821_072019-V.jpg"
+    ]
   } = children;
+
   const navigation = useNavigation();
+  const { data: cartProductData = {}, refetch: refetchCartProduct } = useQuery(
+    ["cart product", id],
+    () => getCartProduct(id)
+  );
 
-  const [value, setValue] = useState();
-  const cart = useSelector((state) => state.cartList.cart);
-
-  useEffect(() => {
-    cart.map((product) => {
-      product.id === id && setValue(product.ProductInCart.amount);
-    });
-  }, [cart]);
+  const { ProductInCart = {} } = cartProductData;
+  const { amount } = ProductInCart;
 
   return (
     <CardContainer
-      onPress={() => 
-        navigation.navigate("ProductDetail", {productId: id})
-      }
+      onPress={() => navigation.navigate("ProductDetail", { productId: id })}
       style={style}
     >
       <View style={styles.content}>
@@ -61,14 +65,24 @@ export default function ProductCard({ children, onPress, style }) {
         </Text>
       </View>
 
-      <Modal
-        style={{ marginLeft: "auto" }}
-        children={{
-          id: id,
-          stock: stock,
-          amount: value || 0,
-        }}
-      />
+      <View style={{ marginLeft: "auto" }}>
+        <AmountModal
+          onClose={(ctx) => {
+            if (ctx.amount === 0) {
+              return removeProductFromCart(id).then(() =>
+                queryClient.invalidateQueries("cart items")
+              );
+            } else {
+              editProductInCart({ productId: id, amount: ctx.amount }).then(
+                () => queryClient.invalidateQueries("cart items")
+              );
+            }
+          }}
+          amountToSet={amount}
+          initialAmount={amount}
+          showPlusOnNoAmount
+        />
+      </View>
     </CardContainer>
   );
 }
@@ -77,12 +91,12 @@ const styles = StyleSheet.create({
   content: {
     width: "100%",
     height: "46%",
-    resizeMode: "contain",
+    resizeMode: "contain"
   },
   body: {
     flex: 1,
     marginTop: 3,
-    justifyContent: "center",
+    justifyContent: "center"
   },
   button: {
     width: "30%",
@@ -90,6 +104,6 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     justifyContent: "center",
     alignItems: "flex-end",
-    marginTop: 3,
-  },
+    marginTop: 3
+  }
 });

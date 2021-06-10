@@ -49,7 +49,7 @@ export default function ProductDetails({ route }) {
     );
 
   const { data: cartProductData, refetch: refetchCartProduct } = useQuery(
-    ["get cart product", productId],
+    ["cart product", productId],
     () => getCartProduct(productId)
   );
 
@@ -148,7 +148,7 @@ export default function ProductDetails({ route }) {
           onPress={() => {
             postProductToCart(productId).then(() => {
               queryClient.invalidateQueries("cart items");
-              queryClient.invalidateQueries(["get cart product", productId], {
+              queryClient.invalidateQueries(["cart product", productId], {
                 exact: true
               });
             });
