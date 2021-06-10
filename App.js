@@ -15,6 +15,7 @@ import Home from "./atomic Design/pages/Home.jsx";
 import ProductDetail from "./atomic Design/pages/ProductDetail.jsx";
 import Cart from "./atomic Design/pages/Cart.jsx";
 import Payment from "./atomic Design/pages/Payment.jsx";
+import Checkout from "./atomic Design/pages/Checkout";
 
 import Search from "./atomic Design/pages/Search.jsx";
 import Results from "./atomic Design/pages/Results.jsx";
@@ -64,6 +65,7 @@ export default function App() {
             <Stack.Screen name="ProductDetail" component={ProductDetail} />
             <Stack.Screen name="Cart" component={Cart} />
             <Stack.Screen name="Payment" component={Payment} />
+            <Stack.Screen name="Checkout" component={Checkout} />
             <Stack.Screen name="Results" component={Results} />
             <Stack.Screen name="OrderDetail" component={OrderDetail} />
             <Stack.Screen name="About" component={About} />

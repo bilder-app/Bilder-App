@@ -45,12 +45,30 @@ function Cart({ navigation, cart, getCartItems }) {
       <View style={{ paddingHorizontal: 20, backgroundColor: "#FFF" }}>
         <View style={styles.hr} />
         <View style={styles.content}>
-          <Text style={{ color: "#707070" }} variant="subtitle2">
-            Subtotal
-          </Text>
-          <Text style={styles.price} variant="h6">
-            $ {reduceCart}
-          </Text>
+          <View style={styles.header}>
+            <Text style={{ color: "#707070" }} variant="subtitle2">
+              Subtotal
+            </Text>
+            <Text style={styles.price} variant="h6">
+              $ 0
+            </Text>
+          </View>
+          <View style={styles.header}>
+            <Text style={{ color: "#707070" }} variant="subtitle2">
+              Costo de Entrega Total
+            </Text>
+            <Text style={styles.price} variant="h6">
+              $ 0
+            </Text>
+          </View>
+          <View style={styles.header}>
+            <Text style={{ color: "#707070" }} variant="subtitle2">
+              Total
+            </Text>
+            <Text style={styles.price} variant="h6">
+              $ 0
+            </Text>
+          </View>
         </View>
       </View>
 
@@ -86,9 +104,14 @@ const styles = StyleSheet.create({
     marginRight: "auto",
   },
   content: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
+  header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    backgroundColor: "white",
   },
   button: {
     alignItems: "center",
