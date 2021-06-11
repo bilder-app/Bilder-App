@@ -17,7 +17,7 @@ const renderItem = ({ item = {} }) => {
   const { amount } = ProductInCart;
 
   return (
-    <View style={{ marginVertical: 5, marginHorizontal: 15 }} key={item.id}>
+    <View style={{ marginVertical: 5, marginHorizontal: 5 }} key={item.id}>
       <CartProduct
         stock={stock}
         image={images[0]}
@@ -55,7 +55,7 @@ function Cart({ navigation }) {
 
           <View style={styles.header}>
             <Text style={{ color: "#707070" }} variant="subtitle2">
-              Subtotal
+              Total
             </Text>
             <Text style={styles.price} variant="h6">
               $
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
   main: {
     height: "100%",
     width: "100%",
+    backgroundColor: "white",
   },
   scroll: {
     height: "87.6%",
