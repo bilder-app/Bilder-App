@@ -7,7 +7,7 @@ import {
   StatusBar,
   Dimensions,
   TouchableOpacity,
-  Image
+  Image,
 } from "react-native";
 
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
@@ -15,7 +15,6 @@ import CategoryIcon from "../molecules/CategoryIcon/CategoryIcon";
 import Slider from "../atoms/Slider/Slider";
 import Text from "../atoms/Text/Text";
 import Cart from "../atoms/Icons/Cart.jsx";
-
 import Search from "../atoms/Icons/Search";
 
 import {
@@ -28,12 +27,10 @@ import {
   faStream,
   faSink,
   faPencilRuler,
-  faClone
+  faClone,
 } from "@fortawesome/free-solid-svg-icons";
-import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-import { getProducts, getAllCartProducts } from "../../api";
+import { getProducts, getAllCartProducts, getMyUser } from "../../api";
 
 const logo = require("../../assets/bilderapp.png");
 const images = [
@@ -41,7 +38,7 @@ const images = [
   require("../../assets/img/2.png"),
   require("../../assets/img/3.png"),
   require("../../assets/img/4.png"),
-  require("../../assets/img/5.png")
+  require("../../assets/img/5.png"),
 ];
 
 const { height } = Dimensions.get("window");
@@ -55,7 +52,7 @@ const items = [
   { name: "Wood", icon: faStream, title: "Maderas" },
   { name: "Faucet", icon: faSink, title: "Grifería" },
   { name: "Services", icon: faPencilRuler, title: "Serv. & Ins." },
-  { name: "Floors", icon: faClone, title: "Pisos" }
+  { name: "Floors", icon: faClone, title: "Pisos" },
 ];
 
 function Home({ navigation }) {
@@ -63,6 +60,14 @@ function Home({ navigation }) {
 
   useEffect(() => {
     getProducts().then((resp) => setProductsData(resp.data));
+  }, []);
+
+  const [user, setUser] = useState();
+  useEffect(() => {
+    getMyUser().then((user) => {
+      setUser(user);
+      console.log(user);
+    });
   }, []);
 
   return (
@@ -81,7 +86,7 @@ function Home({ navigation }) {
           <TouchableOpacity
             onPress={() => alert("Ingresa la dirrección de entrega")}
           >
-            <Text>Lima 639 </Text>
+            <Text> {user && user.address}</Text>
           </TouchableOpacity>
         </View>
 
@@ -97,16 +102,21 @@ function Home({ navigation }) {
         <Slider onPress={console.log} source={images} />
 
         <View style={{ marginTop: 10 }}>
-          <Text variant="h6" style={styles.subtitle}>
-            Categorias
-          </Text>
+          <TouchableOpacity
+            style={styles.buttons}
+            onPress={() => navigation.push("About")}
+          >
+            <Text variant="h6" style={styles.subtitle}>
+              Categorias
+            </Text>
+          </TouchableOpacity>
           <View style={styles.categories}>
             {items.map((children, i) => {
               return (
                 <CategoryIcon
                   key={i}
                   children={children}
-                  onPress={() => "Redirect to " + children.title}
+                  onPress={() => navigation.push("Category")}
                 />
               );
             })}
@@ -140,7 +150,7 @@ export default Home;
 const styles = StyleSheet.create({
   main: {
     backgroundColor: "#fff",
-    height: height - 50
+    height: height - 50,
   },
   header: {
     height: 70,
@@ -149,28 +159,28 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#FFF"
+    backgroundColor: "#FFF",
   },
   categories: {
     width: "100%",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   subtitle: {
     paddingHorizontal: 15,
     color: "#FF8000",
-    fontWeight: "700"
+    fontWeight: "700",
   },
   logo: {
     width: 140,
     height: 40,
-    resizeMode: "contain"
+    resizeMode: "contain",
   },
   address: {
     alignItems: "center",
     display: "flex",
-    flexDirection: "column"
-  }
+    flexDirection: "column",
+  },
 });

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, TextInput, KeyboardAvoidingView } from "react-native";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  KeyboardAvoidingView,
+} from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import Image from "../atoms/Image/Image";
 import IconContainer from "../atoms/IconContainer/IconContainer";
@@ -12,15 +17,13 @@ import { faAngleLeft, faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { getMyUser, updateMyUser } from "../../api";
 import { useQuery } from "react-query";
 import { useFocusEffect } from "@react-navigation/native";
-
-
+import BackIcon from "../atoms/Icons/BackIcon";
 
 export default function About({ navigation }) {
-
   const {
     data: user = {},
     isLoading,
-    refetch
+    refetch,
   } = useQuery("user data", getMyUser);
 
   const [editable, setEditable] = useState(false);
@@ -37,31 +40,35 @@ export default function About({ navigation }) {
     }, [])
   );
 
-
   const handleChange = (e, name) => {
-    const { text } = e.nativeEvent
-    console.log(text, name)
+    const { text } = e.nativeEvent;
     editProfile({
       ...profile,
-      [name]: name === "dni" ? parseInt(text, 10) : text
-    })
-  }
+      [name]: name === "dni" ? parseInt(text, 10) : text,
+    });
+  };
 
-  return(
+  return (
     <View style={styles.default} behavior="padding">
       <View style={styles.header}>
         <IconContainer onPress={() => navigation.goBack()} style={styles.icon}>
-          <FontAwesomeIcon icon={faAngleLeft} color="#444D52" size={28}/>
+          <BackIcon width="28" height="28" />
         </IconContainer>
-        <Text variant="h6" style={{ marginRight: "auto" }}>Mis datos</Text>
-        <IconContainer 
+        <Text variant="h6" style={{ marginRight: "auto" }}>
+          Mis datos
+        </Text>
+        <IconContainer
           onPress={() => {
-              setEditable(!editable);
-              editable && updateMyUser(profile).then(() => refetch())
-          }} 
+            setEditable(!editable);
+            editable && updateMyUser(profile).then(() => refetch());
+          }}
           style={styles.icon}
         >
-          <FontAwesomeIcon icon={editable ? faCheck : faPen} color="#444D52" size={20}/>
+          <FontAwesomeIcon
+            icon={editable ? faCheck : faPen}
+            color="#444D52"
+            size={20}
+          />
         </IconContainer>
       </View>
       <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
@@ -74,87 +81,81 @@ export default function About({ navigation }) {
         </View>
 
         <View style={styles.content}>
-          <Text style={styles.label}>{editable ? "Nombre" : "Nombre completo"}</Text>
-          {editable
-          ?
+          <Text style={styles.label}>
+            {editable ? "Nombre" : "Nombre completo"}
+          </Text>
+          {editable ? (
             <TextInput
               defaultValue={user.name}
               onChange={(e) => handleChange(e, "name")}
               style={styles.input}
-            />         
-          :
+            />
+          ) : (
             <Text variante="subtitle1" style={styles.data}>
               {user && user.name + " " + user.lastname}
-            </Text> 
-          }       
+            </Text>
+          )}
 
           {editable && <Text style={styles.label}>Apellido</Text>}
-          {editable &&
+          {editable && (
             <TextInput
               defaultValue={user.lastname}
               onChange={(e) => handleChange(e, "lastname")}
               style={styles.input}
-            />    
-          }
+            />
+          )}
 
           <Text style={styles.label}>Correo electrónico</Text>
-          {editable
-          ?
+          {editable ? (
             <TextInput
               defaultValue={user.email}
               onChange={(e) => handleChange(e, "email")}
               style={styles.input}
             />
-          :
+          ) : (
             <Text variante="subtitle1" style={styles.data}>
               {user && user.email}
             </Text>
-          }
+          )}
 
-          
           {!editable && <Text style={styles.label}>Teléfono</Text>}
-          {!editable &&
+          {!editable && (
             <Text variante="subtitle1" style={styles.data}>
-              {user && "+54 9 11 2021-2021" }
+              {user && "+54 9 11 2021-2021"}
             </Text>
-          }
-
+          )}
 
           <Text style={styles.label}>Dirección</Text>
-          {editable
-          ?
+          {editable ? (
             <TextInput
               defaultValue={user.address}
               onChange={(e) => handleChange(e, "address")}
               style={styles.input}
             />
-          :
+          ) : (
             <Text variante="subtitle1" style={styles.data}>
               {user && user.address}
             </Text>
-          }
-  
+          )}
 
           <Text style={styles.label}>N° de documento</Text>
-          {editable
-          ? 
+          {editable ? (
             <TextInput
-                defaultValue={user.dni.toString()}
-                maxLength={8}
-                onChange={(e) => handleChange(e, "dni")}
-                keyboardType='numeric'
-                style={styles.input}
-              />
-          : 
+              defaultValue={user.dni.toString()}
+              maxLength={8}
+              onChange={(e) => handleChange(e, "dni")}
+              keyboardType="numeric"
+              style={styles.input}
+            />
+          ) : (
             <Text variante="subtitle1" style={styles.data}>
               {user && user.dni}
             </Text>
-          }
-
+          )}
         </View>
       </KeyboardAwareScrollView>
-    </View> 
-  )
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -212,5 +213,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     borderBottomWidth: 1.5,
     borderBottomColor: "#666",
-  }
-})
+  },
+});

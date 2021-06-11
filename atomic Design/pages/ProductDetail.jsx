@@ -18,7 +18,7 @@ import {
   addProductToFavorites,
   getFavoriteProduct,
   removeProductFromFavorites,
-  getCartProduct
+  getCartProduct,
 } from "../../api";
 import { useQueryClient, useQuery } from "react-query";
 import { useFocusEffect } from "@react-navigation/native";
@@ -29,7 +29,7 @@ export default function ProductDetails({ route }) {
   const {
     data: productData = {},
     isFetching,
-    refetch: refetchProductData
+    refetch: refetchProductData,
   } = useQuery(["product data", productId], () => getProductDetails(productId));
   const {
     name,
@@ -40,7 +40,7 @@ export default function ProductDetails({ route }) {
     model,
     content,
     brand,
-    contentType
+    contentType,
   } = productData;
 
   const { data: favoriteProductData, refetch: refetchFavoriteProduct } =
@@ -86,7 +86,7 @@ export default function ProductDetails({ route }) {
               });
             }
           },
-          shareAction: alert
+          shareAction: alert,
         }}
       />
 
@@ -149,7 +149,7 @@ export default function ProductDetails({ route }) {
             postProductToCart(productId).then(() => {
               queryClient.invalidateQueries("cart items");
               queryClient.invalidateQueries(["cart product", productId], {
-                exact: true
+                exact: true,
               });
             });
           }}
@@ -163,28 +163,28 @@ export default function ProductDetails({ route }) {
 const styles = StyleSheet.create({
   main: {
     width: "100%",
-    height: "100%"
+    height: "100%",
   },
   content: {
     width: "100%",
     paddingHorizontal: 15,
-    backgroundColor: "#FAFAFA"
+    backgroundColor: "#FAFAFA",
   },
   data: {
     width: "100%",
-    marginBottom: 5
+    marginBottom: 5,
   },
   chip: {
     marginVertical: 5,
     elevation: 0,
     borderColor: "#CCC",
-    borderWidth: 0.5
+    borderWidth: 0.5,
   },
   categories: {
     marginTop: 10,
     marginBottom: 5,
     flexDirection: "row",
     justifyContent: "space-between",
-    flexWrap: "wrap"
-  }
+    flexWrap: "wrap",
+  },
 });

@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import BackIcon from "../../atoms/Icons/BackIcon";
 
 /*
   children: {
@@ -37,7 +38,7 @@ export default function Header({
   return (
     <View style={[styles.default, style]}>
       <IconContainer onPress={() => navigation.goBack()} style={styles.icon}>
-        <FontAwesomeIcon icon={faAngleLeft} color="#444D52" size={28} />
+        <BackIcon width="28" height="28" />
       </IconContainer>
       <View style={[styles.content, styles[variant || "title"]]}>
         {children.text && <Text variant="h6">{children.text}</Text>}

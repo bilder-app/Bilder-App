@@ -11,6 +11,7 @@ export const amountMachine = Machine(
         }
       },
       open: {
+        entry: "onOpen",
         after: {
           2000: { target: "closed", actions: "onClose" }
         },

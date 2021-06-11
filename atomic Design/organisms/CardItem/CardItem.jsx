@@ -105,7 +105,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "white",
-    elevation: 2,
+    elevation: 1.2,
     borderRadius: 15,
     marginVertical: 5,
     paddingVertical: 5,

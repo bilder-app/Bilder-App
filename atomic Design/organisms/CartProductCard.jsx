@@ -19,13 +19,15 @@ export default function ({ image, price, name, productId, amount, stock }) {
     actions: {
       onClose: (ctx) => {
         if (ctx.amount === 0) {
-          return removeProductFromCart(productId).then(() =>
-            queryClient.invalidateQueries("cart items")
-          );
+          return removeProductFromCart(productId).then(() => {
+            queryClient.invalidateQueries("cart items");
+            queryClient.invalidateQueries(["cart product", productId]);
+          });
         } else {
-          editProductInCart({ productId, amount: ctx.amount }).then(() =>
-            queryClient.invalidateQueries("cart items")
-          );
+          editProductInCart({ productId, amount: ctx.amount }).then(() => {
+            queryClient.invalidateQueries("cart items");
+            queryClient.invalidateQueries(["cart product", productId]);
+          });
         }
       }
     }

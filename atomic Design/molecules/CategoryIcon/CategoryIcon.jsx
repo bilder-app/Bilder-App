@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 export default function CategoryIcon({ children, onPress, style }) {
   const { icon, title } = children;
-  const [shadown, setShadown] = useState(2);
+  const [shadown, setShadown] = useState(1.2);
 
   return (
     <Pressable
