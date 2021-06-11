@@ -8,12 +8,9 @@ import {
   EDITED_ITEM_FROM_CART,
   EDITING_ITEM_FROM_CART,
   EDITING_ITEM_FROM_CART_ERROR,
-  FETCHED_CART_ITEMS,
-  FETCHING_CART_ITEMS,
-  FETCHING_CART_ITEMS_ERROR,
   CLEARED_CART_ITEMS,
   CLEARING_CART_ITEMS,
-  CLEARING_CART_ITEMS_ERROR,
+  CLEARING_CART_ITEMS_ERROR
 } from "../types.js";
 
 import {
@@ -21,9 +18,8 @@ import {
   updateProductInCart,
   deleteProductInCart,
   getAllCartProducts,
-  clearAllCartItems,
+  clearAllCartItems
 } from "../../api";
-
 
 export const addToCart = (productId) => (dispatch) => {
   dispatch({ type: ADDING_TO_CART });
@@ -47,16 +43,11 @@ export const removeItemFromCart = (productId) => (dispatch) => {
   dispatch({ type: REMOVING_ITEM_FROM_CART });
   deleteProductInCart(productId)
     .then(() => {
-      dispatch({ type: REMOVED_ITEM_FROM_CART, payload: productId })
+      dispatch({ type: REMOVED_ITEM_FROM_CART, payload: productId });
     })
-    .catch((e) => dispatch({ type: REMOVING_ITEM_FROM_CART_ERROR, payload: e }));
-};
-
-export const getCartItems = () => (dispatch) => {
-  dispatch({ type: FETCHING_CART_ITEMS });
-  getAllCartProducts()
-    .then((resp) => dispatch({ type: FETCHED_CART_ITEMS, payload: resp }))
-    .catch((e) => dispatch({ type: FETCHING_CART_ITEMS_ERROR, payload: e }));
+    .catch((e) =>
+      dispatch({ type: REMOVING_ITEM_FROM_CART_ERROR, payload: e })
+    );
 };
 
 export const clearCartItems = () => (dispatch) => {

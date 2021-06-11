@@ -12,40 +12,80 @@ import Slider from "../organisms/Slider";
 import Footer from "../organisms/Footer/Footer";
 import Text from "../atoms/Text/Text";
 import Chip from "../atoms/Chip/Chip";
+import {
+  postProductToCart,
+  getProductDetails,
+  addProductToFavorites,
+  getFavoriteProduct,
+  removeProductFromFavorites,
+  getCartProduct,
+} from "../../api";
+import { useQueryClient, useQuery } from "react-query";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function ProductDetails({ route }) {
+  const queryClient = useQueryClient();
+  const { productId } = route.params;
   const {
-    brand,
-    bussinessId,
-    // categories,
-    content,
-    contentType,
-    description,
-    id,
-    images,
-    model,
+    data: productData = {},
+    isFetching,
+    refetch: refetchProductData,
+  } = useQuery(["product data", productId], () => getProductDetails(productId));
+  const {
     name,
     price,
+    description,
+    images,
     stock,
-  } = route.params;
+    model,
+    content,
+    brand,
+    contentType,
+  } = productData;
 
-  // const dispatch = useDispatch();
-  // const showModalDispatched = () => dispatch(showModal(route.params));
-  // const { favoriteProducts } = useSelector((state) => state.productsList);
+  const { data: favoriteProductData, refetch: refetchFavoriteProduct } =
+    useQuery(["get favorited product", productId], () =>
+      getFavoriteProduct(productId)
+    );
 
-  // const isFavorite = !!favoriteProducts.find((prod) => prod.id === id);
+  const { data: cartProductData, refetch: refetchCartProduct } = useQuery(
+    ["cart product", productId],
+    () => getCartProduct(productId)
+  );
 
-  // useEffect(() => {
-  //   dispatch(getFavoriteProducts());
-  // }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      refetchProductData();
+      refetchFavoriteProduct();
+      refetchCartProduct();
+    }, [])
+  );
+
+  const isFavorited = !!favoriteProductData;
+  const isInCart = !!cartProductData;
+
+  if (isFetching) return null;
 
   return (
     <View style={styles.main}>
       <Header
         variant="icons"
-        children={{ id: id }}
+        children={{ id: productId }}
+        isFavorited={isFavorited}
         onPress={{
-          favouriteAction: console.log,
+          favouriteAction: () => {
+            if (isFavorited) {
+              removeProductFromFavorites(productId).then(() => {
+                queryClient.invalidateQueries("favorite products");
+                queryClient.invalidateQueries("get favorited product");
+              });
+            } else {
+              addProductToFavorites(productId).then(() => {
+                queryClient.invalidateQueries("favorite products");
+                queryClient.invalidateQueries("get favorited product");
+              });
+            }
+          },
           shareAction: alert,
         }}
       />
@@ -53,6 +93,7 @@ export default function ProductDetails({ route }) {
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <Slider images={images} />
         <View style={styles.data}>
+          <Text>asd</Text>
           <Text variant="h1" style={{ color: "#FF8000" }}>
             $ {price}
           </Text>
@@ -66,42 +107,55 @@ export default function ProductDetails({ route }) {
           </Text>
           {!brand && (
             <Text variant="subtitle1" style={{ color: "#707070" }}>
-              {" "}
               Marca: {brand || "Black&Decker"}
             </Text>
           )}
           {contentType && (
             <Text variant="subtitle1" style={{ color: "#707070" }}>
-              {" "}
               Contenido: {content || 1} {contentType}
             </Text>
           )}
           {!model && (
             <Text variant="subtitle1" style={{ color: "#707070" }}>
-              {" "}
               Modelo: {model || "700GH B&D"}
             </Text>
           )}
           {stock && (
             <Text variant="subtitle1" style={{ color: "#707070" }}>
-              {" "}
               Stock: {stock}
             </Text>
           )}
 
-          <Text variant="h4" style={{ marginTop: 15 }}>
+          {/* <Text variant="h4" style={{ marginTop: 15 }}>
             Categorias
           </Text>
-          {/* <View style={styles.categories}>
-            {categories.length
-            ? categories.map((title, i) => <Chip key={i} children={title} style={styles.chip}/>)
-            : <Text variant="subtitle1" style={{ color: "#707070" }}>Este producto no tiene categorías</Text>
-            }
+          <View style={styles.categories}>
+            {categories.length ? (
+              categories.map((title, i) => (
+                <Chip key={i} children={title} style={styles.chip} />
+              ))
+            ) : (
+              <Text variant="subtitle1" style={{ color: "#707070" }}>
+                Este producto no tiene categorías
+              </Text>
+            )} 
           </View> */}
         </View>
       </ScrollView>
 
-      <Footer title="Comprar ahora" onPress={console.log} />
+      {!isInCart && (
+        <Footer
+          onPress={() => {
+            postProductToCart(productId).then(() => {
+              queryClient.invalidateQueries("cart items");
+              queryClient.invalidateQueries(["cart product", productId], {
+                exact: true,
+              });
+            });
+          }}
+          title="Comprar ahora"
+        />
+      )}
     </View>
   );
 }

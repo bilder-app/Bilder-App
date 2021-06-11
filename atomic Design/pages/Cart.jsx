@@ -1,35 +1,46 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { View, FlatList, StyleSheet } from "react-native";
+import CartProduct from "../organisms/CartProductCard";
 
 import Header from "../organisms/Header/Header";
 import CardItem from "../organisms/CardItem/CardItem";
 import Text from "../../atomic Design/atoms/Text/Text";
 import Button from "../../atomic Design/atoms/Button/Button";
 
-import { getCartItems } from "../../redux/actions/cart";
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
+import { useQuery } from "react-query";
+import { getAllCartProducts } from "../../api";
+import { useFocusEffect } from "@react-navigation/native";
 
-const renderItem = ({ item }) => {
+const renderItem = ({ item = {} }) => {
+  const { images, price, name, id, ProductInCart = {}, stock } = item;
+  const { amount } = ProductInCart;
+
   return (
-    <View style={{ marginVertical: 5 }} key={item.id}>
-      <CardItem variant="cart" children={item} onPress={alert} />
+    <View style={{ marginVertical: 5, marginHorizontal: 15 }} key={item.id}>
+      <CartProduct
+        stock={stock}
+        image={images[0]}
+        price={price}
+        name={name}
+        productId={id}
+        amount={amount}
+      />
     </View>
   );
 };
 
-function Cart({ navigation, cart, getCartItems }) {
-  useEffect(() => {
-    getCartItems(); // redux
-  }, []);
+function Cart({ navigation }) {
+  const { data: cartProducts = [], refetch } = useQuery(
+    "cart items",
+    getAllCartProducts
+  );
 
-  const reduceCart = (() => {
-    let acc = 0;
-    for (let a = 0; a < cart.length; a++) {
-      acc += cart[a].ProductInCart.amount * cart[a].price;
-    }
-    return acc;
-  })();
+  useFocusEffect(
+    React.useCallback(() => {
+      refetch();
+    }, [])
+  );
 
   return (
     <View style={styles.main}>
@@ -43,15 +54,23 @@ function Cart({ navigation, cart, getCartItems }) {
           />
 
           <View style={styles.header}>
-            <Text style={{ color: "#444D52" }} variant="h4">
-              Total
+            <Text style={{ color: "#707070" }} variant="subtitle2">
+              Subtotal
             </Text>
-            <Text style={{ color: "#444D52" }} variant="h6">
-              $ {reduceCart}
+            <Text style={styles.price} variant="h6">
+              $
+              {cartProducts.length
+                ? cartProducts.reduce(
+                    (prev, next) =>
+                      next.price * next.ProductInCart.amount + prev,
+                    0
+                  )
+                : 0}
             </Text>
           </View>
         </ScrollContainer>
       </View>
+
       <View style={styles.button}>
         <Button
           onPress={() => navigation.navigate("Shipping")}
@@ -64,16 +83,10 @@ function Cart({ navigation, cart, getCartItems }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    cart: state.cartList.cart,
-  };
-}
-export default connect(mapStateToProps, { getCartItems })(Cart);
+export default Cart;
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: "#fff",
     height: "100%",
     width: "100%",
   },

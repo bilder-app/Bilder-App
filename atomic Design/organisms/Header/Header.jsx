@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faAngleLeft,
-  faHeart as faFillHeart,
+  faHeart as faFillHeart
 } from "@fortawesome/free-solid-svg-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -25,8 +25,14 @@ import BackIcon from "../../atoms/Icons/BackIcon";
   }
 */
 
-export default function Header({ variant, children, onPress, style }) {
-  const [favourite, setFavourite] = useState(false);
+export default function Header({
+  variant,
+  children,
+  onPress,
+  style,
+  isFavorited = false
+}) {
+  const [favourite, setFavourite] = useState(isFavorited);
   const navigation = useNavigation();
 
   return (
@@ -70,33 +76,33 @@ const styles = {
     height: 50,
     alignItems: "center",
     backgroundColor: "white",
-    flexDirection: "row",
+    flexDirection: "row"
   },
   content: {
     width: "88%",
     height: "100%",
-    alignItems: "center",
+    alignItems: "center"
   },
   icon: {
     width: "11%",
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "transparent",
+    backgroundColor: "transparent"
   },
   title: {
     justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "flex-start"
   },
   icons: {
     alignItems: "flex-end",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   boxContent: {
     width: "25%",
     height: "100%",
     justifyContent: "space-between",
     flexDirection: "row",
-    marginRight: 3,
-  },
+    marginRight: 3
+  }
 };

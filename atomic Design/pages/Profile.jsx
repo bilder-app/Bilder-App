@@ -22,10 +22,11 @@ export default function Profile({ navigation }) {
     React.useCallback(() => {
       refetch();
       // Do something when the screen is focused
-      return () => {
-        // Do something when the screen is unfocused
-        // Useful for cleanup functions
-      };
+
+      // return () => {
+      //   // Do something when the screen is unfocused
+      //   // Useful for cleanup functions
+      // };
     }, [])
   );
 

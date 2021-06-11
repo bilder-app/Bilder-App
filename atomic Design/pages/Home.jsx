@@ -30,8 +30,7 @@ import {
   faClone,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { getProducts, getAllCartProducts, getMyUser } from "../../api";
-import { getCartItems } from "../../redux/actions/cart";
+import { getProducts, getAllCartProducts } from "../../api";
 
 const logo = require("../../assets/bilderapp.png");
 const images = [
@@ -56,12 +55,11 @@ const items = [
   { name: "Floors", icon: faClone, title: "Pisos" },
 ];
 
-function Home({ navigation, getCartItems }) {
+function Home({ navigation }) {
   const [productsData, setProductsData] = useState();
 
   useEffect(() => {
     getProducts().then((resp) => setProductsData(resp.data));
-    getCartItems(); // redux
   }, []);
 
   const [user, setUser] = useState();
@@ -147,12 +145,7 @@ function Home({ navigation, getCartItems }) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    cart: state.cartList.cart,
-  };
-}
-export default connect(mapStateToProps, { getCartItems })(Home);
+export default Home;
 
 const styles = StyleSheet.create({
   main: {
@@ -166,7 +159,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor: "#FFF",
   },
   categories: {
     width: "100%",
@@ -183,7 +176,6 @@ const styles = StyleSheet.create({
   logo: {
     width: 140,
     height: 40,
-
     resizeMode: "contain",
   },
   address: {

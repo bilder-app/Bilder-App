@@ -9,61 +9,69 @@ import ProductCard from "../organisms/ProductCard/ProductCard";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { searchProducts } from "../../api.js";
+import { useInfiniteQuery } from "react-query";
 
-const PRODUCTS_LIMIT = 50;
-
+// const PRODUCTS_LIMIT = 50;
+const PRODUCTS_LIMIT = 3;
 
 export default function Result({ route }) {
-  // const [productsData, setProductsData] = useState();
-  // const [page, setPage] = useState(1);
+  const {
+    params: { searchTerm }
+  } = route;
 
-  // useEffect(() => {
-  //   searchProducts(route.params, 1, PRODUCTS_LIMIT).then((resp) =>
-  //     setProductsData(resp)
-  //   );
-  // }, []);
+  const { data } = useInfiniteQuery(
+    "products search results",
+    ({ pageParam = 1 }) =>
+      searchProducts({
+        name: searchTerm,
+        limit: PRODUCTS_LIMIT,
+        page: pageParam
+      }),
+    {
+      getNextPageParam: (lastPage) => lastPage.next?.page
+    }
+  );
   const productsData = [
     {
       price: "175",
       name: "Martillo de 3/4 pulgadas ",
       contentType: "Metro (m)",
       content: "6",
-      brand: "Hierros Jr",
+      brand: "Hierros Jr"
     },
     {
       price: "175",
       name: "Martillo de 3/4 pulgadas ",
       contentType: "Metro (m)",
       content: "6",
-      brand: "Hierros Jr",
-    },
-        {
-      price: "175",
-      name: "Martillo de 3/4 pulgadas ",
-      contentType: "Metro (m)",
-      content: "6",
-      brand: "Hierros Jr",
+      brand: "Hierros Jr"
     },
     {
       price: "175",
       name: "Martillo de 3/4 pulgadas ",
       contentType: "Metro (m)",
       content: "6",
-      brand: "Hierros Jr",
+      brand: "Hierros Jr"
     },
-        {
+    {
       price: "175",
       name: "Martillo de 3/4 pulgadas ",
       contentType: "Metro (m)",
       content: "6",
-      brand: "Hierros Jr",
+      brand: "Hierros Jr"
     },
-  ]
-
+    {
+      price: "175",
+      name: "Martillo de 3/4 pulgadas ",
+      contentType: "Metro (m)",
+      content: "6",
+      brand: "Hierros Jr"
+    }
+  ];
 
   return (
     <View style={styles.container}>
-      <SearchBar onPress={alert} style={{ elevation: 0 }}/>
+      <SearchBar onPress={alert} style={{ elevation: 0 }} />
 
       {productsData && (
         <>
@@ -79,23 +87,32 @@ export default function Result({ route }) {
             </View>
           </View>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.results}>
-              {productsData.map((props, index) => {
-                return <ProductCard children={props} onPress={alert} key={index} style={{ marginVertical: 5 }}/>;
-              })}
-            </View>
+            {data && (
+              <View style={styles.results}>
+                {data.pages.map(({ results }) =>
+                  results.map((data) => (
+                    <ProductCard
+                      children={data}
+                      onPress={alert}
+                      key={data.id}
+                      style={{ marginVertical: 5 }}
+                    />
+                  ))
+                )}
+              </View>
+            )}
           </ScrollView>
-          <View style={{ backgroundColor: "grey", height: 50 }}></View>
+          {/* <View style={{ backgroundColor: "grey", height: 50 }}></View> */}
         </>
-      ) }
+      )}
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "100%",
+    height: "100%"
   },
   content: {
     height: 40,
@@ -104,7 +121,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 15,
     borderBottomColor: "grey",
-    borderBottomWidth: 1,
+    borderBottomWidth: 1
   },
   icons: {
     width: "25%",
@@ -120,6 +137,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     paddingHorizontal: 15,
-    paddingVertical: 15,
+    paddingVertical: 15
   }
 });
