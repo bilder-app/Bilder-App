@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, StyleSheet, TouchableOpacity, StatusBar } from "react-native";
 
 import Header from "../organisms/Header/Header";
@@ -11,10 +11,6 @@ import { useFocusEffect } from "@react-navigation/native";
 
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
-const fakeUser = {
-  photo:
-    "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png"
-};
 
 export default function Profile({ navigation }) {
   const {
@@ -27,17 +23,12 @@ export default function Profile({ navigation }) {
     React.useCallback(() => {
       refetch();
       // Do something when the screen is focused
-
-      // return () => {
-      //   // Do something when the screen is unfocused
-      //   // Useful for cleanup functions
-      // };
+      return () => {
+        // Do something when the screen is unfocused
+        // Useful for cleanup functions
+      };
     }, [])
   );
-  const fakeUser = {
-    photo:
-      "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png",
-  };
 
   return (
     <View style={styles.default}>
@@ -46,7 +37,7 @@ export default function Profile({ navigation }) {
 
       <View style={styles.info}>
         <Image
-          children={fakeUser.photo}
+          children={userData.profileImage}
           variant="medium"
           style={{ borderRadius: 100 }}
         />
