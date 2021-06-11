@@ -48,7 +48,7 @@ function Cart({ navigation }) {
       <View style={styles.scroll}>
         <ScrollContainer>
           <FlatList
-            data={cart}
+            data={cartProducts}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
           />
@@ -75,8 +75,8 @@ function Cart({ navigation }) {
         <Button
           onPress={() => navigation.navigate("Shipping")}
           children="Continuar"
-          props={{ disabled: !cart.length }}
-          style={!cart.length ? { backgroundColor: "#707070" } : {}}
+          props={{ disabled: !cartProducts.length }}
+          style={!cartProducts.length ? { backgroundColor: "#707070" } : {}}
         />
       </View>
     </View>

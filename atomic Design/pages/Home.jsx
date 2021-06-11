@@ -30,7 +30,7 @@ import {
   faClone,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { getProducts, getAllCartProducts } from "../../api";
+import { getProducts, getAllCartProducts, getMyUser } from "../../api";
 
 const logo = require("../../assets/bilderapp.png");
 const images = [

@@ -17,6 +17,7 @@ import { faAngleLeft, faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { getMyUser, updateMyUser } from "../../api";
 import { useQuery } from "react-query";
 import { useFocusEffect } from "@react-navigation/native";
+import BackIcon from "../atoms/Icons/BackIcon";
 
 export default function About({ navigation }) {
   const {
