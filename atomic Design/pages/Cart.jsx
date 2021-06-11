@@ -9,7 +9,6 @@ import Button from "../../atomic Design/atoms/Button/Button";
 
 import { getCartItems } from "../../redux/actions/cart";
 
-const random = Math.floor(Math.random() * 100 + 1);
 
 const renderItem = ({ item }) => {
   return (
@@ -22,7 +21,7 @@ const renderItem = ({ item }) => {
 function Cart({ navigation, cart, getCartItems }) {
   useEffect(() => {
     getCartItems(); // redux
-  }, [cart]);
+  }, []);
 
   const reduceCart = (() => {
     let acc = 0;
@@ -36,11 +35,20 @@ function Cart({ navigation, cart, getCartItems }) {
     <View style={styles.main}>
       <Header children={{ text: "Mi Carrito" }} />
 
-      <FlatList
-        data={cart}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      {cart.length
+      ? 
+        <FlatList
+          data={cart}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      :
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+          <Text style={{ color: "#707070" }} variant="subtitle1">
+            No ha seleccionado ningún producto
+          </Text>
+        </View>
+      }
 
       <View style={{ paddingHorizontal: 20, backgroundColor: "#FFF" }}>
         <View style={styles.hr} />
@@ -58,6 +66,8 @@ function Cart({ navigation, cart, getCartItems }) {
         <Button
           onPress={() => navigation.navigate("Payment")}
           children="Continuar"
+          props={{ disabled: !cart.length }}
+          style={!cart.length ? { backgroundColor: "#707070" } : {}}
         />
       </View>
     </View>

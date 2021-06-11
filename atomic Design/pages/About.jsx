@@ -40,7 +40,6 @@ export default function About({ navigation }) {
 
   const handleChange = (e, name) => {
     const { text } = e.nativeEvent
-    console.log(text, name)
     editProfile({
       ...profile,
       [name]: name === "dni" ? parseInt(text, 10) : text
@@ -139,12 +138,12 @@ export default function About({ navigation }) {
           {editable
           ? 
             <TextInput
-                defaultValue={user.dni.toString()}
-                maxLength={8}
-                onChange={(e) => handleChange(e, "dni")}
-                keyboardType='numeric'
-                style={styles.input}
-              />
+              defaultValue={user.dni.toString()}
+              maxLength={8}
+              onChange={(e) => handleChange(e, "dni")}
+              keyboardType='numeric'
+              style={styles.input}
+            />
           : 
             <Text variante="subtitle1" style={styles.data}>
               {user && user.dni}
