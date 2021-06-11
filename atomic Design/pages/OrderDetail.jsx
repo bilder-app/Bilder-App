@@ -7,23 +7,25 @@ import Header from "../organisms/Header/Header";
 import CardItem from "../organisms/CardItem/CardItem";
 
 const children = {
-  id: Math.floor((Math.random() * 100) + 1),
+  id: Math.floor(Math.random() * 100 + 1),
   images: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
   name: "Muñeco de baby Joda coleccionable",
-  price: Math.floor((Math.random() * 1000) + 1),
-  units: Math.floor((Math.random() * 50) + 2),
-}
+  price: Math.floor(Math.random() * 1000 + 1),
+  units: Math.floor(Math.random() * 50 + 2),
+};
 
-
-export default function OrderDetail({ orderProducts = [1,2,3,4,5], getFavoriteProducts, route }) {
-
+export default function OrderDetail({
+  orderProducts = [1, 2, 3, 4, 5],
+  getFavoriteProducts,
+  route,
+}) {
   // useEffect(() => {
   //   getFavoriteProducts()
   // }, []);
 
   return (
     <View style={styles.main}>
-      <Header children={{ text: `Orden #000${children.id}` }} />  
+      <Header children={{ text: `Orden #000${children.id}` }} />
 
       <View style={{ paddingHorizontal: 15, height: "100%" }}>
         <View style={styles.scroll}>
@@ -32,11 +34,17 @@ export default function OrderDetail({ orderProducts = [1,2,3,4,5], getFavoritePr
             showsVerticalScrollIndicator={false}
           >
             <View style={{ marginTop: 10, marginBottom: 10 }}>
-              {orderProducts && orderProducts.map((product, i) => {
-                return(
-                  <CardItem variant="shippingDetail" children={children} onPress={console.log} key={i}/>
-                )
-              })}   
+              {orderProducts &&
+                orderProducts.map((product, i) => {
+                  return (
+                    <CardItem
+                      variant="shippingDetail"
+                      children={children}
+                      onPress={console.log}
+                      key={i}
+                    />
+                  );
+                })}
             </View>
           </ScrollView>
         </View>
@@ -56,11 +64,9 @@ export default function OrderDetail({ orderProducts = [1,2,3,4,5], getFavoritePr
           </View>
         </View>
       </View>
-     
     </View>
   );
 }
-
 
 // function mapStateToProps(state) {
 //   return {
@@ -71,9 +77,10 @@ export default function OrderDetail({ orderProducts = [1,2,3,4,5], getFavoritePr
 
 const styles = StyleSheet.create({
   main: {
-      width: "100%",
-      height: "100%",
+    width: "100%",
+    height: "100%",
     alignItems: "center",
+    backgroundColor: "white",
   },
   scroll: {
     height: "75%",
@@ -88,5 +95,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
-  }
+  },
 });

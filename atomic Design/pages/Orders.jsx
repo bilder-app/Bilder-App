@@ -41,31 +41,6 @@ const items = [
     date: "Abril 5, 2020 - 19:36",
     state: "Para entregar",
   },
-  {
-    orderId: random + 5,
-    date: "Abril 5, 2020 - 19:36",
-    state: "Completado",
-  },
-  {
-    orderId: random + 6,
-    date: "Abril 5, 2020 - 19:36",
-    state: "En preparación",
-  },
-  {
-    orderId: random + 7,
-    date: "Abril 5, 2020 - 19:36",
-    state: "Para entregar",
-  },
-  {
-    orderId: random + 8,
-    date: "Abril 5, 2020 - 19:36",
-    state: "En preparación",
-  },
-  {
-    orderId: random + 9,
-    date: "Abril 5, 2020 - 19:36",
-    state: "Completado",
-  },
 ];
 
 const RenderItem = ({ item, filter }) => {
