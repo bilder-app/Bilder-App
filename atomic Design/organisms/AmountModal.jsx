@@ -11,7 +11,8 @@ function AmountModal({
   onClose,
   maxAmount = Infinity,
   amountToSet,
-  showPlusOnNoAmount = false
+  showPlusOnNoAmount = false,
+  onOpen
 }) {
   const [state, send] = useMachine(amountMachine, {
     context: {
@@ -19,7 +20,8 @@ function AmountModal({
       maxAmount
     },
     actions: {
-      onClose: (ctx, e) => onClose?.(ctx, e)
+      onClose: (ctx, e) => onClose?.(ctx, e),
+      onOpen: (ctx, e) => onOpen?.(ctx, e)
     }
   });
 
