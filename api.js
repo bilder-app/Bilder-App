@@ -6,8 +6,16 @@ export function logIn({ email, password }) {
   return axios.post("/auth/login", { email, password });
 }
 
+export function logOut() {
+  return axios.post("/auth/logout");
+}
+
 export function getMyUser() {
   return axios.get("/user/me").then((res) => res.data);
+}
+
+export function updateMyUser(data) {
+  return axios.put("/user/me", data).then((res) => res.data);
 }
 
 export function getProducts() {

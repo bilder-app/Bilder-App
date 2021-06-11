@@ -5,16 +5,11 @@ import Header from "../organisms/Header/Header";
 import Whatsapp from "../molecules/WhatsappButton/WhatsappButton";
 import Image from "../atoms/Image/Image";
 import Text from "../atoms/Text/Text";
-import { getMyUser } from "../../api";
+import { getMyUser, logOut } from "../../api";
 import { useQuery } from "react-query";
 import { useFocusEffect } from "@react-navigation/native";
 
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
-
-const fakeUser = {
-  photo:
-    "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png",
-};
 
 export default function Profile({ navigation }) {
   const {
@@ -27,17 +22,12 @@ export default function Profile({ navigation }) {
     React.useCallback(() => {
       refetch();
       // Do something when the screen is focused
-
       return () => {
         // Do something when the screen is unfocused
         // Useful for cleanup functions
       };
     }, [])
   );
-  const fakeUser = {
-    photo:
-      "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png",
-  };
 
   return (
     <View style={styles.default}>
@@ -46,7 +36,7 @@ export default function Profile({ navigation }) {
 
       <View style={styles.info}>
         <Image
-          children={fakeUser.photo}
+          children={userData.profileImage}
           variant="medium"
           style={{ borderRadius: 100 }}
         />
@@ -79,7 +69,10 @@ export default function Profile({ navigation }) {
             Preguntas frecuentes
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttons}>
+        <TouchableOpacity
+          style={styles.buttons}
+          onPress={() => logOut().then(() => navigation.navigate("Login"))}
+        >
           <FontAwesome name="power-off" size={27} color="#444D52" />
           <Text variante="subtitle1" style={styles.text}>
             Cerrar sesión

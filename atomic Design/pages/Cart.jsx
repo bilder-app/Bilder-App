@@ -10,8 +10,6 @@ import Button from "../../atomic Design/atoms/Button/Button";
 import { getCartItems } from "../../redux/actions/cart";
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
 
-const random = Math.floor(Math.random() * 100 + 1);
-
 const renderItem = ({ item }) => {
   return (
     <View style={{ marginVertical: 5 }} key={item.id}>
@@ -23,7 +21,7 @@ const renderItem = ({ item }) => {
 function Cart({ navigation, cart, getCartItems }) {
   useEffect(() => {
     getCartItems(); // redux
-  }, [cart]);
+  }, []);
 
   const reduceCart = (() => {
     let acc = 0;
@@ -58,6 +56,8 @@ function Cart({ navigation, cart, getCartItems }) {
         <Button
           onPress={() => navigation.navigate("Shipping")}
           children="Continuar"
+          props={{ disabled: !cart.length }}
+          style={!cart.length ? { backgroundColor: "#707070" } : {}}
         />
       </View>
     </View>
