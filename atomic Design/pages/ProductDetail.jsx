@@ -32,15 +32,9 @@ export default function ProductDetails({ route }) {
     refetch: refetchProductData
   } = useQuery(["product data", productId], () => getProductDetails(productId));
   const {
-    brand,
     bussinessId,
     // categories,
-    content,
-    contentType,
-    description,
     id,
-    images,
-    model,
     name,
     price,
     description,
