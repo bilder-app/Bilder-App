@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     height: 50,
+    marginBottom: 40,
   },
   button: {
     alignItems: "center",
