@@ -13,14 +13,14 @@ import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const fakeUser = {
   photo:
-    "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png"
+    "https://grandimageinc.com/wp-content/uploads/2015/09/icon-user-default.png",
 };
 
 export default function Profile({ navigation }) {
   const {
     data: userData = {},
     isLoading,
-    refetch
+    refetch,
   } = useQuery("user data", getMyUser);
 
   useFocusEffect(
@@ -59,7 +59,10 @@ export default function Profile({ navigation }) {
       </View>
 
       <View style={styles.menu}>
-        <TouchableOpacity style={styles.buttons} onPress={() => navigation.push("About")}>
+        <TouchableOpacity
+          style={styles.buttons}
+          onPress={() => navigation.push("About")}
+        >
           <MaterialCommunityIcons
             name="book-account"
             size={27}
@@ -93,19 +96,19 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     alignItems: "center",
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   info: {
     width: "100%",
     alignItems: "center",
     marginTop: 15,
-    marginTop: "5%"
+    marginTop: "5%",
   },
   menu: {
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: "20%"
+    marginTop: "20%",
   },
   buttons: {
     height: 45,
@@ -113,11 +116,11 @@ const styles = StyleSheet.create({
     marginVertical: 3,
     flexDirection: "row",
     alignItems: "center",
-    paddingLeft: "15%"
+    paddingLeft: "15%",
   },
   text: {
     color: "#444D52",
     paddingLeft: 10,
-    fontSize: 19
-  }
+    fontSize: 19,
+  },
 });

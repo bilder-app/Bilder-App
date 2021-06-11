@@ -9,11 +9,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import TabBar from "./atomic Design/molecules/TabBar/TabBar.jsx";
 import Login from "./atomic Design/pages/Login.jsx";
+import Category from "./atomic Design/pages/Category";
 
 import Home from "./atomic Design/pages/Home.jsx";
 import ProductDetail from "./atomic Design/pages/ProductDetail.jsx";
 import Cart from "./atomic Design/pages/Cart.jsx";
 import Payment from "./atomic Design/pages/Payment.jsx";
+import Checkout from "./atomic Design/pages/Checkout";
 
 import Search from "./atomic Design/pages/Search.jsx";
 import Results from "./atomic Design/pages/Results.jsx";
@@ -22,10 +24,11 @@ import Favourites from "./atomic Design/pages/Favourites.jsx";
 import Orders from "./atomic Design/pages/Orders.jsx";
 import OrderDetail from "./atomic Design/pages/OrderDetail.jsx";
 
-import Profile from "./atomic Design/pages/Profile.jsx"
-import About from "./atomic Design/pages/About.jsx"
+import Profile from "./atomic Design/pages/Profile.jsx";
+import About from "./atomic Design/pages/About.jsx";
 // import CategoryFilter from "./atomic Design/pages/CategoryFilter.jsx"
 import { QueryClientProvider, QueryClient } from "react-query";
+import Shipping from "./atomic Design/pages/Shipping";
 
 const client = new QueryClient();
 
@@ -57,17 +60,20 @@ export default function App() {
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="MyTabBar" component={MyTabBar} />
-          
-            {/* Acá van las pantallas sin tabBar */}
-            <Stack.Screen name="Search" component={ Search } />
-            <Stack.Screen name="ProductDetail" component={ ProductDetail } />
-            <Stack.Screen name="Cart" component={ Cart } />
-            <Stack.Screen name="Payment" component={ Payment } />
-            <Stack.Screen name="Results" component={ Results } />
-            <Stack.Screen name="OrderDetail" component={ OrderDetail } />
-            <Stack.Screen name="About" component={ About } />
 
-          {/* <Stack.Screen name="CategoryFilter" component={ CategoryFilter } /> */}
+            {/* Acá van las pantallas sin tabBar */}
+            <Stack.Screen name="Search" component={Search} />
+            <Stack.Screen name="ProductDetail" component={ProductDetail} />
+            <Stack.Screen name="Cart" component={Cart} />
+            <Stack.Screen name="Payment" component={Payment} />
+            <Stack.Screen name="Shipping" component={Shipping} />
+            <Stack.Screen name="Checkout" component={Checkout} />
+            <Stack.Screen name="Results" component={Results} />
+            <Stack.Screen name="OrderDetail" component={OrderDetail} />
+            <Stack.Screen name="About" component={About} />
+            <Stack.Screen name="Category" component={Category} />
+
+            {/* <Stack.Screen name="CategoryFilter" component={ CategoryFilter } /> */}
           </Stack.Navigator>
         </NavigationContainer>
         <FlashMessage position="top" icon="auto" style={{ top: -30 }} />

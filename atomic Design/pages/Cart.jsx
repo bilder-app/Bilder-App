@@ -10,6 +10,9 @@ import { useQuery } from "react-query";
 import { getAllCartProducts } from "../../api";
 import { useFocusEffect } from "@react-navigation/native";
 
+import { getCartItems } from "../../redux/actions/cart";
+import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
+
 const random = Math.floor(Math.random() * 100 + 1);
 
 const renderItem = ({ item = {} }) => {
@@ -45,12 +48,15 @@ function Cart({ navigation }) {
   return (
     <View style={styles.main}>
       <Header children={{ text: "Mi Carrito" }} />
-
-      <FlatList
-        data={cartProducts}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
-      />
+      <View style={styles.scroll}>
+        <ScrollContainer>
+          <FlatList
+            data={cartProducts}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </ScrollContainer>
+      </View>
 
       <View style={{ paddingHorizontal: 20, backgroundColor: "#FFF" }}>
         <View style={styles.hr} />
@@ -69,10 +75,9 @@ function Cart({ navigation }) {
           </Text>
         </View>
       </View>
-
       <View style={styles.button}>
         <Button
-          onPress={() => navigation.navigate("Payment")}
+          onPress={() => navigation.navigate("Shipping")}
           children="Continuar"
         />
       </View>
@@ -95,10 +100,14 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto"
   },
-  content: {
+  scroll: {
+    height: "87.6%"
+  },
+  header: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    height: 50
   },
   button: {
     alignItems: "center",

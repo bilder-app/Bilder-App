@@ -32,6 +32,15 @@ export default function ProductDetails({ route }) {
     refetch: refetchProductData
   } = useQuery(["product data", productId], () => getProductDetails(productId));
   const {
+    brand,
+    bussinessId,
+    // categories,
+    content,
+    contentType,
+    description,
+    id,
+    images,
+    model,
     name,
     price,
     description,
@@ -93,7 +102,6 @@ export default function ProductDetails({ route }) {
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <Slider images={images} />
         <View style={styles.data}>
-          <Text>asd</Text>
           <Text variant="h1" style={{ color: "#FF8000" }}>
             $ {price}
           </Text>

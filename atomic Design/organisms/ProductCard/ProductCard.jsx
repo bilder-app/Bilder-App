@@ -96,13 +96,6 @@ export default function ProductCard({ children, onPress, style }) {
         <Text variant="h5" style={{ color: "#444D52" }}>
           {name}
         </Text>
-        <Text variant="subtitle2" style={{ color: "#898C8E" }}>
-          {`${content || 1} ${contentType}`}
-        </Text>
-        <Text variant="subtitle2" style={{ color: "#898C8E" }}>
-          {/* {brand} */}
-          Stock: {stock}, Id: {id}
-        </Text>
       </View>
 
       <View style={{ marginLeft: "auto" }}>

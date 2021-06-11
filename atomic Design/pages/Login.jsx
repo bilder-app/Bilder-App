@@ -62,13 +62,13 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    paddingTop: "30%",
+    paddingTop: "20%",
   },
   logo: {
     width: 256,
     height: 150,
     resizeMode: "contain",
-    marginBottom: 15,
+    marginBottom: 10,
   },
   text: {
     marginBottom: 10,
