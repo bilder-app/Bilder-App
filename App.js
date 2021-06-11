@@ -28,6 +28,7 @@ import Profile from "./atomic Design/pages/Profile.jsx";
 import About from "./atomic Design/pages/About.jsx";
 // import CategoryFilter from "./atomic Design/pages/CategoryFilter.jsx"
 import { QueryClientProvider, QueryClient } from "react-query";
+import Shipping from "./atomic Design/pages/Shipping";
 
 const client = new QueryClient();
 
@@ -65,6 +66,7 @@ export default function App() {
             <Stack.Screen name="ProductDetail" component={ProductDetail} />
             <Stack.Screen name="Cart" component={Cart} />
             <Stack.Screen name="Payment" component={Payment} />
+            <Stack.Screen name="Shipping" component={Shipping} />
             <Stack.Screen name="Checkout" component={Checkout} />
             <Stack.Screen name="Results" component={Results} />
             <Stack.Screen name="OrderDetail" component={OrderDetail} />

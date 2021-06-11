@@ -14,37 +14,68 @@ export default function Checkout() {
 
       <View style={{ paddingHorizontal: 25, marginTop: 15 }}>
         <Text variant="h2">Productos</Text>
-        <Text variant="h5">Dirrección de Envio</Text>
-        <Text variant="h5">Metodo de Pago</Text>
+        <View style={{ marginBottom: 20 }}>
+          <Text variant="h3">Dirrección de Envio</Text>
+          <View
+            style={{
+              backgroundColor: "#F6F6F6",
+              height: 40,
+              justifyContent: "center",
+              padding: 10,
+              borderRadius: 10,
+              marginTop: 5,
+            }}
+          >
+            <Text variant="h5">Av.De Mayo 789</Text>
+          </View>
+        </View>
+        <View style={{ marginBottom: 20 }}>
+          <Text variant="h3">Metodo de Pago</Text>
+          <View
+            style={{
+              backgroundColor: "#F6F6F6",
+              height: 40,
+              justifyContent: "center",
+              padding: 10,
+              borderRadius: 10,
+              marginTop: 5,
+            }}
+          >
+            <Text variant="h5">Efectivo</Text>
+          </View>
+        </View>
         <View style={styles.content}>
           <View style={styles.header}>
-            <Text style={{ color: "#707070" }} variant="subtitle2">
+            <Text style={{ color: "#707070" }} variant="h4">
               Subtotal
             </Text>
-            <Text style={styles.price} variant="h6">
+            <Text style={styles.price} variant="h4">
               $ 0
             </Text>
           </View>
           <View style={styles.header}>
-            <Text style={{ color: "#707070" }} variant="subtitle2">
+            <Text style={{ color: "#707070" }} variant="h4">
               Costo de Entrega Total
             </Text>
-            <Text style={styles.price} variant="h6">
+            <Text style={styles.price} variant="h4">
               $ 0
             </Text>
           </View>
           <View style={styles.header}>
-            <Text style={{ color: "#707070" }} variant="subtitle2">
+            <Text style={{ color: "#707070" }} variant="h4">
               Total
             </Text>
-            <Text style={styles.price} variant="h6">
+            <Text style={styles.price} variant="h4">
               $ 0
             </Text>
           </View>
         </View>
       </View>
       <View style={styles.button}>
-        <Button children="Confirmar Pedido" />
+        <Button
+          children="Confirmar Pedido"
+          onPress={() => alert("Tu pedido ha sido confirmado")}
+        />
       </View>
     </View>
   );

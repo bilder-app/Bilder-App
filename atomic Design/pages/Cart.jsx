@@ -49,14 +49,14 @@ function Cart({ navigation, cart, getCartItems }) {
               Total
             </Text>
             <Text style={{ color: "#444D52" }} variant="h6">
-              $ 0
+              $ {reduceCart}
             </Text>
           </View>
         </ScrollContainer>
       </View>
       <View style={styles.button}>
         <Button
-          onPress={() => navigation.navigate("Payment")}
+          onPress={() => navigation.navigate("Shipping")}
           children="Continuar"
         />
       </View>
