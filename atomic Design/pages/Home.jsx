@@ -66,7 +66,6 @@ function Home({ navigation }) {
   useEffect(() => {
     getMyUser().then((user) => {
       setUser(user);
-      console.log(user);
     });
   }, []);
 
@@ -116,7 +115,7 @@ function Home({ navigation }) {
                 <CategoryIcon
                   key={i}
                   children={children}
-                  onPress={() => navigation.push("Category")}
+                  onPress={() => navigation.push("Category", { name: children.name, title: children.title })}
                 />
               );
             })}
