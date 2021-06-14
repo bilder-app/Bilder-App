@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 
+import ProductCard from "../organisms/ProductCard/ProductCard";
 import IconContainer from "../atoms/IconContainer/IconContainer";
 import Search from "../atoms/Icons/Search";
 import Text from "../atoms/Text/Text";
@@ -9,14 +10,22 @@ import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
 import Button from "../atoms/Button/Button";
 
 import { 
-  getMyUser, 
   getSubcategories, 
   getProductsByCategory,
   getProductsBySubcategory,
 } from "../../api";
 import BackIcon from "../atoms/Icons/BackIcon";
-import Pen from "../atoms/Icons/Pen";
 
+
+const renderItem = ({ item = {} }) => {
+  return (
+      <ProductCard
+        key={item.id}
+        children={item}
+        style={{ margin: 5, }}
+      />
+  );
+};
 
 export default function Category({ navigation, route }) {
   const { name, title } = route.params;
@@ -79,13 +88,17 @@ export default function Category({ navigation, route }) {
             }
           </ScrollContainer>
         </View>
+
         {products.length > 0
-          ? products.map((product, i) => {
-            return(
-              <Text key={i}>{product.name}</Text>
-            )
-          })
-          : <Text>Cargando...</Text>
+          ? <FlatList
+              // contentContainerStyle={{flexDirection : "row", flexWrap : "wrap",}} --> not supported
+              style={{ width: "100%" }}
+              numColumns={2}
+              data={products}
+              renderItem={renderItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          : <Text>No hay productos con esta categoría</Text>
         }
       </View>
 
