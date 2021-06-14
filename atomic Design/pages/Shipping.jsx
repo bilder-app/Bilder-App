@@ -6,16 +6,49 @@ import Text from "../atoms/Text/Text";
 import Button from "../atoms/Button/Button";
 import CardItem from "../organisms/CardItem/CardItem";
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
-import { faTimes as CloseIcon } from "@fortawesome/free-solid-svg-icons";
+import { useQuery } from "react-query";
+import { getCheckoutCartProducts } from "../../api";
+import { map } from "ramda";
+import { remap } from "../../ramdaHelperFns";
+
+const getProductsData = (data) => {
+  let packageNumber = 1;
+  const resp = [];
+  for (let businessProducts of Object.values(data)) {
+    resp.push([
+      packageNumber,
+      map(
+        // individual item
+        remap({
+          name: ["name"],
+          price: ["price"],
+          image: ["images", 0],
+          units: ["ProductInCart", "amount"]
+        }),
+        businessProducts
+      )
+    ]);
+    packageNumber++;
+  }
+  return resp;
+};
 
 export default function Shipping({ navigation }) {
+  const { data, isLoading } = useQuery(
+    "checkout cart products",
+    getCheckoutCartProducts
+  );
   const children = {
     id: Math.floor(Math.random() * 100 + 1),
     images: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
     name: "Muñeco de baby Joda coleccionable",
     price: Math.floor(Math.random() * 1000 + 1),
-    units: Math.floor(Math.random() * 50 + 2),
+    units: Math.floor(Math.random() * 50 + 2)
   };
+
+  if (isLoading) return null;
+
+  const computedData = getProductsData(data);
 
   return (
     <View style={styles.main}>
@@ -32,85 +65,47 @@ export default function Shipping({ navigation }) {
                   justifyContent: "center",
                   padding: 10,
                   borderRadius: 10,
-                  marginTop: 5,
+                  marginTop: 5
                 }}
               >
                 <Text variant="h5">Av.De Mayo 789</Text>
               </View>
             </View>
-            <View style={{ marginBottom: 20 }}>
-              <Text variant="h4">Paquete 1</Text>
-              <View
-                style={{
-                  backgroundColor: "#F6F6F6",
-                  height: 40,
-                  justifyContent: "center",
-                  padding: 10,
-                  borderRadius: 10,
-                  marginTop: 5,
-                }}
-              >
-                <Text variant="h5">Envio a domicilio</Text>
+            {computedData.map(([packageNumber, products]) => (
+              <View style={{ marginBottom: 20 }}>
+                <Text variant="h4">Paquete {packageNumber}</Text>
+                <View
+                  style={{
+                    backgroundColor: "#F6F6F6",
+                    height: 40,
+                    justifyContent: "center",
+                    padding: 10,
+                    borderRadius: 10,
+                    marginTop: 5
+                  }}
+                >
+                  <Text variant="h5">Envio a domicilio</Text>
+                </View>
+                {products.map((productData) => (
+                  <CardItem
+                    variant="shippingDetail"
+                    children={{ ...productData, images: [productData.image] }}
+                    onPress={console.log}
+                  />
+                ))}
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    backgroundColor: "white"
+                  }}
+                >
+                  <Text variant="h3">Costo de Envio</Text>
+                  <Text variant="h3">$1000</Text>
+                </View>
               </View>
-              <CardItem
-                variant="shippingDetail"
-                children={children}
-                onPress={console.log}
-              />
-              <CardItem
-                variant="shippingDetail"
-                children={children}
-                onPress={console.log}
-              />
-              <CardItem
-                variant="shippingDetail"
-                children={children}
-                onPress={console.log}
-              />
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  backgroundColor: "white",
-                }}
-              >
-                <Text variant="h3">Costo de Envio</Text>
-                <Text variant="h3">$1000</Text>
-              </View>
-            </View>
-            <View style={{ marginBottom: 50 }}>
-              <Text variant="h4">Paquete 2</Text>
-              <View
-                style={{
-                  backgroundColor: "#F6F6F6",
-                  height: 40,
-                  justifyContent: "center",
-                  padding: 10,
-                  borderRadius: 10,
-                  marginTop: 5,
-                }}
-              >
-                <Text variant="h5">Retiro en el Local</Text>
-              </View>
-
-              <CardItem
-                variant="shippingDetail"
-                children={children}
-                onPress={console.log}
-              />
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  backgroundColor: "white",
-                }}
-              >
-                <Text variant="h3">Costo de Envio</Text>
-                <Text variant="h3">$0</Text>
-              </View>
-            </View>
+            ))}
 
             <View style={styles.content}>
               <View style={styles.header}>
@@ -156,21 +151,21 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     display: "flex",
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   scroll: {
-    height: "87.6%",
+    height: "87.6%"
   },
   text: {
     fontWeight: "700",
     marginTop: 15,
-    marginBottom: 10,
+    marginBottom: 10
   },
   align: {
     height: 43,
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: 15,
+    marginBottom: 15
   },
   button: {
     marginTop: "auto",
@@ -178,19 +173,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     paddingVertical: 5,
-    backgroundColor: "#FFF",
+    backgroundColor: "#FFF"
   },
   content: {
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   results: {
-    width: "100%",
-  },
+    width: "100%"
+  }
 });

@@ -43,8 +43,6 @@ export function deleteProductInCart(productId) {
   return axios.delete(`/user/cart/${productId}`);
 }
 
-
-
 /**
  * @typedef ProductInCart
  * @property {string} amount
@@ -155,15 +153,23 @@ export function getCartProduct(productId) {
   return axios.get(`/user/cart/${productId}`).then((resp) => resp.data);
 }
 
-8
+8;
 export function getSubcategories(name) {
   return axios.get(`/categories/subcategory/${name}`).then((resp) => resp.data);
 }
 
 export function getProductsByCategory(name) {
-  return axios.get(`/products/search/category/${name}`).then((resp) => resp.data);
+  return axios
+    .get(`/products/search/category/${name}`)
+    .then((resp) => resp.data);
 }
 
 export function getProductsBySubcategory(name) {
-  return axios.get(`/products/search/subcategory/${name}`).then((resp) => resp.data);
+  return axios
+    .get(`/products/search/subcategory/${name}`)
+    .then((resp) => resp.data);
+}
+
+export function getCheckoutCartProducts() {
+  return axios.get(`/user/checkout/cart`).then((resp) => resp.data);
 }
