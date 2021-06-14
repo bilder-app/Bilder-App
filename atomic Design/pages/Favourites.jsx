@@ -17,7 +17,7 @@ function Favourites() {
   return (
     <View style={styles.main}>
       <StatusBar animated={true} backgroundColor="#FF8000" />
-      <Header children={{ text: "Favoritos" }} />
+      <Header children={{ text: "Favoritos" }} hideBackIcon/>
 
       <View
         style={{

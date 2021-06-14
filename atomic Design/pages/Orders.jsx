@@ -94,7 +94,7 @@ export default function Shipping() {
   return (
     <View style={styles.wrapper}>
       <StatusBar animated={true} backgroundColor="#FF8000" />
-      <Header children={{ text: "Pedidos" }} style={{ elevation: 0 }} />
+      <Header children={{ text: "Pedidos" }} style={{ elevation: 0 }} hideBackIcon/>
 
       <TwoTabs selected={selected} setSelected={setSelected} />
       <FlatList

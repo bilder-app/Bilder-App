@@ -30,18 +30,21 @@ export default function Header({
   children,
   onPress,
   style,
-  isFavorited = false
+  isFavorited = false,
+  hideBackIcon,
 }) {
   const [favourite, setFavourite] = useState(isFavorited);
   const navigation = useNavigation();
 
   return (
     <View style={[styles.default, style]}>
-      <IconContainer onPress={() => navigation.goBack()} style={styles.icon}>
-        <BackIcon width="28" height="28" />
-      </IconContainer>
+      { !hideBackIcon &&
+        <IconContainer onPress={() => navigation.goBack()} style={styles.icon}>
+          <BackIcon width="28" height="28" />
+        </IconContainer>
+      }
       <View style={[styles.content, styles[variant || "title"]]}>
-        {children.text && <Text variant="h6">{children.text}</Text>}
+        {children.text && <Text variant="h6" style={hideBackIcon && { paddingLeft: 15 }}>{children.text}</Text>}
         {variant === "icons" && (
           <View style={styles.boxContent}>
             <IconContainer
