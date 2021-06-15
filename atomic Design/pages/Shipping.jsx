@@ -103,7 +103,7 @@ export default function Shipping({ navigation }) {
                       ? "Envio a domicilio"
                       : "Retiro en el local"}
                   </Text>
-                  {checkoutDetails[business.id].delivery && (
+                  {business.delivery && (
                     <Switch
                       onValueChange={() => toggleSwitch(business.id)}
                       value={checkoutDetails[business.id].delivery}
