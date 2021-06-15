@@ -8,7 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faAngleLeft,
-  faHeart as faFillHeart
+  faHeart as faFillHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
@@ -38,13 +38,17 @@ export default function Header({
 
   return (
     <View style={[styles.default, style]}>
-      { !hideBackIcon &&
+      {!hideBackIcon && (
         <IconContainer onPress={() => navigation.goBack()} style={styles.icon}>
           <BackIcon width="28" height="28" />
         </IconContainer>
-      }
+      )}
       <View style={[styles.content, styles[variant || "title"]]}>
-        {children.text && <Text variant="h6" style={hideBackIcon && { paddingLeft: 15 }}>{children.text}</Text>}
+        {children.text && (
+          <Text variant="h6" style={hideBackIcon && { paddingLeft: 15 }}>
+            {children.text}
+          </Text>
+        )}
         {variant === "icons" && (
           <View style={styles.boxContent}>
             <IconContainer
@@ -52,7 +56,7 @@ export default function Header({
                 setFavourite(!favourite);
                 onPress.favouriteAction(children.id, !favourite);
               }}
-              style={{ ...styles.icon, width: "50%" }}
+              style={{ ...styles.icon, width: "120%" }}
             >
               {favourite ? (
                 <FontAwesomeIcon icon={faFillHeart} color="#e81c0e" size={28} />
@@ -60,12 +64,12 @@ export default function Header({
                 <FontAwesomeIcon icon={faHeart} color="#3F3C3C" size={28} />
               )}
             </IconContainer>
-            <IconContainer
+            {/* <IconContainer
               onPress={() => onPress.shareAction(children.id)}
               style={{ ...styles.icon, width: "50%" }}
             >
               <Ionicons name="share-social-outline" size={32} color="#3F3C3C" />
-            </IconContainer>
+            </IconContainer> */}
           </View>
         )}
       </View>
@@ -79,33 +83,33 @@ const styles = {
     height: 50,
     alignItems: "center",
     backgroundColor: "white",
-    flexDirection: "row"
+    flexDirection: "row",
   },
   content: {
     width: "88%",
     height: "100%",
-    alignItems: "center"
+    alignItems: "center",
   },
   icon: {
     width: "11%",
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
   },
   title: {
     justifyContent: "center",
-    alignItems: "flex-start"
+    alignItems: "flex-start",
   },
   icons: {
     alignItems: "flex-end",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   boxContent: {
     width: "25%",
     height: "100%",
     justifyContent: "space-between",
     flexDirection: "row",
-    marginRight: 3
-  }
+    marginRight: 3,
+  },
 };
