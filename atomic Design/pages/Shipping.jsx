@@ -129,7 +129,7 @@ export default function Shipping({ navigation }) {
                       <Text variant="h3">Costo de Envio</Text>
                       <Text variant="h3">
                         $
-                        {getTotalPriceOfProducts(products) <
+                        {getTotalPriceOfProducts(products) >
                         business.freeDeliveryAt
                           ? 0
                           : business.deliveryPrice}
