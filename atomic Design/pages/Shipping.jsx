@@ -32,7 +32,7 @@ export default function Shipping({ navigation }) {
                   justifyContent: "center",
                   padding: 10,
                   borderRadius: 10,
-                  marginTop: 5
+                  marginTop: 5,
                 }}
               >
                 <Text variant="h5">Av.De Mayo 789</Text>
@@ -48,7 +48,7 @@ export default function Shipping({ navigation }) {
                     justifyContent: "center",
                     padding: 10,
                     borderRadius: 10,
-                    marginTop: 5
+                    marginTop: 5,
                   }}
                 >
                   <Text variant="h5">Envio a domicilio</Text>
@@ -65,7 +65,7 @@ export default function Shipping({ navigation }) {
                     flexDirection: "row",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    backgroundColor: "white"
+                    backgroundColor: "white",
                   }}
                 >
                   <Text variant="h3">Costo de Envio</Text>
@@ -118,21 +118,21 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     display: "flex",
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   scroll: {
-    height: "87.6%"
+    height: "87.6%",
   },
   text: {
     fontWeight: "700",
     marginTop: 15,
-    marginBottom: 10
+    marginBottom: 10,
   },
   align: {
     height: 43,
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: 15
+    marginBottom: 15,
   },
   button: {
     marginTop: "auto",
@@ -140,19 +140,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     paddingVertical: 5,
-    backgroundColor: "#FFF"
+    backgroundColor: "#FFF",
   },
   content: {
     flexDirection: "column",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   results: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 });
