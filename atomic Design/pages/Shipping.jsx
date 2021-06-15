@@ -103,10 +103,12 @@ export default function Shipping({ navigation }) {
                       ? "Envio a domicilio"
                       : "Retiro en el local"}
                   </Text>
-                  <Switch
-                    onValueChange={() => toggleSwitch(business.id)}
-                    value={checkoutDetails[business.id].delivery}
-                  />
+                  {checkoutDetails[business.id].delivery && (
+                    <Switch
+                      onValueChange={() => toggleSwitch(business.id)}
+                      value={checkoutDetails[business.id].delivery}
+                    />
+                  )}
                 </View>
                 {products.map((productData, i) => (
                   <CardItem
