@@ -1,4 +1,4 @@
-import { curry, view, lensPath, map, addIndex } from "ramda";
+import { curry, view, lensPath, map } from "ramda";
 
 /**
  * Creates a new object by picking

@@ -8,47 +8,14 @@ import CardItem from "../organisms/CardItem/CardItem";
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
 import { useQuery } from "react-query";
 import { getCheckoutCartProducts } from "../../api";
-import { map } from "ramda";
-import { remap } from "../../ramdaHelperFns";
-
-const getProductsData = (data) => {
-  let packageNumber = 1;
-  const resp = [];
-  for (let businessProducts of Object.values(data)) {
-    resp.push([
-      packageNumber,
-      map(
-        // individual item
-        remap({
-          name: ["name"],
-          price: ["price"],
-          image: ["images", 0],
-          units: ["ProductInCart", "amount"]
-        }),
-        businessProducts
-      )
-    ]);
-    packageNumber++;
-  }
-  return resp;
-};
 
 export default function Shipping({ navigation }) {
   const { data, isLoading } = useQuery(
     "checkout cart products",
     getCheckoutCartProducts
   );
-  const children = {
-    id: Math.floor(Math.random() * 100 + 1),
-    images: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
-    name: "Muñeco de baby Joda coleccionable",
-    price: Math.floor(Math.random() * 1000 + 1),
-    units: Math.floor(Math.random() * 50 + 2)
-  };
 
   if (isLoading) return null;
-
-  const computedData = getProductsData(data);
 
   return (
     <View style={styles.main}>
@@ -71,7 +38,7 @@ export default function Shipping({ navigation }) {
                 <Text variant="h5">Av.De Mayo 789</Text>
               </View>
             </View>
-            {computedData.map(([packageNumber, products]) => (
+            {data.map(({ packageNumber, products, business }) => (
               <View style={{ marginBottom: 20 }}>
                 <Text variant="h4">Paquete {packageNumber}</Text>
                 <View
