@@ -5,7 +5,7 @@ const { width } = Dimensions.get("window");
 
 const styles = {
   scroll: {
-    height: 150,
+    height: 130,
     paddingVertical: 10,
     paddingLeft: 15,
     paddingRight: 0,
@@ -16,8 +16,7 @@ const styles = {
     resizeMode: "stretch",
     marginLeft: 0,
     marginRight: 15,
-    borderColor: "#EEE",
-    borderWidth: 0.8,
+    borderRadius: 15,
   },
 };
 
