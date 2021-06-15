@@ -99,7 +99,7 @@ export default function Shipping({ navigation }) {
                   }}
                 >
                   <Text variant="h5">
-                    {business.delivery
+                    {checkoutDetails[business.id].delivery
                       ? "Envio a domicilio"
                       : "Retiro en el local"}
                   </Text>
