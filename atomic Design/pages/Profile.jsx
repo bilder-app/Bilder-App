@@ -33,7 +33,7 @@ export default function Profile({ navigation }) {
   return (
     <View style={styles.default}>
       <StatusBar animated={true} backgroundColor="#FF8000" />
-      <Header children={{ text: "Mi Perfil " }} />
+      <Header children={{ text: "Mi Perfil " }} hideBackIcon/>
 
       <View style={styles.info}>
         <Image

@@ -71,6 +71,7 @@ export default function About({ navigation }) {
           />
         </IconContainer>
       </View>
+
       <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
         <View style={{ height: "30%" }}>
           <Image
@@ -80,66 +81,67 @@ export default function About({ navigation }) {
           />
         </View>
 
-        <View style={styles.content}>
-          <Text style={styles.label}>
-            {editable ? "Nombre" : "Nombre completo"}
-          </Text>
-          {editable ? (
+        {user && !editable 
+        ?
+          <View style={styles.content}>
+            <Text style={styles.label}>Nombre completo</Text>
+            <Text variante="subtitle1" style={styles.data}>
+              {user.name + " " + user.lastname}
+            </Text>
+            
+            <Text style={styles.label}>Correo electrónico</Text>
+            <Text variante="subtitle1" style={styles.data}>
+              {user.email}
+            </Text>
+
+            <Text style={styles.label}>Teléfono</Text>
+            <Text variante="subtitle1" style={styles.data}>
+              {"+54 9 11 2021-2021"}
+            </Text>
+
+            <Text style={styles.label}>Dirección</Text>
+            <Text variante="subtitle1" style={styles.data}>
+              {user.address}
+            </Text>
+
+            <Text style={styles.label}>N° de documento</Text>
+            <Text variante="subtitle1" style={styles.data}>
+              {user.dni}
+            </Text>
+          </View>
+        :
+          <View style={styles.content}>
+            <Text style={styles.label}>Nombre</Text>
             <TextInput
               defaultValue={user.name}
+              autoCapitalize
               onChange={(e) => handleChange(e, "name")}
               style={styles.input}
             />
-          ) : (
-            <Text variante="subtitle1" style={styles.data}>
-              {user && user.name + " " + user.lastname}
-            </Text>
-          )}
-
-          {editable && <Text style={styles.label}>Apellido</Text>}
-          {editable && (
+        
+            <Text style={styles.label}>Apellido</Text>
             <TextInput
               defaultValue={user.lastname}
+              autoCapitalize
               onChange={(e) => handleChange(e, "lastname")}
               style={styles.input}
             />
-          )}
 
-          <Text style={styles.label}>Correo electrónico</Text>
-          {editable ? (
+            <Text style={styles.label}>Correo electrónico</Text>
             <TextInput
               defaultValue={user.email}
               onChange={(e) => handleChange(e, "email")}
               style={styles.input}
             />
-          ) : (
-            <Text variante="subtitle1" style={styles.data}>
-              {user && user.email}
-            </Text>
-          )}
 
-          {!editable && <Text style={styles.label}>Teléfono</Text>}
-          {!editable && (
-            <Text variante="subtitle1" style={styles.data}>
-              {user && "+54 9 11 2021-2021"}
-            </Text>
-          )}
-
-          <Text style={styles.label}>Dirección</Text>
-          {editable ? (
+            <Text style={styles.label}>Dirección</Text>
             <TextInput
               defaultValue={user.address}
               onChange={(e) => handleChange(e, "address")}
               style={styles.input}
             />
-          ) : (
-            <Text variante="subtitle1" style={styles.data}>
-              {user && user.address}
-            </Text>
-          )}
-
-          <Text style={styles.label}>N° de documento</Text>
-          {editable ? (
+          
+            <Text style={styles.label}>N° de documento</Text>
             <TextInput
               defaultValue={user.dni.toString()}
               maxLength={8}
@@ -147,12 +149,8 @@ export default function About({ navigation }) {
               keyboardType="numeric"
               style={styles.input}
             />
-          ) : (
-            <Text variante="subtitle1" style={styles.data}>
-              {user && user.dni}
-            </Text>
-          )}
-        </View>
+          </View>
+        }
       </KeyboardAwareScrollView>
     </View>
   );
