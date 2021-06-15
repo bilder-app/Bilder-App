@@ -93,7 +93,6 @@ export default function ProductDetails({ route }) {
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <Slider images={images} />
         <View style={styles.data}>
-          <Text>asd</Text>
           <Text variant="h1" style={{ color: "#FF8000" }}>
             $ {price}
           </Text>

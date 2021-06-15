@@ -6,13 +6,15 @@ import Header from "../../atomic Design/organisms/Header/Header";
 import CardItem from "../../atomic Design/organisms/CardItem/CardItem";
 
 import HorizontalItemSkeleton from "../organisms/HorizontalItemSkeleton";
-import { getFavoriteProducts } from "../../api";
+import { getFavoriteProducts, postProductToCart } from "../../api";
 
 function Favourites() {
   const { data: favoriteProductsData = [], isLoading } = useQuery(
     "favorite products",
     getFavoriteProducts
   );
+
+  const postProductToCartAsync = async (id) => postProductToCart(id); 
 
   return (
     <View style={styles.main}>
@@ -38,7 +40,7 @@ function Favourites() {
                       key={i}
                       variant="favourite"
                       children={product}
-                      onPress={console.log}
+                      onPress={postProductToCartAsync}
                     />
                   );
                 })}

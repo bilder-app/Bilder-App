@@ -63,18 +63,19 @@ export default function CardItem({ variant, children, onPress, style }) {
           {children.name}
         </Text>
         <View style={styles.footer}>
-          <Text variant="h6" style={{ color: "#ff8000" }}>
+          <Text variant="h6" style={{ color: "#FF8000" }}>
             $ {children.price}
           </Text>
 
           {variant === "favourite" && (
-            /* <IconContainer style={styles.favourite} onPress={() => {
-              setCartBoolean(!cartBoolean);
-              onPress(children.id, !cartBoolean);
-            }}>
-              <Ionicons name={cartBoolean ? "cart" : "cart-outline" } size={28} color="#ff8000" />
-            </IconContainer> */
-            <Cart width="25" height="25" />
+            <TouchableOpacity
+              style={[styles.shippingCard, { width: "30%" }]}
+              onPress={() => onPress(children.id)}
+              activeOpacity={0.5}
+            >
+              <Cart width="25" height="25" color="#FF8000"/>
+            </TouchableOpacity>
+          
           )}
           {variant === "cart" && (
             <Modal

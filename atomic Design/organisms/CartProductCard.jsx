@@ -37,9 +37,14 @@ export default function ({ image, price, name, productId, amount, stock }) {
     <View style={styles.container}>
       <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.content}>
-        <Text style={{ flexGrow: 1, fontWeight: "bold" }} variant="subtitle1">
+        {/* <Text style={{ flexGrow: 1, fontWeight: "bold" }} variant="subtitle1">
           {name}
-        </Text>
+        </Text> */}
+        <View style={{ height: "60%" }}>
+           <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52" }}>
+            {name}
+          </Text>
+        </View>
         <View style={styles.bottomContent}>
           <Text variant="h6" style={{ color: "#ff8000" }}>
             $ {state.context.amount * price}
@@ -88,8 +93,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     marginVertical: 5,
     paddingVertical: 10,
-    paddingLeft: 15,
-    paddingRight: 15
+    paddingHorizontal: 10,
   },
   content: {
     display: "flex",
@@ -98,13 +102,16 @@ const styles = StyleSheet.create({
   },
   image: {
     height: "100%",
-    width: 75
+    width: 75,
+    resizeMode: "contain",
   },
   bottomContent: {
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
     flexDirection: "row",
-    width: "100%"
+    width: "100%",
+    height: "40%",
   },
   buttonFill: {
     backgroundColor: "#FF8000",

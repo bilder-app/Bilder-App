@@ -13,8 +13,7 @@ const styles = {
   image: {
     width: width - 55,
     height: "100%",
-    resizeMode: "cover",
-    borderRadius: 15,
+    resizeMode: "stretch",
     marginLeft: 0,
     marginRight: 15,
     borderColor: "#EEE",

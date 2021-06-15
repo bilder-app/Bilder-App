@@ -114,7 +114,7 @@ export default function About({ navigation }) {
             <Text style={styles.label}>Nombre</Text>
             <TextInput
               defaultValue={user.name}
-              autoCapitalize
+              autoCapitalize="sentence"
               onChange={(e) => handleChange(e, "name")}
               style={styles.input}
             />
@@ -122,7 +122,7 @@ export default function About({ navigation }) {
             <Text style={styles.label}>Apellido</Text>
             <TextInput
               defaultValue={user.lastname}
-              autoCapitalize
+              autoCapitalize="sentence"
               onChange={(e) => handleChange(e, "lastname")}
               style={styles.input}
             />
