@@ -12,18 +12,16 @@ import { searchProducts } from "../../api.js";
 import { useInfiniteQuery } from "react-query";
 
 // const PRODUCTS_LIMIT = 50;
-const PRODUCTS_LIMIT = 3;
+const PRODUCTS_LIMIT = 15;
 
 export default function Result({ route }) {
-  const {
-    params: { searchTerm }
-  } = route;
+  const { params } = route;
 
   const { data } = useInfiniteQuery(
     "products search results",
     ({ pageParam = 1 }) =>
       searchProducts({
-        name: searchTerm,
+        name: params.query,
         limit: PRODUCTS_LIMIT,
         page: pageParam
       }),
@@ -31,54 +29,16 @@ export default function Result({ route }) {
       getNextPageParam: (lastPage) => lastPage.next?.page
     }
   );
-  const productsData = [
-    {
-      price: "175",
-      name: "Martillo de 3/4 pulgadas ",
-      contentType: "Metro (m)",
-      content: "6",
-      brand: "Hierros Jr"
-    },
-    {
-      price: "175",
-      name: "Martillo de 3/4 pulgadas ",
-      contentType: "Metro (m)",
-      content: "6",
-      brand: "Hierros Jr"
-    },
-    {
-      price: "175",
-      name: "Martillo de 3/4 pulgadas ",
-      contentType: "Metro (m)",
-      content: "6",
-      brand: "Hierros Jr"
-    },
-    {
-      price: "175",
-      name: "Martillo de 3/4 pulgadas ",
-      contentType: "Metro (m)",
-      content: "6",
-      brand: "Hierros Jr"
-    },
-    {
-      price: "175",
-      name: "Martillo de 3/4 pulgadas ",
-      contentType: "Metro (m)",
-      content: "6",
-      brand: "Hierros Jr"
-    }
-  ];
-
+  
   return (
     <View style={styles.container}>
-      <SearchBar onPress={alert} style={{ elevation: 0 }} />
-
-      {productsData && (
+      <SearchBar defaultValue={params.query} current="Result"/>
+      {data && (
         <>
           <View style={styles.content}>
             <View>
               <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-                {productsData.length} Resultados
+                {data.pages[0].total || 0} Resultados
               </Text>
             </View>
             <View style={styles.icons}>
@@ -87,22 +47,19 @@ export default function Result({ route }) {
             </View>
           </View>
           <ScrollView showsVerticalScrollIndicator={false}>
-            {data && (
-              <View style={styles.results}>
-                {data.pages.map(({ results }) =>
-                  results.map((data) => (
-                    <ProductCard
-                      children={data}
-                      onPress={alert}
-                      key={data.id}
-                      style={{ marginVertical: 5 }}
-                    />
-                  ))
-                )}
-              </View>
-            )}
+            <View style={styles.results}>
+              {data.pages.map(({ results }) => 
+                results.map((data) => (
+                  <ProductCard
+                    children={data}
+                    onPress={alert}
+                    key={data.id}
+                    style={{ marginVertical: 5, marginHorizontal: 5 }}
+                  />
+                ))
+              )}
+            </View>
           </ScrollView>
-          {/* <View style={{ backgroundColor: "grey", height: 50 }}></View> */}
         </>
       )}
     </View>
