@@ -8,23 +8,24 @@ import IconContainer from "../../atoms/IconContainer/IconContainer";
 
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {
-  faAngleLeft,
-  faShoppingCart,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 
-export default function SearchBar({ children, onPress, style }) {
+export default function SearchBar({ defaultValue, current, style }) {
   const [searchQuery, setSearchQuery] = useState();
   useEffect(() => {
-    children && setSearchQuery(children);
+    defaultValue && setSearchQuery(defaultValue);
   }, []);
   const navigation = useNavigation();
 
   return (
     <View style={[styles.default, style]}>
-      <IconContainer onPress={() => navigation.goBack()} style={styles.icons}>
+      <IconContainer 
+        onPress={() => {
+          current === "Search" ? navigation.goBack() : navigation.navigate("Search") 
+        }} 
+        style={styles.icons}
+      >
         <FontAwesomeIcon icon={faAngleLeft} color="#444D52" size={28} />
       </IconContainer>
       <View style={styles.content}>
@@ -34,7 +35,7 @@ export default function SearchBar({ children, onPress, style }) {
           style={styles.input}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.nativeEvent.text)}
-          onSubmitEditing={() => onPress(searchQuery)}
+          onSubmitEditing={() => navigation.push("Results", { query: searchQuery })}
         />
         {!searchQuery ? (
           <View style={styles.alternative}>

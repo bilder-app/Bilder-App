@@ -1,12 +1,12 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 
-function SvgComponent({ width, height, props }) {
+function SvgComponent({ width, height, color, props }) {
   return (
     <Svg
       width={width}
       height={height}
-      color="#444D52"
+      color={color || "#444D52"}
       stroke="#444D52"
       aria-hidden="true"
       data-prefix="far"

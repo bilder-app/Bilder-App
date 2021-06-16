@@ -5,7 +5,7 @@ const { width } = Dimensions.get("window");
 
 const styles = {
   scroll: {
-    height: 150,
+    height: 125,
     paddingVertical: 10,
     paddingLeft: 15,
     paddingRight: 0,
@@ -13,12 +13,10 @@ const styles = {
   image: {
     width: width - 55,
     height: "100%",
-    resizeMode: "cover",
-    borderRadius: 15,
+    resizeMode: "stretch",
     marginLeft: 0,
     marginRight: 15,
-    borderColor: "#EEE",
-    borderWidth: 0.8,
+    borderRadius: 15,
   },
 };
 

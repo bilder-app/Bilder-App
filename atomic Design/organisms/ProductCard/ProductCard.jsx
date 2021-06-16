@@ -86,7 +86,7 @@ export default function ProductCard({ children, onPress, style }) {
       style={style}
     >
       <View style={styles.content}>
-        <Image variant="max" children={images[0]} />
+        <Image variant="max" children={images[0]} style={{ resizeMode: "contain" }}/>
       </View>
 
       <View style={styles.body}>
@@ -150,12 +150,13 @@ const styles = StyleSheet.create({
   content: {
     width: "100%",
     height: "46%",
-    resizeMode: "contain"
+    // backgroundColor: "#f00",
   },
   body: {
     flex: 1,
     marginTop: 3,
-    justifyContent: "center"
+    justifyContent: "flex-start",
+    // backgroundColor: "#0f0",
   },
   button: {
     width: "30%",
