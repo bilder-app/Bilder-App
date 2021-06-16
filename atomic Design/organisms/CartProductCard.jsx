@@ -7,10 +7,13 @@ import { useMachine } from "@xstate/react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useQueryClient } from "react-query";
 import { editProductInCart, removeProductFromCart } from "../../api";
+import { useNavigation } from "@react-navigation/native";
 import IconContainer from "../atoms/IconContainer/IconContainer";
 
 export default function ({ image, price, name, productId, amount, stock }) {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient();  
+  const navigation = useNavigation();
+
   const [state, send] = useMachine(amountMachine, {
     context: {
       amount,
@@ -34,12 +37,12 @@ export default function ({ image, price, name, productId, amount, stock }) {
   });
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate("ProductDetail", { productId })}
+    >
       <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.content}>
-        {/* <Text style={{ flexGrow: 1, fontWeight: "bold" }} variant="subtitle1">
-          {name}
-        </Text> */}
         <View style={{ height: "60%" }}>
            <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52" }}>
             {name}
@@ -78,7 +81,7 @@ export default function ({ image, price, name, productId, amount, stock }) {
           )}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

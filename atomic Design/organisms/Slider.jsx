@@ -16,10 +16,11 @@ export default function Slider({ images }) {
         dotStyle={styles.dotStyle}
         circleLoop
         parentWidth={width - 30}
-        resizeMethod={'resize'}
-        resizeMode={'contain'}
+        resizeMethod='resize'
+        resizeMode='contain'
         ImageComponentStyle={styles.image}
         imageLoadingColor='#E49012'
+        disableOnPress={true}
       />
     </View>
   )
