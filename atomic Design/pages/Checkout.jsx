@@ -13,7 +13,48 @@ export default function Checkout() {
       <Header icon={CloseIcon} children={{ text: "Último paso" }} />
 
       <View style={{ paddingHorizontal: 25, marginTop: 15 }}>
-        <Text variant="h2">Productos</Text>
+        <View style={{ marginBottom: 20 }}>
+          <Text variant="h3">Productos</Text>
+          <View
+            style={{
+              backgroundColor: "#F6F6F6",
+              height: 40,
+              justifyContent: "center",
+              padding: 10,
+              borderRadius: 10,
+              marginTop: 5,
+            }}
+          >
+            <Text variant="h5">8</Text>
+          </View>
+          <Text variant="h3">Paquete 1</Text>
+          <View
+            style={{
+              backgroundColor: "#F6F6F6",
+              height: 40,
+              justifyContent: "center",
+              padding: 10,
+              borderRadius: 10,
+              marginTop: 5,
+            }}
+          >
+            <Text variant="h5">Envio a Domicilio</Text>
+          </View>
+          <Text variant="h3">Paquete 2</Text>
+          <View
+            style={{
+              backgroundColor: "#F6F6F6",
+              height: 40,
+              justifyContent: "center",
+              padding: 10,
+              borderRadius: 10,
+              marginTop: 5,
+            }}
+          >
+            <Text variant="h5">Retiro en el Local</Text>
+          </View>
+          <Text variant="h5">Av.Directorio 1234</Text>
+        </View>
         <View style={{ marginBottom: 20 }}>
           <Text variant="h3">Dirrección de Envio</Text>
           <View
@@ -44,6 +85,7 @@ export default function Checkout() {
             <Text variant="h5">Efectivo</Text>
           </View>
         </View>
+
         <View style={styles.content}>
           <View style={styles.header}>
             <Text style={{ color: "#707070" }} variant="h4">

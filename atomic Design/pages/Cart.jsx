@@ -17,7 +17,7 @@ const renderItem = ({ item = {} }) => {
   const { amount } = ProductInCart;
 
   return (
-    <View style={{ marginVertical: 5, marginHorizontal: 5 }} key={item.id}>
+    <View style={{ marginVertical: 5, marginHorizontal: 2 }} key={item.id}>
       <CartProduct
         stock={stock}
         image={images[0]}
