@@ -8,6 +8,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useQueryClient } from "react-query";
 import { editProductInCart, removeProductFromCart } from "../../api";
 import IconContainer from "../atoms/IconContainer/IconContainer";
+import { CART_ITEMS_KEY } from "../../hooks/reactQueryKeys";
 
 export default function ({ image, price, name, productId, amount, stock }) {
   const queryClient = useQueryClient();
@@ -20,12 +21,12 @@ export default function ({ image, price, name, productId, amount, stock }) {
       onClose: (ctx) => {
         if (ctx.amount === 0) {
           return removeProductFromCart(productId).then(() => {
-            queryClient.invalidateQueries("cart items");
+            queryClient.invalidateQueries(CART_ITEMS_KEY);
             queryClient.invalidateQueries(["cart product", productId]);
           });
         } else {
           editProductInCart({ productId, amount: ctx.amount }).then(() => {
-            queryClient.invalidateQueries("cart items");
+            queryClient.invalidateQueries(CART_ITEMS_KEY);
             queryClient.invalidateQueries(["cart product", productId]);
           });
         }
@@ -41,7 +42,10 @@ export default function ({ image, price, name, productId, amount, stock }) {
           {name}
         </Text> */}
         <View style={{ height: "60%" }}>
-           <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52" }}>
+          <Text
+            variant="subtitle2"
+            style={{ fontWeight: "bold", color: "#444D52" }}
+          >
             {name}
           </Text>
         </View>
@@ -93,7 +97,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     marginVertical: 5,
     paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 10
   },
   content: {
     display: "flex",
@@ -103,7 +107,7 @@ const styles = StyleSheet.create({
   image: {
     height: "100%",
     width: 75,
-    resizeMode: "contain",
+    resizeMode: "contain"
   },
   bottomContent: {
     display: "flex",
@@ -111,7 +115,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     width: "100%",
-    height: "40%",
+    height: "40%"
   },
   buttonFill: {
     backgroundColor: "#FF8000",
