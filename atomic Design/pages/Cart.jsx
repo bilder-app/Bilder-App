@@ -6,7 +6,7 @@ import Header from "../organisms/Header/Header";
 import CardItem from "../organisms/CardItem/CardItem";
 import Text from "../../atomic Design/atoms/Text/Text";
 import Button from "../../atomic Design/atoms/Button/Button";
-import { useCart } from "../../hooks/useCart";
+import { useCart, getTotalPrice } from "../../hooks/useCart";
 
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
 import { useQuery } from "react-query";
@@ -55,13 +55,7 @@ function Cart({ navigation }) {
               Total
             </Text>
             <Text style={styles.price} variant="h6">
-              $
-              {cartProducts.length
-                ? cartProducts.reduce(
-                    (prev, next) => next.price * next.amount + prev,
-                    0
-                  )
-                : 0}
+              ${getTotalPrice(cartProducts)}
             </Text>
           </View>
         </ScrollContainer>
