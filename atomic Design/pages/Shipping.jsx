@@ -22,8 +22,8 @@ export default function Shipping({ navigation }) {
 
   useEffect(() => {
     if (data) {
-      data.forEach(({ business }) =>
-        checkoutDetails.setBusinessDetails(business)
+      data.forEach(({ business, packageNumber }) =>
+        checkoutDetails.setBusinessDetails(business, packageNumber)
       );
     }
   }, [data]);

@@ -4,10 +4,17 @@ import { View, StyleSheet } from "react-native";
 import Header from "../organisms/Header/Header";
 import Text from "../atoms/Text/Text";
 import Button from "../atoms/Button/Button";
+import useCheckoutCartDetailsStore from "../../hooks/useCheckoutCartDetailsStore";
+import { useCheckoutCart, getTotalProducts } from "../../hooks/useCheckoutCart";
 
 import { faTimes as CloseIcon } from "@fortawesome/free-solid-svg-icons";
 
 export default function Checkout() {
+  const store = useCheckoutCartDetailsStore();
+  const { data, isLoading } = useCheckoutCart();
+
+  if (isLoading) return null;
+
   return (
     <View style={styles.main}>
       <Header icon={CloseIcon} children={{ text: "Último paso" }} />
@@ -22,37 +29,31 @@ export default function Checkout() {
               justifyContent: "center",
               padding: 10,
               borderRadius: 10,
-              marginTop: 5,
+              marginTop: 5
             }}
           >
-            <Text variant="h5">8</Text>
+            <Text variant="h5">{getTotalProducts(data)}</Text>
           </View>
-          <Text variant="h3">Paquete 1</Text>
-          <View
-            style={{
-              backgroundColor: "#F6F6F6",
-              height: 40,
-              justifyContent: "center",
-              padding: 10,
-              borderRadius: 10,
-              marginTop: 5,
-            }}
-          >
-            <Text variant="h5">Envio a Domicilio</Text>
-          </View>
-          <Text variant="h3">Paquete 2</Text>
-          <View
-            style={{
-              backgroundColor: "#F6F6F6",
-              height: 40,
-              justifyContent: "center",
-              padding: 10,
-              borderRadius: 10,
-              marginTop: 5,
-            }}
-          >
-            <Text variant="h5">Retiro en el Local</Text>
-          </View>
+
+          {Object.values(store.details).map(({ packageNumber, delivery }) => (
+            <>
+              <Text variant="h3">Paquete {packageNumber}</Text>
+              <View
+                style={{
+                  backgroundColor: "#F6F6F6",
+                  height: 40,
+                  justifyContent: "center",
+                  padding: 10,
+                  borderRadius: 10,
+                  marginTop: 5
+                }}
+              >
+                <Text variant="h5">
+                  {delivery ? "Envio a domicilio" : "Retiro en el local"}
+                </Text>
+              </View>
+            </>
+          ))}
           <Text variant="h5">Av.Directorio 1234</Text>
         </View>
         <View style={{ marginBottom: 20 }}>
@@ -64,7 +65,7 @@ export default function Checkout() {
               justifyContent: "center",
               padding: 10,
               borderRadius: 10,
-              marginTop: 5,
+              marginTop: 5
             }}
           >
             <Text variant="h5">Av.De Mayo 789</Text>
@@ -79,7 +80,7 @@ export default function Checkout() {
               justifyContent: "center",
               padding: 10,
               borderRadius: 10,
-              marginTop: 5,
+              marginTop: 5
             }}
           >
             <Text variant="h5">Efectivo</Text>
@@ -128,18 +129,18 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     display: "flex",
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   text: {
     fontWeight: "700",
     marginTop: 15,
-    marginBottom: 10,
+    marginBottom: 10
   },
   align: {
     height: 43,
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: 15,
+    marginBottom: 15
   },
   button: {
     marginTop: "auto",
@@ -147,16 +148,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     paddingVertical: 5,
-    backgroundColor: "#FFF",
+    backgroundColor: "#FFF"
   },
   content: {
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "white",
-  },
+    backgroundColor: "white"
+  }
 });

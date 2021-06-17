@@ -2,11 +2,12 @@ import create from "zustand";
 
 const useCheckoutCartDetails = create((set) => ({
   details: {},
-  setBusinessDetails: (businessData) =>
+  setBusinessDetails: (businessData, packageNumber) =>
     set((state) => {
       const newObj = { ...state.details };
       newObj[businessData.id] = {
-        delivery: businessData.delivery // delivery === true, takeAway === false
+        delivery: businessData.delivery, // delivery === true, takeAway === false
+        packageNumber: packageNumber
       };
       return {
         ...state,
