@@ -52,7 +52,7 @@ const hierros = require("../../assets/Categorias/Hierros.png");
 
 const { height } = Dimensions.get("window");
 const items = [
-  { name: "Paintings", icon: pintura, title: "Pinturas" },
+  { name: "Paintings", icon: faPaintRoller, title: "Pinturas" },
   { name: "Buildings", icon: faBorderAll, title: "Construcción" },
   { name: "Electricity", icon: faBolt, title: "Electricidad" },
   { name: "Plumbing", icon: faFaucet, title: "Plomería" },
