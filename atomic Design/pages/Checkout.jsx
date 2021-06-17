@@ -83,7 +83,7 @@ export default function Checkout() {
                   {delivery ? "Envio a domicilio" : "Retiro en el local"}
                 </Text>
               </View>
-              {delivery && (
+              {!delivery && (
                 <Text variant="h5">{getBusinessAddress(packageNumber)}</Text>
               )}
             </>
