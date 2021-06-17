@@ -38,6 +38,13 @@ export default function Checkout() {
 
   const finalTotalCost = subtotal + deliveryCost;
 
+  const getBusinessAddress = (packageNum) => {
+    const prodData = data.find(
+      (prodData) => prodData.packageNumber === packageNum
+    );
+    return prodData.business.address;
+  };
+
   return (
     <View style={styles.main}>
       <Header icon={CloseIcon} children={{ text: "Último paso" }} />
@@ -61,6 +68,7 @@ export default function Checkout() {
           {Object.values(store.details).map(({ packageNumber, delivery }) => (
             <>
               <Text variant="h3">Paquete {packageNumber}</Text>
+
               <View
                 style={{
                   backgroundColor: "#F6F6F6",
@@ -75,9 +83,11 @@ export default function Checkout() {
                   {delivery ? "Envio a domicilio" : "Retiro en el local"}
                 </Text>
               </View>
+              {delivery && (
+                <Text variant="h5">{getBusinessAddress(packageNumber)}</Text>
+              )}
             </>
           ))}
-          <Text variant="h5">Av.Directorio 1234</Text>
         </View>
         <View style={{ marginBottom: 20 }}>
           <Text variant="h3">Dirrección de Envio</Text>
