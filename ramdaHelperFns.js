@@ -12,6 +12,7 @@ import {
   and,
   is
 } from "ramda";
+import { isEmptyArray } from "ramda-adjunct";
 
 /**
  * Creates a new object by picking
@@ -80,6 +81,6 @@ export const isNotNil = complement(isNil);
  */
 export const isFalsyOrEmptyArray = cond([
   [isStrictFalsy, always(true)],
-  [and(is(Array), isEmpty), always(true)],
+  [isEmptyArray, always(true)],
   [T, always(false)]
 ]);
