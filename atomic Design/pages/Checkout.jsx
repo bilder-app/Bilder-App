@@ -9,11 +9,32 @@ import { useCheckoutCart, getTotalProducts } from "../../hooks/useCheckoutCart";
 
 import { faTimes as CloseIcon } from "@fortawesome/free-solid-svg-icons";
 
+const getTotalPriceOfProducts = (products) =>
+  products.reduce((acc, { units, price }) => {
+    return acc + units * price;
+  }, 0);
+
 export default function Checkout() {
   const store = useCheckoutCartDetailsStore();
   const { data, isLoading } = useCheckoutCart();
 
   if (isLoading) return null;
+
+  const subtotal = data.reduce((total, { products }) => {
+    return (
+      total + products.reduce((acc, next) => acc + next.units * next.price, 0)
+    );
+  }, 0);
+
+  const deliveryCost = data.reduce((acc, { business, products }) => {
+    const productsTotal = getTotalPriceOfProducts(products);
+    const isDelivering = store.details[business.id].delivery;
+    if (isDelivering && productsTotal < business.freeDeliveryAt)
+      return acc + business.deliveryPrice;
+    else return acc;
+  }, 0);
+
+  const finalTotalCost = subtotal + deliveryCost;
 
   return (
     <View style={styles.main}>
@@ -93,7 +114,7 @@ export default function Checkout() {
               Subtotal
             </Text>
             <Text style={styles.price} variant="h4">
-              $ 0
+              $ {subtotal}
             </Text>
           </View>
           <View style={styles.header}>
@@ -101,7 +122,7 @@ export default function Checkout() {
               Costo de Entrega Total
             </Text>
             <Text style={styles.price} variant="h4">
-              $ 0
+              $ {deliveryCost}
             </Text>
           </View>
           <View style={styles.header}>
@@ -109,7 +130,7 @@ export default function Checkout() {
               Total
             </Text>
             <Text style={styles.price} variant="h4">
-              $ 0
+              $ {finalTotalCost}
             </Text>
           </View>
         </View>
