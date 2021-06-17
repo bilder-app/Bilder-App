@@ -9,6 +9,7 @@ import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
 import { useQuery } from "react-query";
 import { getCheckoutCartProducts } from "../../api";
 import { useCheckoutCart } from "../../hooks/useCheckoutCart";
+import useCheckoutCartDetailsStore from "../../hooks/useCheckoutCartDetailsStore";
 
 const getTotalPriceOfProducts = (products) =>
   products.reduce((acc, { units, price }) => {
@@ -16,32 +17,18 @@ const getTotalPriceOfProducts = (products) =>
   }, 0);
 
 export default function Shipping({ navigation }) {
-  const [checkoutDetails, setCheckoutDetails] = useState({});
-  const { data, isLoading } = useCheckoutCart();
+  const { data } = useCheckoutCart();
+  const checkoutDetails = useCheckoutCartDetailsStore();
 
   useEffect(() => {
     if (data) {
-      data.forEach(({ business }) => {
-        setCheckoutDetails((prev) => {
-          const newObj = { ...prev };
-          newObj[business.id] = {
-            delivery: business.delivery // delivery === true, takeAway === false
-          };
-          return newObj;
-        });
-      });
+      data.forEach(({ business }) =>
+        checkoutDetails.setBusinessDetails(business)
+      );
     }
   }, [data]);
 
-  const toggleSwitch = (businessId) => {
-    setCheckoutDetails((prev) => {
-      const newObj = { ...prev };
-      newObj[businessId].delivery = !prev[businessId].delivery;
-      return newObj;
-    });
-  };
-
-  if (!Object.keys(checkoutDetails).length) return null;
+  if (!Object.keys(checkoutDetails.details).length) return null;
 
   const subtotal = data.reduce((total, { products }) => {
     return (
@@ -51,7 +38,7 @@ export default function Shipping({ navigation }) {
 
   const deliveryCost = data.reduce((acc, { business, products }) => {
     const productsTotal = getTotalPriceOfProducts(products);
-    const isDelivering = checkoutDetails[business.id].delivery;
+    const isDelivering = checkoutDetails.details[business.id].delivery;
     if (isDelivering && productsTotal < business.freeDeliveryAt)
       return acc + business.deliveryPrice;
     else return acc;
@@ -97,15 +84,17 @@ export default function Shipping({ navigation }) {
                   }}
                 >
                   <Text variant="h5">
-                    {checkoutDetails[business.id].delivery
+                    {checkoutDetails.details[business.id].delivery
                       ? "Envio a domicilio"
                       : "Retiro en el local"}
                   </Text>
 
                   {business.delivery && (
                     <Switch
-                      onValueChange={() => toggleSwitch(business.id)}
-                      value={checkoutDetails[business.id].delivery}
+                      onValueChange={() =>
+                        checkoutDetails.toggleDelivery(business.id)
+                      }
+                      value={checkoutDetails.details[business.id].delivery}
                     />
                   )}
                 </View>
@@ -119,7 +108,7 @@ export default function Shipping({ navigation }) {
                   />
                 ))}
                 {business.deliveryPrice &&
-                  checkoutDetails[business.id].delivery && (
+                  checkoutDetails.details[business.id].delivery && (
                     <View
                       style={{
                         flexDirection: "row",
