@@ -8,6 +8,7 @@ import useCheckoutCartDetailsStore from "../../hooks/useCheckoutCartDetailsStore
 import { useCheckoutCart, getTotalProducts } from "../../hooks/useCheckoutCart";
 
 import { faTimes as CloseIcon } from "@fortawesome/free-solid-svg-icons";
+import { useUserData } from "../../hooks/useUserData";
 
 const getTotalPriceOfProducts = (products) =>
   products.reduce((acc, { units, price }) => {
@@ -17,6 +18,7 @@ const getTotalPriceOfProducts = (products) =>
 export default function Checkout() {
   const store = useCheckoutCartDetailsStore();
   const { data, isLoading } = useCheckoutCart();
+  const { data: userData } = useUserData();
 
   if (isLoading) return null;
 
@@ -89,7 +91,7 @@ export default function Checkout() {
               marginTop: 5
             }}
           >
-            <Text variant="h5">Av.De Mayo 789</Text>
+            <Text variant="h5">{userData?.address}</Text>
           </View>
         </View>
         <View style={{ marginBottom: 20 }}>
