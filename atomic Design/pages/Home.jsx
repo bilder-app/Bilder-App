@@ -33,7 +33,8 @@ import {
 
 import { getProducts, getAllCartProducts, getMyUser } from "../../api";
 import { useFocusEffect } from "@react-navigation/core";
-import { useCart } from "../../hooks/useCart";
+import { useQueryClient } from "react-query";
+import { CART_ITEMS_KEY } from "../../hooks/reactQueryKeys";
 
 const logo = require("../../assets/bilderapp.png");
 const images = [
@@ -67,6 +68,7 @@ const items = [
 ];
 
 function Home({ navigation }) {
+  const queryClient = useQueryClient();
   const [productsData, setProductsData] = useState();
 
   useEffect(() => {
@@ -80,13 +82,11 @@ function Home({ navigation }) {
     });
   }, []);
 
-  // const { refetch } = useCart();
-
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     refetch();
-  //   }, [])
-  // );
+  useFocusEffect(
+    React.useCallback(() => {
+      queryClient.invalidateQueries(CART_ITEMS_KEY);
+    }, [])
+  );
 
   return (
     <View style={{ height: height - 50 }}>
