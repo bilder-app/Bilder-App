@@ -9,11 +9,10 @@ import Button from "../../atomic Design/atoms/Button/Button";
 import { useCart, getTotalPrice } from "../../hooks/useCart";
 
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
-import { useQuery } from "react-query";
-import { getAllCartProducts, deleteAllProductsInCart } from "../../api";
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5 } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
+import { useClearCart } from "../../hooks/mutations/useClearCart";
 
 const renderItem = ({ item = {} }) => {
   const { images, price, name, id, amount, stock } = item;
@@ -34,6 +33,7 @@ const renderItem = ({ item = {} }) => {
 
 function Cart({ navigation }) {
   const { data: cartProducts = [], refetch } = useCart();
+  const { mutate: clearCart } = useClearCart();
 
   useFocusEffect(
     React.useCallback(() => {
@@ -46,25 +46,25 @@ function Cart({ navigation }) {
       "Eliminar elementos múltiples",
       "¿Está seguro de que desea vaciar el carrito por completo?",
       [
-        { 
-          text: "Confirmar", 
-          onPress: () => deleteAllProductsInCart().then(() => refetch())
+        {
+          text: "Confirmar",
+          onPress: () => clearCart()
         },
         {
           text: "Cancelar",
           onPress: () => null,
           style: "cancel"
-        },
+        }
       ],
       { cancelable: false }
     );
-  }
+  };
 
   return (
     <View style={styles.main}>
       <Header children={{ text: "Mi Carrito" }} />
       <TouchableOpacity onPress={confirmEmptyCart} style={styles.deleteIcon}>
-       <FontAwesome5 name="trash-alt" size={20} color="#444D52" />
+        <FontAwesome5 name="trash-alt" size={20} color="#444D52" />
       </TouchableOpacity>
       <View style={styles.scroll}>
         <ScrollContainer>
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
-    right: 0,
+    right: 0
   },
   button: {
     alignItems: "center",

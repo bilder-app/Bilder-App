@@ -44,7 +44,7 @@ export function deleteProductInCart(productId) {
 }
 
 export function deleteAllProductsInCart() {
-  return axios.delete('/user/cart/');
+  return axios.delete("/user/cart/");
 }
 
 /**
@@ -83,7 +83,7 @@ export function getAllCartProducts() {
 }
 
 export function clearAllCartItems() {
-  return axios.put("/user/cart/clear");
+  return axios.delete("/user/cart");
 }
 
 // export function getCartAmount() {
