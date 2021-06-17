@@ -1,16 +1,20 @@
 import React from "react";
 import { View, StyleSheet, Linking } from "react-native";
-import Svg, { Path } from "react-native-svg"
+import Svg, { Path } from "react-native-svg";
 
-import Button from "../../atoms/Button/Button"; 
+import Button from "../../atoms/Button/Button";
 import Text from "../../atoms/Text/Text";
 
-export default function WhatsappButton (props) {
-  const phoneNumber = 5491136575732;
-  return(
-    <Button 
-      style={styles.default} 
-      onPress={() => Linking.openURL(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=%C2%A1Hola!%20Necesito%20ayuda%20con`)}
+export default function WhatsappButton(props) {
+  const phoneNumber = 5491123948906;
+  return (
+    <Button
+      style={styles.default}
+      onPress={() =>
+        Linking.openURL(
+          `https://api.whatsapp.com/send?phone=${phoneNumber}&text=%C2%A1Hola!%20Necesito%20ayuda%20con`
+        )
+      }
     >
       <Text variant="subtitle1" style={{ color: "#444D52", paddingRight: 10 }}>
         ¿Necesitas ayuda?
@@ -33,7 +37,7 @@ export default function WhatsappButton (props) {
         </Svg>
       </View>
     </Button>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -56,5 +60,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     elevation: 3,
     borderRadius: 25,
-  }
-})
+  },
+});

@@ -10,7 +10,7 @@ import { faTimes as CloseIcon } from "@fortawesome/free-solid-svg-icons";
 export default function Payment({ navigation }) {
   return (
     <View style={styles.main}>
-      <Header icon={CloseIcon} children={{ text: "¿Como vas a pagar?" }} />
+      <Header icon={CloseIcon} children={{ text: "Método de Pago" }} />
       <View style={{ paddingHorizontal: 25, marginTop: 10 }}>
         <Text variant="h5" style={styles.text}>
           Pago en la entrega

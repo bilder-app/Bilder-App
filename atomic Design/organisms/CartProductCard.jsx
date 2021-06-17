@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image, Alert } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import Text from "../atoms/Text/Text";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import { amountMachine } from "../machines/amountModal";
@@ -9,6 +9,7 @@ import { useQueryClient } from "react-query";
 import { editProductInCart, removeProductFromCart } from "../../api";
 import { useNavigation } from "@react-navigation/native";
 import IconContainer from "../atoms/IconContainer/IconContainer";
+import { CART_ITEMS_KEY } from "../../hooks/reactQueryKeys";
 
 export default function ({ image, price, name, productId, amount, stock }) {
   const queryClient = useQueryClient();  
@@ -17,23 +18,23 @@ export default function ({ image, price, name, productId, amount, stock }) {
   const [state, send] = useMachine(amountMachine, {
     context: {
       amount,
-      maxAmount: stock
+      maxAmount: stock,
     },
     actions: {
       onClose: (ctx) => {
         if (ctx.amount === 0) {
           return removeProductFromCart(productId).then(() => {
-            queryClient.invalidateQueries("cart items");
+            queryClient.invalidateQueries(CART_ITEMS_KEY);
             queryClient.invalidateQueries(["cart product", productId]);
           });
         } else {
           editProductInCart({ productId, amount: ctx.amount }).then(() => {
-            queryClient.invalidateQueries("cart items");
+            queryClient.invalidateQueries(CART_ITEMS_KEY);
             queryClient.invalidateQueries(["cart product", productId]);
           });
         }
-      }
-    }
+      },
+    },
   });
 
 
@@ -50,7 +51,15 @@ export default function ({ image, price, name, productId, amount, stock }) {
             {name}
           </Text>
           <View style={{ width: "15%", height: "60%", marginTop: "-3%" }}>
-            <TouchableOpacity onPress={() => alert("Eliminar Producto")} style={{ width: "100%", height: "100%", alignItems: "flex-end" }}>
+            <TouchableOpacity 
+              onPress={() => {
+                removeProductFromCart(productId).then(() => {
+                  queryClient.invalidateQueries(CART_ITEMS_KEY);
+                  queryClient.invalidateQueries(["cart product", productId]);
+                });
+              }} 
+              style={{ width: "100%", height: "100%", alignItems: "flex-end" }}
+            >
               <Entypo name="cross" size={20} color="#444D52" />
             </TouchableOpacity>
           </View>
@@ -72,7 +81,7 @@ export default function ({ image, price, name, productId, amount, stock }) {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               <TouchableOpacity onPress={() => send({ type: "remove_one" })}>
@@ -100,20 +109,20 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     display: "flex",
     flexDirection: "row",
-    elevation: 2,
+    elevation: 1,
     marginVertical: 5,
     paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 10
   },
   content: {
     display: "flex",
     marginLeft: 15,
-    flex: 1
+    flex: 1,
   },
   image: {
     height: "100%",
     width: 75,
-    resizeMode: "contain",
+    resizeMode: "contain"
   },
   bottomContent: {
     display: "flex",
@@ -121,7 +130,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     width: "100%",
-    height: "40%",
+    height: "40%"
   },
   buttonFill: {
     backgroundColor: "#FF8000",
@@ -130,10 +139,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 15,
-    marginLeft: "auto"
+    marginLeft: "auto",
   },
   badge: {
     color: "white",
-    fontSize: 16
-  }
+    fontSize: 16,
+  },
 });

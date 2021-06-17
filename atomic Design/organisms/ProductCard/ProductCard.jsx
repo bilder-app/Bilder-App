@@ -16,6 +16,7 @@ import { useMachine } from "@xstate/react";
 import { useNavigation } from "@react-navigation/native";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 import { AntDesign } from "@expo/vector-icons";
+import { CART_ITEMS_KEY } from "../../../hooks/reactQueryKeys";
 
 export default function ProductCard({ children, onPress, style }) {
   const queryClient = useQueryClient();
@@ -39,20 +40,20 @@ export default function ProductCard({ children, onPress, style }) {
     actions: {
       onAddedOne: () =>
         postProductToCart(id).then(() => {
-          queryClient.invalidateQueries("cart items");
+          queryClient.invalidateQueries(CART_ITEMS_KEY);
           queryClient.invalidateQueries(["cart product", id], { exact: true });
         }),
       onClose: (ctx) => {
         if (ctx.amount === 0) {
           return removeProductFromCart(id).then(() => {
-            queryClient.invalidateQueries("cart items");
+            queryClient.invalidateQueries(CART_ITEMS_KEY);
             queryClient.invalidateQueries(["cart product", id], {
               exact: true
             });
           });
         } else {
           editProductInCart({ productId: id, amount: ctx.amount }).then(() => {
-            queryClient.invalidateQueries("cart items");
+            queryClient.invalidateQueries(CART_ITEMS_KEY);
             queryClient.invalidateQueries(["cart product", id], {
               exact: true
             });
@@ -86,7 +87,11 @@ export default function ProductCard({ children, onPress, style }) {
       style={style}
     >
       <View style={styles.content}>
-        <Image variant="max" children={images[0]} style={{ resizeMode: "contain" }}/>
+        <Image
+          variant="max"
+          children={images[0]}
+          style={{ resizeMode: "contain" }}
+        />
       </View>
 
       <View style={styles.body}>
@@ -149,13 +154,13 @@ export default function ProductCard({ children, onPress, style }) {
 const styles = StyleSheet.create({
   content: {
     width: "100%",
-    height: "46%",
+    height: "46%"
     // backgroundColor: "#f00",
   },
   body: {
     flex: 1,
     marginTop: 3,
-    justifyContent: "flex-start",
+    justifyContent: "flex-start"
     // backgroundColor: "#0f0",
   },
   button: {

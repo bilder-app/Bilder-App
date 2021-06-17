@@ -6,20 +6,20 @@ import Header from "../organisms/Header/Header";
 import CardItem from "../organisms/CardItem/CardItem";
 import Text from "../../atomic Design/atoms/Text/Text";
 import Button from "../../atomic Design/atoms/Button/Button";
+import { useCart } from "../../hooks/useCart";
 
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
 import { useQuery } from "react-query";
-import { getAllCartProducts } from "../../api";
+import { getAllCartProducts, deleteAllProductsInCart } from "../../api";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useFocusEffect } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native";
 
 const renderItem = ({ item = {} }) => {
-  const { images, price, name, id, ProductInCart = {}, stock } = item;
-  const { amount } = ProductInCart;
+  const { images, price, name, id, amount, stock } = item;
 
   return (
-    <View style={{ marginVertical: 5, marginHorizontal: 5 }} key={item.id}>
+    <View style={{ marginVertical: 5, marginHorizontal: 2 }} key={item.id}>
       <CartProduct
         stock={stock}
         image={images[0]}
@@ -33,10 +33,7 @@ const renderItem = ({ item = {} }) => {
 };
 
 function Cart({ navigation }) {
-  const { data: cartProducts = [], refetch } = useQuery(
-    "cart items",
-    getAllCartProducts
-  );
+  const { data: cartProducts = [], refetch } = useCart();
 
   useFocusEffect(
     React.useCallback(() => {
@@ -49,16 +46,20 @@ function Cart({ navigation }) {
       "Eliminar elementos múltiples",
       "¿Está seguro de que desea vaciar el carrito por completo?",
       [
-        { text: "COnfirmar", onPress: () => console.log("OK") },
+        { 
+          text: "Confirmar", 
+          onPress: () => deleteAllProductsInCart().then(() => refetch())
+        },
         {
           text: "Cancelar",
-          onPress: () => console.log("cancelado"),
+          onPress: () => null,
           style: "cancel"
         },
       ],
       { cancelable: false }
     );
   }
+
   return (
     <View style={styles.main}>
       <Header children={{ text: "Mi Carrito" }} />
@@ -81,8 +82,7 @@ function Cart({ navigation }) {
               $
               {cartProducts.length
                 ? cartProducts.reduce(
-                    (prev, next) =>
-                      next.price * next.ProductInCart.amount + prev,
+                    (prev, next) => next.price * next.amount + prev,
                     0
                   )
                 : 0}
@@ -109,17 +109,17 @@ const styles = StyleSheet.create({
   main: {
     height: "100%",
     width: "100%",
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   scroll: {
-    height: "87.6%",
+    height: "87.6%"
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     height: 50,
-    marginBottom: 40,
+    marginBottom: 40
   },
   deleteIcon: {
     width: 50,
@@ -134,6 +134,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     paddingVertical: 5,
-    backgroundColor: "#FFF",
-  },
+    backgroundColor: "#FFF"
+  }
 });
