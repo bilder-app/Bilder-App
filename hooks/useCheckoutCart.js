@@ -1,8 +1,9 @@
 import { useQuery } from "react-query";
 import { getCheckoutCartProducts } from "../api";
+import { CHECKOUT_CART_KEY } from "./reactQueryKeys";
 
 export function useCheckoutCart() {
-  return useQuery("checkout cart products", getCheckoutCartProducts);
+  return useQuery(CHECKOUT_CART_KEY, getCheckoutCartProducts);
 }
 
 export function getTotalProducts(checkoutCart) {
