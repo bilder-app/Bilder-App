@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet, Alert } from "react-native";
 import CartProduct from "../organisms/CartProductCard";
 
 import Header from "../organisms/Header/Header";
@@ -10,8 +10,10 @@ import { useCart, getTotalPrice } from "../../hooks/useCart";
 
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
 import { useQuery } from "react-query";
-import { getAllCartProducts } from "../../api";
+import { getAllCartProducts, deleteAllProductsInCart } from "../../api";
+import { FontAwesome5 } from '@expo/vector-icons';
 import { useFocusEffect } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native";
 
 const renderItem = ({ item = {} }) => {
   const { images, price, name, id, amount, stock } = item;
@@ -39,9 +41,31 @@ function Cart({ navigation }) {
     }, [])
   );
 
+  const confirmEmptyCart = () => {
+    Alert.alert(
+      "Eliminar elementos múltiples",
+      "¿Está seguro de que desea vaciar el carrito por completo?",
+      [
+        { 
+          text: "Confirmar", 
+          onPress: () => deleteAllProductsInCart().then(() => refetch())
+        },
+        {
+          text: "Cancelar",
+          onPress: () => null,
+          style: "cancel"
+        },
+      ],
+      { cancelable: false }
+    );
+  }
+
   return (
     <View style={styles.main}>
       <Header children={{ text: "Mi Carrito" }} />
+      <TouchableOpacity onPress={confirmEmptyCart} style={styles.deleteIcon}>
+       <FontAwesome5 name="trash-alt" size={20} color="#444D52" />
+      </TouchableOpacity>
       <View style={styles.scroll}>
         <ScrollContainer>
           <FlatList
@@ -90,6 +114,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 50,
     marginBottom: 40
+  },
+  deleteIcon: {
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    right: 0,
   },
   button: {
     alignItems: "center",

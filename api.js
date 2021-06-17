@@ -43,6 +43,10 @@ export function deleteProductInCart(productId) {
   return axios.delete(`/user/cart/${productId}`);
 }
 
+export function deleteAllProductsInCart() {
+  return axios.delete('/user/cart/');
+}
+
 /**
  * @typedef ProductInCart
  * @property {string} amount

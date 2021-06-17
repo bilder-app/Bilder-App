@@ -61,7 +61,7 @@ const items = [
   { image: maderas, title: "Maderas" },
   { image: pared, title: "Construcción" },
   { image: plomeria, title: "Plomería" },
-  { image: hierros, title: "Ferretería" },
+  { image: hierros, title: "Hierros" },
 ];
 
 function Home({ navigation }) {

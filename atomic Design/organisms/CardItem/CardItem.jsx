@@ -9,12 +9,15 @@ import Chip from "../../atoms/Chip/Chip";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 import Cart from "../../atoms/Icons/Cart";
 
+import { useNavigation } from "@react-navigation/native";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 
-export default function CardItem({ variant, children, onPress, style }) {
+export default function CardItem({ variant, children, onPress, style, redirect }) {
   const [cartBoolean, setCartBoolean] = useState(false);
   const [value, setValue] = useState();
   const cart = useSelector((state) => state.cartList.cart);
+
+  const navigation = useNavigation();
 
   if (variant === "cart") {
     useEffect(() => {
@@ -46,7 +49,12 @@ export default function CardItem({ variant, children, onPress, style }) {
   }
 
   return (
-    <View style={[styles.base, style]}>
+    <TouchableOpacity 
+      style={[styles.base, style]} 
+      onPress={() => redirect === true && navigation.navigate("ProductDetail", { productId: children.id })}
+      disabled={redirect !== true}
+      activeOpacity={0.8}
+    >
       <Image
         children={
           children.images
@@ -54,6 +62,7 @@ export default function CardItem({ variant, children, onPress, style }) {
             : "http://www.colores.org.es/imagenes_colores/gris.jpg"
         }
         variant="mini"
+        style={{ resizeMode: "contain" }}
       />
       <View style={styles.content}>
         <Text
@@ -94,7 +103,7 @@ export default function CardItem({ variant, children, onPress, style }) {
           )}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
