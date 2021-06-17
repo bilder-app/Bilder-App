@@ -23,16 +23,16 @@ export default function Result({ route }) {
       searchProducts({
         name: params.query,
         limit: PRODUCTS_LIMIT,
-        page: pageParam
+        page: pageParam,
       }),
     {
-      getNextPageParam: (lastPage) => lastPage.next?.page
+      getNextPageParam: (lastPage) => lastPage.next?.page,
     }
   );
-  
+
   return (
     <View style={styles.container}>
-      <SearchBar defaultValue={params.query} current="Result"/>
+      <SearchBar defaultValue={params.query} current="Result" />
       {data && (
         <>
           <View style={styles.content}>
@@ -41,14 +41,14 @@ export default function Result({ route }) {
                 {data.pages[0].total || 0} Resultados
               </Text>
             </View>
-            <View style={styles.icons}>
+            {/* <View style={styles.icons}>
               <FontAwesomeIcon icon={faFilter} color={"#AAA"} size={18} />
               <Text style={{ fontSize: 16 }}> Filtros</Text>
-            </View>
+            </View> */}
           </View>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.results}>
-              {data.pages.map(({ results }) => 
+              {data.pages.map(({ results }) =>
                 results.map((data) => (
                   <ProductCard
                     children={data}
@@ -69,7 +69,8 @@ export default function Result({ route }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "100%"
+    height: "100%",
+    backgroundColor: "white",
   },
   content: {
     height: 40,
@@ -78,7 +79,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 15,
     borderBottomColor: "grey",
-    borderBottomWidth: 1
+
+    borderBottomWidth: 1,
   },
   icons: {
     width: "25%",
@@ -86,14 +88,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
-    marginLeft: "auto"
+    marginLeft: "auto",
   },
   results: {
     width: "100%",
     justifyContent: "space-between",
     flexDirection: "row",
     flexWrap: "wrap",
+    backgroundColor: "white",
     paddingHorizontal: 15,
-    paddingVertical: 15
-  }
+    paddingVertical: 15,
+  },
 });

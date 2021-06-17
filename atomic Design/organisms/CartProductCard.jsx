@@ -15,7 +15,7 @@ export default function ({ image, price, name, productId, amount, stock }) {
   const [state, send] = useMachine(amountMachine, {
     context: {
       amount,
-      maxAmount: stock
+      maxAmount: stock,
     },
     actions: {
       onClose: (ctx) => {
@@ -30,8 +30,8 @@ export default function ({ image, price, name, productId, amount, stock }) {
             queryClient.invalidateQueries(["cart product", productId]);
           });
         }
-      }
-    }
+      },
+    },
   });
 
   return (
@@ -66,7 +66,7 @@ export default function ({ image, price, name, productId, amount, stock }) {
               style={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "center"
+                alignItems: "center",
               }}
             >
               <TouchableOpacity onPress={() => send({ type: "remove_one" })}>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     display: "flex",
     flexDirection: "row",
-    elevation: 2,
+    elevation: 1,
     marginVertical: 5,
     paddingVertical: 10,
     paddingHorizontal: 10
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   content: {
     display: "flex",
     marginLeft: 15,
-    flex: 1
+    flex: 1,
   },
   image: {
     height: "100%",
@@ -124,10 +124,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 15,
-    marginLeft: "auto"
+    marginLeft: "auto",
   },
   badge: {
     color: "white",
-    fontSize: 16
-  }
+    fontSize: 16,
+  },
 });

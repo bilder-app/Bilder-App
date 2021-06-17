@@ -8,6 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Pressable,
 } from "react-native";
 
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
@@ -41,18 +42,26 @@ const images = [
   require("../../assets/img/5.png"),
 ];
 
+const pintura = require("../../assets/Categorias/Pintura.png"),
+      electricidad = require("../../assets/Categorias/Electricidad.png"),
+      griferia = require("../../assets/Categorias/Griferia.png"),
+      herramientas = require("../../assets/Categorias/Herramientas.png"),
+      maderas = require("../../assets/Categorias/Maderas.png"),
+      pared = require("../../assets/Categorias/Pared.png"),
+      plomeria = require("../../assets/Categorias/Plomeria.png"),
+      hierros = require("../../assets/Categorias/Hierros.png");
+
 const { height } = Dimensions.get("window");
+
 const items = [
-  { name: "Paintings", icon: faPaintRoller, title: "Pinturas" },
-  { name: "Buildings", icon: faBorderAll, title: "Construcción" },
-  { name: "Electricity", icon: faBolt, title: "Electricidad" },
-  { name: "Plumbing", icon: faFaucet, title: "Plomería" },
-  { name: "Tools", icon: faWrench, title: "Herramientas" },
-  { name: "Hardware", icon: faTools, title: "Ferretería" },
-  { name: "Wood", icon: faStream, title: "Maderas" },
-  { name: "Faucet", icon: faSink, title: "Grifería" },
-  { name: "Services", icon: faPencilRuler, title: "Serv. & Ins." },
-  { name: "Floors", icon: faClone, title: "Pisos" },
+  { image: pintura, title: "Pinturas" },
+  { image: electricidad, title: "Electricidad" },
+  { image: griferia, title: "Grifería" },
+  { image: herramientas, title: "Herramientas" },
+  { image: maderas, title: "Maderas" },
+  { image: pared, title: "Construcción" },
+  { image: plomeria, title: "Plomería" },
+  { image: hierros, title: "Ferretería" },
 ];
 
 function Home({ navigation }) {
@@ -101,23 +110,23 @@ function Home({ navigation }) {
         <Slider onPress={console.log} source={images} />
 
         <View style={{ marginTop: 10 }}>
-          <TouchableOpacity
-            style={styles.buttons}
-            onPress={() => navigation.push("About")}
-          >
-            <Text variant="h6" style={styles.subtitle}>
-              Categorias
-            </Text>
-          </TouchableOpacity>
+          <Text variant="h6" style={styles.subtitle}>
+            Categorias
+          </Text>
           <View style={styles.categories}>
-            {items.map((children, i) => {
+            {items.map(({ image, title}, i) => {
               return (
-                <CategoryIcon
+                <Pressable
                   key={i}
-                  children={children}
-                  onPress={() => navigation.push("Category", { name: children.name, title: children.title })}
-                />
-              );
+                   onPress={ () => navigation.push("Category", { title }) }
+                  style={styles.category}
+                >
+                  <Image source={image} style={styles.categoryImage} />
+                  <Text variant="subtitle1" style={{ fontSize: 10, textAlign: "center" }}>
+                    {title}
+                  </Text>
+                </Pressable>
+              )
             })}
           </View>
         </View>
@@ -134,11 +143,6 @@ function Home({ navigation }) {
           </Text>
           <ProductSlider children={productsData} />
         </View>
-
-        {/* <View style={{ marginTop: 10 }}>
-          <Text variant="h6" style={styles.subtitle}>Productos en Oferta</Text>
-          <ProductSlider />
-        </View> */}
       </ScrollView>
     </View>
   );
@@ -165,7 +169,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
+    marginTop: 10,
+  },
+  category: {
+    width: 80,
+    height: 80,
+    marginBottom: 10,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  categoryImage: {
+    borderRadius: 15,
+    width: "80%",
+    height: "80%",
   },
   subtitle: {
     paddingHorizontal: 15,

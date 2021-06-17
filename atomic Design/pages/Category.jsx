@@ -28,9 +28,7 @@ const renderItem = ({ item = {} }) => {
 };
 
 export default function Category({ navigation, route }) {
-  const { name, title } = route.params;
-  // name --> used to make request
-  // title --> must show to users
+  const { title } = route.params;
   const [subcategories, setSubcategories] = useState([])
   const [focus, setFocus] = useState(title)
   const [products, setProducts] = useState([])
