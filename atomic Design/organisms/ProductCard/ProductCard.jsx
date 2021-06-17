@@ -236,12 +236,7 @@ export const amountMachine = Machine(
           cond: (_, e) => e.amount > 0
         },
         {
-          actions: [
-            "updateContext",
-            () => {
-              console.log("nothing");
-            }
-          ],
+          actions: "updateContext",
           target: "initial"
         }
       ]
