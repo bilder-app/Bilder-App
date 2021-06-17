@@ -65,13 +65,19 @@ export const remap = curry((desc, obj) =>
   map((path) => view(lensPath(path), obj), desc)
 );
 
-// a -> Boolean
+/**
+ * a -> Boolean
+ */
 export const isStrictFalsy = (val) => !!val === false;
 
-// Boolean -> Boolean
+/**
+ * Boolean -> Boolean
+ */
 export const isNotNil = complement(isNil);
 
-// a -> Boolean
+/**
+ * a -> Boolean
+ */
 export const isFalsyOrEmptyArray = cond([
   [isStrictFalsy, always(true)],
   [and(is(Array), isEmpty), always(true)],
