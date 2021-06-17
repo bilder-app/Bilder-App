@@ -66,18 +66,20 @@ export default function ProductCard({ children, onPress, style }) {
 
   useCart({
     onSuccess(data) {
+      let matched = false;
       data.forEach((prod) => {
         if (prod.id === id) {
+          matched = true;
           send({
             type: "change_amount",
             amount: prod.amount,
-            maxAmount: stock
+            maxAmount: prod.stock
           });
-        } else {
+        } else if (!matched) {
           send({
             type: "change_amount",
             amount: 0,
-            maxAmount: stock
+            maxAmount: Infinity
           });
         }
       });
@@ -234,7 +236,12 @@ export const amountMachine = Machine(
           cond: (_, e) => e.amount > 0
         },
         {
-          actions: "updateContext",
+          actions: [
+            "updateContext",
+            () => {
+              console.log("nothing");
+            }
+          ],
           target: "initial"
         }
       ]
