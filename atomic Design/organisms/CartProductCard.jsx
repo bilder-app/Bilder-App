@@ -1,7 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Alert } from "react-native";
 import Text from "../atoms/Text/Text";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { amountMachine } from "../machines/amountModal";
 import { useMachine } from "@xstate/react";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -36,17 +36,39 @@ export default function ({ image, price, name, productId, amount, stock }) {
     }
   });
 
+    const confirmEmptyCart = () => {
+      Alert.alert(
+        "Eliminar elementos múltiples",
+        "¿Está seguro de que desea vaciar el carrito por completo?",
+        [
+          { text: "COnfirmar", onPress: () => console.log("OK") },
+          {
+            text: "Cancelar",
+            onPress: () => console.log("cancelado"),
+            style: "cancel"
+          },
+        ],
+        { cancelable: false }
+      );
+    }
+
+  const redirect = () => navigation.navigate("ProductDetail", { productId });
+
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => navigation.navigate("ProductDetail", { productId })}
-    >
-      <Image source={{ uri: image }} style={styles.image} />
+    <View style={styles.container} >
+      <TouchableOpacity onPress={redirect}>
+        <Image source={{ uri: image }} style={styles.image} />
+      </TouchableOpacity>
       <View style={styles.content}>
-        <View style={{ height: "60%" }}>
-           <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52" }}>
+        <View style={{ height: "60%", flexDirection: "row", width: "88%" }}>
+          <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52" }}>
             {name}
           </Text>
+          <View style={{ width: "15%", height: "60%", marginTop: "-3%" }}>
+            <TouchableOpacity onPress={() => alert("Eliminar Producto")} style={{ width: "100%", height: "100%", alignItems: "flex-end" }}>
+              <Entypo name="cross" size={20} color="#444D52" />
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.bottomContent}>
           <Text variant="h6" style={{ color: "#ff8000" }}>
@@ -81,7 +103,7 @@ export default function ({ image, price, name, productId, amount, stock }) {
           )}
         </View>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 }
 
