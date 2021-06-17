@@ -36,21 +36,6 @@ export default function ({ image, price, name, productId, amount, stock }) {
     }
   });
 
-    const confirmEmptyCart = () => {
-      Alert.alert(
-        "Eliminar elementos múltiples",
-        "¿Está seguro de que desea vaciar el carrito por completo?",
-        [
-          { text: "COnfirmar", onPress: () => console.log("OK") },
-          {
-            text: "Cancelar",
-            onPress: () => console.log("cancelado"),
-            style: "cancel"
-          },
-        ],
-        { cancelable: false }
-      );
-    }
 
   const redirect = () => navigation.navigate("ProductDetail", { productId });
 
