@@ -41,9 +41,18 @@ const images = [
   require("../../assets/img/5.png"),
 ];
 
+const pintura = require("../../assets/Categorias/Pintura.png");
+const electricidad = require("../../assets/Categorias/Electricidad.png");
+const griferia = require("../../assets/Categorias/Griferia.png");
+const herramientas = require("../../assets/Categorias/Herramientas.png");
+const maderas = require("../../assets/Categorias/Maderas.png");
+const pared = require("../../assets/Categorias/Pared.png");
+const plomeria = require("../../assets/Categorias/Plomeria.png");
+const hierros = require("../../assets/Categorias/Hierros.png");
+
 const { height } = Dimensions.get("window");
 const items = [
-  { name: "Paintings", icon: faPaintRoller, title: "Pinturas" },
+  { name: "Paintings", icon: pintura, title: "Pinturas" },
   { name: "Buildings", icon: faBorderAll, title: "Construcción" },
   { name: "Electricity", icon: faBolt, title: "Electricidad" },
   { name: "Plumbing", icon: faFaucet, title: "Plomería" },
@@ -51,8 +60,6 @@ const items = [
   { name: "Hardware", icon: faTools, title: "Ferretería" },
   { name: "Wood", icon: faStream, title: "Maderas" },
   { name: "Faucet", icon: faSink, title: "Grifería" },
-  { name: "Services", icon: faPencilRuler, title: "Serv. & Ins." },
-  { name: "Floors", icon: faClone, title: "Pisos" },
 ];
 
 function Home({ navigation }) {
@@ -101,21 +108,31 @@ function Home({ navigation }) {
         <Slider onPress={console.log} source={images} />
 
         <View style={{ marginTop: 10 }}>
-          <TouchableOpacity
-            style={styles.buttons}
-            onPress={() => navigation.push("About")}
-          >
-            <Text variant="h6" style={styles.subtitle}>
-              Categorias
-            </Text>
-          </TouchableOpacity>
+          <Text variant="h6" style={styles.subtitle}>
+            Categorias
+          </Text>
+          <View style={styles.categories}>
+            <Image source={pintura} style={styles.category} />
+            <Image source={electricidad} style={styles.category} />
+            <Image source={griferia} style={styles.category} />
+            <Image source={maderas} style={styles.category} />
+            <Image source={pared} style={styles.category} />
+            <Image source={plomeria} style={styles.category} />
+            <Image source={hierros} style={styles.category} />
+            <Image source={herramientas} style={styles.category} />
+          </View>
           <View style={styles.categories}>
             {items.map((children, i) => {
               return (
                 <CategoryIcon
                   key={i}
                   children={children}
-                  onPress={() => navigation.push("Category", { name: children.name, title: children.title })}
+                  onPress={() =>
+                    navigation.push("Category", {
+                      name: children.name,
+                      title: children.title,
+                    })
+                  }
                 />
               );
             })}
@@ -175,6 +192,13 @@ const styles = StyleSheet.create({
   logo: {
     width: 140,
     height: 40,
+    resizeMode: "contain",
+  },
+  category: {
+    width: 80,
+    height: 80,
+    borderRadius: 30,
+    marginBottom: 10,
     resizeMode: "contain",
   },
   address: {
