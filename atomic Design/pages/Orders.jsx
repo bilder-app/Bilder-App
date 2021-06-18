@@ -26,21 +26,6 @@ const items = [
     date: "Abril 5, 2020 - 19:36",
     state: "Completado",
   },
-  {
-    orderId: random + 2,
-    date: "Abril 5, 2020 - 19:36",
-    state: "En preparación",
-  },
-  {
-    orderId: random + 3,
-    date: "Abril 5, 2020 - 19:36",
-    state: "En preparación",
-  },
-  {
-    orderId: random + 4,
-    date: "Abril 5, 2020 - 19:36",
-    state: "Para entregar",
-  },
 ];
 
 const RenderItem = ({ item, filter }) => {
@@ -94,7 +79,11 @@ export default function Shipping() {
   return (
     <View style={styles.wrapper}>
       <StatusBar animated={true} backgroundColor="#FF8000" />
-      <Header children={{ text: "Pedidos" }} style={{ elevation: 0 }} hideBackIcon/>
+      <Header
+        children={{ text: "Pedidos" }}
+        style={{ elevation: 0 }}
+        hideBackIcon
+      />
 
       <TwoTabs selected={selected} setSelected={setSelected} />
       <FlatList
