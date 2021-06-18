@@ -5,6 +5,7 @@ import Input from "../../atoms/Input/Input";
 import Cart from "../../atoms/Icons/Cart";
 import Search from "../../atoms/Icons/Search";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
+import BackIcon from "../../atoms/Icons/BackIcon";
 
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -20,13 +21,15 @@ export default function SearchBar({ defaultValue, current, style }) {
 
   return (
     <View style={[styles.default, style]}>
-      <IconContainer 
+      <IconContainer
         onPress={() => {
-          current === "Search" ? navigation.goBack() : navigation.navigate("Search") 
-        }} 
+          current === "Search"
+            ? navigation.goBack()
+            : navigation.navigate("Search");
+        }}
         style={styles.icons}
       >
-        <FontAwesomeIcon icon={faAngleLeft} color="#444D52" size={28} />
+        <BackIcon width="28" height="28" />
       </IconContainer>
       <View style={styles.content}>
         <Input
@@ -35,7 +38,9 @@ export default function SearchBar({ defaultValue, current, style }) {
           style={styles.input}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.nativeEvent.text)}
-          onSubmitEditing={() => navigation.push("Results", { query: searchQuery })}
+          onSubmitEditing={() =>
+            navigation.push("Results", { query: searchQuery })
+          }
         />
         {!searchQuery ? (
           <View style={styles.alternative}>

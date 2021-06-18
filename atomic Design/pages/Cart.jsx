@@ -16,6 +16,7 @@ import { useClearCart } from "../../hooks/mutations/useClearCart";
 
 const renderItem = ({ item = {} }) => {
   const { images, price, name, id, amount, stock } = item;
+  console.log(item.amount);
 
   return (
     <View style={{ marginVertical: 5, marginHorizontal: 2 }} key={item.id}>
@@ -103,17 +104,17 @@ const styles = StyleSheet.create({
   main: {
     height: "100%",
     width: "100%",
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   scroll: {
-    height: "87.6%"
+    height: "87.6%",
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     height: 50,
-    marginBottom: 40
+    marginBottom: 40,
   },
   deleteIcon: {
     width: 50,
@@ -128,6 +129,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     paddingVertical: 5,
-    backgroundColor: "#FFF"
-  }
+    backgroundColor: "#FFF",
+  },
 });
