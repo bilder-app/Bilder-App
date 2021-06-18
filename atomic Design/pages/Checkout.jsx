@@ -6,6 +6,7 @@ import Text from "../atoms/Text/Text";
 import Button from "../atoms/Button/Button";
 import useCheckoutCartDetailsStore from "../../hooks/useCheckoutCartDetailsStore";
 import { useCheckoutCart, getTotalProducts } from "../../hooks/useCheckoutCart";
+import { useNewOrder } from "../../hooks/mutations/useNewOrder";
 
 import { faTimes as CloseIcon } from "@fortawesome/free-solid-svg-icons";
 import { useUserData } from "../../hooks/useUserData";
@@ -18,6 +19,7 @@ const getTotalPriceOfProducts = (products) =>
 export default function Checkout() {
   const store = useCheckoutCartDetailsStore();
   const { data, isLoading } = useCheckoutCart();
+  const { mutate: createNewOrder } = useNewOrder();
   const { data: userData } = useUserData();
 
   if (isLoading) return null;
@@ -150,7 +152,12 @@ export default function Checkout() {
       <View style={styles.button}>
         <Button
           children="Confirmar Pedido"
-          onPress={() => alert("Tu pedido ha sido confirmado")}
+          onPress={() =>
+            createNewOrder({
+              productsPrice: subtotal,
+              shippingPrice: deliveryCost
+            })
+          }
         />
       </View>
     </View>

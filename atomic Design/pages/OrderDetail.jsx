@@ -69,13 +69,6 @@ export default function OrderDetail({
   );
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     orderProducts: state.productsList.favoriteProducts
-//   };
-// }
-// export default connect(mapStateToProps, { getFavoriteProducts })(OrderDetail);
-
 const styles = StyleSheet.create({
   main: {
     width: "100%",

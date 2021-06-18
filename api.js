@@ -185,3 +185,9 @@ export function getAllOrders() {
 export function getOrder(orderId) {
   return axios.get(`/user/orders/${orderId}`).then((resp) => resp.data);
 }
+
+export function newOrder({ productsPrice, shippingPrice }) {
+  return axios
+    .post(`/user/orders/`, { productsPrice, shippingPrice })
+    .then((resp) => resp.data);
+}
