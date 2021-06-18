@@ -8,6 +8,8 @@ import CardItem from "../organisms/CardItem/CardItem";
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
 import { useQuery } from "react-query";
 import { getCheckoutCartProducts } from "../../api";
+import { useCheckoutCart } from "../../hooks/useCheckoutCart";
+import useCheckoutCartDetailsStore from "../../hooks/useCheckoutCartDetailsStore";
 
 const getTotalPriceOfProducts = (products) =>
   products.reduce((acc, { units, price }) => {
@@ -15,35 +17,18 @@ const getTotalPriceOfProducts = (products) =>
   }, 0);
 
 export default function Shipping({ navigation }) {
-  const [checkoutDetails, setCheckoutDetails] = useState({});
-  const { data, isLoading } = useQuery(
-    "checkout cart products",
-    getCheckoutCartProducts
-  );
+  const { data } = useCheckoutCart();
+  const checkoutDetails = useCheckoutCartDetailsStore();
 
   useEffect(() => {
     if (data) {
-      data.forEach(({ business }) => {
-        setCheckoutDetails((prev) => {
-          const newObj = { ...prev };
-          newObj[business.id] = {
-            delivery: business.delivery, // delivery === true, takeAway === false
-          };
-          return newObj;
-        });
-      });
+      data.forEach(({ business, packageNumber }) =>
+        checkoutDetails.setBusinessDetails(business, packageNumber)
+      );
     }
   }, [data]);
 
-  const toggleSwitch = (businessId) => {
-    setCheckoutDetails((prev) => {
-      const newObj = { ...prev };
-      newObj[businessId].delivery = !prev[businessId].delivery;
-      return newObj;
-    });
-  };
-
-  if (!Object.keys(checkoutDetails).length) return null;
+  if (!Object.keys(checkoutDetails.details).length) return null;
 
   const subtotal = data.reduce((total, { products }) => {
     return (
@@ -53,7 +38,7 @@ export default function Shipping({ navigation }) {
 
   const deliveryCost = data.reduce((acc, { business, products }) => {
     const productsTotal = getTotalPriceOfProducts(products);
-    const isDelivering = checkoutDetails[business.id].delivery;
+    const isDelivering = checkoutDetails.details[business.id].delivery;
     if (isDelivering && productsTotal < business.freeDeliveryAt)
       return acc + business.deliveryPrice;
     else return acc;
@@ -76,7 +61,7 @@ export default function Shipping({ navigation }) {
                   justifyContent: "center",
                   padding: 10,
                   borderRadius: 10,
-                  marginTop: 5,
+                  marginTop: 5
                 }}
               >
                 <Text variant="h5">Av.De Mayo 789</Text>
@@ -95,19 +80,21 @@ export default function Shipping({ navigation }) {
                     marginTop: 5,
                     display: "flex",
                     flexDirection: "row",
-                    justifyContent: "space-between",
+                    justifyContent: "space-between"
                   }}
                 >
                   <Text variant="h5">
-                    {checkoutDetails[business.id].delivery
+                    {checkoutDetails.details[business.id].delivery
                       ? "Envio a domicilio"
                       : "Retiro en el local"}
                   </Text>
 
                   {business.delivery && (
                     <Switch
-                      onValueChange={() => toggleSwitch(business.id)}
-                      value={checkoutDetails[business.id].delivery}
+                      onValueChange={() =>
+                        checkoutDetails.toggleDelivery(business.id)
+                      }
+                      value={checkoutDetails.details[business.id].delivery}
                     />
                   )}
                 </View>
@@ -121,13 +108,13 @@ export default function Shipping({ navigation }) {
                   />
                 ))}
                 {business.deliveryPrice &&
-                  checkoutDetails[business.id].delivery && (
+                  checkoutDetails.details[business.id].delivery && (
                     <View
                       style={{
                         flexDirection: "row",
                         justifyContent: "space-between",
                         alignItems: "center",
-                        backgroundColor: "white",
+                        backgroundColor: "white"
                       }}
                     >
                       <Text variant="h3">Costo de Envio</Text>
@@ -187,21 +174,21 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     display: "flex",
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   scroll: {
-    height: "87.6%",
+    height: "87.6%"
   },
   text: {
     fontWeight: "700",
     marginTop: 15,
-    marginBottom: 10,
+    marginBottom: 10
   },
   align: {
     height: 43,
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: 15,
+    marginBottom: 15
   },
   button: {
     marginTop: "auto",
@@ -209,20 +196,20 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     paddingVertical: 5,
-    backgroundColor: "#FFF",
+    backgroundColor: "#FFF"
   },
   content: {
     flexDirection: "column",
     justifyContent: "space-between",
-    marginBottom: 60,
+    marginBottom: 60
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   results: {
-    width: "100%",
-  },
+    width: "100%"
+  }
 });

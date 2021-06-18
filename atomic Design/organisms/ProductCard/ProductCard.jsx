@@ -13,10 +13,11 @@ import {
 } from "../../../api";
 import { Machine, assign } from "xstate";
 import { useMachine } from "@xstate/react";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import IconContainer from "../../atoms/IconContainer/IconContainer";
 import { AntDesign } from "@expo/vector-icons";
 import { CART_ITEMS_KEY } from "../../../hooks/reactQueryKeys";
+import { useCart } from "../../../hooks/useCart";
 
 export default function ProductCard({ children, onPress, style }) {
   const queryClient = useQueryClient();
@@ -63,21 +64,25 @@ export default function ProductCard({ children, onPress, style }) {
     }
   });
 
-  useQuery(["cart product", id], () => getCartProduct(id), {
-    onSuccess: (e) => {
-      if (!!e) {
-        send({
-          type: "change_amount",
-          amount: e.ProductInCart.amount,
-          maxAmount: stock
-        });
-      } else {
-        send({
-          type: "change_amount",
-          amount: 0,
-          maxAmount: stock
-        });
-      }
+  useCart({
+    onSuccess(data) {
+      let matched = false;
+      data.forEach((prod) => {
+        if (prod.id === id) {
+          matched = true;
+          send({
+            type: "change_amount",
+            amount: prod.amount,
+            maxAmount: prod.stock
+          });
+        } else if (!matched) {
+          send({
+            type: "change_amount",
+            amount: 0,
+            maxAmount: Infinity
+          });
+        }
+      });
     }
   });
 

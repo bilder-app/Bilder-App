@@ -1,17 +1,18 @@
 import React from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet, Alert } from "react-native";
 import CartProduct from "../organisms/CartProductCard";
 
 import Header from "../organisms/Header/Header";
 import CardItem from "../organisms/CardItem/CardItem";
 import Text from "../../atomic Design/atoms/Text/Text";
 import Button from "../../atomic Design/atoms/Button/Button";
-import { useCart } from "../../hooks/useCart";
+import { useCart, getTotalPrice } from "../../hooks/useCart";
 
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
-import { useQuery } from "react-query";
-import { getAllCartProducts } from "../../api";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native";
+import { useClearCart } from "../../hooks/mutations/useClearCart";
 
 const renderItem = ({ item = {} }) => {
   const { images, price, name, id, amount, stock } = item;
@@ -33,6 +34,7 @@ const renderItem = ({ item = {} }) => {
 
 function Cart({ navigation }) {
   const { data: cartProducts = [], refetch } = useCart();
+  const { mutate: clearCart } = useClearCart();
 
   useFocusEffect(
     React.useCallback(() => {
@@ -40,9 +42,31 @@ function Cart({ navigation }) {
     }, [])
   );
 
+  const confirmEmptyCart = () => {
+    Alert.alert(
+      "Eliminar elementos múltiples",
+      "¿Está seguro de que desea vaciar el carrito por completo?",
+      [
+        {
+          text: "Confirmar",
+          onPress: () => clearCart()
+        },
+        {
+          text: "Cancelar",
+          onPress: () => null,
+          style: "cancel"
+        }
+      ],
+      { cancelable: false }
+    );
+  };
+
   return (
     <View style={styles.main}>
       <Header children={{ text: "Mi Carrito" }} />
+      <TouchableOpacity onPress={confirmEmptyCart} style={styles.deleteIcon}>
+        <FontAwesome5 name="trash-alt" size={20} color="#444D52" />
+      </TouchableOpacity>
       <View style={styles.scroll}>
         <ScrollContainer>
           <FlatList
@@ -56,13 +80,7 @@ function Cart({ navigation }) {
               Total
             </Text>
             <Text style={styles.price} variant="h6">
-              $
-              {cartProducts.length
-                ? cartProducts.reduce(
-                    (prev, next) => next.price * next.amount + prev,
-                    0
-                  )
-                : 0}
+              ${getTotalPrice(cartProducts)}
             </Text>
           </View>
         </ScrollContainer>
@@ -97,6 +115,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 50,
     marginBottom: 40,
+  },
+  deleteIcon: {
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    right: 0
   },
   button: {
     alignItems: "center",

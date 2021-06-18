@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   TextInput,
+  TouchableOpacity,
   KeyboardAvoidingView,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -18,6 +19,9 @@ import { getMyUser, updateMyUser } from "../../api";
 import { useQuery } from "react-query";
 import { useFocusEffect } from "@react-navigation/native";
 import BackIcon from "../atoms/Icons/BackIcon";
+
+// import * as ImagePicker from 'expo-image-picker';
+
 
 export default function About({ navigation }) {
   const {
@@ -40,13 +44,25 @@ export default function About({ navigation }) {
     }, [])
   );
 
-  const handleChange = (e, name) => {
-    const { text } = e.nativeEvent;
-    editProfile({
-      ...profile,
-      [name]: name === "dni" ? parseInt(text, 10) : text,
-    });
+
+  const [image, setImage] = useState(null);
+
+  const pickImage = async () => {
+    // let result = await ImagePicker.launchImageLibraryAsync({
+    //   mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //   allowsEditing: true,
+    //   aspect: [1, 1],
+    //   quality: 1,
+    // });
+
+    // if (!result.cancelled) {
+    //   setImage(result.uri);
+    //   console.log(result.uri)
+    // }
+
+    console.log("Connect missing");
   };
+
 
   return (
     <View style={styles.default} behavior="padding">
@@ -75,11 +91,16 @@ export default function About({ navigation }) {
       <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
         <View style={{ height: "30%" }}>
           <Image
-            children={user.profileImage}
+            children={image || user.profileImage}
             variant="medium"
             style={{ borderRadius: 100 }}
           />
         </View>
+        {/* <TouchableOpacity onPress={pickImage} >
+          <Text variante="subtitle1">Subir imagen</Text>
+        </TouchableOpacity> */}
+
+
 
         {user && !editable 
         ?

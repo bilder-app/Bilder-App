@@ -4,10 +4,47 @@ import { View, StyleSheet } from "react-native";
 import Header from "../organisms/Header/Header";
 import Text from "../atoms/Text/Text";
 import Button from "../atoms/Button/Button";
+import useCheckoutCartDetailsStore from "../../hooks/useCheckoutCartDetailsStore";
+import { useCheckoutCart, getTotalProducts } from "../../hooks/useCheckoutCart";
 
 import { faTimes as CloseIcon } from "@fortawesome/free-solid-svg-icons";
+import { useUserData } from "../../hooks/useUserData";
+
+const getTotalPriceOfProducts = (products) =>
+  products.reduce((acc, { units, price }) => {
+    return acc + units * price;
+  }, 0);
 
 export default function Checkout() {
+  const store = useCheckoutCartDetailsStore();
+  const { data, isLoading } = useCheckoutCart();
+  const { data: userData } = useUserData();
+
+  if (isLoading) return null;
+
+  const subtotal = data.reduce((total, { products }) => {
+    return (
+      total + products.reduce((acc, next) => acc + next.units * next.price, 0)
+    );
+  }, 0);
+
+  const deliveryCost = data.reduce((acc, { business, products }) => {
+    const productsTotal = getTotalPriceOfProducts(products);
+    const isDelivering = store.details[business.id].delivery;
+    if (isDelivering && productsTotal < business.freeDeliveryAt)
+      return acc + business.deliveryPrice;
+    else return acc;
+  }, 0);
+
+  const finalTotalCost = subtotal + deliveryCost;
+
+  const getBusinessAddress = (packageNum) => {
+    const prodData = data.find(
+      (prodData) => prodData.packageNumber === packageNum
+    );
+    return prodData.business.address;
+  };
+
   return (
     <View style={styles.main}>
       <Header icon={CloseIcon} children={{ text: "Último paso" }} />
@@ -22,38 +59,35 @@ export default function Checkout() {
               justifyContent: "center",
               padding: 10,
               borderRadius: 10,
-              marginTop: 5,
+              marginTop: 5
             }}
           >
-            <Text variant="h5">8</Text>
+            <Text variant="h5">{getTotalProducts(data)}</Text>
           </View>
-          <Text variant="h3">Paquete 1</Text>
-          <View
-            style={{
-              backgroundColor: "#F6F6F6",
-              height: 40,
-              justifyContent: "center",
-              padding: 10,
-              borderRadius: 10,
-              marginTop: 5,
-            }}
-          >
-            <Text variant="h5">Envio a Domicilio</Text>
-          </View>
-          <Text variant="h3">Paquete 2</Text>
-          <View
-            style={{
-              backgroundColor: "#F6F6F6",
-              height: 40,
-              justifyContent: "center",
-              padding: 10,
-              borderRadius: 10,
-              marginTop: 5,
-            }}
-          >
-            <Text variant="h5">Retiro en el Local</Text>
-          </View>
-          <Text variant="h5">Av.Directorio 1234</Text>
+
+          {Object.values(store.details).map(({ packageNumber, delivery }) => (
+            <>
+              <Text variant="h3">Paquete {packageNumber}</Text>
+
+              <View
+                style={{
+                  backgroundColor: "#F6F6F6",
+                  height: 40,
+                  justifyContent: "center",
+                  padding: 10,
+                  borderRadius: 10,
+                  marginTop: 5
+                }}
+              >
+                <Text variant="h5">
+                  {delivery ? "Envio a domicilio" : "Retiro en el local"}
+                </Text>
+              </View>
+              {!delivery && (
+                <Text variant="h5">{getBusinessAddress(packageNumber)}</Text>
+              )}
+            </>
+          ))}
         </View>
         <View style={{ marginBottom: 20 }}>
           <Text variant="h3">Dirrección de Envio</Text>
@@ -64,10 +98,10 @@ export default function Checkout() {
               justifyContent: "center",
               padding: 10,
               borderRadius: 10,
-              marginTop: 5,
+              marginTop: 5
             }}
           >
-            <Text variant="h5">Av.De Mayo 789</Text>
+            <Text variant="h5">{userData?.address}</Text>
           </View>
         </View>
         <View style={{ marginBottom: 20 }}>
@@ -79,7 +113,7 @@ export default function Checkout() {
               justifyContent: "center",
               padding: 10,
               borderRadius: 10,
-              marginTop: 5,
+              marginTop: 5
             }}
           >
             <Text variant="h5">Efectivo</Text>
@@ -92,7 +126,7 @@ export default function Checkout() {
               Subtotal
             </Text>
             <Text style={styles.price} variant="h4">
-              $ 0
+              $ {subtotal}
             </Text>
           </View>
           <View style={styles.header}>
@@ -100,7 +134,7 @@ export default function Checkout() {
               Costo de Entrega Total
             </Text>
             <Text style={styles.price} variant="h4">
-              $ 0
+              $ {deliveryCost}
             </Text>
           </View>
           <View style={styles.header}>
@@ -108,7 +142,7 @@ export default function Checkout() {
               Total
             </Text>
             <Text style={styles.price} variant="h4">
-              $ 0
+              $ {finalTotalCost}
             </Text>
           </View>
         </View>
@@ -128,18 +162,18 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     display: "flex",
-    backgroundColor: "white",
+    backgroundColor: "white"
   },
   text: {
     fontWeight: "700",
     marginTop: 15,
-    marginBottom: 10,
+    marginBottom: 10
   },
   align: {
     height: 43,
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: 15,
+    marginBottom: 15
   },
   button: {
     marginTop: "auto",
@@ -147,16 +181,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     paddingVertical: 5,
-    backgroundColor: "#FFF",
+    backgroundColor: "#FFF"
   },
   content: {
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "white",
-  },
+    backgroundColor: "white"
+  }
 });

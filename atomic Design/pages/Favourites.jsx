@@ -41,6 +41,7 @@ function Favourites() {
                       variant="favourite"
                       children={product}
                       onPress={postProductToCartAsync}
+                      redirect
                     />
                   );
                 })}

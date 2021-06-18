@@ -1,4 +1,18 @@
-import { curry, view, lensPath, map } from "ramda";
+import {
+  curry,
+  view,
+  lensPath,
+  map,
+  T,
+  always,
+  isNil,
+  isEmpty,
+  complement,
+  cond,
+  and,
+  is
+} from "ramda";
+import { isEmptyArray } from "ramda-adjunct";
 
 /**
  * Creates a new object by picking
@@ -47,6 +61,26 @@ import { curry, view, lensPath, map } from "ramda";
  *  }
  *
  */
+// Object -> Object
 export const remap = curry((desc, obj) =>
   map((path) => view(lensPath(path), obj), desc)
 );
+
+/**
+ * a -> Boolean
+ */
+export const isStrictFalsy = (val) => !!val === false;
+
+/**
+ * Boolean -> Boolean
+ */
+export const isNotNil = complement(isNil);
+
+/**
+ * a -> Boolean
+ */
+export const isFalsyOrEmptyArray = cond([
+  [isStrictFalsy, always(true)],
+  [isEmptyArray, always(true)],
+  [T, always(false)]
+]);

@@ -1,17 +1,20 @@
 import React from "react";
 import { View, StyleSheet, Image } from "react-native";
 import Text from "../atoms/Text/Text";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { amountMachine } from "../machines/amountModal";
 import { useMachine } from "@xstate/react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useQueryClient } from "react-query";
 import { editProductInCart, removeProductFromCart } from "../../api";
+import { useNavigation } from "@react-navigation/native";
 import IconContainer from "../atoms/IconContainer/IconContainer";
 import { CART_ITEMS_KEY } from "../../hooks/reactQueryKeys";
 
 export default function ({ image, price, name, productId, amount, stock }) {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient();  
+  const navigation = useNavigation();
+
   const [state, send] = useMachine(amountMachine, {
     context: {
       amount,
@@ -34,20 +37,32 @@ export default function ({ image, price, name, productId, amount, stock }) {
     },
   });
 
+
+  const redirect = () => navigation.navigate("ProductDetail", { productId });
+
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: image }} style={styles.image} />
+    <View style={styles.container} >
+      <TouchableOpacity onPress={redirect}>
+        <Image source={{ uri: image }} style={styles.image} />
+      </TouchableOpacity>
       <View style={styles.content}>
-        {/* <Text style={{ flexGrow: 1, fontWeight: "bold" }} variant="subtitle1">
-          {name}
-        </Text> */}
-        <View style={{ height: "60%" }}>
-          <Text
-            variant="subtitle2"
-            style={{ fontWeight: "bold", color: "#444D52" }}
-          >
+        <View style={{ height: "60%", flexDirection: "row", width: "88%" }}>
+          <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52" }}>
             {name}
           </Text>
+          <View style={{ width: "15%", height: "60%", marginTop: "-3%" }}>
+            <TouchableOpacity 
+              onPress={() => {
+                removeProductFromCart(productId).then(() => {
+                  queryClient.invalidateQueries(CART_ITEMS_KEY);
+                  queryClient.invalidateQueries(["cart product", productId]);
+                });
+              }} 
+              style={{ width: "100%", height: "100%", alignItems: "flex-end" }}
+            >
+              <Entypo name="cross" size={20} color="#444D52" />
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.bottomContent}>
           <Text variant="h6" style={{ color: "#ff8000" }}>
