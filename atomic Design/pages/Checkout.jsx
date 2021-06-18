@@ -7,6 +7,7 @@ import Button from "../atoms/Button/Button";
 import useCheckoutCartDetailsStore from "../../hooks/useCheckoutCartDetailsStore";
 import { useCheckoutCart, getTotalProducts } from "../../hooks/useCheckoutCart";
 import { useNewOrder } from "../../hooks/mutations/useNewOrder";
+import { useNavigation } from "@react-navigation/native";
 
 import { faTimes as CloseIcon } from "@fortawesome/free-solid-svg-icons";
 import { useUserData } from "../../hooks/useUserData";
@@ -17,9 +18,10 @@ const getTotalPriceOfProducts = (products) =>
   }, 0);
 
 export default function Checkout() {
+  const navigation = useNavigation();
   const store = useCheckoutCartDetailsStore();
   const { data, isLoading } = useCheckoutCart();
-  const { mutate: createNewOrder } = useNewOrder();
+  const { mutateAsync: createNewOrder } = useNewOrder();
   const { data: userData } = useUserData();
 
   if (isLoading) return null;
@@ -156,7 +158,7 @@ export default function Checkout() {
             createNewOrder({
               productsPrice: subtotal,
               shippingPrice: deliveryCost
-            })
+            }).then(() => navigation.navigate("Orders"))
           }
         />
       </View>

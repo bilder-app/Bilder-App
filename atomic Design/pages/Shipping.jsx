@@ -17,11 +17,11 @@ const getTotalPriceOfProducts = (products) =>
   }, 0);
 
 export default function Shipping({ navigation }) {
-  const { data } = useCheckoutCart();
+  const { data, isLoading } = useCheckoutCart();
   const checkoutDetails = useCheckoutCartDetailsStore();
 
   useEffect(() => {
-    if (data) {
+    if (data && Array.isArray(data)) {
       data.forEach(({ business, packageNumber }) =>
         checkoutDetails.setBusinessDetails(business, packageNumber)
       );
