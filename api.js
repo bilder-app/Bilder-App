@@ -91,11 +91,11 @@ export function clearAllCartItems() {
 // }
 
 export function postProductToFavorites(productId) {
-  return axios.post(`/favorite/${productId}`);
+  return axios.post(`/user/favorites/${productId}`);
 }
 
 export function deleteProductFromFavorites(productId) {
-  return axios.delete(`/favorite/${productId}`);
+  return axios.delete(`/user/favorites/${productId}`);
 }
 
 export function getFavoriteProducts() {

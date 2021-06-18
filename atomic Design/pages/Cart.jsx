@@ -67,22 +67,20 @@ function Cart({ navigation }) {
        <FontAwesome5 name="trash-alt" size={20} color="#444D52" />
       </TouchableOpacity>
       <View style={styles.scroll}>
-        <ScrollContainer>
-          <FlatList
-            data={cartProducts}
-            renderItem={renderItem}
-            keyExtractor={(item, index) => index.toString()}
-          />
+        <FlatList
+          data={cartProducts || []}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
+        />
 
-          <View style={styles.header}>
-            <Text style={{ color: "#707070" }} variant="subtitle2">
-              Total
-            </Text>
-            <Text style={styles.price} variant="h6">
-              ${getTotalPrice(cartProducts)}
-            </Text>
-          </View>
-        </ScrollContainer>
+        <View style={styles.header}>
+          <Text style={{ color: "#707070" }} variant="subtitle2">
+            Total
+          </Text>
+          <Text style={styles.price} variant="h6">
+            ${getTotalPrice(cartProducts)}
+          </Text>
+        </View>
       </View>
 
       <View style={styles.button}>
@@ -113,7 +111,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     height: 50,
-    marginBottom: 40
+    marginBottom: 20,
+    marginHorizontal: 15,
   },
   deleteIcon: {
     width: 50,
