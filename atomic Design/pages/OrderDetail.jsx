@@ -53,15 +53,17 @@ export default function OrderDetail({
         <View style={styles.data}>
           <View style={styles.text}>
             <Text>Subtotal</Text>
-            <Text style={{ fontSize: 20 }}>$4400</Text>
+            <Text style={{ fontSize: 20 }}>${orderData.productsPrice}</Text>
           </View>
           <View style={styles.text}>
             <Text>Costo de envío</Text>
-            <Text style={{ fontSize: 20 }}>$600</Text>
+            <Text style={{ fontSize: 20 }}>${orderData.shippingPrice}</Text>
           </View>
           <View style={styles.text}>
             <Text>Total</Text>
-            <Text style={{ fontSize: 21, fontWeight: "bold" }}>$5000</Text>
+            <Text style={{ fontSize: 21, fontWeight: "bold" }}>
+              ${orderData.shippingPrice + orderData.productsPrice}
+            </Text>
           </View>
         </View>
       </View>
