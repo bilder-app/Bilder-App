@@ -177,3 +177,11 @@ export function getProductsBySubcategory(name) {
 export function getCheckoutCartProducts() {
   return axios.get(`/user/checkout/cart`).then((resp) => resp.data);
 }
+
+export function getAllOrders() {
+  return axios.get("/user/orders").then((resp) => resp.data);
+}
+
+export function getOrder(orderId) {
+  return axios.get(`/user/orders/${orderId}`).then((resp) => resp.data);
+}

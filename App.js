@@ -21,7 +21,7 @@ import Search from "./atomic Design/pages/Search.jsx";
 import Results from "./atomic Design/pages/Results.jsx";
 import Favourites from "./atomic Design/pages/Favourites.jsx";
 
-import Orders from "./atomic Design/pages/Orders.jsx";
+import Orders from "./atomic Design/pages/Orders/Orders.jsx";
 import OrderDetail from "./atomic Design/pages/OrderDetail.jsx";
 
 import Profile from "./atomic Design/pages/Profile.jsx";
