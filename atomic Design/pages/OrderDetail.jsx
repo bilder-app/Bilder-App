@@ -1,25 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { connect } from "react-redux";
 import { useOrder, getProducts } from "../../hooks/useOrder";
 
 import Header from "../organisms/Header/Header";
-// import { getFavoriteProducts } from "../redux/actions/products";
 import CardItem from "../organisms/CardItem/CardItem";
 
-const children = {
-  id: Math.floor(Math.random() * 100 + 1),
-  images: ["https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg"],
-  name: "Muñeco de baby Joda coleccionable",
-  price: Math.floor(Math.random() * 1000 + 1),
-  units: Math.floor(Math.random() * 50 + 2)
-};
-
-export default function OrderDetail({
-  orderProducts = [1, 2, 3, 4, 5],
-  getFavoriteProducts,
-  route
-}) {
+export default function OrderDetail({ route }) {
   const { data: orderData, isLoading } = useOrder(route.params);
   if (isLoading) return null;
 
@@ -27,7 +13,7 @@ export default function OrderDetail({
 
   return (
     <View style={styles.main}>
-      <Header children={{ text: `Orden #000${children.id}` }} />
+      <Header children={{ text: `Orden #000${orderData.id}` }} />
 
       <View style={{ paddingHorizontal: 15, height: "100%" }}>
         <View style={styles.scroll}>
