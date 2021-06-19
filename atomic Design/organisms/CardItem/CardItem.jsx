@@ -28,14 +28,8 @@ export default function CardItem({ variant, children, onPress, style, redirect }
     () => getCartProduct(children.id)
   );
 
-  useFocusEffect(
-    useCallback(() => {
-      refetchCartProduct()
-    }, [])
-  );
-
+  
   const isInCart = !!cartProductData;
-
 
   if (variant === "cart") {
     useEffect(() => {
@@ -96,7 +90,6 @@ export default function CardItem({ variant, children, onPress, style, redirect }
                   deleteProductFromFavorites(children.id).then(() =>  {
                     queryClient.invalidateQueries("favorite products");
                     queryClient.invalidateQueries("get favorited product");
-                    refetchCartProduct();
                   })
                 }} 
                 style={{ width: "100%", height: "100%", alignItems: "flex-end", justifyContent: "center" }}
@@ -122,7 +115,11 @@ export default function CardItem({ variant, children, onPress, style, redirect }
           {variant === "favourite" && (
             <TouchableOpacity
               style={[styles.shippingCard, { width: "30%" }]}
-              onPress={() => onPress(children.id)}
+              onPress={() => {
+                onPress(children.id).then(() => {
+                  refetchCartProduct();
+                })
+              }}
               activeOpacity={0.5}
               disabled={isInCart}
             >

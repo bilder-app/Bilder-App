@@ -1,12 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   showModal,
-//   getFavoriteProducts,
-//   addProductToFavorites,
-//   removeProductFromFavorites
-// } from "../../redux/actions/products";
+
 import Header from "../organisms/Header/Header";
 import Slider from "../organisms/Slider";
 import Footer from "../organisms/Footer/Footer";
@@ -18,7 +12,8 @@ import {
   addProductToFavorites,
   getFavoriteProduct,
   removeProductFromFavorites,
-  getCartProduct
+  getCartProduct,
+  getCategoriesById
 } from "../../api";
 import { useQueryClient, useQuery } from "react-query";
 import { useFocusEffect } from "@react-navigation/native";
@@ -57,7 +52,7 @@ export default function ProductDetails({ route }) {
     () => getCartProduct(productId)
   );
 
-  const categories = ["Pintura", "Electricidad"];
+  const [categories, setCategories] = useState([]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -66,6 +61,13 @@ export default function ProductDetails({ route }) {
       refetchCartProduct();
     }, [])
   );
+  useEffect(() => {
+    getCategoriesById(productId)
+    .then(({ categoryName, name }) => {
+      setCategories([categoryName, name])
+    })
+    .catch(err => err)
+  }, [])
 
   const isFavorited = !!favoriteProductData;
   const isInCart = !!cartProductData;
@@ -141,7 +143,7 @@ export default function ProductDetails({ route }) {
                 <Chip key={i} children={title} style={styles.chip} />
               ))           
             :               
-              <Text variant="subtitle1" style={{ color: "#707070" }}>
+              <Text variant="subtitle1" style={{ color: "#707070", marginLeft: 5 }}>
                 Este producto no tiene categorías
               </Text>
             } 

@@ -157,9 +157,12 @@ export function getCartProduct(productId) {
   return axios.get(`/user/cart/${productId}`).then((resp) => resp.data);
 }
 
-8;
 export function getSubcategories(name) {
   return axios.get(`/categories/subcategory/${name}`).then((resp) => resp.data);
+}
+
+export function getCategoriesById(productId) {
+  return axios.get(`/categories/${productId}`).then((res) => res.data);
 }
 
 export function getProductsByCategory(name) {
