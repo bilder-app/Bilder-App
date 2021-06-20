@@ -4,7 +4,7 @@ import {
   FlatList,
   StyleSheet,
   Dimensions,
-  StatusBar
+  StatusBar,
 } from "react-native";
 
 import Tab from "../../molecules/Tab/Tab";
@@ -13,7 +13,7 @@ import {
   useOrders,
   getOrderCardsData,
   getPreparingAndPendingOrders,
-  getConfirmedOrders
+  getConfirmedOrders,
 } from "../../../hooks/useOrders";
 import OrderCard from "./OrderCard";
 
@@ -27,7 +27,7 @@ const CONFIRMED = 1;
 const states = {
   preparing: "En Preparación",
   ready: "Preparando",
-  sent: "Entregado"
+  sent: "Entregado",
 };
 
 export default function Shipping() {
@@ -88,7 +88,7 @@ export default function Shipping() {
           const month = dateObj.getUTCMonth() + 1; //months from 1-12
           const day = dateObj.getUTCDate();
           const year = dateObj.getUTCFullYear();
-          let hour = dateObj.getUTCHours();
+          let hour = dateObj.getUTCHours() - 3;
           let minutes = dateObj.getUTCMinutes();
           hour = hour < 10 ? "0" + hour : hour;
           minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -110,14 +110,14 @@ export default function Shipping() {
 const styles = StyleSheet.create({
   wrapper: {
     height: height - 50,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   flatList: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor: "#FFF"
+    backgroundColor: "#FFF",
   },
   item: {
-    marginVertical: 5
-  }
+    marginVertical: 5,
+  },
 });
