@@ -1,23 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { View, TouchableOpacity } from "react-native";
+import { useQuery, useQueryClient } from "react-query";
 
 import Modal from "../../molecules/ModalCart/Modal";
 import Text from "../../atoms/Text/Text";
 import Image from "../../atoms/Image/Image";
 import Chip from "../../atoms/Chip/Chip";
-import IconContainer from "../../atoms/IconContainer/IconContainer";
 import Cart from "../../atoms/Icons/Cart";
 
-import { useNavigation } from "@react-navigation/native";
-import { Ionicons, Entypo } from "@expo/vector-icons";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
+import { Entypo } from "@expo/vector-icons";
+import { deleteProductFromFavorites, getCartProduct } from "../../../api";
+
 
 export default function CardItem({ variant, children, onPress, style, redirect }) {
-  const [cartBoolean, setCartBoolean] = useState(false);
   const [value, setValue] = useState();
   const cart = useSelector((state) => state.cartList.cart);
-
   const navigation = useNavigation();
+  const queryClient = useQueryClient();
+  
+  const { 
+    data: cartProductData,
+    refetch: refetchCartProduct 
+  } = useQuery(
+    ["cart product", children.id],
+    () => getCartProduct(children.id)
+  );
+
+  
+  const isInCart = !!cartProductData;
 
   if (variant === "cart") {
     useEffect(() => {
@@ -51,9 +63,10 @@ export default function CardItem({ variant, children, onPress, style, redirect }
   return (
     <TouchableOpacity 
       style={[styles.base, style]} 
-      onPress={() => redirect === true && navigation.navigate("ProductDetail", { productId: children.id })}
+      delayLongPress={150}
+      onLongPress={() => redirect === true && navigation.navigate("ProductDetail", { productId: children.id })}
       disabled={redirect !== true}
-      activeOpacity={0.8}
+      activeOpacity={1}
     >
       <Image
         children={
@@ -65,12 +78,35 @@ export default function CardItem({ variant, children, onPress, style, redirect }
         style={{ resizeMode: "contain" }}
       />
       <View style={styles.content}>
-        <Text
-          variant="subtitle2"
-          style={{ fontWeight: "bold", color: "#444D52" }}
-        >
-          {children.name}
-        </Text>
+        { variant === "favourite" 
+        ?
+          <View style={{ height: "66%", flexDirection: "row", width: "100%" }}>
+            <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52", width: "90%" }}>
+              {children.name}
+            </Text>
+            <View style={{ width: "13%", height: "60%", marginTop: "-3%" }}>
+              <TouchableOpacity 
+                onPress={() => {
+                  deleteProductFromFavorites(children.id).then(() =>  {
+                    queryClient.invalidateQueries("favorite products");
+                    queryClient.invalidateQueries("get favorited product");
+                  })
+                }} 
+                style={{ width: "100%", height: "100%", alignItems: "flex-end", justifyContent: "center" }}
+              >
+                <Entypo name="cross" size={20} color="#444D52" />
+              </TouchableOpacity>
+            </View>
+          </View>
+        :
+          <Text
+            variant="subtitle2"
+            style={{ fontWeight: "bold", color: "#444D52" }}
+          >
+            {children.name}
+          </Text>
+        }
+
         <View style={styles.footer}>
           <Text variant="h6" style={{ color: "#FF8000" }}>
             $ {children.price}
@@ -79,10 +115,15 @@ export default function CardItem({ variant, children, onPress, style, redirect }
           {variant === "favourite" && (
             <TouchableOpacity
               style={[styles.shippingCard, { width: "30%" }]}
-              onPress={() => onPress(children.id)}
+              onPress={() => {
+                onPress(children.id).then(() => {
+                  refetchCartProduct();
+                })
+              }}
               activeOpacity={0.5}
+              disabled={isInCart}
             >
-              <Cart width="25" height="25" color="#FF8000"/>
+              <Cart width="25" height="25" color={isInCart ? "#444D52" : "#FF8000"}/>
             </TouchableOpacity>
           
           )}
@@ -114,7 +155,7 @@ const styles = {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "white",
+    backgroundColor: "#FFF",
     elevation: 1.2,
     borderRadius: 15,
     marginVertical: 5,

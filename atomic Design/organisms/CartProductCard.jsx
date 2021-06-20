@@ -41,13 +41,16 @@ export default function ({ image, price, name, productId, amount, stock }) {
   const redirect = () => navigation.navigate("ProductDetail", { productId });
 
   return (
-    <View style={styles.container} >
-      <TouchableOpacity onPress={redirect}>
-        <Image source={{ uri: image }} style={styles.image} />
-      </TouchableOpacity>
+    <TouchableOpacity 
+      activeOpacity={1} 
+      delayLongPress={150}
+      style={styles.container}
+      onLongPress={redirect}
+    >
+      <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.content}>
-        <View style={{ height: "60%", flexDirection: "row", width: "88%" }}>
-          <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52" }}>
+        <View style={{ height: "60%", flexDirection: "row", width: "100%"  }}>
+          <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52", width: "88%" }}>
             {name}
           </Text>
           <View style={{ width: "15%", height: "60%", marginTop: "-3%" }}>
@@ -97,14 +100,13 @@ export default function ({ image, price, name, productId, amount, stock }) {
           )}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     height: 100,
-    width: "100%",
     borderRadius: 15,
     backgroundColor: "white",
     display: "flex",
@@ -112,7 +114,8 @@ const styles = StyleSheet.create({
     elevation: 1,
     marginVertical: 5,
     paddingVertical: 10,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    marginHorizontal: 15,
   },
   content: {
     display: "flex",
