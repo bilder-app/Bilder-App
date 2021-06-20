@@ -63,6 +63,14 @@ export default function About({ navigation }) {
     console.log("Connect missing");
   };
 
+    const handleChange = (e, name) => {
+      const { text } = e.nativeEvent
+      console.log(text, name)
+      editProfile({
+        ...profile,
+        [name]: name === "dni" ? parseInt(text, 10) : text
+      })
+    }
 
   return (
     <View style={styles.default} behavior="padding">
