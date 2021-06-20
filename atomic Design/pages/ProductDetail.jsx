@@ -1,12 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   showModal,
-//   getFavoriteProducts,
-//   addProductToFavorites,
-//   removeProductFromFavorites
-// } from "../../redux/actions/products";
+
 import Header from "../organisms/Header/Header";
 import Slider from "../organisms/Slider";
 import Footer from "../organisms/Footer/Footer";
@@ -18,7 +12,8 @@ import {
   addProductToFavorites,
   getFavoriteProduct,
   removeProductFromFavorites,
-  getCartProduct
+  getCartProduct,
+  getCategoriesById
 } from "../../api";
 import { useQueryClient, useQuery } from "react-query";
 import { useFocusEffect } from "@react-navigation/native";
@@ -44,15 +39,20 @@ export default function ProductDetails({ route }) {
     contentType
   } = productData;
 
-  const { data: favoriteProductData, refetch: refetchFavoriteProduct } =
-    useQuery(["get favorited product", productId], () =>
-      getFavoriteProduct(productId)
-    );
+  const { 
+    data: favoriteProductData, 
+    refetch: refetchFavoriteProduct 
+  } = useQuery(["get favorited product", productId], () => getFavoriteProduct(productId));
 
-  const { data: cartProductData, refetch: refetchCartProduct } = useQuery(
+  const { 
+    data: cartProductData,
+    refetch: refetchCartProduct 
+  } = useQuery(
     ["cart product", productId],
     () => getCartProduct(productId)
   );
+
+  const [categories, setCategories] = useState([]);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -61,6 +61,13 @@ export default function ProductDetails({ route }) {
       refetchCartProduct();
     }, [])
   );
+  useEffect(() => {
+    getCategoriesById(productId)
+    .then(({ categoryName, name }) => {
+      setCategories([categoryName, name])
+    })
+    .catch(err => err)
+  }, [])
 
   const isFavorited = !!favoriteProductData;
   const isInCart = !!cartProductData;
@@ -105,9 +112,9 @@ export default function ProductDetails({ route }) {
           <Text variant="h4" style={{ marginTop: 15 }}>
             Información General
           </Text>
-          {!brand && (
+          {brand && (
             <Text variant="subtitle1" style={{ color: "#707070" }}>
-              Marca: {brand || "Black&Decker"}
+              Marca: {brand}
             </Text>
           )}
           {contentType && (
@@ -115,9 +122,9 @@ export default function ProductDetails({ route }) {
               Contenido: {content || 1} {contentType}
             </Text>
           )}
-          {!model && (
+          {model && (
             <Text variant="subtitle1" style={{ color: "#707070" }}>
-              Modelo: {model || "700GH B&D"}
+              Modelo: {model}
             </Text>
           )}
           {stock && (
@@ -126,20 +133,21 @@ export default function ProductDetails({ route }) {
             </Text>
           )}
 
-          {/* <Text variant="h4" style={{ marginTop: 15 }}>
+          <Text variant="h4" style={{ marginTop: 15 }}>
             Categorias
           </Text>
           <View style={styles.categories}>
-            {categories.length ? (
+            {categories.length 
+            ? 
               categories.map((title, i) => (
                 <Chip key={i} children={title} style={styles.chip} />
-              ))
-            ) : (
-              <Text variant="subtitle1" style={{ color: "#707070" }}>
+              ))           
+            :               
+              <Text variant="subtitle1" style={{ color: "#707070", marginLeft: 5 }}>
                 Este producto no tiene categorías
               </Text>
-            )} 
-          </View> */}
+            } 
+          </View>
         </View>
       </ScrollView>
 
@@ -175,16 +183,17 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   chip: {
-    marginVertical: 5,
     elevation: 0,
     borderColor: "#CCC",
-    borderWidth: 0.5
+    borderWidth: 0.5,
+    margin: 5,
   },
   categories: {
     marginTop: 10,
     marginBottom: 5,
     flexDirection: "row",
-    justifyContent: "space-between",
-    flexWrap: "wrap"
+    justifyContent: "flex-start",
+    flexWrap: "wrap",
+    marginHorizontal: -5,
   }
 });
