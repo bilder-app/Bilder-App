@@ -12,7 +12,7 @@ export default function WhatsappButton(props) {
       style={styles.default}
       onPress={() =>
         Linking.openURL(
-          `https://api.whatsapp.com/send?phone=${phoneNumber}&text=%C2%A1Hola!%20Necesito%20ayuda%20con`
+          `https://api.whatsapp.com/send?phone=${phoneNumber}&text=%C2%A1Hola!%20Necesito%20ayuda`
         )
       }
     >

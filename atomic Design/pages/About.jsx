@@ -22,7 +22,6 @@ import BackIcon from "../atoms/Icons/BackIcon";
 
 // import * as ImagePicker from 'expo-image-picker';
 
-
 export default function About({ navigation }) {
   const {
     data: user = {},
@@ -44,7 +43,6 @@ export default function About({ navigation }) {
     }, [])
   );
 
-
   const [image, setImage] = useState(null);
 
   const pickImage = async () => {
@@ -63,14 +61,14 @@ export default function About({ navigation }) {
     console.log("Connect missing");
   };
 
-    const handleChange = (e, name) => {
-      const { text } = e.nativeEvent
-      console.log(text, name)
-      editProfile({
-        ...profile,
-        [name]: name === "dni" ? parseInt(text, 10) : text
-      })
-    }
+  const handleChange = (e, name) => {
+    const { text } = e.nativeEvent;
+    console.log(text, name);
+    editProfile({
+      ...profile,
+      [name]: name === "dni" ? parseInt(text, 10) : text,
+    });
+  };
 
   return (
     <View style={styles.default} behavior="padding">
@@ -108,16 +106,13 @@ export default function About({ navigation }) {
           <Text variante="subtitle1">Subir imagen</Text>
         </TouchableOpacity> */}
 
-
-
-        {user && !editable 
-        ?
+        {user && !editable ? (
           <View style={styles.content}>
             <Text style={styles.label}>Nombre completo</Text>
             <Text variante="subtitle1" style={styles.data}>
               {user.name + " " + user.lastname}
             </Text>
-            
+
             <Text style={styles.label}>Correo electrónico</Text>
             <Text variante="subtitle1" style={styles.data}>
               {user.email}
@@ -125,7 +120,7 @@ export default function About({ navigation }) {
 
             <Text style={styles.label}>Teléfono</Text>
             <Text variante="subtitle1" style={styles.data}>
-              {"+54 9 11 2021-2021"}
+              {user.contactNumber}
             </Text>
 
             <Text style={styles.label}>Dirección</Text>
@@ -138,7 +133,7 @@ export default function About({ navigation }) {
               {user.dni}
             </Text>
           </View>
-        :
+        ) : (
           <View style={styles.content}>
             <Text style={styles.label}>Nombre</Text>
             <TextInput
@@ -147,7 +142,7 @@ export default function About({ navigation }) {
               onChange={(e) => handleChange(e, "name")}
               style={styles.input}
             />
-        
+
             <Text style={styles.label}>Apellido</Text>
             <TextInput
               defaultValue={user.lastname}
@@ -163,13 +158,22 @@ export default function About({ navigation }) {
               style={styles.input}
             />
 
+            <Text style={styles.label}>Telefono</Text>
+            <TextInput
+              defaultValue={user.contactNumber}
+              onChange={(e) => handleChange(e, "contactNumber")}
+              style={styles.input}
+              maxLength={14}
+              keyboardType="numeric"
+            />
+
             <Text style={styles.label}>Dirección</Text>
             <TextInput
               defaultValue={user.address}
               onChange={(e) => handleChange(e, "address")}
               style={styles.input}
             />
-          
+
             <Text style={styles.label}>N° de documento</Text>
             <TextInput
               defaultValue={user.dni.toString()}
@@ -179,7 +183,7 @@ export default function About({ navigation }) {
               style={styles.input}
             />
           </View>
-        }
+        )}
       </KeyboardAwareScrollView>
     </View>
   );

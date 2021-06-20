@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 import {
   View,
   ScrollView,
@@ -8,7 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
-  Pressable
+  Pressable,
 } from "react-native";
 
 import ProductSlider from "../organisms/ProductSlider/ProductSlider";
@@ -28,7 +27,7 @@ import {
   faStream,
   faSink,
   faPencilRuler,
-  faClone
+  faClone,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { getProducts, getAllCartProducts, getMyUser } from "../../api";
@@ -42,7 +41,7 @@ const images = [
   require("../../assets/img/2.png"),
   require("../../assets/img/3.png"),
   require("../../assets/img/4.png"),
-  require("../../assets/img/5.png")
+  require("../../assets/img/5.png"),
 ];
 
 const pintura = require("../../assets/Categorias/Pintura.png"),
@@ -59,12 +58,12 @@ const { height } = Dimensions.get("window");
 const items = [
   { image: pintura, title: "Pinturas" },
   { image: electricidad, title: "Electricidad" },
-  { image: griferia, title: "Grifería" },
+  { image: griferia, title: "Griferia" },
   { image: herramientas, title: "Herramientas" },
   { image: maderas, title: "Maderas" },
-  { image: pared, title: "Construcción" },
-  { image: plomeria, title: "Plomería" },
-  { image: hierros, title: "Hierros" }
+  { image: pared, title: "Construccion" },
+  { image: plomeria, title: "Plomeria" },
+  { image: hierros, title: "Hierros" },
 ];
 
 function Home({ navigation }) {
@@ -166,7 +165,7 @@ export default Home;
 const styles = StyleSheet.create({
   main: {
     backgroundColor: "#fff",
-    height: height - 50
+    height: height - 50,
   },
   header: {
     height: 70,
@@ -175,7 +174,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#FFF"
+    backgroundColor: "#FFF",
   },
   categories: {
     width: "100%",
@@ -183,33 +182,33 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-between",
     paddingHorizontal: 15,
-    marginTop: 10
+    marginTop: 10,
   },
   category: {
     width: 80,
     height: 80,
     marginBottom: 10,
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
   },
   categoryImage: {
     borderRadius: 15,
     width: "80%",
-    height: "80%"
+    height: "80%",
   },
   subtitle: {
     paddingHorizontal: 15,
     color: "#FF8000",
-    fontWeight: "700"
+    fontWeight: "700",
   },
   logo: {
     width: 140,
     height: 40,
-    resizeMode: "contain"
+    resizeMode: "contain",
   },
   address: {
     alignItems: "center",
     display: "flex",
-    flexDirection: "column"
-  }
+    flexDirection: "column",
+  },
 });

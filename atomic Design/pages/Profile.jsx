@@ -33,7 +33,7 @@ export default function Profile({ navigation }) {
   return (
     <View style={styles.default}>
       <StatusBar animated={true} backgroundColor="#FF8000" />
-      <Header children={{ text: "Mi Perfil " }} hideBackIcon/>
+      <Header children={{ text: "Mi Perfil " }} hideBackIcon />
 
       <View style={styles.info}>
         <Image
@@ -64,12 +64,12 @@ export default function Profile({ navigation }) {
             Mis datos
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttons}>
+        {/* <TouchableOpacity style={styles.buttons}>
           <FontAwesome name="question-circle" size={27} color="#444D52" />
           <Text variante="subtitle1" style={styles.text}>
             Preguntas frecuentes
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           style={styles.buttons}
           onPress={() => logOut().then(() => navigation.navigate("Login"))}

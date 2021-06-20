@@ -1,6 +1,7 @@
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.MY_IP;
+axios.defaults.baseURL = "https://bilder-backend.herokuapp.com";
+console.log(axios.defaults.baseURL);
 
 export function logIn({ email, password }) {
   return axios.post("/auth/login", { email, password });
@@ -43,10 +44,6 @@ export function deleteProductInCart(productId) {
   return axios.delete(`/user/cart/${productId}`);
 }
 
-export function deleteAllProductsInCart() {
-  return axios.delete("/user/cart/");
-}
-
 /**
  * @typedef ProductInCart
  * @property {string} amount
@@ -83,7 +80,7 @@ export function getAllCartProducts() {
 }
 
 export function clearAllCartItems() {
-  return axios.delete("/user/cart");
+  return axios.put("/user/cart/clear");
 }
 
 // export function getCartAmount() {
@@ -91,11 +88,11 @@ export function clearAllCartItems() {
 // }
 
 export function postProductToFavorites(productId) {
-  return axios.post(`/user/favorites/${productId}`);
+  return axios.post(`/favorite/${productId}`);
 }
 
 export function deleteProductFromFavorites(productId) {
-  return axios.delete(`/user/favorites/${productId}`);
+  return axios.delete(`/favorite/${productId}`);
 }
 
 export function getFavoriteProducts() {
@@ -157,12 +154,9 @@ export function getCartProduct(productId) {
   return axios.get(`/user/cart/${productId}`).then((resp) => resp.data);
 }
 
+8;
 export function getSubcategories(name) {
   return axios.get(`/categories/subcategory/${name}`).then((resp) => resp.data);
-}
-
-export function getCategoriesById(productId) {
-  return axios.get(`/categories/${productId}`).then((res) => res.data);
 }
 
 export function getProductsByCategory(name) {
@@ -179,18 +173,4 @@ export function getProductsBySubcategory(name) {
 
 export function getCheckoutCartProducts() {
   return axios.get(`/user/checkout/cart`).then((resp) => resp.data);
-}
-
-export function getAllOrders() {
-  return axios.get("/user/orders").then((resp) => resp.data);
-}
-
-export function getOrder(orderId) {
-  return axios.get(`/user/orders/${orderId}`).then((resp) => resp.data);
-}
-
-export function newOrder({ productsPrice, shippingPrice }) {
-  return axios
-    .post(`/user/orders/`, { productsPrice, shippingPrice })
-    .then((resp) => resp.data);
 }
