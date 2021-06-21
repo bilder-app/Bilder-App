@@ -14,7 +14,6 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function Search() {
   const { amount } = useSelector((state) => state.productsList);
-  console.log(amount);
   const navigation = useNavigation();
   const [cartButton, setCartButton] = useState(false);
 
