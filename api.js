@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://192.168.0.11:7000";
+axios.defaults.baseURL = "https://bilder-backend.herokuapp.com";
 
 export function logIn({ email, password }) {
   return axios.post("/auth/login", { email, password });
