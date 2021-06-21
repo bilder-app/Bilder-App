@@ -1,6 +1,7 @@
 import axios from "axios";
 
 axios.defaults.baseURL = process.env.MY_IP;
+console.log(axios.defaults.baseURL);
 
 export function logIn({ email, password }) {
   return axios.post("/auth/login", { email, password });

@@ -7,39 +7,38 @@ export const amountMachine = Machine(
     states: {
       closed: {
         on: {
-          open: "open"
-        }
+          open: "open",
+        },
       },
       open: {
-        entry: "onOpen",
         after: {
-          2000: { target: "closed", actions: "onClose" }
+          2000: { target: "closed", actions: "onClose" },
         },
         on: {
           add_one: {
             actions: "addOne",
-            target: "open"
+            target: "open",
           },
           remove_one: {
             actions: "removeOne",
-            target: "open"
-          }
-        }
-      }
+            target: "open",
+          },
+        },
+      },
     },
     on: {
       change_amount: {
-        actions: "changeAmount"
-      }
-    }
+        actions: "changeAmount",
+      },
+    },
   },
   {
     actions: {
       addOne: assign({
-        amount: (ctx) => Math.min(ctx.amount + 1, ctx.maxAmount)
+        amount: (ctx) => Math.min(ctx.amount + 1, ctx.maxAmount),
       }),
       removeOne: assign({ amount: (ctx) => Math.max(ctx.amount - 1, 0) }),
-      changeAmount: assign({ amount: (_, e) => e.amount })
-    }
+      changeAmount: assign({ amount: (_, e) => e.amount }),
+    },
   }
 );

@@ -24,7 +24,7 @@ export default function Checkout() {
   const { mutateAsync: createNewOrder } = useNewOrder();
   const { data: userData } = useUserData();
 
-  if (isLoading) return null;
+  if (isLoading && !data) return null;
 
   const subtotal = data.reduce((total, { products }) => {
     return (
@@ -63,7 +63,7 @@ export default function Checkout() {
               justifyContent: "center",
               padding: 10,
               borderRadius: 10,
-              marginTop: 5
+              marginTop: 5,
             }}
           >
             <Text variant="h5">{getTotalProducts(data)}</Text>
@@ -80,7 +80,7 @@ export default function Checkout() {
                   justifyContent: "center",
                   padding: 10,
                   borderRadius: 10,
-                  marginTop: 5
+                  marginTop: 5,
                 }}
               >
                 <Text variant="h5">
@@ -102,7 +102,7 @@ export default function Checkout() {
               justifyContent: "center",
               padding: 10,
               borderRadius: 10,
-              marginTop: 5
+              marginTop: 5,
             }}
           >
             <Text variant="h5">{userData?.address}</Text>
@@ -117,7 +117,7 @@ export default function Checkout() {
               justifyContent: "center",
               padding: 10,
               borderRadius: 10,
-              marginTop: 5
+              marginTop: 5,
             }}
           >
             <Text variant="h5">Efectivo</Text>
@@ -157,7 +157,7 @@ export default function Checkout() {
           onPress={() =>
             createNewOrder({
               productsPrice: subtotal,
-              shippingPrice: deliveryCost
+              shippingPrice: deliveryCost,
             }).then(() => navigation.navigate("Orders"))
           }
         />
@@ -171,18 +171,18 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     display: "flex",
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   text: {
     fontWeight: "700",
     marginTop: 15,
-    marginBottom: 10
+    marginBottom: 10,
   },
   align: {
     height: 43,
     marginLeft: "auto",
     marginRight: "auto",
-    marginBottom: 15
+    marginBottom: 15,
   },
   button: {
     marginTop: "auto",
@@ -190,16 +190,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     paddingVertical: 5,
-    backgroundColor: "#FFF"
+    backgroundColor: "#FFF",
   },
   content: {
     flexDirection: "column",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "white"
-  }
+    backgroundColor: "white",
+  },
 });

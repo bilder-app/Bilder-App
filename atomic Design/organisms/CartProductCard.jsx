@@ -12,7 +12,7 @@ import IconContainer from "../atoms/IconContainer/IconContainer";
 import { CART_ITEMS_KEY } from "../../hooks/reactQueryKeys";
 
 export default function ({ image, price, name, productId, amount, stock }) {
-  const queryClient = useQueryClient();  
+  const queryClient = useQueryClient();
   const navigation = useNavigation();
 
   const [state, send] = useMachine(amountMachine, {
@@ -37,30 +37,32 @@ export default function ({ image, price, name, productId, amount, stock }) {
     },
   });
 
-
   const redirect = () => navigation.navigate("ProductDetail", { productId });
 
   return (
-    <TouchableOpacity 
-      activeOpacity={1} 
+    <TouchableOpacity
+      activeOpacity={1}
       delayLongPress={150}
       style={styles.container}
       onLongPress={redirect}
     >
       <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.content}>
-        <View style={{ height: "60%", flexDirection: "row", width: "100%"  }}>
-          <Text variant="subtitle2" style={{ fontWeight: "bold", color: "#444D52", width: "88%" }}>
+        <View style={{ height: "60%", flexDirection: "row", width: "100%" }}>
+          <Text
+            variant="subtitle2"
+            style={{ fontWeight: "bold", color: "#444D52", width: "88%" }}
+          >
             {name}
           </Text>
           <View style={{ width: "15%", height: "60%", marginTop: "-3%" }}>
-            <TouchableOpacity 
+            <TouchableOpacity
               onPress={() => {
                 removeProductFromCart(productId).then(() => {
                   queryClient.invalidateQueries(CART_ITEMS_KEY);
                   queryClient.invalidateQueries(["cart product", productId]);
                 });
-              }} 
+              }}
               style={{ width: "100%", height: "100%", alignItems: "flex-end" }}
             >
               <Entypo name="cross" size={20} color="#444D52" />
@@ -125,7 +127,7 @@ const styles = StyleSheet.create({
   image: {
     height: "100%",
     width: 75,
-    resizeMode: "contain"
+    resizeMode: "contain",
   },
   bottomContent: {
     display: "flex",
@@ -133,7 +135,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     width: "100%",
-    height: "40%"
+    height: "40%",
   },
   buttonFill: {
     backgroundColor: "#FF8000",

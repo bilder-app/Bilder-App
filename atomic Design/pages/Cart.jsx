@@ -16,7 +16,6 @@ import { useClearCart } from "../../hooks/mutations/useClearCart";
 
 const renderItem = ({ item = {} }) => {
   const { images, price, name, id, amount, stock } = item;
-  console.log(item.amount);
 
   return (
     <View style={{ marginVertical: 5, marginHorizontal: 2 }} key={item.id}>
@@ -49,13 +48,13 @@ function Cart({ navigation }) {
       [
         {
           text: "Confirmar",
-          onPress: () => clearCart()
+          onPress: () => clearCart(),
         },
         {
           text: "Cancelar",
           onPress: () => null,
-          style: "cancel"
-        }
+          style: "cancel",
+        },
       ],
       { cancelable: false }
     );
@@ -121,7 +120,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
-    right: 0
+    right: 0,
   },
   button: {
     alignItems: "center",
