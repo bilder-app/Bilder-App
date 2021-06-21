@@ -130,26 +130,26 @@ export default function Checkout() {
 
         <View style={styles.content}>
           <View style={styles.header}>
-            <Text style={{ color: "#707070" }} variant="h4">
+            <Text style={{ color: "#707070" }} variant="subtitle1">
               Subtotal
             </Text>
-            <Text style={styles.price} variant="h4">
+            <Text style={styles.price} variant="subtitle1">
               $ {subtotal}
             </Text>
           </View>
           <View style={styles.header}>
-            <Text style={{ color: "#707070" }} variant="h4">
+            <Text style={{ color: "#707070" }} variant="subtitle1">
               Costo de Entrega Total
             </Text>
-            <Text style={styles.price} variant="h4">
+            <Text style={styles.price} variant="subtitle1">
               $ {deliveryCost}
             </Text>
           </View>
           <View style={styles.header}>
-            <Text style={{ color: "#707070" }} variant="h4">
+            <Text style={{ color: "#707070" }} variant="subtitle1">
               Total
             </Text>
-            <Text style={styles.price} variant="h4">
+            <Text style={styles.price} variant="subtitle1">
               $ {finalTotalCost}
             </Text>
           </View>

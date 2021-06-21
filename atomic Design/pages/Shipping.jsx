@@ -7,7 +7,7 @@ import Button from "../atoms/Button/Button";
 import CardItem from "../organisms/CardItem/CardItem";
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
 import { useQuery } from "react-query";
-import { getCheckoutCartProducts } from "../../api";
+import { getCheckoutCartProducts, getMyUser } from "../../api";
 import { useCheckoutCart } from "../../hooks/useCheckoutCart";
 import useCheckoutCartDetailsStore from "../../hooks/useCheckoutCartDetailsStore";
 
@@ -27,6 +27,13 @@ export default function Shipping({ navigation }) {
       );
     }
   }, [data]);
+
+  const [user, setUser] = useState();
+  useEffect(() => {
+    getMyUser().then((user) => {
+      setUser(user);
+    });
+  }, []);
 
   if (!Object.keys(checkoutDetails.details).length) return null;
 
@@ -64,7 +71,7 @@ export default function Shipping({ navigation }) {
                   marginTop: 5,
                 }}
               >
-                <Text variant="h5">Av.De Mayo 789</Text>
+                <Text variant="h5">{user && user.address}</Text>
               </View>
             </View>
             {data.map(({ packageNumber, products, business }) => (
