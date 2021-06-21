@@ -89,7 +89,6 @@ export default function Shipping() {
           const day = dateObj.getUTCDate();
           const year = dateObj.getUTCFullYear();
           let hour = dateObj.getUTCHours();
-          console.log(hour);
           let nowhour = hour - 3;
           let minutes = dateObj.getUTCMinutes();
           hour = hour < 10 ? "0" + hour : hour;
@@ -103,7 +102,7 @@ export default function Shipping() {
             />
           );
         }}
-        keyExtractor={(item) => item.orderId}
+        keyExtractor={(item) => item.orderId.toString()}
       />
     </View>
   );

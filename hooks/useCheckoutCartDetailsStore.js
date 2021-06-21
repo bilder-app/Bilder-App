@@ -6,12 +6,13 @@ const useCheckoutCartDetails = create((set) => ({
     set((state) => {
       const newObj = { ...state.details };
       newObj[businessData.id] = {
-        delivery: businessData.delivery, // delivery === true, takeAway === false
-        packageNumber: packageNumber
+        delivery: businessData.delivery,
+        takeAway: businessData.takeAway,
+        packageNumber: packageNumber,
       };
       return {
         ...state,
-        details: newObj
+        details: newObj,
       };
     }),
   toggleDelivery: (businessId) =>
@@ -20,9 +21,10 @@ const useCheckoutCartDetails = create((set) => ({
       newObj[businessId].delivery = !state.details[businessId].delivery;
       return {
         ...state,
-        details: newObj
+        details: newObj,
       };
-    })
+    }),
+  emptyStore: () => set({ details: {} }),
 }));
 
 export default useCheckoutCartDetails;

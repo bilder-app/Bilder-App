@@ -6,8 +6,7 @@ import Text from "../atoms/Text/Text";
 import Button from "../atoms/Button/Button";
 import CardItem from "../organisms/CardItem/CardItem";
 import ScrollContainer from "../atoms/ScrollContainer/ScrollContainer";
-import { useQuery } from "react-query";
-import { getCheckoutCartProducts, getMyUser } from "../../api";
+import { getMyUser } from "../../api";
 import { useCheckoutCart } from "../../hooks/useCheckoutCart";
 import useCheckoutCartDetailsStore from "../../hooks/useCheckoutCartDetailsStore";
 
@@ -90,13 +89,18 @@ export default function Shipping({ navigation }) {
                     justifyContent: "space-between",
                   }}
                 >
+                  {/* <Text>{JSON.stringify(business)}</Text> */}
                   <Text variant="h5">
-                    {checkoutDetails.details[business.id].delivery
+                    {business.delivery && business.takeAway
+                      ? checkoutDetails.details[business.id].delivery
+                        ? "Envio a domicilio"
+                        : "Retiro en el local"
+                      : business.delivery
                       ? "Envio a domicilio"
                       : "Retiro en el local"}
                   </Text>
 
-                  {business.delivery && (
+                  {business.delivery && business.takeAway && (
                     <Switch
                       onValueChange={() =>
                         checkoutDetails.toggleDelivery(business.id)

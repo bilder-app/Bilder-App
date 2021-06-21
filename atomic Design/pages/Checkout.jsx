@@ -34,7 +34,12 @@ export default function Checkout() {
 
   const deliveryCost = data.reduce((acc, { business, products }) => {
     const productsTotal = getTotalPriceOfProducts(products);
-    const isDelivering = store.details[business.id].delivery;
+    const isDelivering = store
+      ? store.details[business.id]
+        ? store.details[business.id].delivery
+        : false
+      : false;
+
     if (isDelivering && productsTotal < business.freeDeliveryAt)
       return acc + business.deliveryPrice;
     else return acc;
@@ -162,7 +167,10 @@ export default function Checkout() {
             createNewOrder({
               productsPrice: subtotal,
               shippingPrice: deliveryCost,
-            }).then(() => navigation.navigate("Orders"))
+            }).then(() => {
+              store.emptyStore();
+              navigation.navigate("Orders");
+            })
           }
         />
       </View>
