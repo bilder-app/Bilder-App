@@ -66,10 +66,11 @@ export default function About({ navigation }) {
     console.log(text, name);
     editProfile({
       ...profile,
-      [name]: name === "dni" ? parseInt(text, 10) : text,
+      [name]:
+        name === "dni" || name === "contactNumber" ? parseInt(text, 10) : text,
     });
   };
-
+  console.log(user.contactNumber);
   return (
     <View style={styles.default} behavior="padding">
       <View style={styles.header}>
@@ -156,6 +157,15 @@ export default function About({ navigation }) {
               defaultValue={user.email}
               onChange={(e) => handleChange(e, "email")}
               style={styles.input}
+            />
+
+            <Text style={styles.label}>Telefono</Text>
+            <TextInput
+              defaultValue={user.contactNumber.toString()}
+              onChange={(e) => handleChange(e, "contactNumber")}
+              style={styles.input}
+              maxLength={12}
+              keyboardType="numeric"
             />
 
             <Text style={styles.label}>Dirección</Text>

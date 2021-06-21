@@ -69,29 +69,33 @@ export default function Checkout() {
             <Text variant="h5">{getTotalProducts(data)}</Text>
           </View>
 
-          {Object.values(store.details).map(({ packageNumber, delivery }) => (
-            <>
-              <Text variant="h3">Paquete {packageNumber}</Text>
+          {Object.values(store.details).map(
+            ({ packageNumber, delivery }, index) => (
+              <View key={index}>
+                <Text variant="h3">Paquete {packageNumber}</Text>
 
-              <View
-                style={{
-                  backgroundColor: "#F6F6F6",
-                  height: 40,
-                  justifyContent: "center",
-                  padding: 10,
-                  borderRadius: 10,
-                  marginTop: 5,
-                }}
-              >
-                <Text variant="h5">
-                  {delivery ? "Envio a domicilio" : "Retiro en el local"}
-                </Text>
+                <View
+                  style={{
+                    backgroundColor: "#F6F6F6",
+                    height: 40,
+                    justifyContent: "center",
+                    padding: 10,
+                    borderRadius: 10,
+                    marginTop: 5,
+                  }}
+                >
+                  <Text variant="h5">
+                    {delivery ? "Envio a domicilio" : "Retiro en el local"}
+                  </Text>
+                </View>
+                {!delivery && (
+                  <Text variant="h5">
+                    Dirrección de Retiro :{getBusinessAddress(packageNumber)}
+                  </Text>
+                )}
               </View>
-              {!delivery && (
-                <Text variant="h5">{getBusinessAddress(packageNumber)}</Text>
-              )}
-            </>
-          ))}
+            )
+          )}
         </View>
         <View style={{ marginBottom: 20 }}>
           <Text variant="h3">Dirrección de Envio</Text>

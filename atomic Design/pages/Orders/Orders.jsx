@@ -88,14 +88,16 @@ export default function Shipping() {
           const month = dateObj.getUTCMonth() + 1; //months from 1-12
           const day = dateObj.getUTCDate();
           const year = dateObj.getUTCFullYear();
-          let hour = dateObj.getUTCHours() - 3;
+          let hour = dateObj.getUTCHours();
+          console.log(hour);
+          let nowhour = hour - 3;
           let minutes = dateObj.getUTCMinutes();
           hour = hour < 10 ? "0" + hour : hour;
           minutes = minutes < 10 ? "0" + minutes : minutes;
 
           return (
             <OrderCard
-              date={`${day}/${month}/${year} ${hour}:${minutes}`}
+              date={`${day}/${month}/${year} ${nowhour}:${minutes}`}
               state={states[item.state]}
               orderId={item.orderId}
             />
